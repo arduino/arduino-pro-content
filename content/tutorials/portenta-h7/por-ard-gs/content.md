@@ -24,6 +24,7 @@ The Portenta H7 is equipped with two Arm Cortex ST processors (Cortex-M4 and Cor
 The Arduino core for the Portenta H7 sits on top of the Mbed OS and allows to develop applications using Mbed OS APIs which handle for example storage, connectivity, security and other hardware interfacing. [Here](https://os.mbed.com/docs/mbed-os/v5.15/apis/index.html) you can read more about the Mbed OS APIs. However, taking advantage of the Arm® Mbed™ real time operating system's powerful features can be a complicated process. Therefore we simplified that process by allowing you to run Arduino sketches on top of it.
 
 ![](https://lh4.googleusercontent.com/ZMYHx3WOIFys0iIM__x3KIhFXw6jXJP_dxmG1EGZceDNDB_XfolhoQBz2HgeG9fo30UllcMvDmeGNmJgm4ahZ1KSwUa3FlgxTPctf6Ut9YhgfPqUL36-NK9ZFWCuKpt-buMb4AGj)
+
 *The Arduino core is built on top of the Mbed stack*
 
 
@@ -34,6 +35,7 @@ In this section, we will guide you through a step-by-step process of setting up 
 Let's begin by Plug-in your Portenta to your computer using the appropriate USB C cable. Next, open your IDE and make sure that you have the right version of the Arduino IDE or the PRO IDE downloaded on to your computer.
 
 ![](https://lh4.googleusercontent.com/-RRbCXNih_C-hHTrQJR-rFDubLSY9VD36Kk8yHqiSCAd0up84IZRzbYANqDN2nTc2Vj9w4_-3g9_nPSip8m-IHrSmmZ1mr_2bERC9dZKoVouOHBESds7mzFelTumnhthgxjgLi7M)
+
 *The Portenta H7 can be connected to the computer using an appropriate USB-C cable*
 
 
@@ -46,6 +48,7 @@ In order to download the Mbed cores which are required to run Arduino sketches o
 Open to the File > Preferences and paste the following URL in the Additional Boards Manager URLs field: [https://downloads.arduino.cc/packages/package_mbed_index.json](http://downloads.arduino.cc/packages/package_mbed_index.json)
 
 ![](https://lh4.googleusercontent.com/FVRuvfpu965vZgwTZDSGb3wp2YDEBUeHnXwq-zcY20QV6AceM_0tPYYL18dXAeDL9JJxBiQ5EIUg_OIy0PKceM6uQgk4j5Eb-LEBbvQH9BShXIx2XZi-CqKcRhDGPwoG_8d8poD5)
+
 *In order to see the Mbed core in the board manager, an additional URL needs to be added.*
 
 Once you have inserted the link as shown in the image above, click on the "OK" button.
@@ -68,8 +71,7 @@ Update the core list index by executing the following command:
 
     $ arduino-cli core update-index
 
-Once the commands have completed you will see the Mbed core in the Pro IDE boards manager.
-
+Once the commands have completed you will see the Mbed core in the Pro IDE boards manager.  
 More information on how to get started with the Arduino CLI can be found [here](https://arduino.github.io/arduino-cli/getting-started/):
 
 ## 3. Adding the Portenta to the list of available boards 
@@ -78,10 +80,12 @@ This step is the same for both the classic IDE and the Pro IDE. Open the board m
 **Note:** If you have previously installed the Nano 33 BLE core  it will be updated by following this step.
 
 ![](https://lh4.googleusercontent.com/StHcG4LizJp_yLfcHC0hMabBj68bMWBZc8-b92UwewurBKuBqbhDrKvlmEBb0x6ZTtBf3luyBW7X_Se_TWJ4niE4SO5XBm5HlYvmtxSfGq-Y9yYV2VKYhMTujF8wPf1nPZ91J9i3)
+
 *A search for "mbed" reveals the core that needs to be installed to support Portenta H7.*
 
 
 ![](https://lh3.googleusercontent.com/1pB42wx5GWWSrk8eGa4KzdK2NCuGpC312Snz9pbaZOX8yxRCeGQcOOPhII4sHQlqKAbJA4s6sZdvAvPMkf-IH1Sxt819RRwtOkpv0tctms9XRXHlSpgIB0KBWkLnETZQFEjyV0uP)
+
 *Also in the Pro IDE, a search for "mbed" reveals the core that needs to be installed to support Portenta H7.*
 
 
@@ -89,6 +93,7 @@ This step is the same for both the classic IDE and the Pro IDE. Open the board m
 This step is only needed for Microsoft Windows users and only needs to be done once. To be able to recognise the Portenta H7 in windows you need to install a generic USB device driver. Zadig is an open source software that can be used for this. Install[ Zadig](https://zadig.akeo.ie/), then connect your portenta with the USB cable and assign WinUSB to Portenta H7 Bootloader as shown in the image below. To finish click on the Install Driver button.
 
 ![](https://lh4.googleusercontent.com/JU3JoHHZyb-w5j-dSpT-40F0iIbiSwjMwz3eE3fQlWv5tVLZbE5m_zctXm8_Hk3iBv8ttVh_HVT20_Sv3psJhXPnRkLIlZP0TdA5Ooy72wPUmYHOtUipQc25hZ_kjKwgVRybgv5n)
+
 *Assigning WinUSB to Portenta H7 Bootloader.*
 
 
@@ -96,6 +101,7 @@ This step is only needed for Microsoft Windows users and only needs to be done o
 In this step you will make sure that the drivers are installed correctly and Windows is able to detect the Portenta H7. To do so open the Windows Device manager and if everything is set up correctly you will be able to see your device listed under USB devices. Otherwise go back to step 4 and try to re-install the drivers.
 
 ![](https://lh6.googleusercontent.com/upFD7Gmk-k0y-Soe5CjnN68uUTIcgBAtc2PS4z4yJ2z04WOeSR5OuN5W5i0U4FVu7EZm8xR0BH7ztKcoMXJ5vlLlFYq6n56poTGukXI2hVVovFV6O9g8Oz0RrY6QBwFsQX_BGpaX)
+
 *If the device driver is set up correctly, the Portenta H7 will be listed in the device manager under USB devices.*
 
 ## 6. Uploading the classic blink sketch
@@ -130,9 +136,11 @@ Now it's time to upload the sketch and see if the LED will start to blink. Make 
 **Note:** The Portenta H7 has an M7 and an M4 processor which run separate cores. That's why you need to select the one to which you want to upload your sketch to (check out the tutorial "Dual Core Processing" to learn more about Portenta's processors).
 
 ![](https://lh5.googleusercontent.com/lRYteqDXJkRZfrLwFEmf3ahVtd9Vg20fJI0FU4zniyRcwszOW_7KxnXWNKVvvIcV0DSVxNC7Th8KiwBrKwfCA12GSXbuESi-G3L1tlYizi2BYwYnOs4w4695P54IcKNk1UZQCD7M)
+
 *Select the Arduino Portenta H7 (M7 core) in the board selector.*
 
 ![](https://lh5.googleusercontent.com/i8p54WZQn3hXxiLNdW1meGyX3ZC5ocmywbUFTyRTnjr8iMoQLPhUudjMbOMPCcXmz3SZuORgwghdwJe00W2ro0C1tB53UVMi4qPZ8Hp5Vo1zb556XqAbzHIvUVxHmAV44ftnO4cW)
+
 *Selecting the Arduino Portenta H7 (M7 core)*
 
 # Conclusion
@@ -147,11 +155,10 @@ You have now configured your Portenta board to run Arduino sketches. Along with 
 If trying to upload a sketch but you receive an error message, saying that the upload has failed you can try to upload the sketch while the Portenta H7 is in bootloader mode. To do so you need to double click the reset button. The green LED will start fading in and out. Try to upload the sketch again. The green LED will stop fading when the upload completes.
 
 ![](https://lh4.googleusercontent.com/vRdhV2b9DmwoQHuD1a53yyljiruvQRH_GfXKq_LLwvTW-afxgmGDPYC-UMA-zPjCYim6ikPj2HvFXZzbgMVbfc3Z8p4pTa5g7lMtP5AUS9iI8WES9fYtNshhxL6R60U1Ggg-Pl4C)
+
 *Double-clicking the reset button puts the board into bootloader mode.*
 
 
-**Authors:** Lenard George, Sebastian Hunkeler
-
-**Reviewed by:** Jose Garcia[18.03.2020]
-
+**Authors:** Lenard George, Sebastian Hunkeler  
+**Reviewed by:** Jose Garcia[18.03.2020]  
 **Last revision:** 27.3.2020
