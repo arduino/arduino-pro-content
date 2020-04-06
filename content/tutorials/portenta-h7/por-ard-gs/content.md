@@ -103,7 +103,7 @@ Let's program the Portenta with the classic blink example to check if the connec
 -   In the Arduino Pro IDE Copy and paste the following code into a new sketch in your IDE. 
 
 ```cpp
-// the setup function runs once when you press reset or power the board\
+// the setup function runs once when you press reset or power the board
 void setup() {
  // initialize digital pin LED_BUILTIN as an output.
  pinMode(LED_BUILTIN, OUTPUT);
