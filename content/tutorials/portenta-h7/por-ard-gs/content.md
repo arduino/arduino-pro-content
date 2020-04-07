@@ -23,8 +23,7 @@ The Portenta H7 is equipped with two Arm Cortex ST processors (Cortex-M4 and Cor
 
 The Arduino core for the Portenta H7 sits on top of the Mbed OS and allows to develop applications using Mbed OS APIs which handle for example storage, connectivity, security and other hardware interfacing. [Here](https://os.mbed.com/docs/mbed-os/v5.15/apis/index.html) you can read more about the Mbed OS APIs. However, taking advantage of the Arm® Mbed™ real time operating system's powerful features can be a complicated process. Therefore we simplified that process by allowing you to run Arduino sketches on top of it.
 
-![](assets/por_gs_mbed_stack.svg?sanitize=true)  
-*The Arduino core is built on top of the Mbed stack*
+![The Arduino core is built on top of the Mbed stack](assets/por_gs_mbed_stack.svg?sanitize=true)
 
 
 # Configuring the Development Environment
@@ -33,8 +32,7 @@ In this section, we will guide you through a step-by-step process of setting up 
 ## 1.   The Basic Setup
 Let's begin by Plug-in your Portenta to your computer using the appropriate USB C cable. Next, open your IDE and make sure that you have the right version of the Arduino IDE or the PRO IDE downloaded on to your computer.
 
-![](assets/por_tut1_im1.png)  
-*The Portenta H7 can be connected to the computer using an appropriate USB-C cable*
+![The Portenta H7 can be connected to the computer using an appropriate USB-C cable](assets/por_tut1_im1.png)
 
 
 ## 2. Making the Mbed cores available to the Arduino IDE's boards manager 
@@ -45,8 +43,7 @@ In order to download the Mbed cores which are required to run Arduino sketches o
 
 Open to the File > Preferences and paste the following URL in the Additional Boards Manager URLs field: [https://downloads.arduino.cc/packages/package_mbed_index.json](http://downloads.arduino.cc/packages/package_mbed_index.json)
 
-![](assets/por_ard_gs_bm_url.png)  
-*In order to see the Mbed core in the board manager, an additional URL needs to be added.*
+![In order to see the Mbed core in the board manager, an additional URL needs to be added.](assets/por_ard_gs_bm_url.png)
 
 Once you have inserted the link as shown in the image above, click on the "OK" button.
 
@@ -76,25 +73,21 @@ This step is the same for both the classic IDE and the Pro IDE. Open the board m
 
 **Note:** If you have previously installed the Nano 33 BLE core  it will be updated by following this step.
 
-![](assets/por_ard_gs_bm_core.png)  
-*A search for "mbed" reveals the core that needs to be installed to support Portenta H7.*
+![A search for "mbed" reveals the core that needs to be installed to support Portenta H7.](assets/por_ard_gs_bm_core.png)
 
-![](assets/por_ard_gs_bm_core_pro_ide.png)  
-*Also in the Pro IDE, a search for "mbed" reveals the core that needs to be installed to support Portenta H7.*
+![Also in the Pro IDE, a search for "mbed" reveals the core that needs to be installed to support Portenta H7.](assets/por_ard_gs_bm_core_pro_ide.png)
 
 
 ## 4. Install the USB driver (Windows only)
 This step is only needed for Microsoft Windows users and only needs to be done once. To be able to recognise the Portenta H7 in windows you need to install a generic USB device driver. Zadig is an open source software that can be used for this. Install[ Zadig](https://zadig.akeo.ie/), then connect your portenta with the USB cable and assign WinUSB to Portenta H7 Bootloader as shown in the image below. To finish click on the Install Driver button.
 
-![](assets/por_ard_gs_zadig_driver.png)  
-*Assigning WinUSB to Portenta H7 Bootloader.*
+![Assigning WinUSB to Portenta H7 Bootloader.](assets/por_ard_gs_zadig_driver.png)
 
 
 ## 5. Verify the USB connection  (Windows only)
 In this step you will make sure that the drivers are installed correctly and Windows is able to detect the Portenta H7. To do so open the Windows Device manager and if everything is set up correctly you will be able to see your device listed under USB devices. Otherwise go back to step 4 and try to re-install the drivers.
 
-![](assets/por_ard_gs_usb_driver_win.png)  
-*If the device driver is set up correctly, the Portenta H7 will be listed in the device manager under USB devices.*
+![If the device driver is set up correctly, the Portenta H7 will be listed in the device manager under USB devices.](assets/por_ard_gs_usb_driver_win.png)
 
 ## 6. Uploading the classic blink sketch
 Let's program the Portenta with the classic blink example to check if the connection to the board works:
@@ -127,11 +120,9 @@ Now it's time to upload the sketch and see if the LED will start to blink. Make 
 
 **Note:** The Portenta H7 has an M7 and an M4 processor which run separate cores. That's why you need to select the one to which you want to upload your sketch to (check out the tutorial "Dual Core Processing" to learn more about Portenta's processors).
 
-![](assets/por_ard_gs_upload_sketch.png)  
-*Select the Arduino Portenta H7 (M7 core) in the board selector.*
+![Select the Arduino Portenta H7 (M7 core) in the board selector.](assets/por_ard_gs_upload_sketch.png)
 
-![](assets/por_gs_board_selection_pro_ide.png)  
-*Selecting the Arduino Portenta H7 (M7 core)*
+![Selecting the Arduino Portenta H7 (M7 core)](assets/por_gs_board_selection_pro_ide.png)
 
 # Conclusion
 You have now configured your Portenta board to run Arduino sketches. Along with that you gained an understanding of how the Arduino Core runs on top of Mbed OS.  
@@ -144,8 +135,7 @@ You have now configured your Portenta board to run Arduino sketches. Along with 
 ## Sketch Upload Troubleshooting
 If trying to upload a sketch but you receive an error message, saying that the upload has failed you can try to upload the sketch while the Portenta H7 is in bootloader mode. To do so you need to double click the reset button. The green LED will start fading in and out. Try to upload the sketch again. The green LED will stop fading when the upload completes.
 
-![](assets/por_ard_gs_reset.png)  
-*Double-clicking the reset button puts the board into bootloader mode.*
+![Double-clicking the reset button puts the board into bootloader mode.](assets/por_ard_gs_reset.png)
 
 **Authors:** Lenard George, Sebastian Hunkeler  
 **Reviewed by:** Jose Garcia [18.03.2020]  
