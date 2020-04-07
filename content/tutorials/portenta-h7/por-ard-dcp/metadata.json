@@ -14,7 +14,7 @@
       "RGB", 
       "LED"
    ],
-   "abstract":"In this tutorial you will run two classic Arduino blink programs simultaneously  on different cores of the Portenta board that blinks the RGB LED in two different colours.",
+   "abstract":"In this tutorial you will run two classic Arduino blink programs simultaneously on different cores of the Portenta board that blinks the RGB LED in two different colours.",
    "previousArticle":"por-ard-gs",
    "nextArticle":null
 }
