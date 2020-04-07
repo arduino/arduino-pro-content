@@ -105,16 +105,16 @@ Let's program the Portenta with the classic blink example to check if the connec
 ```cpp
 // the setup function runs once when you press reset or power the board
 void setup() {
- // initialize digital pin LED_BUILTIN as an output.
- pinMode(LED_BUILTIN, OUTPUT);
+    // initialize digital pin LED_BUILTIN as an output.
+    pinMode(LED_BUILTIN, OUTPUT);
 }
 
 // the loop function runs over and over again forever
 void loop() {
- digitalWrite(LED_BUILTIN, HIGH); // turn the LED on (HIGH is the voltage level)
- delay(1000); // wait for a second
- digitalWrite(LED_BUILTIN, LOW); // turn the LED off by making the voltage LOW
- delay(1000); // wait for a second
+    digitalWrite(LED_BUILTIN, HIGH); // turn the LED on (HIGH is the voltage level)
+    delay(1000); // wait for a second
+    digitalWrite(LED_BUILTIN, LOW); // turn the LED off by making the voltage LOW
+    delay(1000); // wait for a second
 }
 ```
 
@@ -148,5 +148,5 @@ If trying to upload a sketch but you receive an error message, saying that the u
 *Double-clicking the reset button puts the board into bootloader mode.*
 
 **Authors:** Lenard George, Sebastian Hunkeler  
-**Reviewed by:** Jose Garcia[18.03.2020]  
+**Reviewed by:** Jose Garcia [18.03.2020]  
 **Last revision:** 27.3.2020
