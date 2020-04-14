@@ -1,0 +1,9 @@
+{
+   "title": "Get to know Portenta H7",
+   "subtitle": "We'll help you set up and use your new Portenta board — the most powerful Arduino board to date.",
+   "heroBanner": null,
+   "content": null,
+   "pageName": "Portenta H7 Tutorials",
+   "slug": "portenta-h7",
+   "tutorials": ["por-ard-gs", "por-ard-dcp"]
+ }
