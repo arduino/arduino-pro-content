@@ -54,7 +54,7 @@ void loop() {
 ## 3. Upload the Sketch to the M7 Core 
 Select the **Arduino Portenta H7 (M7 core)** from the **Board** menu and the port the Portenta is connected to (e.g. /dev/cu.usbmodem141101). Upload the **blink_RedLed_m7.ino** sketch. Doing so will automatically compile the sketch beforehand. When the sketch is uploaded  the RGB LED on the board will start blinking red.
 
-![Uploading the blink_LEDR_M7 sketch to the M7 core](assets/por_ard_dcp_upload_code_m7.png)
+![Uploading the blink_RedLed_m7 sketch to the M7 core](assets/por_ard_dcp_upload_code_m7.png)
 
 ## 4. Making the LED Blink Green
 Let's write another sketch that makes the RGB LED on the board blink green. Open a new sketch file and call it **blink_GreenLed_M4.ino**. Copy and paste the following program that blinks the LED green, denoted by the variable `LEDG`,  with a delay of 500ms. This time the blinking is controlled by the M4 core.
@@ -106,7 +106,7 @@ Once this sketch runs on the M7 core, it boots the M4 core and allows it to run 
 ## 6. Uploading to the M4 Core
 The final step is to upload the sketch that we prepared for the M4. Now open **Tools> Boards** from the IDE menu and select **Arduino Portenta H7 (M4 core)** from the boards. Upload the **blink_GreenLed_M4.ino** to the board. Note that there is no separate serial port listed for the M4 in the port menu as the M7 takes care of the serial communication. The RGB LED blinking in RED currently, starts blinking in green simultaneously at an interval of 500 ms. When the blinking overlaps the mix of red and green light is perceived as yellow.
 
-![Uploading the blink_LEDG_M4 to the M4 core](assets/por_ard_dcp_upload_code_m4.png)
+![Uploading the blink_GreenLed_M4 to the M4 core](assets/por_ard_dcp_upload_code_m4.png)
 
 # Conclusion
 This tutorial introduces the idea of dual core processing and illustrates the concept by using the M7 and M4 cores to control the different colors of the built-in RGB LED. This simple example only describes how to access the M7 and M4 cores. In the upcoming tutorials you will learn to create applications that leverage the potential of dual core processing to perform more complex tasks. 
