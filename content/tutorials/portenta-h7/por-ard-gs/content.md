@@ -1,4 +1,3 @@
-
 # Setting Up Portenta H7 For Arduino
 Congratulations on your purchase of one of our most powerful microcontroller boards to date! We know you are eager to try out your new board but before you can start using the Portenta H7 to run Arduino sketches you need to configure your computer and the Arduino IDE. This tutorial teaches you how to set up the board, how to configure your computer and how to run the classic Arduino blink example  to verify if the configuration was successful.
 
@@ -29,10 +28,10 @@ The Arduino core for the Portenta H7 sits on top of the Mbed OS and allows to de
 # Configuring the Development Environment
 In this section, we will guide you through a step-by-step process of setting up your Portenta board for running an Arduino Sketch that blinks the built-in RGB LED.
 
-## 1.   The Basic Setup
+## 1. The Basic Setup
 Let's begin by Plug-in your Portenta to your computer using the appropriate USB C cable. Next, open your IDE and make sure that you have the right version of the Arduino IDE or the PRO IDE downloaded on to your computer.
 
-![The Portenta H7 can be connected to the computer using an appropriate USB-C cable](assets/por_tut1_im1.png)
+![The Portenta H7 can be connected to the computer using an appropriate USB-C cable](assets/por_ard_gs_basic_setup.svg?sanitize=true)
 
 
 ## 2. Making the Mbed cores available to the Arduino IDE's boards manager 
