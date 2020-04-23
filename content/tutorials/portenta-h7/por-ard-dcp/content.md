@@ -19,7 +19,7 @@ Processor cores are individual processing units within the board's main processi
 
 # Accessing the M7 and M4 Core
 
-To best illustrate the idea of dual core processing, you will be running two separate sketch files. One on each of the cores which blinks the RGB LED in a different colour. The **blink_LEDR_M7.ino** sketch will set the built-in RGB LED on the board to red and blink it with a delay of 500 ms. The **blink_LEDG_M4.ino** sketch will access the green LED in the RGB led and blink it with a delay of 200 ms.  Both the cores will be executing the corresponding sketch file simultaneously and as a result both the green and red LED blink, however, at different intervals.
+To best illustrate the idea of dual core processing, you will be running two separate sketch files. One on each of the cores which blinks the RGB LED in a different colour. The **blink_RedLed_m7.ino** sketch will set the built-in RGB LED on the board to red and blink it with a delay of 500 ms. The **blink_GreenLed_M4.ino** sketch will access the green LED in the RGB led and blink it with a delay of 200 ms.  Both the cores will be executing the corresponding sketch file simultaneously and as a result both the green and red LED blink, however, at different intervals.
 
 ![Running two different sketch files on the different cores.](assets/por_ard_dcp_tutorial_overview.svg?sanitize=true)
 
@@ -82,7 +82,7 @@ The bootloader of the H7 boards is configured in such a way that only M7 gets bo
 
 ![The M7 and the M4 cores share the flash memory where the sketches are stored.](assets/por_ard_dcp_m4_m7_flash_memory.svg?sanitize=true)
 
-Before you can upload the code for the M4 core to the flash memory you need to add the `LL_RCC_ForceCM4Boot()` command in the blink_RedLed_m7.ino sketch file that is uploaded and run by the M7 core. Copy and paste the following command `LL_RCC_ForceCM4Boot()`  inside the setup()function of the blink_RedLed_m7.ino  sketch and upload the sketch to M7 once again.
+Before you can upload the code for the M4 core to the flash memory you need to add the `LL_RCC_ForceCM4Boot()` command in the **blink_RedLed_m7.ino** sketch file that is uploaded and run by the M7 core. Copy and paste the following command `LL_RCC_ForceCM4Boot()` inside the `setup()` function of the **blink_RedLed_m7.ino**  sketch and upload the sketch to M7 once again.
 
 ```cpp
 // the setup function runs once when you press reset or power the board
@@ -104,7 +104,7 @@ void loop() {
 Once this sketch runs on the M7 core, it boots the M4 core and allows it to run its corresponding sketch.
 
 ## 6. Uploading to the M4 Core
-The final step is to upload the sketch that we prepared for the M4. Now open Tools> Boards from the IDE menu and select Arduino Portenta H7 (M4 core) from the boards. Upload the blink_LEDG_m4.ino to the board. Note that there is no separate serial port listed for the M4 in the port menu as the M7 takes care of the serial communication. The RGB LED blinking in RED currently, starts blinking in green simultaneously at an interval of 500 ms. When the blinking overlaps the mix of red and green light is perceived as yellow.
+The final step is to upload the sketch that we prepared for the M4. Now open **Tools> Boards** from the IDE menu and select **Arduino Portenta H7 (M4 core)** from the boards. Upload the **blink_GreenLed_M4.ino** to the board. Note that there is no separate serial port listed for the M4 in the port menu as the M7 takes care of the serial communication. The RGB LED blinking in RED currently, starts blinking in green simultaneously at an interval of 500 ms. When the blinking overlaps the mix of red and green light is perceived as yellow.
 
 ![Uploading the blink_LEDG_M4 to the M4 core](assets/por_ard_dcp_upload_code_m4.png)
 
