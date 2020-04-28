@@ -3,7 +3,8 @@ name: Deploy tutorial
 on: 
   push:
     branches:
-      - master
+      # - master
+      - fstasi/portenta-tutorials
 
 env:
   AWS_REGION: 'us-west-1' # optional: defaults to us-east-1
