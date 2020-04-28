@@ -1,21 +1,17 @@
-name: Deploy tutorials (dev)
+name: Release tutorials (prod)
 
-on: 
-  repository_dispatch:
-    types: deploy
+on:
   push:
-    branches:
-      # - master
-      - fstasi/portenta-tutorials
+    tags:
+    - 'v*'
 
 env:
   AWS_REGION: 'us-west-1'
-  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_PROD }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_PROD }}
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -29,12 +25,20 @@ jobs:
       with:
         args: --acl public-read --follow-symlinks --delete --metadata-directive REPLACE --cache-control max-age=0,no-cache,no-store,must-revalidate
       env:
-        AWS_S3_BUCKET: ${{ secrets.S3_BUCKET_NAME }}
+        AWS_S3_BUCKET: ${{ secrets.S3_BUCKET_NAME_PROD }}
         SOURCE_DIR: 'content/tutorials'
         DEST_DIR: 'content/tutorials'
 
     - name: Invalidate CloudFront distribution
       uses: chetan/invalidate-cloudfront-action@v1.0
       env:
-        DISTRIBUTION: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+        DISTRIBUTION: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID_PROD }}
         PATHS: '/content/tutorials/*'
+
+    - name: Purge cache
+      uses: jakejarvis/cloudflare-purge-action@master
+      env:
+        PURGE_URLS: '["https://www.arduino.cc/pro/"]'
+        CLOUDFLARE_ZONE: ${{ secrets.CLOUDFLARE_ZONE }}
+        CLOUDFLARE_EMAIL: ${{ secrets.CLOUDFLARE_EMAIL }}
+        CLOUDFLARE_KEY: ${{ secrets.CLOUDFLARE_KEY }}
