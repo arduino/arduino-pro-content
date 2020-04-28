@@ -1,0 +1,37 @@
+name: Deploy tutorial
+
+on: 
+  push:
+    branches:
+      - master
+
+env:
+  AWS_REGION: 'us-west-1' # optional: defaults to us-east-1
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node_version: [12]
+
+    steps:
+    - uses: actions/checkout@v1
+    
+    - name: S3 Sync (Markdown files)
+      uses: jakejarvis/s3-sync-action@v0.5.0
+      with:
+        args: --acl public-read --follow-symlinks --delete --metadata-directive REPLACE --cache-control max-age=0,no-cache,no-store,must-revalidate
+      env:
+        AWS_S3_BUCKET: ${{ secrets.S3_BUCKET_NAME }}
+        SOURCE_DIR: 'content/tutorials'
+        DEST_DIR: 'content/tutorials'
+
+    - name: Invalidate CloudFront distribution
+      uses: chetan/invalidate-cloudfront-action@v1.0
+      env:
+        DISTRIBUTION: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+        PATHS: '/content/tutorials/*'
