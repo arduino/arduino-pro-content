@@ -27,7 +27,7 @@ jobs:
     - name: S3 Sync (misc files)
       uses: jakejarvis/s3-sync-action@v0.5.0
       with:
-        args: --acl public-read --follow-symlinks --delete --metadata-directive REPLACE --exclude '*.md' --cache-control max-age=31536000
+        args: --acl public-read --follow-symlinks --delete --metadata-directive REPLACE --exclude '*.md' --cache-control max-age=0,no-cache,no-store,must-revalidate
       env:
         AWS_S3_BUCKET: ${{ secrets.S3_BUCKET_NAME }}
         SOURCE_DIR: 'content/tutorials'
