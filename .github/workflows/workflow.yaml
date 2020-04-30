@@ -54,7 +54,7 @@ jobs:
           --cache-control max-age=0,no-cache,no-store,must-revalidate
 
     - name: Invalidate CloudFront distribution
-      uses: chetan/invalidate-cloudfront-action@v1.0
-      env:
-        DISTRIBUTION: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
-        PATHS: '/content/tutorials/*'
+      run: |
+        aws cloudfront create-invalidation \
+          --distribution-id "${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}" \
+          --paths '/content/tutorials/*'

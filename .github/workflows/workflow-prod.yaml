@@ -50,15 +50,7 @@ jobs:
           --cache-control max-age=0,no-cache,no-store,must-revalidate
 
     - name: Invalidate CloudFront distribution
-      uses: chetan/invalidate-cloudfront-action@v1.0
-      env:
-        DISTRIBUTION: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID_PROD }}
-        PATHS: '/content/tutorials/*'
-
-    - name: Purge cache
-      uses: jakejarvis/cloudflare-purge-action@master
-      env:
-        PURGE_URLS: '["https://www.arduino.cc/pro/"]'
-        CLOUDFLARE_ZONE: ${{ secrets.CLOUDFLARE_ZONE }}
-        CLOUDFLARE_EMAIL: ${{ secrets.CLOUDFLARE_EMAIL }}
-        CLOUDFLARE_KEY: ${{ secrets.CLOUDFLARE_KEY }}
+      run: |
+        aws cloudfront create-invalidation \
+          --distribution-id "${{ secrets.CLOUDFRONT_DISTRIBUTION_ID_PROD }}" \
+          --paths '/content/tutorials/*'
