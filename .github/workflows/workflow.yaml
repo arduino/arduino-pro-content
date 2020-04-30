@@ -6,8 +6,7 @@ on:
   push:
     branches:
       # - master
-      # - fstasi/portenta-tutorials
-      - zmoog/remote-3rd-party-actions
+      - fstasi/portenta-tutorials
 
 env:
   AWS_REGION: 'us-west-1'
