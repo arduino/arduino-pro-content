@@ -6,7 +6,8 @@ on:
   push:
     branches:
       # - master
-      - fstasi/portenta-tutorials
+      # - fstasi/portenta-tutorials
+      - zmoog/remote-3rd-party-actions
 
 env:
   AWS_REGION: 'us-west-1'
@@ -24,23 +25,33 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     
-    - name: S3 Sync (misc files)
-      uses: jakejarvis/s3-sync-action@v0.5.0
-      with:
-        args: --acl public-read --follow-symlinks --delete --metadata-directive REPLACE --exclude '*.md' --cache-control max-age=0,no-cache,no-store,must-revalidate
-      env:
-        AWS_S3_BUCKET: ${{ secrets.S3_BUCKET_NAME }}
-        SOURCE_DIR: 'content/tutorials'
-        DEST_DIR: 'content/tutorials'
+    - name: S3 sync (misc files)
+      run: |
+        aws s3 sync \
+          content/tutorials \
+          s3://${{ secrets.S3_BUCKET_NAME }}/content/tutorials/ \
+          --no-progress \
+          --acl public-read \
+          --follow-symlinks \
+          --delete \
+          --metadata-directive REPLACE \
+          --exclude '*.md' \
+          --cache-control max-age=0,no-cache,no-store,must-revalidate
 
-    - name: S3 Sync (Markdown files)
-      uses: jakejarvis/s3-sync-action@v0.5.0
-      with:
-        args: --acl public-read --follow-symlinks --delete --metadata-directive REPLACE --exclude '*' --include '*.md' --content-type 'text/markdown' --cache-control max-age=0,no-cache,no-store,must-revalidate
-      env:
-        AWS_S3_BUCKET: ${{ secrets.S3_BUCKET_NAME }}
-        SOURCE_DIR: 'content/tutorials'
-        DEST_DIR: 'content/tutorials'
+    - name: S3 sync (Markdown files)
+      run: |
+        aws s3 sync \
+          content/tutorials \
+          s3://${{ secrets.S3_BUCKET_NAME }}/content/tutorials/ \
+          --no-progress \
+          --acl public-read \
+          --follow-symlinks \
+          --delete \
+          --metadata-directive REPLACE \
+          --exclude '*' \
+          --include '*.md' \
+          --content-type 'text/markdown' \
+          --cache-control max-age=0,no-cache,no-store,must-revalidate
 
     - name: Invalidate CloudFront distribution
       uses: chetan/invalidate-cloudfront-action@v1.0
