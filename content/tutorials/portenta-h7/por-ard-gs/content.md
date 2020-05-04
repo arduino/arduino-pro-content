@@ -49,27 +49,27 @@ Once you have inserted the link as shown in the image above, click on the "OK" b
 ### Arduino PRO IDE
 If you're using the Arduino Pro IDE, the Mbed cores have to be made available through the Arduino Command Line Interface (Arduino CLI). If you haven't installed the Arduino CLI yet, please follow the instructions [here](https://github.com/arduino/arduino-cli#how-to-install)[.](https://github.com/arduino/arduino-cli#how-to-install) You can verify if the required core is already installed by executing the following command in your terminal:
 
-```
-$ arduino-cli core list
+```sh
+arduino-cli core list
 ```
 
 If the core "arduino:mbed" with a version 1.9.5 or newer is in that list, you are all set. Otherwise you will need to add the URL to the Mbed core packages as an additional board manager URL to the config file. If you haven't created a config file yet, execute the following command:
 
-```
-$ arduino-cli config init
+```sh
+arduino-cli config init
 ```
 
 Add the URL to the config file:
 
-```
+```text
 board_manager:
 additional_urls: [http://downloads.arduino.cc/packages/package_mbed_index.json]
 ```
 
 Update the core list index by executing the following command:
 
-```
-$ arduino-cli core update-index
+```sh
+arduino-cli core update-index
 ```
 
 Once the commands have completed you will see the Mbed core in the Pro IDE boards manager.  
