@@ -5,8 +5,7 @@ on:
     types: deploy
   push:
     branches:
-      # - master
-      - fstasi/portenta-tutorials
+      - master
 
 env:
   AWS_REGION: 'us-west-1'
