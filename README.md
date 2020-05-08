@@ -42,6 +42,17 @@ Images which contain purely vector data should be exported as SVG files. Raster 
 
 Links can be added by using the following syntax: `[I'm a link](https://www.google.com)`. If you skip the first element `[Link Text]`the link URL will be used as the link text.
 
+## How Can I Add Line Breaks?
+
+To create a line break (` <br>`), end a line with two or more spaces, and then hit return.
+```
+This is the first line.  
+And this is the second line.
+```
+Will be rendered as:
+This is the first line.  
+And this is the second line.
+
 ## How Can I Include Code Snippets?
 Blocks of code are fenced by lines with three back-ticks <code>```</code>. Only the fenced code blocks support syntax highlighting. 
 
@@ -50,11 +61,11 @@ Example:
     ```js
     var s = "JavaScript syntax highlighting";
     alert(s);
-    ```
+```
 
 becomes:
 
-```javascript
+​```javascript
 var s = "JavaScript syntax highlighting";
 alert(s);
 ```
