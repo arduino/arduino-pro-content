@@ -1,0 +1,21 @@
+{
+   "id":"por-ard-ap",
+   "index": 3,
+   "title":"Portenta H7 as a Wifi Access Point",
+   "slug":"por-ard-ap",
+   "authors":[
+      "Lenard George"
+   ],
+   "coverImage":{
+      "src":"assets/por_ard_ap_cover.svg?sanitize=true"
+   },
+   "tags":[
+      "WIFI", 
+      "Access point", 
+      "HTTP",
+      "Web server
+   ],
+   "abstract":"In this tutorial you will configure the Portenta H7 into an access point and build a simple web-server that will allow you to control the RGB LEDs from your mobile device.",
+   "previousArticle":"null",
+   "nextArticle":null
+}
