@@ -1,6 +1,6 @@
 # What Is this Repository?
 
-This repository hosts content for the documentation section of the Arduino Pro website. The content needs to be written in Markdown and will be converted 
+This repository hosts content for the documentation section of the Arduino Pro website. The content needs to be written in Markdown and will be converted to HTML automatically.
 
 # How Can I Contribute?
 
