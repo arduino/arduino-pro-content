@@ -10,12 +10,12 @@
       "src":"assets/por_ard_ap_cover.svg?sanitize=true"
    },
    "tags":[
-      "WIFI", 
-      "Access point", 
+      "WiFi", 
+      "Access Point", 
       "HTTP",
-      "Web server
+      "Web Server"
    ],
-   "abstract":"In this tutorial you will configure the Portenta H7 into an access point and build a simple web-server that will allow you to control the RGB LEDs from your mobile device.",
+   "abstract":"In this tutorial you will configure the Portenta H7 as an access point and build a simple web server that will allow you to control the built-in RGB LEDs from your mobile device.",
    "previousArticle":"null",
    "nextArticle":null
 }
