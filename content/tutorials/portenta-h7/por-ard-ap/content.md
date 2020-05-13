@@ -98,13 +98,13 @@ Once you’ve entered the URL, the client sends a GET request to the web server 
 
 If you take a look at the serial monitor, you can see the details of the HTTP GET request and other details of the device connected to the access point. The GET request is always in the following format: 
 
-```cpp
+```text
 GET URL HTTP/1.1
 ```
 
 The URL is a string of characters sent to the server, in this case /Hx (where x stands for the color of the LED). This request containing the URL is received on the server and it replies with the following HTTP/1.1 response indicating that the connection was successful:
 
-```cpp
+```text
 HTTP/1.1 200 OK
 ```
 
