@@ -22,7 +22,7 @@ With the access point set up you create a client server architecture where the b
 
 ![A client device communicating with the Portenta H7 through HTTP ](assets/por_ard_ap_tutorial_core_topic.svg?sanitize=true)
 
-# Setting up the web server
+# Setting Up the Web Server
 In this tutorial you are going to convert the board into an access point and use it to set up a web server which provides a HTML webpage. This page contains buttons to toggle the red, green and blue colour of the built-in LED.  You will then connect your mobile device to this access point and access this web page through the browser on your mobile phone. Once retrieved, you will be able to control the state of the red, green and blue LED on the built-in RGB LED from your mobile device. 
 
 ![A mobile device controlling the different LEDs on the board ](assets/por_ard_ap_tutorial_overview.svg?sanitize=true)
