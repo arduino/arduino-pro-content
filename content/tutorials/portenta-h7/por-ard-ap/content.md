@@ -41,7 +41,7 @@ Here the web page is just a simple HTML page with buttons to toggle the LED stat
 
 ![The sequence of actions in the tutorial’s client-server model](assets/por_ard_ap_sketch_explanation.svg?sanitize=true)
 
-*** **Note:** Remember that the built-in RGB LEDs  on the Portenta H7 need to be pulled to ground to make them light up. This means that a voltage level of LOW on each of their pins will turn the specific color of the LED on, a voltage level of HIGH will turn them off.***
+***Remember that the built-in RGB LEDs  on the Portenta H7 need to be pulled to ground to make them light up. This means that a voltage level of __LOW__ on each of their pins will turn the specific color of the LED on, a voltage level of __HIGH__ will turn them off.***
 
 ## 3. Create the arduino_secrets.h tab  
 
