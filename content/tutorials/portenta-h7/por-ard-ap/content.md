@@ -27,7 +27,7 @@ In this tutorial you are going to convert the board into an access point and use
 
 ![A mobile device controlling the different LEDs on the board ](assets/por_ard_ap_tutorial_overview.svg?sanitize=true)
 
-## 1.   The Basic Setup
+## 1. The Basic Setup
 Begin by plugging in your Portenta board to your computer using a USB-C cable and open the  Arduino IDE or the Arduino Pro IDE. If this is your first time running Arduino sketch files on the board, we suggest you check out how to [set up the Portenta H7 for Arduino](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-gs) before you proceed. 
 
 ![The Portenta H7 can be connected to the computer using an appropriate USB-C cable](assets/por_tut1_im1.png)
@@ -41,7 +41,7 @@ Here the web page is just a simple HTML page with buttons to toggle the LED stat
 
 ![The sequence of actions in the tutorial’s client-server model](assets/por_ard_ap_sketch_explanation.svg?sanitize=true)
 
-*** **Note: **  Remember that the built-in RGB LEDs  on the Portenta H7 need to be pulled to ground to make them light up. This means that a voltage level of LOW on each of their pins will turn the specific color of the LED on, a voltage level of HIGH will turn them off.***
+*** **Note:** Remember that the built-in RGB LEDs  on the Portenta H7 need to be pulled to ground to make them light up. This means that a voltage level of LOW on each of their pins will turn the specific color of the LED on, a voltage level of HIGH will turn them off.***
 
 ## 3. Create the arduino_secrets.h tab  
 
@@ -60,7 +60,7 @@ Once you’ve created the new tab, you will see an empty page in the IDE. Define
 # define SECRET_PASS "123Qwerty"
 ```
 
-*** **Note: ** The SSID (PortentaAccessPoint) and password (123Qwerty) are placeholder strings made for this tutorial. For security reasons you should rename them to something memorisable but not easy to guess. *** 
+*** **Note:** The SSID (PortentaAccessPoint) and password (123Qwerty) are placeholder strings made for this tutorial. For security reasons you should rename them to something memorisable but not easy to guess. *** 
 
 In order to access the `SECRET_SSID` and `SECRET_PASS` constants in the **simpleWebServer.ino** sketch file, you need to include the header file that you’ve just created. Add the following line to the beginning of **simpleWebServer.ino** sketch file: 
 
@@ -124,4 +124,6 @@ This tutorial shows one of the several capabilities of the on-board WiFi+Bluetoo
 
 Now that you've learnt how to set up a board as an access point and understand the client-server model, start experimenting with the **simpleWebServer.ino** sketch. This sketch can be tweaked in a variety of ways based on your needs. For example, you can add a slider to the HTML page that changes the blink rate of the built-in RGB LED from your mobile device.
 
-**Author :** Lenard George.  <br>**Reviewed by :** Jose Garcia [2020-04-23].  <br>**Last revision:** Sebastian Hunkeler [2020-05-07]. <br>
+**Author:** Lenard George  
+**Reviewed by:** Jose Garcia [2020-04-23]  
+**Last revision:** Sebastian Hunkeler [2020-05-07]
