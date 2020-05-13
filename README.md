@@ -22,7 +22,7 @@ For headings you need to use the hash symbol `#`. # stands for H1, ## for H2 an
 
 We use only two different types of emphasis. When emphasizing singe words we use a double asterisk syntax: `**I am bold**`. This will be rendered as bold text. Italic is not supported.
 
-For important notes we use a tripple asterisk syntax to highlight the complete paragraph `*** Note: This is important! ***`. You can still emphasize single words inside such a block `*** **Note:** This is important! ***`.
+For important notes we use a tripple asterisk syntax to highlight the complete paragraph `***Note: This is important!***`. You can still emphasize single words inside such a block by using the underscore syntax `***__Note:__ This is important! ***`.
 
 We use single word emphasis for filenames and for referring to UI elements (e.g. a button label in the Arduino IDE).
 
