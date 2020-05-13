@@ -16,6 +16,6 @@
       "Web Server"
    ],
    "abstract":"In this tutorial you will configure the Portenta H7 as an access point and build a simple web server that will allow you to control the built-in RGB LEDs from your mobile device.",
-   "previousArticle":"null",
+   "previousArticle":"por-ard-dcp",
    "nextArticle":null
 }
