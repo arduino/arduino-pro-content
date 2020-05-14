@@ -54,13 +54,13 @@ Then, open: File>Examples>USBHOST>KeyboardController
 
 ![Open the Keyboard Controller example.](assets/por-ard-usbh-keyboardController.png)
 
-The USBHost.h library that is used in this example is a revamp of the classic Arduino USBHost.h library. This new version, among adapting the protocol to the new versions of USB, allows to connect devices through HUBs or USB adapters. For a better understanding about how the USBHost library works, it could be helpful for you to take a look at the Arduino [USBHost.h](https://www.arduino.cc/en/Reference/USBHost) library.
+The **USBHost.h** library that is used in this example is a revamp of the classic Arduino **USBHost.h** library. This new version, among adapting the protocol to the USB newer versions, allows to connect devices through HUBs () USB adapters). For a better understanding about how the USBHost library works, it could be helpful for you to take a look at the Arduino [USBHost.h](https://www.arduino.cc/en/Reference/USBHost) library.
 
 ## 3. Detecting the keys from the keyboard
 
 The example you have opened describes how the board will handle the connection with a keyboard, addressing the functionality of each one of the keys of it. In order to detect which one of the keys from the keyboard is pressed, you will need to modify and add some lines of code to the example.
 
-Let's start by removing the comment line ( `//` ) of the following line `.on_key = process_key` at the beginning of the code. By doing this, each time you press a key, the program calls the function that converts the data received from the keyboard from HEX to char.
+Let's start by removing the comment line ( `//` ) of the following line `.on_key = process_key` at the beginning of the code. By doing this, each time you press a key, the program calls the function that converts the data received from the keyboard from `HEX` to `char`.
 
 ```cpp
 static const tusbh_boot_key_class_t cls_boot_key = {
@@ -69,10 +69,7 @@ static const tusbh_boot_key_class_t cls_boot_key = {
 };
 ```
 
-Then, in order to modify the state of the LEDs of the board with the r (R), g (G) or b(B) keys, you need to add the following portion of code inside the `process_key()` function, as shown in the image below:
-
-![Code to toggle the LEDs with the R, G and B keys ](assets/por_ard_usbh_key_led-control.png)
-
+Then, in order to modify the state of the LEDs of the board with the r(R), g(G) or b(B) keys, you need to add the following portion of code inside the `process_key()` function, as shown in the image below:
 ```cpp
    if (ch == 'r' || ch == 'R')
     {
@@ -101,6 +98,8 @@ Then, in order to modify the state of the LEDs of the board with the r (R), g (G
         digitalWrite(LEDB, HIGH);
     }
 ```
+
+![Code to toggle the LEDs with the R, G and B keys ](assets/por_ard_usbh_key_led-control.png)
 
 ## 4. Initializing the LEDs
 
@@ -138,7 +137,7 @@ When you connect the Portenta board to the computer to program it, the computer 
 
 In the image above you can see that:
 
-+ The Portenta is connected to the "TO HOST"port from the HUB (USB C adapter)
++ The Portenta is connected to the "TO HOST" port from the HUB (USB C adapter)
 + The HUB (USB C adapter) needs to be powered externaly with a power supplier, it is needed to provide power to Portenta
 + You should connect the keyboard to the HUB (USB C adapter) in the same way you would connect it to your PC
 
@@ -175,7 +174,7 @@ To detect what the problem is about, we are going to send all the information ab
 
 ### 1. Connect the  Portenta to the Arduino MKR WiFi 1010
 
-To connect thePortenta to the Arduino MKR WiFi 1010 board you will need connect the pins with Serial1 functionality (13RX and 14TX in both boards) between them, and their GND pins as shown in the following image:
+To connect thePortenta to the Arduino MKR WiFi 1010 board you will need connect the pins with Serial1 functionality (13RX and 14TX in both boards) between them as shown in the image below. Don't forget to connect as well the GNDs of the boards.
 
 ![Serial connection Portenta - Arduino MKR WiFi 1010.](assets/por_ard_usbh_portenta_to_mkr1010.png)
 
@@ -213,11 +212,11 @@ After connecting the Portenta board to the Arduino MKR WiFi 1010 and programmed 
 
 ### 3. Open the Serial Monitor of the Arduino MKR WiFi 1010 board
 
-Once you have everythig connected, open the Serial Monitor and Reset the Portenta. Afeter reseting the Portenta board, you should get something similar to the following image:
+Once you have everythig connected, open the Serial Monitor and reset the Portenta. Afeter reseting the Portenta board, you should get in your Serial Monitor something similar to the following image:
 
 ![Troubleshooting USB communication info.](assets/por_ard_usbh_serial_info.png) 
 
-In the info received on the MKR WiFi 1010 board you should get this "Enabled" messages for the different ports of your HUB. If you can see them, when you press any key of the keyboard, it should be printed on the Serial Monitor.
+In the info received on the MKR WiFi 1010 board you should see some "Enabled" messages. It means that the Portenta recognise the different ports of your HUB. If you can see them, when you press any key of the keyboard, it should be printed on the Serial Monitor.
 
 If in the info received on the MKR WiFi 1010 board you see any "Disabled" message, it means that something went wrong in the comunication of HUB and the Portenta board, if this happen, try: 
 
