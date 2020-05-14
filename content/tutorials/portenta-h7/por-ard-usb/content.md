@@ -14,3 +14,5 @@ It is possible to configure Portenta H7 to behave as a USB host in a way that we
 
 
 Jose added some things here
+
+Lenard added stuff here
