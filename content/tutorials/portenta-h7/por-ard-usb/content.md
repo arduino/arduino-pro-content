@@ -225,6 +225,8 @@ If in the info received on the MKR WiFi 1010 board you see any "Disabled" messag
 
 If after repeating several times this process your system still no working, it may happen that the HUB you are using is not compatible with the Portenta board and you will need a different HUB to test this tutoral.
 
-**Author:** Jose Garcia 
-**Reviewed by:** 
-**Last revision:** 
+
+
+**Authors:** Jose Garcia   
+**Reviewed by:**   
+**Last revision:**
