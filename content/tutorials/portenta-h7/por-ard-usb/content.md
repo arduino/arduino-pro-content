@@ -44,9 +44,9 @@ Begin by plugging in your Portenta board to the computer using a USB-C  cable an
 
 ## 2. Creating the keyboard controller
 
-Now, let's create a sketch that handles the USB connections and  modify the state of the LEDs with each press on the r (R), g (G) and b (B) keys, so when you press the key first time the LEDs will switch on and to turn them off, you will need to press the corresponding key again. 
+Now, let's create a sketch that handles the USB connections and  modify the state of the LEDs with each press on the r(R), g(G) or b(B) keys, so when you press the key first time the LEDs will switch on and to turn them off, you will need to press the corresponding key again. 
 
-As program all the USB protocol that allows the board handle USB devices is an arduous task, you will use the example already built called KeyboardController, to find it, first, make sure you select Arduino Portenta H7 (M7 core) as the board.
+As programming the USB protocol that allows the board handle USB devices is an arduous task, you will use an already built example called KeyboardController, to find it, first, make sure you select Arduino Portenta H7 (M7 core) as the board.
 
 ![Select the Arduino Portenta H7 (M7 core) in the board selector.](assets/por_ard_usbh_select_board.png)
 
