@@ -11,4 +11,6 @@ It is possible to configure Portenta H7 to behave as a USB host in a way that we
 -   USB C cable (either USB A to USB C or USB C to USB C)
 -   Arduino IDE 1.8.10+  or Arduino Pro IDE 0.0.4+ 
 
-I am adding stuff here
+
+
+Jose added some things here
