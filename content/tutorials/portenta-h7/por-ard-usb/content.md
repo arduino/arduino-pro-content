@@ -12,6 +12,9 @@ It is possible to configure Portenta H7 to behave as a USB host in a way that we
 -   Arduino IDE 1.8.10+  or Arduino Pro IDE 0.0.4+ 
 
 # Portenta and The ...
+
+I've added stuff here. Please check if you can see yo. 
+
 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. [Here](https://www.ni.com/en-us/innovations/white-papers/07/what-is-a-real-time-operating-system--rtos--.html) you can read more about real time operating systems.
 
 ![The Arduino core is built on top of the Mbed stack](assets/Arduino-Logo.svg?sanitize=true)
