@@ -80,7 +80,7 @@ This step is the same for both the classic IDE and the Pro IDE. Open the board m
 
 **Note:** If you have previously installed the Nano 33 BLE core  it will be updated by following this step.
 
-![A search for "mbed" reveals the core that needs to be installed to support Portenta H7.](assets/por_ard_gs_bm_core.png)
+![A search for "portenta" reveals the core that needs to be installed to support Portenta H7.](assets/por_ard_gs_bm_core.png)
 
 ![Also in the Pro IDE, a search for "mbed" reveals the core that needs to be installed to support Portenta H7.](assets/por_ard_gs_bm_core_pro_ide.png)
 
