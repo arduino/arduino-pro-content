@@ -206,15 +206,15 @@ Here the web page is just a simple HTML page with buttons to toggle the LED stat
 
 ***Remember that the built-in RGB LEDs  on the Portenta H7 need to be pulled to ground to make them light up. This means that a voltage level of __LOW__ on each of their pins will turn the specific color of the LED on, a voltage level of __HIGH__ will turn them off.***
 
-## 3. Create the arduino_secrets.h tab  
+## 3. Create the arduino_secrets.h Tab
 
 A good practice is to have sensitive data like the SSID and the password required to identify and connect to a certain network within a separate file. Click on the arrow icon below the Serial Monitor button and open a new tab in the Arduino IDE. This will create a new file.
 
-![Open a new tab on the IDE](assets/por_ard_ap_new_tab.png?sanitize=true)
+![Open a new tab in the IDE](assets/por_ard_ap_new_tab.png?sanitize=true)
 
 Name the file **arduino_secrets.h** and click OK.
 
-![Name the new tab as arduino_secrets.h the IDE](assets/por_ard_ap_new_tab_name.png?sanitize=true)
+![Naming the new tab arduino_secrets.h in the IDE](assets/por_ard_ap_new_tab_name.png?sanitize=true)
 
 Once you’ve created the new tab, you will see an empty page in the IDE. Define two constants `SECRET_SSID`  and `SECRET_PASS` that will hold the name of the WiFi network and the corresponding password. Add the following lines to your **arduino_secrets.h** file:
 
@@ -233,7 +233,7 @@ In order to access the `SECRET_SSID` and `SECRET_PASS` constants in the **simple
 
 ![Including the header file arduino_secrets.h in the sketch file](assets/por_ard_ap_add_headerfile.png?sanitize=true)
 
-## 4. Upload the Code 
+## 4. Upload the Code
 
 Select the **Arduino Portenta H7 (M7 core)** from the **Board** menu and the port the Portenta is connected to. Upload the **simpleWebServer.ino** sketch. Doing so will automatically compile the sketch beforehand.
 
@@ -243,7 +243,7 @@ Once you've uploaded the code, open the serial monitor. You will be able to see 
 
 ![Serial monitor displaying the details of the Access point](assets/por_ard_ap_open_serial_monitor.png?sanitize=true)
 
-## 5. **Connecting to the Portenta Access Point** 
+## 5. Connecting to the Portenta Access Point
 
 Once the access point is active and ready to be connected with external devices, you will be able to find the **PortentaAccessPoint** on the list of networks on your mobile device. Once you have entered the password you have defined earlier, your smart phone will connect to access point. 
 
@@ -251,7 +251,7 @@ Once the access point is active and ready to be connected with external devices,
 
 Now open a browser window on your mobile device and copy & paste the URL containing Portenta’s IP address that is displayed on the serial monitor. 
 
-![*The URL containing the IP address of the access point displayed in the serial monitor* ](assets/por_ard_ap_copy_ip_address.png?sanitize=true)
+![The URL containing the IP address of the access point displayed in the serial monitor](assets/por_ard_ap_copy_ip_address.png?sanitize=true)
 
 Once you’ve entered the URL, the client sends a GET request to the web server to fetch the HTML web page specified in the code. Once loaded you will see the web page in your mobile browser. 
 
