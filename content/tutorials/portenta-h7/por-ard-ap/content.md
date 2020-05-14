@@ -223,7 +223,7 @@ Once you’ve created the new tab, you will see an empty page in the IDE. Define
 # define SECRET_PASS "123Qwerty"
 ```
 
-*** **Note:** The SSID (PortentaAccessPoint) and password (123Qwerty) are placeholder strings made for this tutorial. For security reasons you should rename them to something memorisable but not easy to guess. *** 
+***The SSID (PortentaAccessPoint) and password (123Qwerty) are placeholder strings made for this tutorial. For security reasons you should rename them to something memorisable but not easy to guess.*** 
 
 In order to access the `SECRET_SSID` and `SECRET_PASS` constants in the **simpleWebServer.ino** sketch file, you need to include the header file that you’ve just created. Add the following line to the beginning of **simpleWebServer.ino** sketch file: 
 
