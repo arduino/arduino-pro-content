@@ -18,9 +18,11 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula 
 -   Power supplier for the USB adapter (I don't know how to call this)
 
 ### Extra materials
--		Arduino Arduino MKR WiFi 1010 (or other board with at least two serial ports, check [here](https://www.arduino.cc/reference/en/language/functions/communication/serial/) the list of Arduino boards with more than one serial port.)
--		USB cable compatible with the Arduino Arduino MKR WiFi 1010 (or the board you have selected)
--		3 Jumper wires
+
+-   Arduino Arduino MKR WiFi 1010 (or other board with at least two serial ports, check [here](https://www.arduino.cc/reference/en/language/functions/communication/serial/) the list of Arduino boards with more than one serial port.)Arduino IDE 1.8.10+  or Arduino Pro IDE 0.0.4+ 
+-   USB cable compatible with the Arduino Arduino MKR WiFi 1010 (or the board you have selected)
+-   3 Jumper wires
+
 
 
 # Portenta and The ...
