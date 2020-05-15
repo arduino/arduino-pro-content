@@ -1,12 +1,12 @@
 # Portenta H7 as a USB Host
 
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
+It is possible to configure Portenta H7 to behave as a USB host in a way that we can connect peripherals such as keyboard or mouse to interact with the board. This way we could connect a keyboard to our portenta and input numbers or characters into our programs.
 
 ## What you will learn
 
--   A
--   B
--   C
+-   How to configure the Portenta H7 as a USB host
+-   What type of peripherals can we connect and how
+-   To write a small program that reads button presses from a keyboard
 
 ## Required hardware and software
 
