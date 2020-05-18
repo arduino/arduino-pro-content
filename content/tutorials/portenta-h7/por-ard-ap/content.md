@@ -225,7 +225,7 @@ Once you’ve created the new tab, you will see an empty page in the IDE. Define
 
 ***The SSID (PortentaAccessPoint) and password (123Qwerty) are placeholder strings made for this tutorial. For security reasons you should rename them to something memorisable but not easy to guess.*** 
 
-In order to access the `SECRET_SSID` and `SECRET_PASS` constants in the **simpleWebServer.ino** sketch file, you need to include the header file that you’ve just created. Add the following line to the beginning of **simpleWebServer.ino** sketch file: 
+In order to access the `SECRET_SSID` and `SECRET_PASS` constants in the **simpleWebServer.ino** sketch file, the header file that you’ve just created needs to be included. In your sketch file this has already been taken care of by the following line at the beginning of the sketch: 
 
 ```cpp
 # include “arduino_secrets.h”
