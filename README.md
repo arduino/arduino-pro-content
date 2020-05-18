@@ -9,7 +9,6 @@ Contributing by creating content or suggestion changes to existing content can b
 When you're done with a draft you can create a pull request. This will give the content team the possibility to review it and leave comments or request changes. During this review process you can continue to push commits to the same branch. They will show up in the pull request automatically. Once the pull request gests merged into master, the content will be deployed to the staging server where you will be able to have a final look on how it looks on the website. When everything looks fine, one of the repository maintainers will create a release of the latest version. This will then be automatically deployed to the production server.
 
 
-
 # How Do I Use Markdown to Write Content?
 
 Markdown is a simple language that forces authors to focus on semantics rather than styling. Therefore it's important to adhere to the convetions mentioned in this document. This will ensure proper rendering of the content on the website.
@@ -44,7 +43,7 @@ Links can be added by using the following syntax: `[I'm a link](https://www.goog
 
 ## How Can I Add Line Breaks?
 
-To create a line break (` <br>`), end a line with two or more spaces, and then hit return.
+To create a line break (`<br>`), end a line with two or more spaces, and then hit return.
 ```
 This is the first line.  
 And this is the second line.
@@ -61,11 +60,11 @@ Example:
     ```js
     var s = "JavaScript syntax highlighting";
     alert(s);
-```
+    ```
 
 becomes:
 
-​```javascript
+```javascript
 var s = "JavaScript syntax highlighting";
 alert(s);
 ```
@@ -94,8 +93,49 @@ The language of the code block always has to be specified by adding it right aft
 | Shell      | sh       |
 | Sass       | sass     |
 
+To add a code block that doesn't need syntax highlighting use <code>```text</code>.
+
 ## How can I transfer existing content from a Google Doc?
 
 The easiest way to convert content from a Google Doc to markdown is to use the following web tool: https://euangoddard.github.io/clipboard2markdown/
 
 You can copy & paste your content and it will automagically be converted to markdown. The markdown still needs to be tidied up and the image links need to be adjusted to refer to the `assets` path.
+
+## Best Practices
+See https://www.markdownguide.org/basic-syntax
+
+### Heading Best Practices
+
+Markdown applications don’t agree on how to handle missing blank lines between a heading and the surrounding paragraphs. For compatibility, separate paragraphs and headings with one or more blank lines.
+
+✅ **Do this**  
+```
+This is a paragraph.  
+
+# Here's the heading  
+
+And this is another paragraph.
+```
+
+❌ **Don't do this**  
+```
+This is a paragraph.  
+# Here's the heading  
+And this is another paragraph.
+```
+
+### Paragraph Best Practices
+
+Don’t indent paragraphs with spaces or tabs.
+
+✅ **Do this**  
+```
+Don't put tabs or spaces in front of your paragraphs.   
+Keep lines left-aligned like this.
+```
+
+❌ **Don't do this**  
+```
+  This can result in unexpected formatting problems.  
+    Don't add tabs or spaces in front of paragraphs.
+```
