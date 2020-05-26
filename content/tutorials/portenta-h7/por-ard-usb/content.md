@@ -11,7 +11,7 @@ It is possible to configure Portenta H7 to act as a USB host in a way that we ca
 ## Required hardware and software
 
 -   Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
--   USB C cable (either USB A to USB C or USB C to USB C)
+-   USB-C cable (either USB-A to USB-C or USB-C to USB-C)
 -   USB C adapter (you can find [here](https://www.dustin.se/product/5011166993/travel-port-usb-c-total) the one we used for the tutorial)
 -   External keyboard
 -   Arduino IDE 1.8.10+  or Arduino Pro IDE 0.0.4+ 
