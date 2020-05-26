@@ -212,7 +212,7 @@ After connecting the Portenta board to the Arduino MKR WiFi 1010 and programmed 
 
 ### 3. Open the Serial Monitor of the Arduino MKR WiFi 1010 board
 
-Once you have everythig connected, open the Serial Monitor and reset the Portenta. Afeter reseting the Portenta board, you should get in your Serial Monitor something similar to the following image:
+Once you have everything connected, open the Serial Monitor and reset the Portenta. After resetting the Portenta board, your Serial Monitor should display something similar to the following image:
 
 ![Troubleshooting USB communication info.](assets/por_ard_usbh_serial_info.png) 
 
