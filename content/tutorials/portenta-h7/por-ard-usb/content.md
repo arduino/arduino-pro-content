@@ -220,7 +220,7 @@ In the info received on the MKR WiFi 1010 board you should see some "Enabled" me
 
 If in the info received on the MKR WiFi 1010 board you see any "Disabled" message, it means that something went wrong in the comunication of HUB and the Portenta board, if this happen, try: 
 
-1. Reset the portenta by pressing the Reset button. 
+1. Reset the Portenta by pressing the reset button. 
 2. Disconnect the Portenta board from the HUB (USB C adapter), disconnect the power from the HUB, connect the Portenta to the HUB and connect the power to the HUB.
 
 If, after repeating this process several times, the connection still isn't working, the HUB you are using may not be compatible with the Portenta board and you will need a different HUB to complete this tutorial.
