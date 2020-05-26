@@ -5,8 +5,9 @@ It is possible to configure Portenta H7 to behave as a USB host in a way that we
 ## What you will learn
 
 -   How to configure the Portenta H7 as a USB host
--   What type of peripherals can we connect and how
+-   How to use the *KeyboardController* library to establish USB communication with Portenta H7
 -   To write a small program that reads button presses from a keyboard
+-   How to debug the data that we send from the peripheral to the Portenta H7 using an additional Arduino board.
 
 ## Required hardware and software
 
@@ -22,12 +23,6 @@ It is possible to configure Portenta H7 to behave as a USB host in a way that we
 -   Arduino Arduino MKR WiFi 1010 (or other board with at least two serial ports, check [here](https://www.arduino.cc/reference/en/language/functions/communication/serial/) the list of Arduino boards with more than one serial port.)Arduino IDE 1.8.10+  or Arduino Pro IDE 0.0.4+ 
 -   USB cable compatible with the Arduino Arduino MKR WiFi 1010 (or the board you have selected)
 -   3 Jumper wires
-
-
-
-# Portenta and The ...
-
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. [Here](https://www.ni.com/en-us/innovations/white-papers/07/what-is-a-real-time-operating-system--rtos--.html) you can read more about real time operating systems.
 
 ![The Arduino core is built on top of the Mbed stack](assets/Arduino-Logo.svg)
 
