@@ -218,7 +218,7 @@ Once you have everythig connected, open the Serial Monitor and reset the Portent
 
 In the info received on the MKR WiFi 1010 board you should see some "Enabled" messages. It means that the Portenta recognise the different ports of your HUB. If you can see them, when you press any key of the keyboard, it should be printed on the Serial Monitor.
 
-If in the info received on the MKR WiFi 1010 board you see any "Disabled" message, it means that something went wrong in the comunication of HUB and the Portenta board, if this happen, try: 
+If in the messages received on the MKR WiFi 1010 board you see any "Disabled" message, it means that something went wrong with the communication of the HUB and the Portenta board. If this happens try: 
 
 1. Reset the Portenta by pressing the reset button. 
 2. Disconnect the Portenta board from the HUB (USB C adapter), disconnect the power from the HUB, connect the Portenta to the HUB and connect the power to the HUB.
