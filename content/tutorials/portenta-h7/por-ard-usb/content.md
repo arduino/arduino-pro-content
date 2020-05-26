@@ -1,6 +1,10 @@
 # Portenta H7 as a USB Host
 
+<<<<<<< HEAD
 It is possible to configure Portenta H7 to behave as a USB host in a way that we can connect peripherals such as keyboard or mouse to interact with the board. This way you can connect a keyboard to our Portenta H7 to input numbers or characters into your programs.
+=======
+It is possible to configure Portenta H7 to act as a USB host in a way that we can connect peripherals such as a keyboard or mouse to interact with the board. This way you could connect a keyboard to your Portenta and type numbers or characters to interact with the board.
+>>>>>>> 1bb82d1e44194b4987a422ded5c656edb944c822
 
 ## What you will learn
 
@@ -12,8 +16,8 @@ It is possible to configure Portenta H7 to behave as a USB host in a way that we
 ## Required hardware and software
 
 -   Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
--   USB C cable (either USB A to USB C or USB C to USB C)
--   USB C adapter (you can find [here](https://www.dustin.se/product/5011166993/travel-port-usb-c-total) the one we used for the tutorial)
+-   USB-C cable (either USB-A to USB-C or USB-C to USB-C)
+-   USB-C adapter (you can find [here](https://www.dustin.se/product/5011166993/travel-port-usb-c-total) the one we used for the tutorial)
 -   External keyboard
 -   Arduino IDE 1.8.10+  or Arduino Pro IDE 0.0.4+ 
 -   Power supplier for the USB adapter (I don't know how to call this)
@@ -207,18 +211,18 @@ After connecting the Portenta board to the Arduino MKR WiFi 1010 and programmed 
 
 ### 3. Open the Serial Monitor of the Arduino MKR WiFi 1010 board
 
-Once you have everythig connected, open the Serial Monitor and reset the Portenta. Afeter reseting the Portenta board, you should get in your Serial Monitor something similar to the following image:
+Once you have everything connected, open the Serial Monitor and reset the Portenta. After resetting the Portenta board, your Serial Monitor should display something similar to the following image:
 
 ![Troubleshooting USB communication info.](assets/por_ard_usbh_serial_info.png) 
 
 In the info received on the MKR WiFi 1010 board you should see some "Enabled" messages. It means that the Portenta recognise the different ports of your HUB. If you can see them, when you press any key of the keyboard, it should be printed on the Serial Monitor.
 
-If in the info received on the MKR WiFi 1010 board you see any "Disabled" message, it means that something went wrong in the comunication of HUB and the Portenta board, if this happen, try: 
+If in the messages received on the MKR WiFi 1010 board you see any "Disabled" message, it means that something went wrong with the communication of the HUB and the Portenta board. If this happens try: 
 
-1. Reset the portenta by pressing the Reset button. 
+1. Reset the Portenta by pressing the reset button. 
 2. Disconnect the Portenta board from the HUB (USB C adapter), disconnect the power from the HUB, connect the Portenta to the HUB and connect the power to the HUB.
 
-If after repeating several times this process your system still no working, it may happen that the HUB you are using is not compatible with the Portenta board and you will need a different HUB to test this tutoral.
+If, after repeating this process several times, the connection still isn't working, the HUB you are using may not be compatible with the Portenta board and you will need a different HUB to complete this tutorial.
 
 
 
