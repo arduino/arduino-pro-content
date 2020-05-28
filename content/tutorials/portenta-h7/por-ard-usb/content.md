@@ -222,5 +222,5 @@ If, after repeating this process several times, the connection still isn't worki
 
 
 **Authors:** Jose Garcia   
-**Reviewed by:**   
+**Reviewed by:** Sebastian Hunkeler    
 **Last revision:**
