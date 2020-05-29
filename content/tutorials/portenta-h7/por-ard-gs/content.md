@@ -8,14 +8,14 @@ At the moment of writing the tutorial, there is an Arduino core and a MicroPytho
 This tutorial focuses on the Arduino core which allows you to benefit from the thousands of existing Arduino libraries and code examples written in C and C++ which are compatible with the Arduino core. A tutorial about setting the Portenta H7 up for development with the MicroPython core will be released soon.
 
 ## What you will learn
--   About the Arduino and Mbed operating system (Mbed OS) stack 
+-   About the Arduino and Mbed operating system (Mbed OS) stack
 -   Installing the Mbed library  
 -   Controlling the built in LED on the Portenta board
 
 ## Required hardware and software
 -   Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
 -   USB C cable (either USB A to USB C or USB C to USB C)
--   Arduino IDE 1.8.10+  or Arduino Pro IDE 0.0.4+ 
+-   Arduino IDE 1.8.10+  or Arduino Pro IDE 0.0.4+
 
 # Portenta and The Arduino Core
 The Portenta H7 is equipped with two Arm Cortex ST processors (Cortex-M4 and Cortex-M7) which run the Mbed OS.  Mbed OS is an embedded real time operating system (RTOS) designed specifically for microcontrollers to run IoT applications on low power. A real-time operating system is an operating system designed to run real-time applications that process data as it comes in, typically without buffer delays. [Here](https://www.ni.com/en-us/innovations/white-papers/07/what-is-a-real-time-operating-system--rtos--.html) you can read more about real time operating systems.
@@ -33,49 +33,7 @@ Let's begin by Plug-in your Portenta to your computer using the appropriate USB 
 
 ![The Portenta H7 can be connected to the computer using an appropriate USB-C cable](assets/por_ard_gs_basic_setup.svg?sanitize=true)
 
-
-## 2. Making the Mbed cores available to the Arduino IDE's boards manager 
-This process may be different in function on the Arduino IDE you are using, we will explain how to do it for the Arduino IDE and for the Arduino PRO IDE
-
-### Arduino IDE
-In order to download the Mbed cores which are required to run Arduino sketches on Portenta H7's processors we need to add an additional URL to the boards manager. To do so, in your Arduino IDE:
-
-Open to the File > Preferences and paste the following URL in the Additional Boards Manager URLs field: [https://downloads.arduino.cc/packages/package_mbed_index.json](http://downloads.arduino.cc/packages/package_mbed_index.json)
-
-![In order to see the Mbed core in the board manager, an additional URL needs to be added.](assets/por_ard_gs_bm_url.png)
-
-Once you have inserted the link as shown in the image above, click on the "OK" button.
-
-### Arduino PRO IDE
-If you're using the Arduino Pro IDE, the Mbed cores have to be made available through the Arduino Command Line Interface (Arduino CLI). If you haven't installed the Arduino CLI yet, please follow the instructions [here](https://github.com/arduino/arduino-cli#how-to-install)[.](https://github.com/arduino/arduino-cli#how-to-install) You can verify if the required core is already installed by executing the following command in your terminal:
-
-```text
-$ arduino-cli core list
-```
-
-If the core "arduino:mbed" with a version 1.9.5 or newer is in that list, you are all set. Otherwise you will need to add the URL to the Mbed core packages as an additional board manager URL to the config file. If you haven't created a config file yet, execute the following command:
-
-```text
-$ arduino-cli config init
-```
-
-Add the URL to the config file:
-
-```yml
-board_manager:
-additional_urls: [http://downloads.arduino.cc/packages/package_mbed_index.json]
-```
-
-Update the core list index by executing the following command:
-
-```text
-$ arduino-cli core update-index
-```
-
-Once the commands have completed you will see the Mbed core in the Pro IDE boards manager.  
-More information on how to get started with the Arduino CLI can be found [here](https://arduino.github.io/arduino-cli/getting-started/):
-
-## 3. Adding the Portenta to the list of available boards 
+## 2. Adding the Portenta to the list of available boards
 This step is the same for both the classic IDE and the Pro IDE. Open the board manager and search for "mbed".  Find the Arduino mbed-enabled Boards library and click on "Install" to install the latest version of the mbed core (1.9.6 at the time of writing this tutorial).
 
 **Note:** If you have previously installed the Nano 33 BLE core  it will be updated by following this step.
@@ -84,23 +42,16 @@ This step is the same for both the classic IDE and the Pro IDE. Open the board m
 
 ![Also in the Pro IDE, a search for "mbed" reveals the core that needs to be installed to support Portenta H7.](assets/por_ard_gs_bm_core_pro_ide.png)
 
-
-## 4. Install the USB driver (Windows only)
-This step is only needed for Microsoft Windows users and only needs to be done once. To be able to recognise the Portenta H7 in windows you need to install a generic USB device driver. Zadig is an open source software that can be used for this. Install[ Zadig](https://zadig.akeo.ie/), then connect your portenta with the USB cable and assign WinUSB to Portenta H7 Bootloader as shown in the image below. To finish click on the Install Driver button.
-
-![Assigning WinUSB to Portenta H7 Bootloader.](assets/por_ard_gs_zadig_driver.png)
-
-
-## 5. Verify the USB connection  (Windows only)
+## 3. Verify the USB connection  (Windows only)
 In this step you will make sure that the drivers are installed correctly and Windows is able to detect the Portenta H7. To do so open the Windows Device manager and if everything is set up correctly you will be able to see your device listed under USB devices. Otherwise go back to step 4 and try to re-install the drivers.
 
 ![If the device driver is set up correctly, the Portenta H7 will be listed in the device manager under USB devices.](assets/por_ard_gs_usb_driver_win.png)
 
-## 6. Uploading the classic blink sketch
+## 4. Uploading the classic blink sketch
 Let's program the Portenta with the classic blink example to check if the connection to the board works:
 
--   In the classic Arduino IDE open the blink example by clicking the menu entry File->Examples->01.Basics->Blink. 
--   In the Arduino Pro IDE Copy and paste the following code into a new sketch in your IDE. 
+-   In the classic Arduino IDE open the blink example by clicking the menu entry File->Examples->01.Basics->Blink.
+-   In the Arduino Pro IDE Copy and paste the following code into a new sketch in your IDE.
 
 ```cpp
 // the setup function runs once when you press reset or power the board
@@ -122,7 +73,7 @@ For Portenta H7  LED_BUILTIN  represents the built-in RGB LED on the board in gr
 
 **Note:** The individual colours of the built-in RGB LED can be accessed and controlled separately. In the tutorial "Dual Core Processing"  you will learn how to control the LED to light it in different colors
 
-## 7. Upload the blink sketch 
+## 5. Upload the blink sketch 
 Now it's time to upload the sketch and see if the LED will start to blink. Make sure you select Arduino Portenta H7 (M7 core) as the board and the port to which the Portenta H7 is connected. If the Portenta H7 doesn't show up in the list of ports, go back to step 5 and make sure that the drivers are installed correctly. Once selected click Upload. Once uploaded the built-in LED should start blinking with an interval of 1 second.
 
 **Note:** The Portenta H7 has an M7 and an M4 processor which run separate cores. That's why you need to select the one to which you want to upload your sketch to (check out the tutorial "Dual Core Processing" to learn more about Portenta's processors).
