@@ -26,6 +26,23 @@ It is possible to configure Portenta H7 to act as a USB host in a way that we ca
 
 ![The Arduino core is built on top of the Mbed stack](assets/Arduino-Logo.svg)
 
+# Feature Description
+
+As we know, Portenta H7 can function as a USB host. This means that the Portenta H7 can receive and manage the information provided by other USB peripherals connected to it through the hub. In this scenario, the Portenta H7 is referred as "USB host" or "master" device, and the peripheral is known as the "client" device, (usually a mouse or a keyboard).
+
+Computers are by default USB hosts too, as they receive the information that USB peripherals provide. PCs follows a “plug and play” mechanism, this means that whenever a USB device is connected, the Host detects the device and loads the appropriate drives for the device to establish a communication channel over the serial bus.
+
+Besides being a host point for peripherals, Portenta H7 can also be connected to the computer as the "client". In this case, the PC is the USB host and Portenta H7 the peripheral. We see this scenario whenever we upload sketches to the board or when we monitor data through the serial monitor.
+
+Furthermore, the Portenta H7 can also be set to be a mouse or keyboard itself. With the corresponding sketch, circuitry and components, we could send keyboard or mouse data to a PC, but this would be a different project.
+
+Thanks to USB OTG (On The Go) specification the Portenta H7 can switch between host and device modes automatically. The code that enables USB OTG in Portenta H7 is included in the **mbed** core and it is ready to function without additional configurations. Relevant classes that make USB OTG possible are:
+
+* `rndis` > 'Ethernet over USB'
+* `msc` > 'usb key' (or hard disk)
+* `cdc` > Arduino boards
+* `hid` > USB/mouse 
+
 # Setting Up the USB host
 
 In this tutorial you are going to configure your Portenta H7 as a USB Host. This will allow you to toggle the RGB built-in LEDs of the board by pressing the corresponding keys (r, g, b) on a USB keyboard that will be plugged into the USB hub.
