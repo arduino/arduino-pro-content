@@ -41,7 +41,7 @@ Thanks to USB OTG (On The Go) specification the Portenta H7 can switch between h
 * `rndis` > 'Ethernet over USB'
 * `msc` > 'usb key' (or hard disk)
 * `cdc` > Arduino boards
-* `hid` > USB/mouse 
+* `hid` > USB/mouse
 
 # Setting Up the USB host
 
