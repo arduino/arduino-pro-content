@@ -137,6 +137,6 @@ If trying to upload a sketch but you receive an error message, saying that the u
 
 ![Double-clicking the reset button puts the board into bootloader mode.](assets/por_ard_gs_reset.png)
 
-**Authors:** Lenard George, Sebastian Hunkeler, I
+**Authors:** Lenard George, Sebastian Hunkeler,
 **Reviewed by:** Jose Garcia [18.03.2020]  
 **Last revision:** 27.3.2020
