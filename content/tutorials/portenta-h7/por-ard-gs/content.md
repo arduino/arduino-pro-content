@@ -43,7 +43,7 @@ This step is the same for both the classic IDE and the Pro IDE. Open the board m
 ![Also in the Pro IDE, a search for "mbed" reveals the core that needs to be installed to support Portenta H7.](assets/por_ard_gs_bm_core_pro_ide.png)
 
 ## 3. Verify the USB connection  (Windows only)
-In this step you will make sure that the drivers are installed correctly and Windows is able to detect the Portenta H7. To do so open the Windows Device manager and if everything is set up correctly you will be able to see your device listed under USB devices. Otherwise go back to step 4 and try to re-install the drivers.
+In this step you will check if Windows is able to detect the Portenta H7. To do so open the Windows Device manager and if everything is set up correctly you will be able to see your device listed under USB devices. Otherwise, try unplugging it and plugging it back in.
 
 ![If the device driver is set up correctly, the Portenta H7 will be listed in the device manager under USB devices.](assets/por_ard_gs_usb_driver_win.png)
 
