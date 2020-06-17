@@ -482,10 +482,10 @@
 <rect x="1529.17" y="431.584" width="58.7467" height="52.857" transform="rotate(180 1529.17 431.584)" fill="#B2B2B2" stroke="#B2B2B2"/>
 <path d="M1498.22 379.934L1498.22 -602.79" stroke="black" stroke-width="7"/>
 </g>
-<rect x="1172.5" y="59.5" width="59" height="59" fill="#B2B2B2" stroke="#B2B2B2"/>
 <path d="M196 0V325C196 342.673 210.327 357 228 357H491C508.673 357 523 342.673 523 325V270" stroke="#F7F9F9" stroke-width="16"/>
 <path d="M954 279V446.567C954 464.24 939.673 478.567 922 478.567H674.107H103C85.3269 478.567 71 492.894 71 510.567V600.139V616" stroke="#BDC7C7" stroke-width="8"/>
-<path d="M1230 86H1466C1483.67 86 1498 100.327 1498 118V383" stroke="#B2B2B2" stroke-width="8"/>
+<path d="M1173 86L1466 86C1483.67 86 1498 100.327 1498 118V383" stroke="#B2B2B2" stroke-width="8"/>
+<rect x="1172" y="68" width="19" height="34" fill="#7F8C8D"/>
 <path d="M491 230H559V290C559 294.418 555.418 298 551 298H499C494.582 298 491 294.418 491 290V230Z" fill="#F7F9F9"/>
 <rect x="923" y="230" width="60" height="60" fill="#BDC7C7"/>
 <rect x="-67" y="614" width="1098" height="622" rx="44" fill="#95A5A6"/>
