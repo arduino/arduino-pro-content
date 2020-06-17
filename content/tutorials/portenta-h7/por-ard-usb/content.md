@@ -30,7 +30,7 @@ It is possible to configure Portenta H7 to act as a USB host in a way that we ca
 
 As we know, Portenta H7 can function as a USB host. This means that the Portenta H7 can receive and manage the information provided by other USB peripherals connected to it through the hub. In this scenario, the Portenta H7 is referred as "USB host" or "master" device, and the peripheral is known as the "client" device, (usually a mouse or a keyboard).
 
-Computers are by default USB hosts too, as they receive the information that USB peripherals provide. PCs follows a “plug and play” mechanism, this means that whenever a USB device is connected, the Host detects the device and loads the appropriate drives for the device to establish a communication channel over the serial bus.
+Computers are by default USB hosts too, as they receive the information that USB peripherals provide. PCs follow a “plug and play” mechanism, this means that whenever a USB device is connected, the Host detects the device and loads the appropriate drivers for the device to establish a communication channel over the serial bus.
 
 Besides being a host point for peripherals, Portenta H7 can also be connected to the computer as the "client". In this case, the PC is the USB host and Portenta H7 the peripheral. We see this scenario whenever we upload sketches to the board or when we monitor data through the serial monitor.
 
