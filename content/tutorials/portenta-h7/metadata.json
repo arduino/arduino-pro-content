@@ -5,5 +5,5 @@
    "content": null,
    "pageName": "Portenta H7 Tutorials",
    "slug": "portenta-h7",
-   "tutorials": ["por-ard-gs", "por-ard-dcp", "por-ard-ap"]
+   "tutorials": ["por-ard-gs", "por-ard-dcp", "por-ard-ap", "por-ard-usb"]
  }
