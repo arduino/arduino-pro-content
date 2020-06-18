@@ -1,22 +1,20 @@
 {
-   "id":"por-ard-gs",
-   "index": 1,
-   "title":"Setting Up Portenta H7 For Arduino",
-   "slug":"por-ard-gs",
+   "id":"por-ard-usb",
+   "index": 4,
+   "title":"Portenta H7 as a USB Host",
+   "slug":"por-ard-usb",
    "authors":[
-      "Lenard George",
-      "Sebastian Hunkeler"
+      "Jose Garcia"
    ],
    "coverImage":{
-      "src":"assets/por_ard_gs_cover.svg?sanitize=true"
+      "src":"assets/por_ard_usbh_cover.svg?sanitize=true"
    },
    "tags":[
-      "Getting Started",
-      "IDE",
-      "Setup",
-      "Blink"
+      "USB",
+      "HID",
+      "RGB LED"      
    ],
-   "abstract":"This tutorial teaches you how to set up the board, how to configure your computer and how to run the classic Arduino blink example  to verify if the configuration was successful.",
-   "previousArticle":null,
-   "nextArticle":"por-ard-dcp"
+   "abstract":"This tutorial teaches you how to set up the Portenta H7 to act as a USB host in a way that allows to connect peripherals such as a keyboard or mouse to interact with it.",
+   "previousArticle":"por-ard-ap",
+   "nextArticle":null
 }
