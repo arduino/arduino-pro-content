@@ -59,11 +59,11 @@ Let's create a sketch that handles the USB connections and  modifies the state o
 
 As programming the USB protocol that allows the board to handle USB devices is an arduous task, you will use a pre-built example called *KeyboardController*. To find it make sure you have the board description for the Arduino Portenta H7 installed using the Boards Manager.
 
-![Select the Arduino Portenta H7 (M7 core) in the board selector.](assets/por_ard_usbh_select_board.png)
+![Select the Arduino Portenta H7 (M7 core) in the board selector](assets/por_ard_usbh_select_board.png)
 
 Then, open: File>Examples>USBHOST>KeyboardController
 
-![Open the KeyboardController example.](assets/por_ard_usbh_select_example.png)
+![Open the KeyboardController example](assets/por_ard_usbh_select_example.png)
 
 The **USBHost** library that is used in this example is a revamp of the classic Arduino **USBHost** library. This new version, among adapting the protocol to the newer USB version, allows to connect devices through USB Hubs (USB adapters). For a better understanding about how the USBHost library works, it could be helpful for you to take a look at the Arduino [USBHost](https://www.arduino.cc/en/Reference/USBHost) library.
 
