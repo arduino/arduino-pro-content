@@ -138,7 +138,7 @@ bool ledBstate = false;
 
 Before uploading the sketch to the board, save it you sketchbook and name it **leds_keyController.ino**. Then select the **Arduino Portenta H7 (M7 core)** from the **Board** menu and the port the Portenta is connected to. Upload the **leds_keyController.ino** sketch. Doing so will automatically compile the sketch beforehand.
 
-***Note: Turning the Portenta into a USB host will stop it from advertising it's serial port. To get it back, simply do a double press on the reset button to turn it into bootloader mode.***
+***Turning the Portenta into a USB host will stop it from advertising it's serial port. To get it back, simply do a double press on the reset button to turn it into bootloader mode.***
 
 ![Select the Arduino Portenta H7 (M7 core) in the board selector.](assets/por_ard_usbh_select_board.png)
 
