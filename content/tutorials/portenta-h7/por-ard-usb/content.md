@@ -140,7 +140,7 @@ Before uploading the sketch to the board, save it you sketchbook and name it **l
 
 ***Turning the Portenta into a USB host will stop it from advertising it's serial port. To get it back, simply do a double press on the reset button to turn it into bootloader mode.***
 
-![Select the Arduino Portenta H7 (M7 core) in the board selector.](assets/por_ard_usbh_select_board.png)
+![Select the Arduino Portenta H7 (M7 core) in the board selector](assets/por_ard_usbh_select_board.png)
 
 ## 6. Connecting a Keyboard to Portenta
 
@@ -158,11 +158,11 @@ In the image above you can see that:
 
 Once you have connected your portenta board, you should be able to toggle the LEDs by pressing the R, G and B keys.
 
-![Toggle the LEDs by pressing the R, G or B keys on the keyboard.](assets/por_ard_usbh_working_demo.svg)
+![Toggle the LEDs by pressing the R, G or B keys on the keyboard](assets/por_ard_usbh_working_demo.svg)
 
 If it doesn't work as it should try the following:
 
-1. Reset the portenta by pressing the Reset button. ![Reset Button.](assets/por_ard_usbh_reset.png)
+1. Reset the portenta by pressing the Reset button. ![Reset Button](assets/por_ard_usbh_reset.png)
 2. Disconnect the Portenta board from the USB Hub (USB C adapter), disconnect the power from the USB Hub, connect the Portenta to the USB Hub and then connect the power to the USB Hub.
 
 # Conclusion
@@ -189,7 +189,7 @@ To detect what the problem is, we are going to send all the information about th
 
 To connect thePortenta to the Arduino MKR WiFi 1010 board you will need connect the pins with Serial1 functionality (13RX and 14TX on both boards) between them as shown in the image below. Don't forget to connect as well the ground pins (GND) of the boards.
 
-![Serial connection Portenta - Arduino MKR WiFi 1010.](assets/por_ard_usbh_portenta_to_mkr.svg)
+![Serial connection Portenta - Arduino MKR WiFi 1010](assets/por_ard_usbh_portenta_to_mkr.svg)
 
 ### 2. Program the Arduino MKR WiFi 1010 board
 
@@ -219,7 +219,7 @@ void loop()
 
 After programming your Arduino MKR WiFi 1010 board and connecting the Portenta board to the Arduino MKR WiFi 1010, your connection schema should be similar to the following:
 
-![Troubleshooting connection schema.](assets/por_ard_usbh_portenta_to_mkr_setup.svg)
+![Troubleshooting connection schema](assets/por_ard_usbh_portenta_to_mkr_setup.svg)
 
 
 
@@ -227,7 +227,7 @@ After programming your Arduino MKR WiFi 1010 board and connecting the Portenta b
 
 Once you have everything connected, open the Serial Monitor and reset the Portenta. After resetting the Portenta board, your Serial Monitor should display something similar to the following:
 
-![Troubleshooting USB communication info.](assets/por_ard_usbh_serial_info.png)
+![Troubleshooting USB communication info](assets/por_ard_usbh_serial_info.png)
 
 In the data received on the MKR WiFi 1010 board you should see some "Enabled" messages. It means that the Portenta detected the different ports of your USB Hub. If you can see them, whenever you press a key on the keyboard, it should get printed to the Serial Monitor.
 
