@@ -1,96 +1,91 @@
 # Portenta H7 as a USB Host
 
-It is possible to configure Portenta H7 to act as a USB host in a way that we can connect peripherals such as a keyboard or mouse to interact with the board. This way you could connect a keyboard to your Portenta and type numbers or characters to interact with the board.
-![USB host tutorial cover image.](assets/por_ard_usbh_cover.svg?sanitize=true)
+It is possible to configure the Portenta H7 to act as a USB host in a way that allows to connect peripherals such as a keyboard or mouse to interact with the board. This way you could connect a keyboard to your Portenta and type numbers or characters to trigger actions from your sketch.
 
 ## What you will learn
 
 -   How to configure the Portenta H7 as a USB host
--   How to use the *KeyboardController* library to establish USB communication with Portenta H7
+-   How to use the *KeyboardController* library to establish a USB connection with the Portenta H7
 -   To write a small program that reads button presses from a keyboard
--   How to debug the data that we send from the peripheral to the Portenta H7 using an additional Arduino board.
+-   How to debug the data being sent from the peripheral to the Portenta H7 using an additional Arduino board.
 
-## Required hardware and software
+## Required Hardware and Software
 
 -   Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
 -   USB-C cable (either USB-A to USB-C or USB-C to USB-C)
--   USB-C adapter (you can find [here](https://www.dustin.se/product/5011166993/travel-port-usb-c-total) the one we used for the tutorial)
+-   USB-C hub (active) (you can find [here](https://www.dustin.se/product/5011166993/travel-port-usb-c-total) the one used for this tutorial)
 -   External keyboard
 -   Arduino IDE 1.8.10+  or Arduino Pro IDE 0.0.4+
--   Power supplier for the USB adapter (I don't know how to call this)
+-   Power supply for the USB hub
 
-### Extra materials
+### Extra Materials
 
--   Arduino Arduino MKR WiFi 1010 (or other board with at least two serial ports, check [here](https://www.arduino.cc/reference/en/language/functions/communication/serial/) the list of Arduino boards with more than one serial port.)Arduino IDE 1.8.10+  or Arduino Pro IDE 0.0.4+
+-   Arduino Arduino MKR WiFi 1010 (or other board with at least two serial ports, check [here](https://www.arduino.cc/reference/en/language/functions/communication/serial/) the list of Arduino boards with more than one serial port.)
 -   USB cable compatible with the Arduino Arduino MKR WiFi 1010 (or the board you have selected)
--   3 Jumper wires
+-   3 jumper wires
 
-# USB Host and Device mode 
+# USB Host and Client Mode 
 
-As we know, Portenta H7 functions as a USB host. This means that the Portenta H7 can receive and manage the information provided by other USB peripherals connected to it through a hub. In this scenario, the Portenta H7 is referred as "USB host" or "master" device, and the peripheral is known as the "client" device, ( usually a mouse or a keyboard ). Computers are by default USB hosts too, as they receive the information that USB peripherals provide. PCs follows a “plug and play” mechanism, this means that whenever a USB device is connected, the Host detects the device and loads the appropriate drives for the device to establish a communication channel over the serial bus. Besides being a host point for peripherals, Portenta H7 can also be connected to the computer as the "client". In this case, the PC is the USB host and Portenta H7 the peripheral. We see this scenario whenever we upload sketches to the board or when we monitor data through the serial monitor. Furthermore, the Portenta H7 can also be set to be a mouse or keyboard itself. With the corresponding sketch, circuitry and components, we could send keyboard or mouse data to a PC, but this would be a different project.
+When using the Portenta H7 as a USB host it can receive and manage the information provided by other USB peripherals connected to it through a hub. In this scenario, the Portenta H7 is referred to as "USB host" or "master" device, and the peripheral is called the "client" device, ( usually a mouse or a keyboard ). 
 
-# Feature Description
+Computers are by default USB hosts too as they receive the information the USB peripherals provide. PCs follow a “plug and play” mechanism, this means that whenever a USB device is connected, the host detects the device and loads the appropriate drivers for the device to establish a communication channel over the serial bus.
 
-As we know, Portenta H7 can function as a USB host. This means that the Portenta H7 can receive and manage the information provided by other USB peripherals connected to it through the hub. In this scenario, the Portenta H7 is referred as "USB host" or "master" device, and the peripheral is known as the "client" device, (usually a mouse or a keyboard).
+In contrast to being the host point for peripherals, the Portenta H7 can also be connected to the computer as the "client". In this case, the PC is the USB host and the Portenta H7 the peripheral. We see this scenario whenever we upload sketches to the board or when we monitor data through the serial monitor. 
 
-Computers are by default USB hosts too, as they receive the information that USB peripherals provide. PCs follow a “plug and play” mechanism, this means that whenever a USB device is connected, the Host detects the device and loads the appropriate drivers for the device to establish a communication channel over the serial bus.
-
-Besides being a host point for peripherals, Portenta H7 can also be connected to the computer as the "client". In this case, the PC is the USB host and Portenta H7 the peripheral. We see this scenario whenever we upload sketches to the board or when we monitor data through the serial monitor.
-
-Furthermore, the Portenta H7 can also be set to be a mouse or keyboard itself. With the corresponding sketch, circuitry and components, we could send keyboard or mouse data to a PC, but this would be a different project.
-
-Thanks to USB OTG (On The Go) specification the Portenta H7 can switch between host and device modes automatically. The code that enables USB OTG in Portenta H7 is included in the **mbed** core and it is ready to function without additional configurations. Relevant classes that make USB OTG possible are:
-
-* `rndis` > 'Ethernet over USB'
-* `msc` > 'usb key' (or hard disk)
-* `cdc` > Arduino boards
-* `hid` > USB/mouse
+Furthermore, the Portenta H7 can also be set to be a mouse or keyboard itself. With the corresponding sketch, circuitry and components, we could send keyboard or mouse data to a PC (not covered in this tutorial).
 
 # Setting Up the USB host
 
 In this tutorial you are going to configure your Portenta H7 as a USB Host. This will allow you to toggle the RGB built-in LEDs of the board by pressing the corresponding keys (r, g, b) on a USB keyboard that will be plugged into a USB hub.
-Throughout the tutorial, you will learn how to establish a serial communication between the board and the keyboard and also, how to program the board so it behaves as a USB Host device.
+Throughout the tutorial, you will learn how to establish a serial communication between the board and the keyboard and also, how to program the board so it acts as a USB Host device.
 To achieve this you will use the [USBHOST](https://os.mbed.com/handbook/USBHost) library which is part of the Portenta H7 core. This library facilitates the USB connections between USB devices and and the Portenta board.
+
+Thanks to USB OTG (On The Go) specification the Portenta H7 can switch between host and client modes automatically. The code that enables USB OTG in Portenta H7 is included in the **mbed** core and it is ready to function without additional configurations. Some related classes to make use of the USB port for different use cases are:
+
+* `USBCDC_ECM` > Ethernet over USB (See [here](https://os.mbed.com/docs/mbed-os/v5.15/apis/usbcdc-ecm.html))
+* `USBMSD` > Mass storage device over USB (See [here](https://os.mbed.com/docs/mbed-os/v5.15/apis/usbmsd.html))
+* `USBCDC` > Serial port over USB (See [here](https://os.mbed.com/docs/mbed-os/v5.15/apis/usbcdc.html))
+* `USBHID` > USB human interface devices e.g. mouse or keyboard (See [here](https://os.mbed.com/docs/mbed-os/v5.15/apis/usbhid.html))
 
 ## 1. The Basic Setup
 
-Begin by plugging in your Portenta board to the computer using a USB-C  cable and open the  Arduino IDE or the Arduino Pro IDE. If this is your  first time running Arduino sketch files on the board, we suggest you  check out how to [set up the Portenta H7 for Arduino](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-gs) before you proceed.
+Begin by plugging in your Portenta board to the computer using a USB-C  cable and open the Arduino IDE or the Arduino Pro IDE. If this is your first time running Arduino sketch files on the board, we suggest you  check out how to [set up the Portenta H7 for Arduino](por-ard-gs) before you proceed.
 
 ![The Portenta H7 can be connected to the computer using an appropriate USB-C cable](assets/por_ard_usbh_basic_setup.svg)
 
-## 2. Creating the keyboard controller
+## 2. Creating the Keyboard Controller
 
-Now, let's create a sketch that handles the USB connections and  modify the state of the LEDs with each press on the r(R), g(G) or b(B) keys, so when you press the key first time the LEDs will switch on and to turn them off, you will need to press the corresponding key again.
+Let's create a sketch that handles the USB connections and  modifies the state of the LEDs with each press on the R, G or B keys. When you press the key first time the LEDs will switch on and to turn them off, you will need to press the corresponding key again.
 
-As programming the USB protocol that allows the board handle USB devices is an arduous task, you will use an already built example called KeyboardController, to find it, first, make sure you select Arduino Portenta H7 (M7 core) as the board.
+As programming the USB protocol that allows the board to handle USB devices is an arduous task, you will use a pre-built example called *KeyboardController*. To find it make sure you have the board description for the Arduino Portenta H7 installed using the Boards Manager.
 
 ![Select the Arduino Portenta H7 (M7 core) in the board selector.](assets/por_ard_usbh_select_board.png)
 
 Then, open: File>Examples>USBHOST>KeyboardController
 
-![Open the Keyboard Controller example.](assets/por_ard_usbh_select_example.png)
+![Open the KeyboardController example.](assets/por_ard_usbh_select_example.png)
 
-The **USBHost.h** library that is used in this example is a revamp of the classic Arduino **USBHost.h** library. This new version, among adapting the protocol to the USB newer versions, allows to connect devices through HUBs () USB adapters). For a better understanding about how the USBHost library works, it could be helpful for you to take a look at the Arduino [USBHost.h](https://www.arduino.cc/en/Reference/USBHost) library.
+The **USBHost** library that is used in this example is a revamp of the classic Arduino **USBHost** library. This new version, among adapting the protocol to the newer USB version, allows to connect devices through USB Hubs (USB adapters). For a better understanding about how the USBHost library works, it could be helpful for you to take a look at the Arduino [USBHost](https://www.arduino.cc/en/Reference/USBHost) library.
 
-## 3. Detecting the keys from the keyboard
+## 3. Detecting the Keys From the Keyboard
 
-The example you have opened describes how the board will handle the connection with a keyboard, addressing the functionality of each one of the keys of it. In order to detect which one of the keys from the keyboard is pressed, you will need to modify and add some lines of code to the example.
+The example you opened describes how the board will handle the connection with a keyboard, addressing the functionality of each one of the keys of it. In order to detect which one of the keys from the keyboard is pressed, you will need to modify and add some lines of code to the example.
 
-Let's start by removing the comment line ( `//` ) of the following line `.on_key = process_key` at the beginning of the code. By doing this, each time you press a key, the program calls the function that converts the data received from the keyboard from `HEX` to `char`.
+Let's start by removing the comment line ( `//` ) of the following line `.on_key = process_key` at the beginning of the code. By doing this, each time you press a key, the program calls the function that converts the data received from the keyboard from `HEX` to a `char` type.
 
 ```cpp
 static const tusbh_boot_key_class_t cls_boot_key = {
   .backend = &tusbh_boot_keyboard_backend,
-  //.on_key = process_key
+  .on_key = process_key
 };
 ```
 
-Then, in order to modify the state of the LEDs of the board with the r(R), g(G) or b(B) keys, you need to add the following portion of code inside the `process_key()` function, as shown in the image below:
+Then, in order to modify the state of the LEDs of the board with the R, G or B keys, you need to add the following portion of code inside the `process_key()` function after `stdin_recvchar(ch);`, as shown in the image below:
 ```cpp
    if (ch == 'r' || ch == 'R')
     {
       ledRstate = !ledRstate;
-      if (ledRstate == 1)
+      if (ledRstate)
         digitalWrite(LEDR, LOW);
       else
         digitalWrite(LEDR, HIGH);
@@ -99,7 +94,7 @@ Then, in order to modify the state of the LEDs of the board with the r(R), g(G) 
     if (ch == 'g' || ch == 'G')
     {
       ledGstate = !ledGstate;
-      if (ledGstate == 1)
+      if (ledGstate)
         digitalWrite(LEDG, LOW);
       else
         digitalWrite(LEDG, HIGH);
@@ -108,18 +103,18 @@ Then, in order to modify the state of the LEDs of the board with the r(R), g(G) 
     if (ch == 'b' || ch == 'B')
     {
       ledBstate = !ledBstate;
-      if (ledBstate == 1)
+      if (ledBstate)
         digitalWrite(LEDB, LOW);
       else
         digitalWrite(LEDB, HIGH);
     }
 ```
 
-![Code to toggle the LEDs with the R, G and B keys ](assets/por_ard_usbh_detecting_keys.png)
+![Code to toggle the LEDs with the R, G and B keys](assets/por_ard_usbh_detecting_keys.png)
 
 ## 4. Initializing the LEDs
 
-Once you have the code that is going to detect if the correct keys are pressed and control the LEDs in function on them, you need ot initialise the LEDs, to do so, let's add the following portion of code inside the `setup()` function.
+Once you have the code that detects if the correct keys are pressed and controls the LEDs accordingly, you need to initialise the LEDs. To do so, add the following portion of code inside the `setup()` function.
 ```cpp
 pinMode(LEDR, OUTPUT);
 pinMode(LEDG, OUTPUT);
@@ -131,68 +126,70 @@ digitalWrite(LEDG, HIGH);
 digitalWrite(LEDB, HIGH);
 ```
 
-And then, to finish with the code edition, you need to initialize ledRstate, ledGstate and ledBstate variables as boolean, by adding this portion of code before the `setup()` function.
+And then, to finish editing the code, you need to initialize `ledRstate`, `ledGstate` and `ledBstate` variables as booleans, by adding this portion of code before the `setup()` function.
 
 ```cpp
-bool ledRstate = 0;
-bool ledGstate = 0;
-bool ledBstate = 0;
+bool ledRstate = false;
+bool ledGstate = false;
+bool ledBstate = false;
 ```
 
 ## 5. Upload the Code
 
 Before uploading the sketch to the board, save it you sketchbook and name it **leds_keyController.ino**. Then select the **Arduino Portenta H7 (M7 core)** from the **Board** menu and the port the Portenta is connected to. Upload the **leds_keyController.ino** sketch. Doing so will automatically compile the sketch beforehand.
 
+***Note: Turning the Portenta into a USB host will stop it from advertising it's serial port. To get it back, simply do a double press on the reset button to turn it into bootloader mode.***
+
 ![Select the Arduino Portenta H7 (M7 core) in the board selector.](assets/por_ard_usbh_select_board.png)
 
-## 6. Conecting a keyboard to Portenta
+## 6. Connecting a Keyboard to Portenta
 
-When you connect the Portenta board to the computer to program it, the computer is the USB host and the Portenta board is the USB slave, same happens when you connect a external keyboard to your PC. In this case, the Portenta board will be the host, it won't be connected to the PC, let's see how to make the connections.
+When you connect the Portenta board to the computer to program it, the computer is the USB host and the Portenta board is the USB client. The same happens when you connect an external keyboard to your PC. For this tutorial the Portenta board will be the host. It won't be connected to the PC after programming it! Let's see how to make the connections.
 
-![Overall schema](assets/por_ard_usbh_connections_schema.svg)
+![Connection schema](assets/por_ard_usbh_connections_schema.svg)
 
 In the image above you can see that:
 
-+ The Portenta is connected to the "TO HOST" port from the HUB (USB C adapter)
-+ The HUB (USB C adapter) needs to be powered externaly with a power supplier, it is needed to provide power to Portenta
-+ You should connect the keyboard to the HUB (USB C adapter) in the same way you would connect it to your PC
++ The Portenta is connected to the "HOST" port of the USB hub (USB C adapter)
++ The USB Hub (USB C adapter) needs to be powered externaly with a power supply. This is required to provide power to Portenta.
++ You should connect the keyboard to the USB Hub (USB C adapter) in the same way you would connect it to your PC.
 
-## 7. Toggeling the LEDs
+## 7. Toggling the LEDs
 
-Once you have connected your portenta board, you should be able to toggle the LEDs by pressing the R, G or B keys.
+Once you have connected your portenta board, you should be able to toggle the LEDs by pressing the R, G and B keys.
 
-![Toggle the LEDs by pressing the R, G or B keys on the keyboard.](assets/por_ard_usbh_working_demo.png)
+![Toggle the LEDs by pressing the R, G or B keys on the keyboard.](assets/por_ard_usbh_working_demo.svg)
 
-If it doesn't work as it should try:
+If it doesn't work as it should try the following:
 
 1. Reset the portenta by pressing the Reset button. ![Reset Button.](assets/por_ard_usbh_reset.png)
-2. Disconnect the Portenta board from the HUB (USB C adapter), disconnect the power from the HUB, connect the Portenta to the HUB and connect the power to the HUB.
+2. Disconnect the Portenta board from the USB Hub (USB C adapter), disconnect the power from the USB Hub, connect the Portenta to the USB Hub and then connect the power to the USB Hub.
 
 # Conclusion
 
-This tutorial shows how to connect and control a keyboard by configuring Portenta as an USB Host. On it, you also learnt how to modify one of the already build examples for Portenta to have a visual reference of the interactions between the keyboard and Portenta.
+This tutorial shows how to connect and control a keyboard by configuring Portenta as a USB Host. You have also learnt how to modify one of the pre-built examples for Portenta to have a visual reference of the interactions between the keyboard and the Portenta board.
 
 # Next Steps
 
-Now that you've learnt how to set up the board as a USB Host and understood how the example works, start experimenting with the **KeyboardController.ino** sketch. This sketch can be tweaked in a variety of ways based on your needs. For example, you can add a mouse to the HUB and increase the bright of one of the LEDs of the board when pressing the left button and increase the bright of it when pressing the right button of the mouse.
+Now that you've learnt how to set up the board as a USB Host and understood how the example works, start experimenting with the **KeyboardController.ino** sketch. This sketch can be tweaked in a variety of ways based on your needs. For example, you could add a mouse to the USB Hub and increase the brightness of the built-in LEDs when pressing the left button and decrease it when pressing the right button.
 
 # Troubleshooting
 
-## LEDs not toggeling troubleshooting
+## The LEDs Are Not Toggling
 
-This troubleshooting will guide you to find why the LEDs of your Portenta don't toggle when you press the keys on the keyboard, to do so, you will need some extra components such as:
+This troubleshooting guide will help you to find out why the LEDs of your Portenta don't toggle when you press the keys on the keyboard. To do so, you will need some extra components:
 
-* Arduino Arduino MKR WiFi 1010 board (or other Arduino board with at least two serial ports)
+* Arduino Arduino MKR WiFi 1010 board (or another Arduino board with at least two serial ports)
 * USB cable to connect the extra board to the PC
 * 3 jumper wires
 
-To detect what the problem is about, we are going to send all the information about the USB peripheral (in this case the keyboard) through serial communication from Portenta to the Arduino MKR WiFi 1010 board. Once this info arrives to the Arduino MKR WiFi 1010 board, we will print it out through the Serial Monitor, which will allow us to debug what can be happening.
+To detect what the problem is, we are going to send all the information about the USB peripheral (in this case the keyboard) through serial communication from Portenta to the Arduino MKR WiFi 1010 board. Once this info arrives to the Arduino MKR WiFi 1010 board, we will print it out through the Serial Monitor, which will allow us to debug what can be happening.
 
 ### 1. Connect the  Portenta to the Arduino MKR WiFi 1010
 
-To connect thePortenta to the Arduino MKR WiFi 1010 board you will need connect the pins with Serial1 functionality (13RX and 14TX in both boards) between them as shown in the image below. Don't forget to connect as well the GNDs of the boards.
+To connect thePortenta to the Arduino MKR WiFi 1010 board you will need connect the pins with Serial1 functionality (13RX and 14TX on both boards) between them as shown in the image below. Don't forget to connect as well the ground pins (GND) of the boards.
 
-![Serial connection Portenta - Arduino MKR WiFi 1010.](assets/por_ard_usbh_portenta_to_mkr.png)
+![Serial connection Portenta - Arduino MKR WiFi 1010.](assets/por_ard_usbh_portenta_to_mkr.svg)
 
 ### 2. Program the Arduino MKR WiFi 1010 board
 
@@ -218,29 +215,29 @@ void loop()
 }
 ```
 
-### 3. System schema connection
+### 3. Connection Schema
 
-After connecting the Portenta board to the Arduino MKR WiFi 1010 and programmed your Arduino MKR WiFi 1010 board, the schema connection you have should be similar to the followint one:
+After programming your Arduino MKR WiFi 1010 board and connecting the Portenta board to the Arduino MKR WiFi 1010, your connection schema should be similar to the following:
 
-![Troubleshooting full connection schema.](assets/por_ard_usbh_portenta_to_mkr_setup.png)
+![Troubleshooting connection schema.](assets/por_ard_usbh_portenta_to_mkr_setup.svg)
 
 
 
-### 3. Open the Serial Monitor of the Arduino MKR WiFi 1010 board
+### 3. Open the Serial Monitor of the Arduino MKR WiFi 1010 Board
 
-Once you have everything connected, open the Serial Monitor and reset the Portenta. After resetting the Portenta board, your Serial Monitor should display something similar to the following image:
+Once you have everything connected, open the Serial Monitor and reset the Portenta. After resetting the Portenta board, your Serial Monitor should display something similar to the following:
 
 ![Troubleshooting USB communication info.](assets/por_ard_usbh_serial_info.png)
 
-In the info received on the MKR WiFi 1010 board you should see some "Enabled" messages. It means that the Portenta recognise the different ports of your HUB. If you can see them, when you press any key of the keyboard, it should be printed on the Serial Monitor.
+In the data received on the MKR WiFi 1010 board you should see some "Enabled" messages. It means that the Portenta detected the different ports of your USB Hub. If you can see them, whenever you press a key on the keyboard, it should get printed to the Serial Monitor.
 
-If in the messages received on the MKR WiFi 1010 board you see any "Disabled" message, it means that something went wrong with the communication of the HUB and the Portenta board. If this happens try:
+If in the messages received on the MKR WiFi 1010 board you see any "Disabled" message, it means that something went wrong with the communication of the USB Hub and the Portenta board. If this happens try:
 
 1. Reset the Portenta by pressing the reset button.
-2. Disconnect the Portenta board from the HUB (USB C adapter), disconnect the power from the HUB, connect the Portenta to the HUB and connect the power to the HUB.
+2. Disconnect the Portenta board from the USB Hub (USB C adapter), disconnect the power from the USB Hub, connect the Portenta to the USB Hub and connect the power to the USB Hub.
 
-If, after repeating this process several times, the connection still isn't working, the HUB you are using may not be compatible with the Portenta board and you will need a different HUB to complete this tutorial.
+If, after repeating this process several times, the connection still isn't working, the USB Hub you are using may not be compatible with the Portenta board and you will need a different USB Hub to complete this tutorial.
 
-**Authors:** Jose Garcia   
-**Reviewed by:** Sebastian Hunkeler    
-**Last revision:**
+**Authors:** Jose Garcia  
+**Reviewed by:** Sebastian Hunkeler  
+**Last revision:** Sebastian Hunkeler [2020-06-18]
