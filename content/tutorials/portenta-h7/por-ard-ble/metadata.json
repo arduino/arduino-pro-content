@@ -1,22 +1,22 @@
 {
-   "id":"por-ard-gs",
+   "id":"por-ard-ble",
    "index": 1,
-   "title":"Setting Up Portenta H7 For Arduino",
-   "slug":"por-ard-gs",
+   "title":"BLE on the Portenta H7 For Arduino",
+   "slug":"por-ard-ble",
    "authors":[
-      "Lenard George",
+      "Jeremy Ellis",
       "Sebastian Hunkeler"
    ],
    "coverImage":{
-      "src":"assets/por_ard_gs_cover.svg?sanitize=true"
+      "src":"assets/por_ard_ble_cover.svg?sanitize=true"
    },
    "tags":[
-      "Getting Started",
+      "BLE",
       "IDE",
       "Setup",
       "Blink"
    ],
-   "abstract":"This tutorial teaches you how to set up the board, how to configure your computer and how to run the classic Arduino blink example  to verify if the configuration was successful.",
+   "abstract":"This tutorial teaches you how to run BLE on the Portenta H7 to control the on board LED using an external Bluetooth application.",
    "previousArticle":null,
-   "nextArticle":"por-ard-dcp"
+   "nextArticle":null
 }
