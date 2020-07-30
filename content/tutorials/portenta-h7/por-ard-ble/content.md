@@ -246,8 +246,8 @@ void controlLed(BLEDevice peripheral) {
 
 # Troubleshooting
 ## Sketch Upload Troubleshooting
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
+If trying to upload a sketch but you receive an error message, saying that the upload has failed you can try to upload the sketch while the Portenta H7 is in bootloader mode. To do so you need to double click the reset button. The green LED will start fading in and out. Try to upload the sketch again. The green LED will stop fading when the upload completes.
 
-**Authors:** XX, YY
+**Authors:** Jeremy Ellis, YY
 **Reviewed by:** ZZ [18.03.2020]  
 **Last revision:** AA [27.3.2020]
