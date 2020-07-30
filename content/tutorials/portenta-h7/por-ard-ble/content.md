@@ -10,40 +10,101 @@ In this tutorial we will enable low energy bluetooth (BLE) on the Portenta H7 to
 -   Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
 -   USB C cable (either USB A to USB C or USB C to USB C)
 -   Arduino IDE 1.8.13+  or Arduino Pro IDE 0.0.4+ 
--   Nordic mobile app nrfconnect or equivalent to connect to bluetooth devices. Platforms [iOS](https://itunes.apple.com/us/app/nrf-connect/id1054362403?ls=1&mt=8) or [android](https://play.google.com/store/apps/details?id=no.nordicsemi.android.mcp)
+-   Nordic mobile app *nrfconnect* or equivalent to connect to bluetooth devices. Platforms [nrfconnect for iOS](https://itunes.apple.com/us/app/nrf-connect/id1054362403?ls=1&mt=8) or [nrfconnect for android](https://play.google.com/store/apps/details?id=no.nordicsemi.android.mcp)
 
 # Portenta and The ... 
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. [Here](https://www.ni.com/en-us/innovations/white-papers/07/what-is-a-real-time-operating-system--rtos--.html) you can read more about real time operating systems.
+
 
 ![The Arduino core is built on top of the Mbed stack](assets/Arduino-Logo.svg?sanitize=true)
 
 
 # Configuring the Development Environment
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
+You will need to install the "ArduinoBLEE" library on whatever Arduino IDE you are using. For this example we will use the Regular Arduino IDE.
+To install the library File --> Manage Libarary--> type "ArduinoBLE" click install
 
 ## 1. The Basic Setup
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
+We are going to upload a basic on-board LED controlling Bluetooth program to the Portenta H7 board and then use a mobile bluetooth connection app to turn the LED on and off. (Reminder that on the Portenta the onboard LED is turn on by setting digitalWrite to LOW and off by setting digitalWrite to HIGH, reverse of non-pro Arduinos. This arraingment is safer for the board as a way to protect the board LED.)  
 
 ## 2. Uploading the classic blink sketch
 Let's program the Portenta with the classic blink example to check if the connection to the board works:
 
--   In the classic Arduino IDE open the blink example by clicking the menu entry File->Examples->01.Basics->Blink. 
--   In the Arduino Pro IDE Copy and paste the following code into a new sketch in your IDE. 
+-   Copy and paste the following code into a new sketch in your IDE. 
 
-```cpp
-// the setup function runs once when you press reset or power the board
+```
+
+#include <ArduinoBLE.h>
+
+BLEService ledService("19b10000-e8f2-537e-4f6c-d104768a1214"); // BLE LED Service
+
+// BLE LED Switch Characteristic - custom 128-bit UUID, read and writable by central
+BLEByteCharacteristic switchCharacteristic("19b10000-e8f2-537e-4f6c-d104768a1214", BLERead | BLEWrite);
+
+const int ledPin = LED_BUILTIN; // pin to use for the LED
+
 void setup() {
-    // initialize digital pin LED_BUILTIN as an output.
-    pinMode(LED_BUILTIN, OUTPUT);
+  Serial.begin(9600);
+  //while (!Serial);   // need this gone when disconected from computer
+
+  // set LED pin to output mode
+  pinMode(ledPin, OUTPUT);
+
+  // begin initialization
+  if (!BLE.begin()) {
+    Serial.println("starting BLE failed!");
+
+    while (1);
+  }
+
+  // set advertised local name and service UUID:
+  BLE.setLocalName("LED-IOT4");
+  BLE.setAdvertisedService(ledService);
+
+  // add the characteristic to the service
+  ledService.addCharacteristic(switchCharacteristic);
+
+  // add service
+  BLE.addService(ledService);
+
+  // set the initial value for the characeristic:
+  switchCharacteristic.writeValue(0);
+
+  // start advertising
+  BLE.advertise();
+
+  Serial.println("BLE LED-Distance-Control");
 }
 
-// the loop function runs over and over again forever
 void loop() {
-    digitalWrite(LED_BUILTIN, HIGH); // turn the LED on (HIGH is the voltage level)
-    delay(1000); // wait for a second
-    digitalWrite(LED_BUILTIN, LOW); // turn the LED off by making the voltage LOW
-    delay(1000); // wait for a second
+  // listen for BLE peripherals to connect:
+  BLEDevice central = BLE.central();
+
+  // if a central is connected to peripheral:
+  if (central) {
+    Serial.print("Connected to central: ");
+    // print the central's MAC address:
+    Serial.println(central.address());
+
+    // while the central is still connected to peripheral:
+    while (central.connected()) {
+      // if the remote device wrote to the characteristic,
+      // use the value to control the LED:
+      if (switchCharacteristic.written()) {
+        if (switchCharacteristic.value()) {   // any value other than 0
+          Serial.println("LED off");
+          digitalWrite(ledPin, HIGH);         // will turn the Portenta LED off, weird
+        } else {                             
+          Serial.println(F("LED on"));
+          digitalWrite(ledPin, LOW);          // will turn the Portenta LED on, weird
+        }
+      }
+    }
+
+    // when the central disconnects, print it out:
+    Serial.print(F("Disconnected from central: "));
+    Serial.println(central.address());
+  }
 }
+
 ```
 
 # Conclusion
