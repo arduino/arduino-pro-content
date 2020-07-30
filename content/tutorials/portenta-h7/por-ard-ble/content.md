@@ -1,15 +1,15 @@
-# Setting Up Portenta H7 For Arduino
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
+# BLE on the Portenta H7 For Arduino
+In this tutorial we will enable low energy bluetooth (BLE) on the Portenta H7 to allow an external bluetooth program to control the on-board LED eithe by turning it on or off. 
 
 ## What you will learn
--   A
--   B
--   C
+-   A How to enable BLE on the Protenta
+-   B How to connect to the Portenta through BLE from an external Mobile Application (In this case nrfconnect by Nordic software)
+-   C How to turn on and off the Portenta H7 on-board LED
 
 ## Required hardware and software
 -   Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
 -   USB C cable (either USB A to USB C or USB C to USB C)
--   Arduino IDE 1.8.10+  or Arduino Pro IDE 0.0.4+ 
+-   Arduino IDE 1.8.13+  or Arduino Pro IDE 0.0.4+ 
 
 # Portenta and The ...
 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. [Here](https://www.ni.com/en-us/innovations/white-papers/07/what-is-a-real-time-operating-system--rtos--.html) you can read more about real time operating systems.
