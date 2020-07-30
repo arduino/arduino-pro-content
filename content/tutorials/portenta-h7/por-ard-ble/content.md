@@ -56,7 +56,7 @@ void setup() {
   }
 
   // set advertised local name and service UUID:
-  BLE.setLocalName("LED-IOT4");
+  BLE.setLocalName("LED-Portenta-01");
   BLE.setAdvertisedService(ledService);
 
   // add the characteristic to the service
@@ -113,15 +113,30 @@ void loop() {
 - Use tools - Port to find out if the Portenta has auto changed ports
 - use Tools Serial Monitor to view printout from your device
 - On your mobile device load *nrfconnect* or ewquivalent and scan for the BLE connection called "LED..."
+- connect with the device, find the 2 way communication tabs and type either "00" or "01" to turn the LED on or off 
 
 
 
 # Conclusion
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.  
+If all went well you have proved that you can connect your Portenta with your cell phone and have some communication abilities between the two devices  
 
-# Next Steps
--   A
--   B
+# Next Steps  
+-   Now if you have a second Portenta or BLE capable device such as the Arduino Nano 33 IOT or Nano 33 BLE or Nano 33 BLE Sense and a few other boards you can use your Portenta to flash the LED's on mulitple BLE devices. Load the above code on several devices and use nrfconnect to check that they are working.
+- Look for this line in your code and change the name slightly for each device. It must still contain the word "LED" as the next program scans for that word
+```
+
+  // set advertised local name and service UUID:
+  BLE.setLocalName("LED-Portenta-01");
+```
+
+- Check using nrfconnect that the above devices show up with different names.
+- on your portenta load the following code
+
+```
+
+
+```
+
 
 # Troubleshooting
 ## Sketch Upload Troubleshooting
