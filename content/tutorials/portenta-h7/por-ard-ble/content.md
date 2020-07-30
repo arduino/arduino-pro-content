@@ -2,7 +2,7 @@
 In this tutorial we will enable low energy bluetooth (BLE) on the Portenta H7 to allow an external bluetooth program to control the on-board LED eithe by turning it on or off. 
 
 ## What you will learn
--   How to enable BLE on the Protenta
+-   How to enable BLE on the Protenta H7
 -   How to connect to the Portenta through BLE from an external Mobile Application (In this case nrfconnect by Nordic software)
 -   How to turn on and off the Portenta H7 on-board LED
 
@@ -106,6 +106,15 @@ void loop() {
 }
 
 ```
+- Connect your portenta using the "C" usb cable to your computer and double press the reset button so the on-board LED is slowly pulsing green
+- Set Tools - Board to Portenta H7 (M7 core)
+- Use Tools - Port to find your Portenta
+- upload the above file to your Portenta
+- Use tools - Port to find out if the Portenta has auto changed ports
+- use Tools Serial Monitor to view printout from your device
+- On your mobile device load *nrfconnect* or ewquivalent and scan for the BLE connection called "LED..."
+
+
 
 # Conclusion
 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.  
