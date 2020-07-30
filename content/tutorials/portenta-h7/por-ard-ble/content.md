@@ -115,7 +115,8 @@ void loop() {
 - Connect your portenta using the "C" usb cable to your computer and double press the reset button so the on-board LED is slowly pulsing green
 - Set Tools - Board to Portenta H7 (M7 core)
 - Use Tools - Port to find your Portenta
-- upload the above file to your Portenta
+- Save your file
+- Upload the above file to your Portenta
 - Use tools - Port to find out if the Portenta has auto changed ports
 - use Tools Serial Monitor to view printout from your device
 - On your mobile device load *nrfconnect* or ewquivalent and scan for the BLE connection called "LED..."
