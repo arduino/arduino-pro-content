@@ -12,8 +12,8 @@ In this tutorial we will enable low energy bluetooth (BLE) on the Portenta H7 to
 -   Arduino IDE 1.8.13+  or Arduino Pro IDE 0.0.4+ 
 -   Nordic mobile app *nrfconnect* or equivalent to connect to bluetooth devices. Platforms [nrfconnect for iOS](https://itunes.apple.com/us/app/nrf-connect/id1054362403?ls=1&mt=8) or [nrfconnect for android](https://play.google.com/store/apps/details?id=no.nordicsemi.android.mcp)
 
-# Portenta and The ... 
-
+# Portenta and Low Energy Bluetooth (BLE) 
+Compared to Classic Bluetooth, Bluetooth Low Energy is intended to provide considerably reduced power consumption and cost while maintaining a similar communication range. Mobile operating systems including iOS, Android, Windows Phone and BlackBerry, as well as macOS, Linux, Windows 8 and Windows 10, natively support Bluetooth Low Energy. From [Wiki](https://en.wikipedia.org/wiki/Bluetooth_Low_Energy). 
 
 ![The Arduino core is built on top of the Mbed stack](assets/Arduino-Logo.svg?sanitize=true)
 
