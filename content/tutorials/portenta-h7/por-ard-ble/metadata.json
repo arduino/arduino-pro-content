@@ -17,6 +17,6 @@
       "Blink"
    ],
    "abstract":"This tutorial teaches you how to run BLE on the Portenta H7 to control the on board LED using an external Bluetooth application.",
-   "previousArticle":null,
+   "previousArticle":"por-ard-ap",
    "nextArticle":null
 }
