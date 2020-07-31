@@ -31,7 +31,7 @@ To install the library File --> Manage Libarary--> type "ArduinoBLE" click insta
 ## 1. The Basic Setup
 We are going to upload a basic on-board LED controlling Bluetooth program to the Portenta H7 board and then use a mobile bluetooth connection app to turn the LED on and off. (Reminder that on the Portenta the onboard LED is turn on by setting digitalWrite to LOW and off by setting digitalWrite to HIGH, reverse of non-pro Arduinos. This arraingment is safer for the board as a way to protect the board LED.)  
 
-## 2. Uploading the classic blink sketch
+## 2. Uploading the BLE sketch
 Let's program the Portenta with the classic blink example to check if the connection to the board works:
 
 -   Copy and paste the following code into a new sketch in your IDE. 
