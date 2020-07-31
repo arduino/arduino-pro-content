@@ -32,8 +32,10 @@ These GATT codes can be found on the internet. One example location is [here](ht
 # Configuring the Development Environment
 You will need to install the "ArduinoBLEE" library on whatever Arduino IDE you are using. For this example we will use the Regular Arduino IDE.
 To install the library File --> Manage Libarary--> type "ArduinoBLE" click install
+
 ![Library Manager](assets/por-ard-ble-choose-library01.png)
-![Library ArduinoBLE](assets/por-ard-ble-choose-arduinoBLE.png
+
+![Library ArduinoBLE](assets/por-ard-ble-choose-arduinoBLE.png)
 
 ## 1. The Basic Setup
 We are going to upload a basic on-board LED controlling Bluetooth program to the Portenta H7 board and then use a mobile bluetooth connection app to turn the LED on and off. (Reminder that on the Portenta the onboard LED is turn on by setting digitalWrite to LOW and off by setting digitalWrite to HIGH, reverse of non-pro Arduinos. This arraingment is safer for the board as a way to protect the board LED.)  
@@ -131,6 +133,8 @@ void loop() {
 }
 
 ```
+
+
 - Connect your portenta using the "C" usb cable to your computer and double press the reset button so the on-board LED is slowly pulsing green
 - Set Tools - Board to Portenta H7 (M7 core)  ![Board-manager](assets/por-ard-ble-choose-board.png)
 - Use Tools - Choose the port to find your Portenta  ![Choose correct port](assets/por-ard-ble-choose-port2.png)
