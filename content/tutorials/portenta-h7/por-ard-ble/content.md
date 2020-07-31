@@ -76,7 +76,9 @@ void setup() {
 
   // start advertising
   BLE.advertise();
-
+  digitalWrite(ledPin, LOW);
+  delay(1000);
+  digitalWrite(ledPin, HIGH);
   Serial.println("BLE LED-Distance-Control");
 }
 
@@ -88,7 +90,12 @@ void loop() {
   if (central) {
     Serial.print("Connected to central: ");
     // print the central's MAC address:
-    Serial.println(central.address());
+    Serial.println(central.address());;
+    digitalWrite(ledPin, HIGH);
+    delay(100);
+    digitalWrite(ledPin, LOW);
+    delay(100);
+    digitalWrite(ledPin, HIGH);
 
     // while the central is still connected to peripheral:
     while (central.connected()) {
@@ -107,7 +114,12 @@ void loop() {
 
     // when the central disconnects, print it out:
     Serial.print(F("Disconnected from central: "));
-    Serial.println(central.address());
+    Serial.println(central.address());    
+    digitalWrite(ledPin, HIGH);
+    delay(100);
+    digitalWrite(ledPin, LOW);
+    delay(100);
+    digitalWrite(ledPin, HIGH);
   }
 }
 
