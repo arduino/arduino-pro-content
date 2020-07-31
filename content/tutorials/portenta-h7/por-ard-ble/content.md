@@ -1,5 +1,5 @@
 # BLE on the Portenta H7 For Arduino
-In this tutorial we will enable low energy bluetooth (BLE) on the Portenta H7 to allow an external bluetooth program to control the on-board LED eithe by turning it on or off. 
+In this tutorial we will enable low energy bluetooth (BLE) on the Portenta H7 to allow an external bluetooth program to control the on-board LED either by turning it on or off. 
 
 ## What you will learn
 -   How to enable BLE on the Protenta H7
