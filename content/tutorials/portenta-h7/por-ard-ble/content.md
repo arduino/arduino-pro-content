@@ -130,7 +130,7 @@ void loop() {
 
 ```
 - Connect your portenta using the "C" usb cable to your computer and double press the reset button so the on-board LED is slowly pulsing green
-- Set Tools - Board to Portenta H7 (M7 core)
+- Set Tools - Board to Portenta H7 (M7 core) ![Board-manager](por-ard-ble-choose-arduinoBLE.png)
 - Use Tools - Port to find your Portenta
 - Save your file
 - Upload the above file to your Portenta
