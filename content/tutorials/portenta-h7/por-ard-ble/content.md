@@ -3,8 +3,11 @@ In this tutorial we will enable low energy bluetooth (BLE) on the Portenta H7 to
 
 ## What you will learn
 -   How to enable BLE on the Protenta H7
--   How to connect to the Portenta through BLE from an external Mobile Application (In this case nrfconnect by Nordic software)
+-   How to connect the Portenta to an external BLE Mobile Application (In this case nrfconnect by Nordic software)
 -   How to turn on and off the Portenta H7 on-board LED
+-   NEXT STEPS
+-   Using two Portenta's (or other BLE capable Arduino devices)
+-   Upload a program to a Portenta to control the LED's on mulitple BLE devices (The BLE device local name must include "LED")
 
 ## Required hardware and software
 -   Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
