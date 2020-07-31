@@ -142,7 +142,7 @@ void loop() {
 - Upload the above file to your Portenta
 - Use tools - Port to find out if the Portenta has auto changed ports
 - use Tools Serial Monitor to view printout from your device
-- On your mobile device load *nrfconnect* or ewquivalent and scan for the BLE connection called "LED..."
+- On your mobile device load *nrfconnect* or ewuivalent and scan for the BLE connection called "LED..."
 - connect with the device, find the 2 way communication tabs and type either "00" or "01" to turn the LED on or off 
 
 
