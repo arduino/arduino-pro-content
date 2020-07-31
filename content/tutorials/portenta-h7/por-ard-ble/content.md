@@ -16,13 +16,15 @@ In this tutorial we will enable low energy bluetooth (BLE) on the Portenta H7 to
 -   Nordic mobile app *nrfconnect* or equivalent to connect to bluetooth devices. Platforms [nrfconnect for iOS](https://itunes.apple.com/us/app/nrf-connect/id1054362403?ls=1&mt=8) or [nrfconnect for android](https://play.google.com/store/apps/details?id=no.nordicsemi.android.mcp)
 
 # Portenta and Low Energy Bluetooth (BLE) 
-Compared to Classic Bluetooth, Bluetooth Low Energy is intended to provide considerably reduced power consumption and cost while maintaining a similar communication range. Mobile operating systems including iOS, Android, Windows Phone and BlackBerry, as well as macOS, Linux, Windows 8 and Windows 10, natively support Bluetooth Low Energy. From [Wiki](https://en.wikipedia.org/wiki/Bluetooth_Low_Energy). 
+Compared to Classic Bluetooth, Low Energy Bluetooth is intended to provide considerably reduced power consumption and cost while maintaining a similar communication range. Mobile operating systems including iOS, Android, Windows Phone and BlackBerry, as well as macOS, Linux, Windows 8 and Windows 10, natively support Bluetooth Low Energy. From [Wiki](https://en.wikipedia.org/wiki/Bluetooth_Low_Energy). 
 
-In our example we use pre-defined bluetooth number codes for controlling LED's
+In our example we use a pre-defined bluetooth number code pre-setup for controlling a devices LED's
+
 ```BLEService ledService("19b10000-e8f2-537e-4f6c-d104768a1214"); // BLE LED Service```
+
 These codes are very long, but in our example it is always the same code.
 
-These codes can be found on the internet. One example location is [here](https://www.bluetooth.com/specifications/gatt/characteristics/)
+These GATT codes can be found on the internet. One example location is [here](https://www.bluetooth.com/specifications/gatt/characteristics/)
 
 ![The Arduino core is built on top of the Mbed stack](assets/Arduino-Logo.svg?sanitize=true)
 
