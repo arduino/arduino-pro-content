@@ -34,13 +34,13 @@ Let's begin by Plug-in your Portenta to your computer using the appropriate USB 
 ![The Portenta H7 can be connected to the computer using an appropriate USB-C cable](assets/por_ard_gs_basic_setup.svg?sanitize=true)
 
 ## 2. Adding the Portenta to the list of available boards
-This step is the same for both the classic IDE and the Pro IDE. Open the board manager and search for "mbed".  Find the Arduino mbed-enabled Boards library and click on "Install" to install the latest version of the mbed core (1.9.6 at the time of writing this tutorial).
+This step is the same for both the classic IDE and the Pro IDE. Open the board manager and search for "portenta".  Find the Arduino mbed-enabled Boards library and click on "Install" to install the latest version of the mbed core (1.9.6 at the time of writing this tutorial).
 
 **Note:** If you have previously installed the Nano 33 BLE core  it will be updated by following this step.
 
 ![A search for "portenta" reveals the core that needs to be installed to support Portenta H7.](assets/por_ard_gs_bm_core.png)
 
-![Also in the Pro IDE, a search for "mbed" reveals the core that needs to be installed to support Portenta H7.](assets/por_ard_gs_bm_core_pro_ide.png)
+![Also in the Pro IDE, a search for "portenta" reveals the core that needs to be installed to support Portenta H7.](assets/por_ard_gs_bm_core_pro_ide.png)
 
 ## 3. Verify the USB connection  (Windows only)
 In this step you will check if Windows is able to detect the Portenta H7. To do so open the Windows Device manager and if everything is set up correctly you will be able to see your device listed under USB devices. Otherwise, try unplugging it and plugging it back in.
