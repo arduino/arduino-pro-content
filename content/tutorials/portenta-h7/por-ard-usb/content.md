@@ -24,8 +24,9 @@ It is possible to configure Portenta H7 to act as a USB host in a way that we ca
 -   Arduino Arduino MKR WiFi 1010 (or other board with at least two serial ports, check [here](https://www.arduino.cc/reference/en/language/functions/communication/serial/) the list of Arduino boards with more than one serial port.)Arduino IDE 1.8.10+  or Arduino Pro IDE 0.0.4+
 -   USB cable compatible with the Arduino Arduino MKR WiFi 1010 (or the board you have selected)
 -   3 Jumper wires
+- USB type C Keyboard or USB type A to C adapter (OPTIONAL)
 
-# USB Host and Device mode 
+# USB Host and Device mode
 
 As we know, Portenta H7 functions as a USB host. This means that the Portenta H7 can receive and manage the information provided by other USB peripherals connected to it through a hub. In this scenario, the Portenta H7 is referred as "USB host" or "master" device, and the peripheral is known as the "client" device, ( usually a mouse or a keyboard ). Computers are by default USB hosts too, as they receive the information that USB peripherals provide. PCs follows a “plug and play” mechanism, this means that whenever a USB device is connected, the Host detects the device and loads the appropriate drives for the device to establish a communication channel over the serial bus. Besides being a host point for peripherals, Portenta H7 can also be connected to the computer as the "client". In this case, the PC is the USB host and Portenta H7 the peripheral. We see this scenario whenever we upload sketches to the board or when we monitor data through the serial monitor. Furthermore, the Portenta H7 can also be set to be a mouse or keyboard itself. With the corresponding sketch, circuitry and components, we could send keyboard or mouse data to a PC, but this would be a different project.
 
@@ -156,6 +157,14 @@ In the image above you can see that:
 + The Portenta is connected to the "TO HOST" port from the HUB (USB C adapter)
 + The HUB (USB C adapter) needs to be powered externaly with a power supplier, it is needed to provide power to Portenta
 + You should connect the keyboard to the HUB (USB C adapter) in the same way you would connect it to your PC
+
+### Alternative configuration (No HUB required)
+
+If you don't have a USB C type HUB adapter it is possible to complete this tutorial with a USB C type Keyboard or with a USB A to C adapter. To do so proceed as follow:
+
++ Power the Portenta H7 through the VIN pin.
++ Connect the keyboard directly onto Portenta's USB C type connector (use a USB C adapter if your keyboard's connector is USB type A)
++ Add the following line of code in your sketch to enable power supply through Portenta's USB connector: `mbed::DigitalOut otg(PJ_6, 0);`
 
 ## 7. Toggeling the LEDs
 
