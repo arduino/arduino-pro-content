@@ -1,6 +1,7 @@
 {
    "id":"por-ard-usb",
    "index": 4,
+   "beta": true,
    "title":"Portenta H7 as a USB Host",
    "slug":"por-ard-usb",
    "authors":[
