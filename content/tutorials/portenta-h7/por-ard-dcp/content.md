@@ -78,17 +78,17 @@ void loop() {
 If you would upload the sketch to the M4 at this point nothing would change. The reason is that the M4 core doesn't start up by itself. There is one more step required to make the M4 core blink the LED green: Force booting the M4.
 
 ## 5. Force Booting the M4 core
-The bootloader of the H7 boards is configured in such a way that only M7 gets booted automatically. The reason is that for simple use cases the M4 may not be needed and hence be unprogrammed and doesn't need to get powered. One such instance is when the M7 doesn't have the appropriate firmware that automatically handles the initialization of the M4. As a result you need to force boot the M4 so that it can run a sketch. You can do so through the M7 using a special command, `LL_RCC_ForceCM4Boot()`  that boots the M4 when the board is powered.
+The bootloader of the H7 boards is configured in such a way that only M7 gets booted automatically. The reason is that for simple use cases the M4 may not be needed and hence be unprogrammed and doesn't need to get powered. One such instance is when the M7 doesn't have the appropriate firmware that automatically handles the initialization of the M4. As a result you need to force boot the M4 so that it can run a sketch. You can do so through the M7 using a special command, `bootM4()`  that boots the M4 when the board is powered.
 
 ![The M7 and the M4 cores share the flash memory where the sketches are stored.](assets/por_ard_dcp_m4_m7_flash_memory.svg?sanitize=true)
 
-Before you can upload the code for the M4 core to the flash memory you need to add the `LL_RCC_ForceCM4Boot()` command in the **blink_RedLed_m7.ino** sketch file that is uploaded and run by the M7 core. Copy and paste the following command `LL_RCC_ForceCM4Boot()` inside the `setup()` function of the **blink_RedLed_m7.ino**  sketch and upload the sketch to M7 once again.
+Before you can upload the code for the M4 core to the flash memory you need to add the `bootM4()` command in the **blink_RedLed_m7.ino** sketch file that is uploaded and run by the M7 core. Copy and paste the following command `bootM4()` inside the `setup()` function of the **blink_RedLed_m7.ino**  sketch and upload the sketch to M7 once again.
 
 ```cpp
 // the setup function runs once when you press reset or power the board
 void setup() {
     // initialize digital pin LED_BUILTIN as an output.
-   LL_RCC_ForceCM4Boot();
+   bootM4();
    pinMode(LEDR, OUTPUT);
 }
 
