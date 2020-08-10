@@ -1,6 +1,8 @@
 const path = require('path');
 const fs = require('fs');
 const marked = require('marked');
+const validate = require('jsonschema').validate;
+
 
 let requiredContents = require('./required-contents');
 let unsupportedContents = require('./unsupported-contents');
@@ -73,8 +75,9 @@ if(metaDataFiles.length == 0) {
 
 metaDataFiles.forEach(path => { 
     try {
-        let rawData = fs.readFileSync(path);
+        let rawData = fs.readFileSync(path);    
         let jsonData = JSON.parse(rawData);
+
         if(!jsonData.coverImage){
             console.log("No cover image found for " + path);
             errorOccurred = true;            
@@ -82,6 +85,14 @@ metaDataFiles.forEach(path => {
             console.log("Cover image of " + path + "is not in SVG format.");
             errorOccurred = true;
         }
+        
+        let jsonSchema = JSON.parse(fs.readFileSync("./metadata-schema.json"));        
+        let validationResult = validate(jsonData, jsonSchema);
+        if(validationResult.errors.length != 0){
+            console.log(validationResult);
+            errorOccurred = true;
+        }        
+
     } catch (error) {
         console.log("Parse error in " + path);
         console.log(error);

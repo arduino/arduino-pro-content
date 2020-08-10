@@ -1,0 +1,75 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string"
+      },
+      "index": {
+        "type": "integer"
+      },
+      "beta": {
+        "type": "boolean"
+      },
+      "title": {
+        "type": "string"
+      },
+      "slug": {
+        "type": "string"
+      },
+      "authors": {
+        "type": "array",
+        "items": [
+          {
+            "type": "string"
+          }
+        ]
+      },
+      "coverImage": {
+        "type": "object",
+        "properties": {
+          "src": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "src"
+        ]
+      },
+      "tags": {
+        "type": "array",
+        "items": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "string"
+          },
+          {
+            "type": "string"
+          }
+        ]
+      },
+      "abstract": {
+        "type": "string"
+      },
+      "previousArticle": {
+        "type": ["string", "null"]
+    },
+    "nextArticle": {
+        "type": ["string", "null"]
+      }
+    },
+    "required": [
+      "id",
+      "index",
+      "title",
+      "slug",
+      "authors",
+      "coverImage",
+      "tags",
+      "abstract",
+      "previousArticle",
+      "nextArticle"
+    ]
+  }
