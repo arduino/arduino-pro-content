@@ -20,6 +20,9 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
+    - name: Validate      
+      run: npm install
+      run: npm validate.js
 
     - name: S3 sync (misc files)
       run: |
