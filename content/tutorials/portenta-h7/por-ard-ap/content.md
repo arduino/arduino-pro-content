@@ -2,12 +2,12 @@
 # Portenta H7 as a WiFi Access Point
 Portenta H7 comes with an on-board WiFi and a bluetooth Module that allows to develop IoT applications that require wireless connectivity and Internet access. Turning the board into an access point allows it to create a WiFi network on its own and allows other devices to connect to it. In  this tutorial you will learn to set up your board as an access point web server and remotely control the red, green and blue LEDs on the built-in RGB LED by accessing an HTML page on your mobile device’s browser. 
 
-## What you will learn
+## What You Will Learn
 -   About the built-in WiFi + Bluetooth module.
 -   How a  client-server model works 
 -   How to create an HTTP communication channel between the board and an external device. 
 
-## Required hardware and software
+## Required Hardware and Software
 -   Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
 -   One USB C cable (either USB A to USB C or USB C to USB C)
 -   Arduino IDE 1.8.10+  or Arduino Pro IDE 0.0.4 +
@@ -287,6 +287,6 @@ This tutorial shows one of the several capabilities of the on-board WiFi+Bluetoo
 
 Now that you've learnt how to set up a board as an access point and understand the client-server model, start experimenting with the **simpleWebServer.ino** sketch. This sketch can be tweaked in a variety of ways based on your needs. For example, you can add a slider to the HTML page that changes the blink rate of the built-in RGB LED from your mobile device.
 
-**Author:** Lenard George  
+**Authors:** Lenard George  
 **Reviewed by:** Jose Garcia [2020-04-23]  
 **Last revision:** Sebastian Hunkeler [2020-05-07]

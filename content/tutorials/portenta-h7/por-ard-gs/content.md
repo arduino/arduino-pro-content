@@ -7,12 +7,12 @@ At the moment of writing the tutorial, there is an Arduino core and a MicroPytho
 
 This tutorial focuses on the Arduino core which allows you to benefit from the thousands of existing Arduino libraries and code examples written in C and C++ which are compatible with the Arduino core. A tutorial about setting the Portenta H7 up for development with the MicroPython core will be released soon.
 
-## What you will learn
+## What You Will Learn
 -   About the Arduino and Mbed operating system (Mbed OS) stack
 -   Installing the Mbed library  
 -   Controlling the built in LED on the Portenta board
 
-## Required hardware and software
+## Required Hardware and Software
 -   Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
 -   USB C cable (either USB A to USB C or USB C to USB C)
 -   Arduino IDE 1.8.10+  or Arduino Pro IDE 0.0.4+
