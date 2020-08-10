@@ -23,6 +23,13 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     
+    - name: Validate
+      uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      run: npm install
+      run: npm validate.js
+
     - name: S3 sync (misc files)
       run: |
         aws s3 sync \
