@@ -21,8 +21,10 @@ jobs:
     - uses: actions/checkout@v1
 
     - name: Validate      
-      run: npm install
-      run: npm validate.js
+      run: |
+        cd validation
+        npm install
+        node validate.js
 
     - name: S3 sync (misc files)
       run: |

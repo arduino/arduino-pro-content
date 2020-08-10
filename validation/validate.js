@@ -66,7 +66,7 @@ let errorOccurred = false;
 /**
  * Verify that all meta data files are valid JSON and contain the correct attributes
  */
-let metaDataFiles = findAllFiles('../../', 'metadata.json', excludePatterns);
+let metaDataFiles = findAllFiles('../content/', 'metadata.json', excludePatterns);
 
 if(metaDataFiles.length == 0) {
     console.log("No metadata files found.");
@@ -105,7 +105,7 @@ metaDataFiles.forEach(path => {
  * Verify that the content files contain the necessary data
  */
 
-let contentFiles = findAllFiles('../../', 'content.md', excludePatterns);
+let contentFiles = findAllFiles('../content/', 'content.md', excludePatterns);
 
 if(contentFiles.length == 0) {
     console.log("No content files found.");

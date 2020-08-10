@@ -26,8 +26,9 @@ jobs:
     
     - name: Validate      
       run: |
+        cd validation
         npm install
-        npm validate.js
+        node validate.js
 
     - name: S3 sync (misc files)
       run: |
