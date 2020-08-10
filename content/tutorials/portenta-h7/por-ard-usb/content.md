@@ -13,10 +13,10 @@ It is possible to configure the Portenta H7 to act as a USB host in a way that a
 
 -   Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
 -   USB-C cable (either USB-A to USB-C or USB-C to USB-C)
--   USB-C hub (active) (you can find [here](https://www.dustin.se/product/5011166993/travel-port-usb-c-total) the one used for this tutorial)
+-   USB-C hub (active) (you can find [here](https://www.dustin.se/product/5011166993/travel-port-usb-c-total) the one used for this tutorial) (Optional)
 -   External keyboard
 -   Arduino IDE 1.8.10+  or Arduino Pro IDE 0.0.4+
--   Power supply for the USB hub
+-   Power supply for the USB hub (if a USB hub is used)
 
 ### Extra Materials
 
@@ -150,9 +150,17 @@ When you connect the Portenta board to the computer to program it, the computer 
 
 In the image above you can see that:
 
-+ The Portenta is connected to the "HOST" port of the USB hub (USB C adapter)
-+ The USB Hub (USB C adapter) needs to be powered externaly with a power supply. This is required to provide power to Portenta.
-+ You should connect the keyboard to the USB Hub (USB C adapter) in the same way you would connect it to your PC.
++ The Portenta is connected to the "HOST" port of the USB hub (USB-C adapter)
++ The USB Hub (USB-C adapter) needs to be powered externaly with a power supply. This is required to provide power to Portenta.
++ You should connect the keyboard to the USB Hub (USB-C adapter) in the same way you would connect it to your PC.
+
+### Alternative Configuration (No USB hub required)
+
+If you don't have a USB-C type hub you may complete this tutorial with a USB-C type keyboard or with a USB A type keyboard and a USB A to C adapter. To do so proceed as follows:
+
++ Power the Portenta H7 through the VIN pin with 5V. (Check [pinout diagram](https://content.arduino.cc/assets/Pinout-PortentaH7_latest.pdf))
++ Connect the keyboard directly to the Portenta's USB-C connector (use a USB-A to USB-C adapter if your keyboard's connector is USB type A)
++ Add the following line of code in your sketch to enable power supply through Portenta's USB connector: `mbed::DigitalOut otg(PJ_6, 0);`
 
 ## 7. Toggling the LEDs
 
