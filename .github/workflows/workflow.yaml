@@ -25,7 +25,7 @@ jobs:
     
     - name: Validate      
       run: |
-        cd validation
+        cd tests
         npm install
         node validate.js
 
