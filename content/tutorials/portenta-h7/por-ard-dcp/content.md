@@ -1,13 +1,13 @@
 # Dual Core Processing
 The Portenta H7 is equipped with a processor that has two processing units called cores. Dual core processing is the ability of a processor to read and execute instructions in two different cores simultaneously. In other words, a dual core processor can execute two applications, in this case two Arduino sketches, at the same time. In this tutorial you will run two classic Arduino blink programs simultaneously on different cores of the Portenta board that blinks the RGB LED in two different colours.
 
-## What you will learn
+## What You Will Learn
 -   How to upload and run applications on Portenta's M7 and M4 cores.
 -   About the characteristics of the M7 and the M4 cores.
 -   How to force bootForce booting the M4 core through the M7 core and why that is necessary.
 -   Controlling the colours of the built-in RGB LED. 
 
-## Required hardware and software
+## Required Hardware and Software
 -   Portenta H7 board 
 -   USB C cable (either USB A to USB C or USB C to USB C)
 -   Arduino IDE 1.8.10+ or Arduino Pro IDE 0.0.4+ 
