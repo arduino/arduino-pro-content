@@ -1,0 +1,22 @@
+{
+   "id":"por-ard-ble",
+   "index": 1,
+   "title":"BLE on the Portenta H7 For Arduino",
+   "slug":"por-ard-ble",
+   "authors":[
+      "Jeremy Ellis",
+      "Sebastian Hunkeler"
+   ],
+   "coverImage":{
+      "src":"assets/por_ard_ble_cover.svg?sanitize=true"
+   },
+   "tags":[
+      "BLE",
+      "IDE",
+      "Setup",
+      "Blink"
+   ],
+   "abstract":"This tutorial teaches you how to run BLE on the Portenta H7 to control the on board LED using an external Bluetooth application.",
+   "previousArticle":"por-ard-ap",
+   "nextArticle":null
+}
