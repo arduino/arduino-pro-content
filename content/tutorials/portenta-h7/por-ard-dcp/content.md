@@ -69,9 +69,9 @@ void setup() {
 // the loop function runs over and over again forever
 void loop() {
    digitalWrite(LEDG, LOW); // turn the LED on (LOW is the voltage level)
-   delay(500); // wait for a second
+   delay(500); // wait for half a second
    digitalWrite(LEDG, HIGH); // turn the LED off by making the voltage HIGH
-   delay(500); // wait for a second
+   delay(500); // wait for half a second
 }
 ```
 
@@ -95,9 +95,9 @@ void setup() {
 // the loop function runs over and over again forever
 void loop() {
    digitalWrite(LEDR, LOW); // turn the LED on (LOW is the voltage level)
-   delay(200); // wait for a second
+   delay(200); // wait for 200 miliseconds
    digitalWrite(LEDR, HIGH); // turn the LED off by making the voltage HIGH
-   delay(200); // wait for a second
+   delay(200); // wait for 200 miliseconds
 }
 ```
 
@@ -108,7 +108,63 @@ The final step is to upload the sketch that we prepared for the M4. Now open **T
 
 ![Uploading the blink_GreenLed_M4 to the M4 core](assets/por_ard_dcp_upload_code_m4.png)
 
+# Using just one program
+
+As we have learnt along this tutorial, we need especific programs in order to program different applications for both of the cores. 
+By using a bit more advanced programmin concepts, you can program different behaviors for both cores by using the same program. 
+
+***Programming bigger applications by using this method may increase the difficulty of the program you will need to create.*** 
+
+In order to see different behaviors for both LEDs, this example  will blink both of them with random sequences.
+
+## 1. Programming the M7 Core Set-up
+
+Let's open a new sketch and start by adding the following lines of code. The code between `#ifdef CORE_CM7` and `#endif` will only apply for the M7 Core tol boot the M4 core and allow it to run its corresponding sketch and to allow the M7 core to control the blue LED of the board.
+
+```cpp
+void setup() {
+
+   randomSeed(analogRead(0));
+   
+ #ifdef CORE_CM7  
+     LL_RCC_ForceCM4Boot();  
+     myLED = LEDB; // on-board blue LED
+  #endif
+```
+
+## 2. Programming the M4 Core Set-up
+
+Then, as well inside the `setup()` function, you need to include the following lines of code to configure properly the green LED in the M4 core.
+
+```cpp
+ #ifdef CORE_CM4  
+     myLED = LEDG; // on-board greeen LED
+  #endif   
+```
+
+## 3. Finishing the setup() and the loop() functions
+
+To finish with the `setup()` you will need to initialise the LEDs as outputs. Then include in the `loop()` function that will blink the LEDs. 
+Let's finisth the program by adding the following code right after the `#endif`. 
+```cpp
+
+  pinMode(myLED, OUTPUT);
+}
+
+void loop() {
+   digitalWrite(myLED, LOW); // turn the LED on 
+   delay(200); 
+   digitalWrite(myLED, HIGH); // turn the LED off 
+   delay( rand() % 2000 + 1000); // wait for a random amount of time between 1 and 3 seconds.
+} 
+```
+
+By uploading this scketch to your Portenta, you will program both Cores M4 and M7 at once to blink randomly the Gren and Blue LEDs. 
+This solution allow you to program both cores by using only one sketch.
+
+
 # Conclusion
+
 This tutorial introduces the idea of dual core processing and illustrates the concept by using the M7 and M4 cores to control the different colors of the built-in RGB LED. This simple example only describes how to access the M7 and M4 cores. In the upcoming tutorials you will learn to create applications that leverage the potential of dual core processing to perform more complex tasks. 
 
 # Next steps
