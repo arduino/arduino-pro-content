@@ -162,7 +162,7 @@ void loop() {
 
 Now can upload the sketch to both the cores of the Portenta H7 individually. With this sketch, you will be able to control the LED through both the cores (M4 and M7) and you should be able to see the Blue and Green LEDs of the Portenta board blinking with different sequences.
 
-Once the code is in the M4 and M7 Cores, you should be able to see the Blue and Green LEDs of the Portenta board blinking with different sequences. 
+ 
 
 
 # Conclusion
