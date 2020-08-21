@@ -110,7 +110,7 @@ The final step is to upload the sketch that we prepared for the M4. Now open **T
 
 # Programming both Cores with just one sketch
 
-As you have learnt in this tutorial, we need specific programs and sketches in order to program different applications for both of the cores, but using a bit more advanced programming concepts, you can program different behaviors for both cores by using the same program. 
+So far, we used separate sketch files to program the different cores. We can also combine these two sketch files into one by taking advantage the preprocessor directives '#ifdef'. This way you can program different behaviors for both cores by using the same program. 
 
 ***Programming bigger applications by using this method may increase the difficulty of the program you will need to create.*** 
 
