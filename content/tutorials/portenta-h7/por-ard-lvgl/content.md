@@ -10,40 +10,64 @@ Some applications developed to run on the portentea needs a graphical user inter
 -   Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
 -   USB C cable (either USB A to USB C or USB C to USB C)
 -   Arduino IDE 1.8.10+  or Arduino Pro IDE 0.0.4+ 
+-   USB 
+-   External monitor 
+-   HDMI cable 
 
 # Portenta and The ...
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. [Here](https://www.ni.com/en-us/innovations/white-papers/07/what-is-a-real-time-operating-system--rtos--.html) you can read more about real time operating systems.
+
+Graphical User interfaces are necessary for visualising information and interacting with the board. Information like performances, widgets and pages. 
+
+LVGL - create user interfaces - platform independant - use one library with microcontrollers or high-end processors - light weight embedded library - for displays : OLED, TFT, monitors, Drive Monochrom and touch screens - open source
+
+the lvgl arduino library can 
 
 ![The Arduino core is built on top of the Mbed stack](assets/Arduino-Logo.svg?sanitize=true)
 
 
-# Configuring the Development Environment
+# Building a simple GUI 
 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
 
-## 1. The Basic Setup
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
+1. The Basic Setup
 
-## 2. Uploading the classic blink sketch
-Let's program the Portenta with the classic blink example to check if the connection to the board works:
+Begin by plugging in your Portenta board to the computer using a USB-C cable and open the Arduino IDE or the Arduino Pro IDE. If this is your first time running Arduino sketch files on the board, we suggest you check out how to [set up the Portenta H7 for Arduino](https://github.com/bcmi-labs/arduino-pro-content/blob/master/content/tutorials/portenta-h7/por-ard-usb/por-ard-gs) before you proceed.
 
--   In the classic Arduino IDE open the blink example by clicking the menu entry File->Examples->01.Basics->Blink. 
--   In the Arduino Pro IDE Copy and paste the following code into a new sketch in your IDE. 
+2. Download the lvgl library 
 
-```cpp
-// the setup function runs once when you press reset or power the board
-void setup() {
-    // initialize digital pin LED_BUILTIN as an output.
-    pinMode(LED_BUILTIN, OUTPUT);
-}
+Library manager - LVGL and dowload the lvgl library. 
 
-// the loop function runs over and over again forever
-void loop() {
-    digitalWrite(LED_BUILTIN, HIGH); // turn the LED on (HIGH is the voltage level)
-    delay(1000); // wait for a second
-    digitalWrite(LED_BUILTIN, LOW); // turn the LED off by making the voltage LOW
-    delay(1000); // wait for a second
-}
-```
+<image here>
+
+2. Portenta_lvgl example sketch
+
+   Find the example at 
+
+   ![por_ard_lvgl_select_example]()
+
+   Scroll to the bottom of the sketch and uncomment the Hello world lines. 
+
+   ![por_ard_lvgl_select_example]() 
+
+   upload the sketch, 
+   Compile and run the sketch,
+
+   Note : if you cant find the sketch, make sure you have selected the right board inside **Tools > Boards** 
+
+3. Connect an external monitor the sketch 
+
+   once the sketch has finished uploading to the board.  At the point the Portent board becomes needs to be removed as it behaves as the USB host in this case. it needs to be plugged to a USB hub through which you can attach a HDMI port connected to an external moniter 
+
+   ![por_ard_lvgl_select_example]() 
+
+4. Adding a widget 
+
+   Now lets add a widget a . lets add this line to the setup
+
+   `lv_obj_t * myCustomLabel;`
+
+   
+
+   
 
 # Conclusion
 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.  
