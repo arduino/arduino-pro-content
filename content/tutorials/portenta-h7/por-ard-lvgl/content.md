@@ -66,12 +66,12 @@ Begin by plugging in your Portenta board to the computer using a USB-C cable and
    `static lv_obj_t * myCustomLabel;`
    
    Then at the end of the `setup()` we can configure it
-   ´´´
+   ```cpp
    //Setting up the object
    myCustomLabel = lv_label_create(lv_scr_act(), NULL);        //We make the object be a label widget
    lv_obj_align(myCustomLabel, NULL, LV_ALIGN_CENTER, 0, -100);   //We move it to the center of the screen below the 'Hello world' and align centered
    lv_label_set_text(myCustomLabel , "This is my first Label Widget");          //We set the default text
-   ´´´
+   ```
    
    Now we have two labels `label` and `myCustomLabel`
    
