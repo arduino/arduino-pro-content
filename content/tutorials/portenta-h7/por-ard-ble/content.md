@@ -1,5 +1,5 @@
-# BLE on the Portenta H7 For Arduino
-In this tutorial we will enable low energy bluetooth (BLE) on the Portenta H7 to allow an external bluetooth device to control the on-board LED either by turning it on or off. 
+# BLE Connectivity on Portenta H7
+In this tutorial we will enable low energy bluetooth (BLE) on the Portenta H7 to allow an external bluetooth device to control the built-in LED either by turning it on or off. 
 
 ## What you will learn
 
@@ -15,21 +15,15 @@ In this tutorial we will enable low energy bluetooth (BLE) on the Portenta H7 to
     -   [nrfconnect for iOS](https://itunes.apple.com/us/app/nrf-connect/id1054362403?ls=1&mt=8) or [nrfconnect for android](https://play.google.com/store/apps/details?id=no.nordicsemi.android.mcp)
 
 # Portenta and Low Energy Bluetooth (BLE) 
-The wifi/bluetooth module on board the H7 offers a low energy bluetooth module that gives the board the flexibility to be connected to devices with strict power consumptions. Compared to Classic Bluetooth, Low Energy Bluetooth is intended to provide considerably reduced power consumption and cost while maintaining a similar communication range. This helps in rapid integration to final solution.  
-
-https://www.bluetooth.com/specifications/gatt/characteristics/)
-
-![por_ard_ble_low_energy_BLE]()
+The onboard WiFi/Bluetooth module of the H7 offers low energy bluetooth functionality that gives the board the flexibility to be easily connected to devices which also support BLE such as the Arduino Nano 33 IoT or most modern smart phones. Compared to classic Bluetooth, Low Energy Bluetooth is intended to provide considerably reduced power consumption and cost while maintaining a similar communication range.
 
 
 # Configuring the Development Environment
-To communicate with the Portenta H7 via bluetooth, we are going to start by uploading a pre-built sketch that starts a bluetooth network and connects to your mobile device which will be used to control the LEDs. The sketch uses the [ArduinoBLE](https://www.arduino.cc/en/Reference/ArduinoBLE) Library that enables the BLE module and handles important functions such as scan, connect and interact with servics provided by other devices. You will also be using a third party application, [nRFconnect](https://www.nordicsemi.com/Software-and-tools/Development-Tools/nRF-Connect-for-mobile)  running on your mobile device that will connect your device to the board and help you control the on board LED.
+To communicate with the Portenta H7 via Bluetooth, we are going to start by uploading a pre-built sketch that starts a Bluetooth network and allows your mobile device, which will be used to control the LEDs, to connect to it. The sketch uses the [ArduinoBLE](https://www.arduino.cc/en/Reference/ArduinoBLE) Library that enables the BLE module and handles important functions such as scanning, connecting and interacting with services provided by other devices. You will also be using a third party application (e.g. [nRFconnect](https://www.nordicsemi.com/Software-and-tools/Development-Tools/nRF-Connect-for-mobile)), running on your mobile device that will connect your device to the board and help you control the built-in LED.
 
-![por_ard_ble_configuration](assets/por_ard_ble_configuration.svg?sanitize=true)
+![por_ard_ble_configuration](assets/por_ard_ble_configuration.svg?sanitize=true) 
 
-*** NOTE :- //suggest some other BLE Scanning tools  *** 
-
-## 1. The basic setup
+## 1. The Basic Setup
 
 Begin by plugging in your Portenta board to the computer using a USB-C cable and open the Arduino IDE or the Arduino Pro IDE. If this is your first time running Arduino sketch files on the board, we suggest you check out how to [set up the Portenta H7 for Arduino](https://github.com/bcmi-labs/arduino-pro-content/blob/master/content/tutorials/portenta-h7/por-ard-usb/por-ard-gs) before you proceed.
 
@@ -37,26 +31,25 @@ Begin by plugging in your Portenta board to the computer using a USB-C cable and
 
 ## 2. Install the ArduinoBLE library 
 
-You will need to install the ArduinoBLE library on your Arduino IDE you are using. For this example we will use the Regular Arduino IDE. To install the library go to : **File -> Manage Libarary ->** type **ArduinoBLE**  and click **Install**.
+You will need to install the ArduinoBLE library in the Arduino IDE you are using. For this example we will use the classic Arduino IDE. To install the library go to : **Tools -> Manage Libararies...** type **ArduinoBLE**  and click **Install**.
 
 ![por_ard_ble_basic_setup](assets/por_ard_ble_arduino_library.png?sanitize=true)
 
 
 
-## 3. Add the BLE sketch
+## 3. Create the BLE Sketch
 
-Let's program the Portenta with the classic blink example to check if the connection to the board works. Copy and paste the following code into a new sketch in your IDE. 
+Let's program the Portenta with the following example sketch. If the BLE module can be initialized correctly, you will see the blue LED lighting up for one second after uploading the sketch. If it fails you will see the red LED lighting up instead. Copy and paste the following code into a new sketch in your IDE. 
 
 ```
-
 #include <ArduinoBLE.h>
 
-BLEService ledService("19b10000-e8f2-537e-4f6c-d104768a1214"); // BLE LED Service
+BLEService ledService("19b10000-e8f2-537e-4f6c-d104768a1214");
 
 // BLE LED Switch Characteristic - custom 128-bit UUID, read and writable by central
 BLEByteCharacteristic switchCharacteristic("19b10000-e8f2-537e-4f6c-d104768a1214", BLERead | BLEWrite);
 
-const int ledPin = LED_BUILTIN; // pin to use for the LED
+const int ledPin = LED_BUILTIN; // Pin to use for the LED
 
 void setup() {
   Serial.begin(9600);
@@ -107,11 +100,11 @@ void loop() {
     Serial.print("Connected to central: ");
     // Print the central's MAC address:
     Serial.println(central.address());
-    digitalWrite(ledPin, HIGH);
+    digitalWrite(LEDB, HIGH);
     delay(100);
-    digitalWrite(ledPin, LOW);
+    digitalWrite(LEDB, LOW);
     delay(100);
-    digitalWrite(ledPin, HIGH);
+    digitalWrite(LEDB, HIGH);
 
     // While the central is still connected to peripheral:
     while (central.connected()) {
@@ -119,11 +112,11 @@ void loop() {
       // Use the value to control the LED:
       if (switchCharacteristic.written()) {
         if (switchCharacteristic.value()) {   // Any value other than 0
-          Serial.println("LED off");
-          digitalWrite(ledPin, HIGH);         // Will turn the Portenta LED off, weird
-        } else {                             
           Serial.println("LED on");
-          digitalWrite(ledPin, LOW);          // Will turn the Portenta LED on, weird
+          digitalWrite(ledPin, LOW);          // Will turn the Portenta LED on
+        } else {                             
+          Serial.println("LED off");
+          digitalWrite(ledPin, HIGH);         // Will turn the Portenta LED off          
         }
       }
     }
@@ -131,42 +124,41 @@ void loop() {
     // When the central disconnects, print it out:
     Serial.print("Disconnected from central: ");
     Serial.println(central.address());    
-    digitalWrite(ledPin, HIGH);
+    digitalWrite(LEDB, HIGH);
     delay(100);
-    digitalWrite(ledPin, LOW);
+    digitalWrite(LEDB, LOW);
     delay(100);
-    digitalWrite(ledPin, HIGH);
+    digitalWrite(LEDB, HIGH);
   }
 }
-
 ```
 
-In our example we use a pre-defined bluetooth number code pre-setup for controlling a devices LED's. This code can also be referred to as [GATT codes](https://www.bluetooth.com/specifications/gatt/services/), which defines how two bluetooth low energy devices tranfer data. Once a connection is established with a device, its respecitve GATT code, which is a 16 bit ID, is stored in a lookup table for future reference. 
+In our example we use a pre-defined bluetooth number code pre-setup for controlling a devices LEDs. This code can also be referred to as [GATT codes](https://www.bluetooth.com/specifications/gatt/services/), which define how two bluetooth low energy devices transfer data. Once a connection is established with a device, its respecitve GATT code, which is a 16 bit identifier, is stored in a lookup table for future reference. 
+These GATT codes are very long, but in our example it is always the same code:
 
 ```BLEService ledService("19b10000-e8f2-537e-4f6c-d104768a1214"); // BLE LED Service```
 
-These GATT codes are very long, but in our example it is always the same code. 
-
-*** NOTE :- Reminder that on the Portenta the onboard LED is turn on by setting digitalWrite to LOW and off by setting digitalWrite to HIGH, reverse of non-pro Arduinos. This arraingment is safer for the board as a way to protect the board LED. ***  
+*** NOTE : On the Portenta the built-in LED is turned on by setting it to LOW and off by setting it to HIGH, the opposite of most other Arduino boards. ***  
 
 ## 4. Upload the sketch 
 
-Double press the reset button so the on-board LED is slowly pulsing green. Then, select your board from **Tools** ->  **Board** -> **Arduino Portenta H7 (M7 core)** 
- ![por_ard_usb_select_board_h7](assets/por_ard_usb_select_board_h7.png)
+Double press the reset button so the built-in LED is slowly pulsing green. Then, select your board in the menu: **Tools** ->  **Board** -> **Arduino Portenta H7 (M7 core)** 
+ ![por_ard_ble_select_board_h7](assets/por_ard_ble_select_board_h7.png)
 
-Then choose the **Port** and **Upload** the file to your Portenta board. Open the Serial Monitor once you've **uploaded** the code to the board. 
+Then choose the **Port** where your Portenta is connected to and **Upload** the sketch. Open the Serial Monitor once you've **uploaded** the code to the board to see debugging messages.
 
-![por_ard_usb_select_port](assets/por_ard_usb_select_port.png)
+![por_ard_ble_select_port](assets/por_ard_ble_select_port.png)
 
 ## 5. Connect an external device
 
-Once you have downloaded the nRF application on your mobile device, and look for your portenta 
+On your mobile device install **nRF Connect** or an equivalent app that allows for BLE connections. We will refer to **nRF Connect** for the rest of this tutorial. Once you have downloaded the nRF application on your mobile device look for your Portenta in the device list. You may filter the list by "Portenta" to make it easier to find your board in case you're using **nRF Connect**.
 
-- On your mobile device load *nrfconnect* or ewuivalent and scan for the BLE connection called "LED..."
-- connect with the device, find the 2 way communication tabs and type either "00" or "01" to turn the LED on or off
+When you found your board in the list tap "Connect". Navigate to the "Services" screen and tap the arrow up button. Switch to "Bool" type and move the toggle to "True". Confirm the dialog with a tap on "Write" and you should see the built-in LED turned on. If you do the same procedure again but setting the toggle switch to "False" it will turn off the LED.
+
+![por_ard_ble_nrf_connect](assets/por_ard_ble_nrf_connect.png)
 
 # Conclusion
-If all went well you have proved that you can connect your Portenta with your cell phone and have some communication abilities between the two devices  
+This tutorial shows how to connect and control the built-in LED using a BLE connection. You have learnt how a simple BLE connection between your Portenta and your cell phone which has basic communication abilities between the two devices works.
 
 # Next Steps  
 
@@ -175,8 +167,9 @@ Now that you learnt how to configure the Portenta as a BLE endpoint you can try 
 
 # Troubleshooting
 ## Sketch Upload Troubleshooting
-If trying to upload a sketch but you receive an error message, saying that the upload has failed you can try to upload the sketch while the Portenta H7 is in bootloader mode. To do so you need to double click the reset button. The green LED will start fading in and out. Try to upload the sketch again. The green LED will stop fading when the upload completes.
+If you try to upload a sketch and receive an error message, saying that the upload has failed you can try to upload the sketch while the Portenta H7 is in bootloader mode. To do so you need to double click the reset button. The green LED will start fading in and out. Try to upload the sketch again. The green LED will stop fading when the upload completes.
 
-**Authors:** Jeremy Ellis, YY
-**Reviewed by:** Lenard George [20.08.2020]  
-**Last revision:** AA [27.3.2020]
+**Authors:** Jeremy Ellis  
+**Reviewed by:** Lenard George, Sebastian Hunkeler [02.09.2020]  
+**Last revision:** Sebastian Hunkeler [02.09.2020]
+
