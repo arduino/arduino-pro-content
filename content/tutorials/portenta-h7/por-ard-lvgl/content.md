@@ -20,6 +20,14 @@ Graphical User interfaces are necessary for visualising information and interact
 
 LVGL - create user interfaces - platform independant - use one library with microcontrollers or high-end processors - light weight embedded library - for displays : OLED, TFT, monitors, Drive Monochrom and touch screens - open source
 
+Provides all the necessary widgets - https://docs.lvgl.io/v7/en/html/widgets/index.html 
+
+handles all the events such as pressed , focused refereshed etc 
+
+customizing their styles can be applied to parts objects to change their styles, styles can be cascaded. 
+
+
+
 the lvgl arduino library can 
 
 ![The Arduino core is built on top of the Mbed stack](assets/Arduino-Logo.svg?sanitize=true)
@@ -27,6 +35,8 @@ the lvgl arduino library can
 
 # Building a simple GUI 
 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
+
+Upload the example, create widgets and display it on the monitor 
 
 1. The Basic Setup
 
