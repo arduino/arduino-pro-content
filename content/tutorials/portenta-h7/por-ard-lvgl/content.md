@@ -20,14 +20,6 @@ Graphical User interfaces are necessary for visualising information and interact
 
 LVGL - create user interfaces - platform independant - use one library with microcontrollers or high-end processors - light weight embedded library - for displays : OLED, TFT, monitors, Drive Monochrom and touch screens - open source
 
-Provides all the necessary widgets - https://docs.lvgl.io/v7/en/html/widgets/index.html 
-
-handles all the events such as pressed , focused refereshed etc 
-
-customizing their styles can be applied to parts objects to change their styles, styles can be cascaded. 
-
-
-
 the lvgl arduino library can 
 
 ![The Arduino core is built on top of the Mbed stack](assets/Arduino-Logo.svg?sanitize=true)
@@ -35,8 +27,6 @@ the lvgl arduino library can
 
 # Building a simple GUI 
 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
-
-Upload the example, create widgets and display it on the monitor 
 
 1. The Basic Setup
 
@@ -54,7 +44,7 @@ Library manager - LVGL and dowload the lvgl library.
 
    ![por_ard_lvgl_select_example]()
 
-   Scroll to the bottom of the sketch and uncomment the Hello world lines. 
+   Scroll to the bottom of the sketch, comment `lv_demo_widgets();` uncomment the Hello world lines (above the command you commented). 
 
    ![por_ard_lvgl_select_example]() 
 
@@ -71,12 +61,39 @@ Library manager - LVGL and dowload the lvgl library.
 
 4. Adding a widget 
 
-   Now lets add a widget a . lets add this line to the setup
+   Now lets create a widget, first of all we need to declare our object
 
-   `lv_obj_t * myCustomLabel;`
-
+   `static lv_obj_t * myCustomLabel;`
    
-
+   Then at the end of the `setup()` we can configure it
+   ´´´
+   //Setting up the object
+   myCustomLabel = lv_label_create(lv_scr_act(), NULL);        //We make the object be a label widget
+   lv_obj_align(myCustomLabel, NULL, LV_ALIGN_CENTER, 0, -100);   //We move it to the center of the screen below the 'Hello world' and align centered
+   lv_label_set_text(myCustomLabel , "This is my first Label Widget");          //We set the default text
+   ´´´
+   
+   Now we have two labels `label` and `myCustomLabel`
+   
+   You should see the new label below the `Hello World` one
+   
+5. Making a simple counter
+   
+   To make a counter we need to update periodically a label and change it value, to be able to do that we are going to use the LVGL feature called 'Task'
+   
+   First of all lets declare our new task by adding `static void label_Task(lv_task_t * myTask);` and an int to count `uint32_t count = 0;`
+   
+   After that we need to create the void that we declared before:
+   
+   ```cpp
+   static void label_Task(lv_task_t * myTask) {
+      //printf("count: %d\n", count);                        //We can see in the Serial monitor the count
+      lv_label_set_text_fmt(myCustomLabel, "%d" , count);    //Update the text from the label
+      count++;                                               //Increase the count number
+   ```
+   
+   To make it work we need to take the task and add it inside the LVGL task handler, by adding `lv_task_create(label_Task, 1000, LV_TASK_PRIO_MID, NULL);` at the end `of the setup()`
+   We set the task to refresh each second.
    
 
 # Conclusion
@@ -87,6 +104,12 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula 
 -   B
 
 # Troubleshooting
+## Not updating the text with the count
+Make sure that the label and task is declared on top of the sketch, outside the `setup()`and `loop()` like a normal variable.
+Check if the task has the same structure in the first declaration and the function creation.
+Look inside the `loop()` and see if `lv_task_handler()` is there.
+Try to uncomment the printf inside the task to check if the Serial Monitor its updating the count.
+
 ## Sketch Upload Troubleshooting
 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
 
