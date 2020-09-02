@@ -60,71 +60,76 @@ const int ledPin = LED_BUILTIN; // pin to use for the LED
 
 void setup() {
   Serial.begin(9600);
-  //while (!Serial);   // need this gone when disconected from computer
+  //while (!Serial);   // Uncomment to wait for serial port to connect.
 
-  // set LED pin to output mode
+  // Set LED pin to output mode
   pinMode(ledPin, OUTPUT);
+  digitalWrite(ledPin, HIGH);
 
-  // begin initialization
+  // Begin initialization
   if (!BLE.begin()) {
     Serial.println("starting BLE failed!");
+    digitalWrite(LEDR, LOW);
+    delay(1000);
+    digitalWrite(LEDR, HIGH);
 
+    // Stop if BLE couldn't be initialized.
     while (1);
   }
 
-  // set advertised local name and service UUID:
+  // Set advertised local name and service UUID:
   BLE.setLocalName("LED-Portenta-01");
   BLE.setAdvertisedService(ledService);
 
-  // add the characteristic to the service
+  // Add the characteristic to the service
   ledService.addCharacteristic(switchCharacteristic);
 
-  // add service
+  // Add service
   BLE.addService(ledService);
 
-  // set the initial value for the characeristic:
+  // Set the initial value for the characeristic:
   switchCharacteristic.writeValue(0);
 
   // start advertising
   BLE.advertise();
-  digitalWrite(ledPin, LOW);
+  digitalWrite(LEDB, LOW);
   delay(1000);
-  digitalWrite(ledPin, HIGH);
+  digitalWrite(LEDB, HIGH);
   Serial.println("BLE LED-Distance-Control");
 }
 
 void loop() {
-  // listen for BLE peripherals to connect:
+  // Listen for BLE peripherals to connect:
   BLEDevice central = BLE.central();
 
-  // if a central is connected to peripheral:
+  // If a central is connected to peripheral:
   if (central) {
     Serial.print("Connected to central: ");
-    // print the central's MAC address:
-    Serial.println(central.address());;
+    // Print the central's MAC address:
+    Serial.println(central.address());
     digitalWrite(ledPin, HIGH);
     delay(100);
     digitalWrite(ledPin, LOW);
     delay(100);
     digitalWrite(ledPin, HIGH);
 
-    // while the central is still connected to peripheral:
+    // While the central is still connected to peripheral:
     while (central.connected()) {
-      // if the remote device wrote to the characteristic,
-      // use the value to control the LED:
+      // If the remote device wrote to the characteristic,
+      // Use the value to control the LED:
       if (switchCharacteristic.written()) {
-        if (switchCharacteristic.value()) {   // any value other than 0
+        if (switchCharacteristic.value()) {   // Any value other than 0
           Serial.println("LED off");
-          digitalWrite(ledPin, HIGH);         // will turn the Portenta LED off, weird
+          digitalWrite(ledPin, HIGH);         // Will turn the Portenta LED off, weird
         } else {                             
-          Serial.println(F("LED on"));
-          digitalWrite(ledPin, LOW);          // will turn the Portenta LED on, weird
+          Serial.println("LED on");
+          digitalWrite(ledPin, LOW);          // Will turn the Portenta LED on, weird
         }
       }
     }
 
-    // when the central disconnects, print it out:
-    Serial.print(F("Disconnected from central: "));
+    // When the central disconnects, print it out:
+    Serial.print("Disconnected from central: ");
     Serial.println(central.address());    
     digitalWrite(ledPin, HIGH);
     delay(100);
