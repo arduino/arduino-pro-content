@@ -151,9 +151,15 @@ Then choose the **Port** where your Portenta is connected to and **Upload** the 
 
 ## 5. Connect an external device
 
-On your mobile device install **nRF Connect** or an equivalent app that allows for BLE connections. We will refer to **nRF Connect** for the rest of this tutorial. Once you have downloaded the nRF application on your mobile device look for your Portenta in the device list. You may filter the list by "Portenta" to make it easier to find your board in case you're using **nRF Connect**.
+On your mobile device install **nRF Connect** or an equivalent app that allows for BLE connections. We will refer to **nRF Connect** for the rest of this tutorial.
 
-When you found your board in the list tap "Connect". Navigate to the "Services" screen and tap the arrow up button. Switch to "Bool" type and move the toggle to "True". Confirm the dialog with a tap on "Write" and you should see the built-in LED turned on. If you do the same procedure again but setting the toggle switch to "False" it will turn off the LED.
+![por_ard_ble_download_nrfapp](assets/por_ard_ble_download_nrfapp.png)
+
+Once you have downloaded the nRF application on your mobile device look for your Portenta in the device list. You may filter the list by "Portenta" to make it easier to find your board in case you're using **nRF Connect**. 
+
+- When you found your board in the list tap "Connect". 
+- Navigate to the "Services" screen and tap the arrow up button. 
+- Switch to "Bool" type and move the toggle to "True". Confirm the dialog with a tap on "Write" and you should see the built-in LED turned on. If you do the same procedure again but setting the toggle switch to "False" it will turn off the LED.
 
 ![por_ard_ble_nrf_connect](assets/por_ard_ble_nrf_connect.png)
 
