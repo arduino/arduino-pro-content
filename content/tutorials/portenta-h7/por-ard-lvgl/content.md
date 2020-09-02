@@ -34,7 +34,7 @@ Begin by plugging in your Portenta board to the computer using a USB-C cable and
 
 2. Download the lvgl library 
 
-Library manager - LVGL and dowload the lvgl library. 
+   Library manager - LVGL and dowload the lvgl library. 
 
 <image here>
 
