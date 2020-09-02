@@ -106,9 +106,13 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula 
 # Troubleshooting
 ## Not updating the text with the count
 Make sure that the label and task is declared on top of the sketch, outside the `setup()`and `loop()` like a normal variable.
+
 Check if the task has the same structure in the first declaration and the function creation.
+
 Look inside the `loop()` and see if `lv_task_handler()` is there.
+
 Try to uncomment the printf inside the task to check if the Serial Monitor its updating the count.
+
 
 ## Sketch Upload Troubleshooting
 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
