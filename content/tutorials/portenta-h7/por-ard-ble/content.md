@@ -1,12 +1,12 @@
 # BLE Connectivity on Portenta H7
 In this tutorial we will enable low energy bluetooth (BLE) on the Portenta H7 to allow an external bluetooth device to control the built-in LED either by turning it on or off. 
 
-## What you will learn
+## What You Will Learn
 
 -   Enabling BLE connectivity on the Portenta H7.
 -   Connecting the Portenta to an external BLE Mobile Application (In this case [nRF Connect](https://www.nordicsemi.com/Software-and-tools/Development-Tools/nRF-Connect-for-mobile) by Nordic Semiconductor).
 
-## Required hardware and software
+## Required Hardware and Software
 
 -   Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
 -   USB C cable (either USB A to USB C or USB C to USB C)
@@ -29,7 +29,7 @@ Begin by plugging in your Portenta board to the computer using a USB-C cable and
 
 ![The Portenta H7 can be connected to the computer using an appropriate USB-C cable](assets/por_ard_ble_basic_setup.svg?sanitize=true)
 
-## 2. Install the ArduinoBLE library 
+## 2. Install the ArduinoBLE Library 
 
 You will need to install the ArduinoBLE library in the Arduino IDE you are using. For this example we will use the classic Arduino IDE. To install the library go to : **Tools -> Manage Libararies...** type **ArduinoBLE**  and click **Install**.
 
@@ -140,7 +140,7 @@ These GATT codes are very long, but in our example it is always the same code:
 
 *** NOTE : On the Portenta the built-in LED is turned on by setting it to LOW and off by setting it to HIGH, the opposite of most other Arduino boards. ***  
 
-## 4. Upload the sketch 
+## 4. Upload the Sketch 
 
 Double press the reset button so the built-in LED is slowly pulsing green. Then, select your board in the menu: **Tools** ->  **Board** -> **Arduino Portenta H7 (M7 core)** 
  ![Select the Arduino Portenta H7 (M7 core) in the board selector.](assets/por_ard_ble_select_board_h7.png)
@@ -149,7 +149,7 @@ Then choose the **Port** where your Portenta is connected to and **Upload** the 
 
 ![Select the Port to which the Portenta is connected to.](assets/por_ard_ble_select_port.png)
 
-## 5. Connect an external device
+## 5. Connect an External Device
 
 On your mobile device install **nRF Connect** or an equivalent app that allows for BLE connections. We will refer to **nRF Connect** for the rest of this tutorial.
 
