@@ -21,19 +21,19 @@ The onboard WiFi/Bluetooth module of the H7 offers low energy bluetooth function
 # Configuring the Development Environment
 To communicate with the Portenta H7 via Bluetooth, we are going to start by uploading a pre-built sketch that starts a Bluetooth network and allows your mobile device, which will be used to control the LEDs, to connect to it. The sketch uses the [ArduinoBLE](https://www.arduino.cc/en/Reference/ArduinoBLE) Library that enables the BLE module and handles important functions such as scanning, connecting and interacting with services provided by other devices. You will also be using a third party application (e.g. [nRFconnect](https://www.nordicsemi.com/Software-and-tools/Development-Tools/nRF-Connect-for-mobile)), running on your mobile device that will connect your device to the board and help you control the built-in LED.
 
-![por_ard_ble_configuration](assets/por_ard_ble_configuration.svg?sanitize=true) 
+![BLE Configuration Scheme](assets/por_ard_ble_configuration.svg?sanitize=true) 
 
 ## 1. The Basic Setup
 
 Begin by plugging in your Portenta board to the computer using a USB-C cable and open the Arduino IDE or the Arduino Pro IDE. If this is your first time running Arduino sketch files on the board, we suggest you check out how to [set up the Portenta H7 for Arduino](https://github.com/bcmi-labs/arduino-pro-content/blob/master/content/tutorials/portenta-h7/por-ard-usb/por-ard-gs) before you proceed.
 
-![por_ard_ble_basic_setup](../por-ard-gs/assets/por_ard_gs_basic_setup.svg?sanitize=true)
+![The Portenta H7 can be connected to the computer using an appropriate USB-C cable](assets/por_ard_ble_basic_setup.svg?sanitize=true)
 
 ## 2. Install the ArduinoBLE library 
 
 You will need to install the ArduinoBLE library in the Arduino IDE you are using. For this example we will use the classic Arduino IDE. To install the library go to : **Tools -> Manage Libararies...** type **ArduinoBLE**  and click **Install**.
 
-![por_ard_ble_basic_setup](assets/por_ard_ble_arduino_library.png?sanitize=true)
+![Download the BLE library in the Library Manager.](assets/por_ard_ble_arduino_library.png?sanitize=true)
 
 
 
@@ -143,17 +143,17 @@ These GATT codes are very long, but in our example it is always the same code:
 ## 4. Upload the sketch 
 
 Double press the reset button so the built-in LED is slowly pulsing green. Then, select your board in the menu: **Tools** ->  **Board** -> **Arduino Portenta H7 (M7 core)** 
- ![por_ard_ble_select_board_h7](assets/por_ard_ble_select_board_h7.png)
+ ![Select the Arduino Portenta H7 (M7 core) in the board selector.](assets/por_ard_ble_select_board_h7.png)
 
 Then choose the **Port** where your Portenta is connected to and **Upload** the sketch. Open the Serial Monitor once you've **uploaded** the code to the board to see debugging messages.
 
-![por_ard_ble_select_port](assets/por_ard_ble_select_port.png)
+![Select the Port to which the Portenta is connected to.](assets/por_ard_ble_select_port.png)
 
 ## 5. Connect an external device
 
 On your mobile device install **nRF Connect** or an equivalent app that allows for BLE connections. We will refer to **nRF Connect** for the rest of this tutorial.
 
-![por_ard_ble_download_nrfapp](assets/por_ard_ble_download_nrfapp.png)
+![Download the nRF Connect app from the Apple App Store or Google Play Store.](assets/por_ard_ble_download_nrfapp.png)
 
 Once you have downloaded the nRF application on your mobile device look for your Portenta in the device list. You may filter the list by "Portenta" to make it easier to find your board in case you're using **nRF Connect**. 
 
@@ -161,7 +161,7 @@ Once you have downloaded the nRF application on your mobile device look for your
 - Navigate to the "Services" screen and tap the arrow up button. 
 - Switch to "Bool" type and move the toggle to "True". Confirm the dialog with a tap on "Write" and you should see the built-in LED turned on. If you do the same procedure again but setting the toggle switch to "False" it will turn off the LED.
 
-![por_ard_ble_nrf_connect](assets/por_ard_ble_nrf_connect.png)
+![In the nRF Connect app use a Bool toggle switch to toggle the built-in LED.](assets/por_ard_ble_nrf_connect.png)
 
 # Conclusion
 This tutorial shows how to connect and control the built-in LED using a BLE connection. You have learnt how a simple BLE connection between your Portenta and your cell phone which has basic communication abilities between the two devices works.
