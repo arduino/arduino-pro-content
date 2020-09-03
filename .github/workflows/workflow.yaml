@@ -5,7 +5,9 @@ on:
     types: deploy
   push:
     branches:
-      - master      
+      - master  
+  pull_request:
+    types: [opened, synchronize, ready_for_review, reopened]
 
 env:
   AWS_REGION: 'us-west-1'
