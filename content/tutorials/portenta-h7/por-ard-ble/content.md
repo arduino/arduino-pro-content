@@ -40,7 +40,7 @@ You will need to install the ArduinoBLE library in the Arduino IDE you are using
 
 Let's program the Portenta with the following example sketch. If the BLE module can be initialized correctly, you will see the blue LED lighting up for one second after uploading the sketch. If it fails you will see the red LED lighting up instead. Copy and paste the following code into a new sketch in your IDE. 
 
-```
+```cpp
 #include <ArduinoBLE.h>
 
 BLEService ledService("19b10000-e8f2-537e-4f6c-d104768a1214");
