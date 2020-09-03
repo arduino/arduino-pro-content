@@ -4,7 +4,9 @@
    "title":"BLE Connectivity on Portenta H7",
    "slug":"por-ard-ble",
    "authors":[
-      "Jeremy Ellis"      
+      "Jeremy Ellis",
+      "Lenard George", 
+      "Sebastian Romero"
    ],
    "coverImage":{
       "src":"assets/por_ard_ble_cover.svg?sanitize=true"

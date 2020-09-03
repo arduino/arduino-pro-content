@@ -175,7 +175,7 @@ Now that you learnt how to configure the Portenta as a BLE endpoint you can try 
 ## Sketch Upload Troubleshooting
 If you try to upload a sketch and receive an error message, saying that the upload has failed you can try to upload the sketch while the Portenta H7 is in bootloader mode. To do so you need to double click the reset button. The green LED will start fading in and out. Try to upload the sketch again. The green LED will stop fading when the upload completes.
 
-**Authors:** Jeremy Ellis  
-**Reviewed by:** Lenard George, Sebastian Hunkeler [02.09.2020]  
-**Last revision:** Sebastian Hunkeler [02.09.2020]
+**Authors:** Jeremy Ellis, Lenard George, Sebastian Romero  
+**Reviewed by:** Lenard George, Sebastian Romero [02.09.2020]  
+**Last revision:** Sebastian Romero [02.09.2020]
 
