@@ -1,0 +1,28 @@
+
+name: Validate tutorials
+
+on: 
+  repository_dispatch:
+    types: deploy
+  push:
+    branches:
+      - master      
+  pull_request:
+    types: [opened, synchronize, ready_for_review, reopened]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node_version: [12]
+
+    steps:
+    - uses: actions/checkout@v1
+    
+    - name: Validate      
+      run: |
+        cd tests
+        npm install
+        node validate.js
