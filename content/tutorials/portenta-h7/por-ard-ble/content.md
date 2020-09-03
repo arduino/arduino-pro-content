@@ -137,7 +137,7 @@ These GATT codes are very long, but in our example it is always the same code:
 
 ```BLEService ledService("19b10000-e8f2-537e-4f6c-d104768a1214"); // BLE LED Service```
 
-*** NOTE : On the Portenta the built-in LED is turned on by setting it to LOW and off by setting it to HIGH, the opposite of most other Arduino boards. ***  
+***NOTE : On the Portenta the built-in LED is turned on by setting it to LOW and off by setting it to HIGH, the opposite of most other Arduino boards.***
 
 ## 4. Upload the Sketch 
 
