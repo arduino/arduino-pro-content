@@ -57,10 +57,6 @@ void setup() {
   
   Serial.println("Access Point Web Server");
 
-  pinMode(LEDR,OUTPUT);
-  pinMode(LEDG,OUTPUT);
-  pinMode(LEDB,OUTPUT); 
-
   // by default the local IP address of will be 192.168.3.1
   // you can override it with the following:
   // WiFi.config(IPAddress(10, 0, 0, 1));
