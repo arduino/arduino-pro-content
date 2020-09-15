@@ -124,9 +124,10 @@ void setup() {
    
  #ifdef CORE_CM7  
      bootM4();  
-     myLED = LEDB; // on-board blue LED
+     myLED = LEDB; // built-in blue LED
   #endif
 ```
+
 The code between `#ifdef CORE_CM7` and `#endif` will only apply for the M7 Core to boot the M4 core allowing it to run its corresponding sketch, that portion of code will also allow the M7 core control the blue LED of the board.
 
 ## 2. Programming the M4 Core Set-up
@@ -134,7 +135,7 @@ Then, as well inside the `setup()` function, you will need to include the follow
 
 ```cpp
  #ifdef CORE_CM4  
-     myLED = LEDG; // on-board greeen LED
+     myLED = LEDG; // built-in greeen LED
   #endif   
 ```
 
