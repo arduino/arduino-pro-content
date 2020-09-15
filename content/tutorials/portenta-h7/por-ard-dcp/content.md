@@ -18,7 +18,6 @@ Processor cores are individual processing units within the board's main processi
 ![The Architectures of Cortex® M7 and M4 cores.](assets/por_ard_dcp_m4_m7_architectures.svg?sanitize=true)
 
 # Accessing the M7 and M4 Core
-
 To best illustrate the idea of dual core processing, you will be running two separate sketch files. One on each of the cores which blinks the RGB LED in a different colour. The **blink_RedLed_m7.ino** sketch will set the built-in RGB LED on the board to red and blink it with a delay of 500 ms. The **blink_GreenLed_M4.ino** sketch will access the green LED in the RGB led and blink it with a delay of 200 ms.  Both the cores will be executing the corresponding sketch file simultaneously and as a result both the green and red LED blink, however, at different intervals.
 
 ![Running two different sketch files on the different cores.](assets/por_ard_dcp_tutorial_overview.svg?sanitize=true)
@@ -109,7 +108,6 @@ The final step is to upload the sketch that we prepared for the M4. Now open **T
 ![Uploading the blink_GreenLed_M4 to the M4 core](assets/por_ard_dcp_upload_code_m4.png)
 
 # Programming both Cores with just one sketch
-
 So far, we used separate sketch files to program the different cores. We can also combine these two sketch files into one by taking advantage the preprocessor directives '#ifdef'. This way you can program different behaviors for both cores by using the same program. 
 
 ***Programming bigger applications by using this method may increase the difficulty of the program you will need to create.*** 
@@ -117,7 +115,6 @@ So far, we used separate sketch files to program the different cores. We can als
 Let's now to create a new sketch to  blink both of LEDs with random sequences, this will allow you to clearly see different behaviors for both of the LEDs using a very simple program.
 
 ## 1. Programming the M7 Core Set-up
-
 Let's start by opening a new sketch and naming it **blink_2cores.ino**. Then let's add the following lines of code. 
 
 ```cpp
@@ -133,7 +130,6 @@ void setup() {
 The code between `#ifdef CORE_CM7` and `#endif` will only apply for the M7 Core to boot the M4 core allowing it to run its corresponding sketch, that portion of code will also allow the M7 core control the blue LED of the board.
 
 ## 2. Programming the M4 Core Set-up
-
 Then, as well inside the `setup()` function, you will need to include the following lines to configure properly the green LED in the M4 core.
 
 ```cpp
@@ -143,7 +139,6 @@ Then, as well inside the `setup()` function, you will need to include the follow
 ```
 
 ## 3. Finishing the setup() function and programming the loop()
-
 To finish with the `setup()` you will need to initialise the LEDs as outputs. 
 
 Then in the `loop()` function you will need to include the sequence that blink the LEDs. to do so, add  the following portion of code right after the `#endif`. 
@@ -162,11 +157,7 @@ void loop() {
 
 Now can upload the sketch to both the cores of the Portenta H7 individually. With this sketch, you will be able to control the LED through both the cores (M4 and M7) and you should be able to see the Blue and Green LEDs of the Portenta board blinking with different sequences.
 
- 
-
-
 # Conclusion
-
 This tutorial introduces the idea of dual core processing and illustrates the concept by using the M7 and M4 cores to control the different colors of the built-in RGB LED. This simple example only describes how to access the M7 and M4 cores. In the upcoming tutorials you will learn to create applications that leverage the potential of dual core processing to perform more complex tasks. 
 
 # Next steps
