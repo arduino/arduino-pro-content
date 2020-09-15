@@ -126,7 +126,7 @@ void setup() {
    randomSeed(analogRead(0));
    
  #ifdef CORE_CM7  
-     LL_RCC_ForceCM4Boot();  
+     bootM4();  
      myLED = LEDB; // on-board blue LED
   #endif
 ```
