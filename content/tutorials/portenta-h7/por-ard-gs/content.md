@@ -95,13 +95,20 @@ If trying to upload a sketch but you receive an error message, saying that the u
 
 ![Double-clicking the reset button puts the board into bootloader mode.](assets/por_ard_gs_reset.png)
 
-If you are using an active USB hub, please make sure it is supplied. Passive hubs will not work.
+## USB Hub Issues Troubleshooting
+If you would like to use a USB hub to connect other devices to the Portenta make sure it's an active USB hub that can provide power to these devices. Passive hubs won't work. If you're using an active USB hub but still don't get it to work it may be a model that is not supported.
 
-### Issues on Ubuntu
-- Make sure modemmanager is not installed. In case remove it with `sudo apt-get remove modemmanager`
+## Ubuntu Issues Troubleshooting
+If you're having troubles getting your Portenta to work on Ubuntu you can try the following:
+
+- Make sure **modemmanager** is not installed. Otherwise remove it with `sudo apt-get remove modemmanager`
 - Add the following rule to you udev rules `SUBSYSTEMS=="usb", ATTR{idVendor}=="2341", MODE:="0666"`
 - Reboot your PC
+- You may use the following commands to create a new udev rule from scratch:
+`echo 'SUBSYSTEMS=="usb", ATTR{idVendor}=="2341", MODE:="0666"' > 20-portenta.rules` 
+`sudo mv 20-portenta.rules /etc/udev/rules.d/`
+
 
 **Authors:** Lenard George, Sebastian Hunkeler  
 **Reviewed by:** Jose Garcia [18.03.2020]  
-**Last revision:** 27.3.2020
+**Last revision:** Sebastian Romero [15.09.2020]
