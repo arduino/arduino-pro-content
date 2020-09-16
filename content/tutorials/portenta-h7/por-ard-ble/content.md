@@ -11,6 +11,7 @@ In this tutorial we will enable low energy bluetooth (BLE) on the Portenta H7 to
 -   Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
 -   USB C cable (either USB A to USB C or USB C to USB C)
 -   Arduino IDE 1.8.13+  or Arduino Pro IDE 0.0.4+ 
+-   Mobile device, phone or tablet
 -   [nRFconnect](https://www.nordicsemi.com/Software-and-tools/Development-Tools/nRF-Connect-for-mobile) or equivalent tool downloaded on your mobile device: [nRF Connect for iOS](https://itunes.apple.com/us/app/nrf-connect/id1054362403?ls=1&mt=8) or [nRF Connect for android](https://play.google.com/store/apps/details?id=no.nordicsemi.android.mcp)
 
 # Portenta and Low Energy Bluetooth (BLE) 
@@ -30,7 +31,7 @@ Begin by plugging in your Portenta board to the computer using a USB-C cable and
 
 ## 2. Install the ArduinoBLE Library 
 
-You will need to install the ArduinoBLE library in the Arduino IDE you are using. For this example we will use the classic Arduino IDE. To install the library go to : **Tools -> Manage Libararies...** type **ArduinoBLE**  and click **Install**.
+You will need to install the ArduinoBLE library in the Arduino IDE you are using. For this example we will use the classic Arduino IDE. To install the library go to : **Tools -> Manage Libararies...** type **ArduinoBLE** and click **Install**. Make sure you install ArduinoBLE version 1.1.3 or higher.
 
 ![Download the BLE library in the Library Manager.](assets/por_ard_ble_arduino_library.png?sanitize=true)
 
@@ -60,7 +61,7 @@ void setup() {
 
   // Begin initialization
   if (!BLE.begin()) {
-    Serial.println("starting BLE failed!");
+    Serial.println("Starting BLE failed!");
     digitalWrite(LEDR, LOW);
     delay(1000);
     digitalWrite(LEDR, HIGH);
@@ -87,7 +88,7 @@ void setup() {
   digitalWrite(LEDB, LOW);
   delay(1000);
   digitalWrite(LEDB, HIGH);
-  Serial.println("BLE LED-Distance-Control");
+  Serial.println("BLE LED Control ready");
 }
 
 void loop() {
@@ -132,19 +133,19 @@ void loop() {
 }
 ```
 
-In our example we use a pre-defined bluetooth number code pre-setup for controlling a devices LEDs. This code can also be referred to as [GATT codes](https://www.bluetooth.com/specifications/gatt/services/), which define how two bluetooth low energy devices transfer data. Once a connection is established with a device, its respecitve GATT code, which is a 16 bit identifier, is stored in a lookup table for future reference. 
+In our example we use a pre-defined bluetooth number code pre-setup for controlling a device's LEDs. This code can also be referred to as [GATT codes](https://www.bluetooth.com/specifications/gatt/services/), which define how two bluetooth low energy devices transfer data. Once a connection is established with a device, its respecitve GATT code, which is a 16 bit identifier, is stored in a lookup table for future reference. 
 These GATT codes are very long, but in our example it is always the same code:
 
 ```BLEService ledService("19b10000-e8f2-537e-4f6c-d104768a1214"); // BLE LED Service```
 
-***On the Portenta the built-in LED is turned on by setting it to LOW and off by setting it to HIGH, the opposite of most other Arduino boards.***
+***Remember that on the Portenta the built-in LED is turned on by setting it to LOW and turned off by setting it to HIGH, the opposite of most other Arduino boards.***
 
 ## 4. Upload the Sketch 
 
 Double press the reset button so the built-in LED is slowly pulsing green. Then, select your board in the menu: **Tools** ->  **Board** -> **Arduino Portenta H7 (M7 core)** 
  ![Select the Arduino Portenta H7 (M7 core) in the board selector.](assets/por_ard_ble_select_board_h7.png)
 
-Then choose the **Port** where your Portenta is connected to and **Upload** the sketch. Open the Serial Monitor once you've **uploaded** the code to the board to see debugging messages.
+Then choose the **Port** where your Portenta is connected to and **Upload** the sketch. Open the Serial Monitor once you've **uploaded** the code to the board to see debugging messages. If the BLE setup was successful you should see the message `BLE LED Control ready`. If something went wrong you will see the message `Starting BLE failed!` In that case update the Arduino BLE library (in the Library Manager) and the board (in the Board Manager) to the latest version and try again.
 
 ![Select the Port to which the Portenta is connected to.](assets/por_ard_ble_select_port.png)
 
@@ -175,6 +176,6 @@ Now that you learnt how to configure the Portenta as a BLE endpoint you can try 
 If you try to upload a sketch and receive an error message, saying that the upload has failed you can try to upload the sketch while the Portenta H7 is in bootloader mode. To do so you need to double click the reset button. The green LED will start fading in and out. Try to upload the sketch again. The green LED will stop fading when the upload completes.
 
 **Authors:** Jeremy Ellis, Lenard George, Sebastian Romero  
-**Reviewed by:** Lenard George, Sebastian Romero [02.09.2020]  
-**Last revision:** Sebastian Romero [02.09.2020]
+**Reviewed by:** Lenard George, Sebastian Romero, José Garcia [02.09.2020]  
+**Last revision:** Sebastian Romero [16.09.2020]
 
