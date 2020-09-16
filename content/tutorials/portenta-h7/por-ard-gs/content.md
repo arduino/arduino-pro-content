@@ -95,6 +95,13 @@ If trying to upload a sketch but you receive an error message, saying that the u
 
 ![Double-clicking the reset button puts the board into bootloader mode.](assets/por_ard_gs_reset.png)
 
+If you are using an active USB hub, please make sure it is supplied. Passive hubs will not work.
+
+### Issues on Ubuntu
+- Make sure modemmanager is not installed. In case remove it with `sudo apt-get remove modemmanager`
+- Add the following rule to you udev rules `SUBSYSTEMS=="usb", ATTR{idVendor}=="2341", MODE:="0666"`
+- Reboot your PC
+
 **Authors:** Lenard George, Sebastian Hunkeler  
 **Reviewed by:** Jose Garcia [18.03.2020]  
 **Last revision:** 27.3.2020
