@@ -20,7 +20,7 @@ Graphical User interfaces are necessary for visualising information and interact
 
 # Building a simple GUI 
 
-we are going to work on the **Portenta_lvgl** example , The Portenta H7 comes with an inbuilt,  In this tutorial we are going to upload the lvgl example to the portenta board. Once the skethc is uploaded the board becomes a usb host where it then is connected to the usb hub which then is connected to an external monitor and powered externally. when connected the monitor the buttons and text fields will be connected. 
+we are going to work on the **Portenta_lvgl** example , The Portenta H7 comes with an inbuilt,  In this tutorial we are going to upload the lvgl example to the portenta board. Once the sketch is uploaded the board becomes a usb host where it then is connected to the usb hub which then is connected to an external monitor and powered externally. when connected the monitor the buttons and text fields will be connected. 
 
 ![por_ard_lvgl_tutorial_steps](/Users/lenardgeorge/Documents/Arduino/Content Team/Maker Content/Portenta Tutorials /arduino-pro-content/content/tutorials/portenta-h7/por-ard-lvgl/assets/por_ard_lvgl_tutorial_steps.svg)
 
