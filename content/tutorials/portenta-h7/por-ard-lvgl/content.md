@@ -22,7 +22,7 @@ Graphical User interfaces are necessary for visualising information and interact
 
 we are going to work on the **Portenta_lvgl** example , The Portenta H7 comes with an inbuilt,  In this tutorial we are going to upload the lvgl example to the portenta board. Once the sketch is uploaded the board becomes a usb host where it then is connected to the usb hub which then is connected to an external monitor and powered externally. when connected the monitor the buttons and text fields will be connected. 
 
-![por_ard_lvgl_tutorial_steps](/Users/lenardgeorge/Documents/Arduino/Content Team/Maker Content/Portenta Tutorials /arduino-pro-content/content/tutorials/portenta-h7/por-ard-lvgl/assets/por_ard_lvgl_tutorial_steps.svg)
+![por_ard_lvgl_tutorial_steps](assets/por_ard_lvgl_tutorial_steps.svg)
 
 1. The Basic Setup
 
@@ -32,14 +32,14 @@ we are going to work on the **Portenta_lvgl** example , The Portenta H7 comes wi
 
    To start with, you need to download the [lvgl Library](https://github.com/lvgl/lvgl) from the Library Manager. Go to **Sketch** **->** **Include Libraries** **-> Manage Libraries** and search for LVGL. Dowload the **lvgl library** by [kisvegabor](https://github.com/kisvegabor).  
    
-   ![por_ard_lvgl_download_library](/Users/lenardgeorge/Documents/Arduino/Content Team/Maker Content/Portenta Tutorials /arduino-pro-content/content/tutorials/portenta-h7/por-ard-lvgl/assets/por_ard_lvgl_select_library.svg)
+   ![por_ard_lvgl_download_library](assets/por_ard_lvgl_select_library.svg)
    
    
    Once you have installed the library, open the **Portenta_lvgl** sketch from **File -> Examples -> LittleVGL**.
    
    *** Note : if you cant find the sketch, make sure you have selected the right board inside Tools > Boards ***
    
-   ![por_ard_lvgl_select_example](/Users/lenardgeorge/Documents/Arduino/Content Team/Maker Content/Portenta Tutorials /arduino-pro-content/content/tutorials/portenta-h7/por-ard-lvgl/assets/por_ard_lvgl_select_example.svg)
+   ![por_ard_lvgl_select_example](assets/por_ard_lvgl_select_example.svg)
    
    
    
@@ -47,7 +47,7 @@ we are going to work on the **Portenta_lvgl** example , The Portenta H7 comes wi
 
    For the first part of the tutorial you will be displaying a `Hello Arduino` label on the monitor.  Scroll to the bottom of the sketch and uncomment the all the lines below the ` /*Hello world label*/` 
 
-   ![por_ard_lvgl_select_example](/Users/lenardgeorge/Documents/Arduino/Content Team/Maker Content/Portenta Tutorials /arduino-pro-content/content/tutorials/portenta-h7/por-ard-lvgl/assets/por_ard_lvgl_hello_world_snippet.svg) 
+   ![por_ard_lvgl_select_example](assets/por_ard_lvgl_hello_world_snippet.svg) 
 
    
 
@@ -69,7 +69,7 @@ we are going to work on the **Portenta_lvgl** example , The Portenta H7 comes wi
 
    At this point your board becomes as the host. Unplug the board from your computer and connect it to USB hub along with a monitor that is connected to the HDMI port. Power up your hub by connecting it to an external power source and the monitor will display a `Hello Arduino! Dev-7,0`. 
 
-   ![por_ard_lvgl_connect_monitor](/Users/lenardgeorge/Documents/Arduino/Content Team/Maker Content/Portenta Tutorials /arduino-pro-content/content/tutorials/portenta-h7/por-ard-lvgl/assets/por_ard_lvgl_connect_monitor.svg)
+   ![por_ard_lvgl_connect_monitor](assets/por_ard_lvgl_connect_monitor.svg)
 
 
    Unplug the board and connect it back to your computer 
