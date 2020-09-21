@@ -37,7 +37,7 @@ we are going to work on the **Portenta_lvgl** example , The Portenta H7 comes wi
    
    Once you have installed the library, open the **Portenta_lvgl** sketch from **File -> Examples -> LittleVGL**.
    
-   *** Note : if you cant find the sketch, make sure you have selected the right board inside Tools > Boards ***
+   *** If you cant find the sketch, make sure you have selected the right board inside Tools > Boards ***
    
    ![por_ard_lvgl_select_example](/Users/lenardgeorge/Documents/Arduino/Content Team/Maker Content/Portenta Tutorials /arduino-pro-content/content/tutorials/portenta-h7/por-ard-lvgl/assets/por_ard_lvgl_select_example.svg)
    
@@ -65,7 +65,7 @@ we are going to work on the **Portenta_lvgl** example , The Portenta H7 comes wi
 
    ![por_ard_lvgl_connect_monitor](/Users/lenardgeorge/Documents/Arduino/Content Team/Maker Content/Portenta Tutorials /arduino-pro-content/content/tutorials/portenta-h7/por-ard-lvgl/assets/por_ard_lvgl_connect_monitor.svg)
 
-   *** Note: if you arent familiar with how the USB host works, we recommend you to have a look at the [USB Host tutorial](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-usb ) ***
+   *** If you arent familiar with how the USB host works, we recommend you to have a look at the [USB Host tutorial](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-usb ) ***
 
 4. Adding a Button widget 
 
