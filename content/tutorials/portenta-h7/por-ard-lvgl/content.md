@@ -1,12 +1,12 @@
 # Creating GUIs With LVGL  
 In this tutorial you will learn to use the [LVGL](https://lvgl.io/) library and the Portenta_lvgl example to create a simple graphical user interface that consists of a label that updates itself.
 
-## What you will learn
+## What You Will Learn
 -   Understanding the Portenta_lvgl example.
 -   Building a simple UI with a text label and a text button. 
 -   Configuring the setup to display the User-Interface. 
 
-## Required hardware and software
+## Required Hardware and Software
 -   Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
 -   USB C cable (either USB A to USB C or USB C to USB C)
 -   Arduino IDE 1.8.10+  or Arduino Pro IDE 0.0.4+ 
@@ -22,7 +22,7 @@ Graphical User interfaces are necessary for visualising information and interact
 
 we are going to work on the **Portenta_lvgl** example , The Portenta H7 comes with an inbuilt,  In this tutorial we are going to upload the lvgl example to the portenta board. Once the sketch is uploaded the board becomes a usb host where it then is connected to the usb hub which then is connected to an external monitor and powered externally. when connected the monitor the buttons and text fields will be connected. 
 
-![por_ard_lvgl_tutorial_steps](/Users/lenardgeorge/Documents/Arduino/Content Team/Maker Content/Portenta Tutorials /arduino-pro-content/content/tutorials/portenta-h7/por-ard-lvgl/assets/por_ard_lvgl_tutorial_steps.svg)
+![por_ard_lvgl_tutorial_steps](assets/por_ard_lvgl_tutorial_steps.svg)
 
 1. The Basic Setup
 
@@ -32,14 +32,14 @@ we are going to work on the **Portenta_lvgl** example , The Portenta H7 comes wi
 
    To start with, you need to download the [lvgl Library](https://github.com/lvgl/lvgl) from the Library Manager. Go to **Sketch** **->** **Include Libraries** **-> Manage Libraries** and search for LVGL. Dowload the **lvgl library** by [kisvegabor](https://github.com/kisvegabor).  
    
-   ![por_ard_lvgl_download_library](/Users/lenardgeorge/Documents/Arduino/Content Team/Maker Content/Portenta Tutorials /arduino-pro-content/content/tutorials/portenta-h7/por-ard-lvgl/assets/por_ard_lvgl_select_library.svg)
+   ![por_ard_lvgl_download_library](assets/por_ard_lvgl_select_library.svg)
    
    
    Once you have installed the library, open the **Portenta_lvgl** sketch from **File -> Examples -> LittleVGL**.
    
    *** If you cant find the sketch, make sure you have selected the right board inside Tools > Boards ***
    
-   ![por_ard_lvgl_select_example](/Users/lenardgeorge/Documents/Arduino/Content Team/Maker Content/Portenta Tutorials /arduino-pro-content/content/tutorials/portenta-h7/por-ard-lvgl/assets/por_ard_lvgl_select_example.svg)
+   ![por_ard_lvgl_select_example](assets/por_ard_lvgl_select_example.svg)
    
    
    
@@ -47,7 +47,7 @@ we are going to work on the **Portenta_lvgl** example , The Portenta H7 comes wi
 
    For the first part of the tutorial you will be displaying a `Hello Arduino` label on the monitor.  Scroll to the bottom of the sketch and uncomment the all the lines below the ` /*Hello world label*/`and Comment out  `lv_demo_widgets()`. 
 
-   ![por_ard_lvgl_select_example](/Users/lenardgeorge/Documents/Arduino/Content Team/Maker Content/Portenta Tutorials /arduino-pro-content/content/tutorials/portenta-h7/por-ard-lvgl/assets/por_ard_lvgl_hello_world_snippet.svg) 
+   ![por_ard_lvgl_select_example](assets/por_ard_lvgl_hello_world_snippet.svg) 
 
    
 
@@ -63,7 +63,7 @@ we are going to work on the **Portenta_lvgl** example , The Portenta H7 comes wi
 
    Compile and upload the sketch, to your Portenta H7. At this point your board becomes as the host. Unplug the board from your computer and connect it to USB hub along with a monitor that is connected to the HDMI port. Power up your hub by connecting it to an external power source and the monitor will display a `Hello Arduino! Dev-7,0`. 
 
-   ![por_ard_lvgl_connect_monitor](/Users/lenardgeorge/Documents/Arduino/Content Team/Maker Content/Portenta Tutorials /arduino-pro-content/content/tutorials/portenta-h7/por-ard-lvgl/assets/por_ard_lvgl_connect_monitor.svg)
+   ![por_ard_lvgl_connect_monitor](assets/por_ard_lvgl_connect_monitor.svg)
 
    *** If you arent familiar with how the USB host works, we recommend you to have a look at the [USB Host tutorial](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-usb ) ***
 
@@ -76,7 +76,7 @@ we are going to work on the **Portenta_lvgl** example , The Portenta H7 comes wi
    static lv_obj_t *myCustomLabel;
    ```
 
-   ![por_ard_lvgl_create_variables](/Users/lenardgeorge/Documents/Arduino/Content Team/Maker Content/Portenta Tutorials /arduino-pro-content/content/tutorials/portenta-h7/por-ard-lvgl/assets/por_ard_lvgl_create_variables.png)
+   ![por_ard_lvgl_create_variables](assets/por_ard_lvgl_create_variables.png)
 
    
 
@@ -94,7 +94,7 @@ we are going to work on the **Portenta_lvgl** example , The Portenta H7 comes wi
    lv_label_set_text(myCustomLabel , "Custom Button");          //We set the default text
    ```
 
-   ![por_ard_lvgl_setup_widgets](/Users/lenardgeorge/Documents/Arduino/Content Team/Maker Content/Portenta Tutorials /arduino-pro-content/content/tutorials/portenta-h7/por-ard-lvgl/assets/por_ard_lvgl_setup_widgets.png)
+   ![por_ard_lvgl_setup_widgets](assets/por_ard_lvgl_setup_widgets.png)
 
    Compile and Upload the sketch to your board. Connect the board to the USB hub with the Monitor attached to the HDMI port.  Once you power up the HUB, you will see a button with a label **CustomLabel** along with the previously created label, **Hello Arduino! Dev-7.0** 
 
@@ -105,6 +105,7 @@ we are going to work on the **Portenta_lvgl** example , The Portenta H7 comes wi
    ```cpp
 static void label_Task(lv_task_t * myTask);
    uint32_t count = 0;
+   ```
 ```
    
    After that we need to create the void that we declared before:
@@ -115,10 +116,10 @@ static void label_Task(lv_task_t * myTask);
    lv_label_set_text_fmt(myCustomLabel, "%d" , count);    //Update the text from the label
       count++;      //Increase the count number
    }
-   ```
-   
+```
+
    To make it work we need to take the task and add it inside the LVGL task handler, by adding  at the end `of the setup()`We set the task to refresh each second.
-   
+
    ```cpp
    lv_task_create(label_Task, 1000, LV_TASK_PRIO_MID, NULL);
    ```
