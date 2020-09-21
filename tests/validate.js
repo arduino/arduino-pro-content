@@ -31,7 +31,14 @@ function matchAll(text, patterns, callback = null){
     return result;
 }
 
-function findAllFiles(startPath, filter, excludePatterns = [], matchingFiles = []) {    
+/**
+ * 
+ * @param {The directory from which to start a recursive search} startPath 
+ * @param {The file name that should be looked for} searchPattern 
+ * @param {An array of paths that should be excluded from the search} excludePatterns 
+ * @param {The matching files as recursion parameter} matchingFiles 
+ */
+function findAllFiles(startPath, searchPattern, excludePatterns = [], matchingFiles = []) {    
     if(matchAny(startPath, excludePatterns)){
         // console.log("Excluding directory " + startPath);
         return matchingFiles;
@@ -40,7 +47,7 @@ function findAllFiles(startPath, filter, excludePatterns = [], matchingFiles = [
     // console.log('Starting from dir ' + startPath + '/');
 
     if (!fs.existsSync(startPath)) {
-        console.log("Directory doesn't exist ", startPath);
+        console.log("❌ Directory doesn't exist ", startPath);
         return;
     }
 
@@ -49,8 +56,8 @@ function findAllFiles(startPath, filter, excludePatterns = [], matchingFiles = [
         var filename = path.join(startPath, files[i]);
         var stat = fs.lstatSync(filename);
         if (stat.isDirectory()) {
-            findAllFiles(filename, filter, excludePatterns, matchingFiles);
-        } else if (!matchAny(filename, excludePatterns) && filename.indexOf(filter) >= 0) {
+            findAllFiles(filename, searchPattern, excludePatterns, matchingFiles);
+        } else if (!matchAny(filename, excludePatterns) && filename.indexOf(searchPattern) >= 0) {
             // console.log('-- found: ', filename);
             matchingFiles.push(filename);
         };
@@ -69,7 +76,7 @@ let errorOccurred = false;
 let metaDataFiles = findAllFiles('../content/', 'metadata.json', excludePatterns);
 
 if(metaDataFiles.length == 0) {
-    console.log("No metadata files found.");
+    console.log("❌ No metadata files found.");
     errorOccurred = true;
 }
 
@@ -79,10 +86,10 @@ metaDataFiles.forEach(path => {
         let jsonData = JSON.parse(rawData);
 
         if(!jsonData.coverImage){
-            console.log("No cover image found for " + path);
+            console.log("❌ No cover image found for " + path);
             errorOccurred = true;            
         } else if (jsonData.coverImage.src.indexOf(".svg") == -1) {
-            console.log("Cover image of " + path + "is not in SVG format.");
+            console.log("❌ Cover image of " + path + "is not in SVG format.");
             errorOccurred = true;
         }
         
@@ -94,7 +101,7 @@ metaDataFiles.forEach(path => {
         }        
 
     } catch (error) {
-        console.log("Parse error in " + path);
+        console.log("❌ Parse error in " + path);
         console.log(error);
         errorOccurred = true;        
     }
@@ -108,7 +115,7 @@ metaDataFiles.forEach(path => {
 let contentFiles = findAllFiles('../content/', 'content.md', excludePatterns);
 
 if(contentFiles.length == 0) {
-    console.log("No content files found.");
+    console.log("❌ No content files found.");
     errorOccurred = true;
 }
 
@@ -118,17 +125,27 @@ contentFiles.forEach(path => {
         let markdown = rawData.toString();
 
         if(!matchAll(markdown, requiredContents, (match)=> {
-            console.log(path + " doesn't contain the required content : " + match);
+            console.log("❌ " + path + " doesn't contain the required content : " + match);
         })){
             errorOccurred = true;
         }
 
         let htmlContent = marked(markdown);        
         if(matchAny(htmlContent,unsupportedContents, (match) => {
-            console.log(path + " contains unsupported content : " + match);
+            console.log("❌ " + path + " contains unsupported content : " + match);
         })){
             errorOccurred = true;
         }        
+
+        const imageSourceRegex = /!\[([^\[]+)\](\((.*)\))/gm;
+        let imageMatch;
+        while ((imageMatch = imageSourceRegex.exec(markdown))) {
+            const imagePath = imageMatch[3];
+            if(imagePath.startsWith("/") || imagePath.startsWith("~")){
+                console.log("❌ Image uses an absolute path: " + imagePath + " in " + path);
+                errorOccurred = true;
+            }            
+        }
         
     } catch (error) {   
         console.log(error);     
