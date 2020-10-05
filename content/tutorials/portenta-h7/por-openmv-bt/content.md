@@ -23,7 +23,7 @@ The OpenMV IDE was built for Machine Vision applications. It is meant to provide
 
 
 # Configuring the Development Environment
-Before you can start programming OpenMV sketches for the Portenta you need to download and install the OpenMV IDE.
+Before you can start programming OpenMV scripts for the Portenta you need to download and install the OpenMV IDE.
 
 ## 1. Downloading the OpenMV IDE
 Open the [OpenMV download](https://openmv.io/pages/download) page in your browser and download the version that you need for your operating system. Follow the instructions of the installer. When the installation is done open the OpenMV IDE.
@@ -48,17 +48,79 @@ In this section you will learn how to use the built-in blob detection algorithm 
 
 To do so you need to feed an image from the camera to the algorithm. It will then analyse it and output the coordinates of the found blobs. You will visualize these coordinates directly on the image and indicate whether a blob was found by using the red and green LED.
 
-## 1. Preparing the Sensor
+## 1. Prepare the Script
 
-## 2. Detecting Blobs
+Create a new script by clicking the "New File" button in the toolbar on the left side. Import the required modules:
 
-## 3. Toggling LEDs
+```py
+import pyb # Import module for board related functions
+import sensor # Import the module for sensor related functions
+import image # Import module containing machine vision algorithms
+import time # Import module for tracking elapsed time
+```
 
-## 4. Uploading the Sketch
-Let's program the Portenta with the classic blink example to check if the connection to the board works:
+A module in Python is a confined bundle of functionality. By importing it into the script it gets made available.
 
--   In the classic Arduino IDE open the blink example by clicking the menu entry File->Examples->01.Basics->Blink. 
--   In the Arduino Pro IDE Copy and paste the following code into a new sketch in your IDE. 
+## 2. Preparing the Sensor
+
+In order to take a snapshot with the camera it has to be configured in the script.
+
+```py
+sensor.reset() # Resets the sensor
+sensor.set_pixformat(sensor.GRAYSCALE) # Sets the sensor to grayscale
+sensor.set_framesize(sensor.QVGA) # Sets the resolution to 320x240 px
+sensor.skip_frames(time = 2000) # Skip some frames to let the image stabilize
+```
+
+The most relevant functions in this snipped are `set_pixformat`and `set_framesize`. The camera that comes with the Portenta Vision Carrier only supports gray scale images. Therefore we need to set it via the `sensor.GRAYSCALE`parameter.
+
+The resolution of the camera needs to be set to a supported format both by the sensor and the algorithm. Algorithms which use a neural network are ususally trained on a specific image resolution. This makes them sensistive to the provided image snapshot resolution. The vision carrier supports `QVGA`which you will use in this tutorial.
+
+## 3. Detecting Blobs
+
+In order to feed the blob detection algorithm with an image you have to take a snapshot from the camera or load the image from memory (e.g. SD card or internal flash). In this case you will take a snapshot using the `snapshot()`function. The resulting image needs then to be fed to the algorithm using the `find_blobs`function. You will notice theat a list of tuples gets passed to the algorithm. In this list you can specify the gray scale values (brightness) that are mostly contained in the object that you would like to track. If you were for example to dect white objects on a black background the resulting range of brightness would be very narrow (e.g. from 200 - 255). Remember that 255 denotes the maximum brightess / white. If we're interested in a wider range of gray scale values to detect various objects we can set the threshold range for example to (100, 255).
+
+```py
+thresholds = (100, 255) # Define the min/max gray scale values we're looking for
+img = sensor.snapshot() # Takes a snapshot and saves it in memory
+
+# Find blobs with a minimal area of 15x15 = 200 px
+# Overlapping blobs won't be merged
+blobs = img.find_blobs([thresholds], area_threshold=225, merge=False)
+```
+
+Once the blobs are detected you may be interested to see where in the images they were found. This can be done by drawing directly on the camera image.
+
+```py
+# Draw blobs
+for blob in blobs:
+    # Draw a rectangle where the blob was found
+    img.draw_rectangle(blob.rect(), color=255)
+    # Draw a cross in the middle of the blob
+    img.draw_cross(blob.cx(), blob.cy(), color=255)
+```
+
+The result of that will be visible in the Frame Buffer preview panel on the right side of the OpenMV IDE.
+
+## 4. Toggling LEDs
+
+What if you want some visual feedback from the blob detection without any computer connected to your Portenta? You could use for example the built-in LEDs to indicate whether or not a blob was found in the camera image.
+
+```py
+# Turn on green LED if a blob was found
+if len(blobs) > 0:
+    ledGreen.on()
+    ledRed.off()
+else:
+# Turn the red LED on if no blob was found
+    ledGreen.off()
+    ledRed.on()
+```
+
+In this example the green LED will light up when there is at least one blob found in the image. The red LED will light up if no blob could be found.
+
+## 5. Uploading the Script
+Let's program the Portenta with the complete script and test if the algorithm works. Copy the following script and paste it into the new script file that you created.
 
 ```py
 import pyb # Import module for board related functions
@@ -107,7 +169,10 @@ while(True):
 
 ```
 
+Click on the "Play" button at the bottom of the left toolbar. Place some objects on your desk and check if the Portenta can detect them.
+
 # Conclusion
+
 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.  
 
 # Next Steps
@@ -118,6 +183,6 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula 
 ## Sketch Upload Troubleshooting
 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
 
-**Authors:** XX, YY
+**Authors:** Sebastian Romero
 **Reviewed by:** ZZ [18.03.2020]  
 **Last revision:** AA [27.3.2020]
