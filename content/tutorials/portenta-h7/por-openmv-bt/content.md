@@ -44,6 +44,10 @@ The Portenta will start flashing its blue LED when it's ready to be connected. A
 
 # Blob Detection
 
+In this section you will learn how to use the built-in blob detection algorithm to detect the location of objects in an image. That algorithm allows to detect areas in a digital image that differ in properties such as brightness or color compared to surrounding areas. These areas are called blobs.
+
+To do so you need to feed an image from the camera to the algorithm. It will then analyse it and output the coordinates of the found blobs. You will visualize these coordinates directly on the image and indicate whether a blob was found by using the red and green LED.
+
 ## 1. Preparing the Sensor
 
 ## 2. Detecting Blobs
