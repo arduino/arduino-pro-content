@@ -58,16 +58,19 @@ Let's program the Portenta with the classic blink example to check if the connec
 void setup() {
     // initialize digital pin LED_BUILTIN as an output.
     pinMode(LED_BUILTIN, OUTPUT);
+    digitalWrite(LED_BUILTIN, HIGH); // turn the LED off after being turned on by pinMode()
 }
 
 // the loop function runs over and over again forever
 void loop() {
-    digitalWrite(LED_BUILTIN, HIGH); // turn the LED on (HIGH is the voltage level)
+    digitalWrite(LED_BUILTIN, LOW); // turn the LED on (LOW is the voltage level)
     delay(1000); // wait for a second
-    digitalWrite(LED_BUILTIN, LOW); // turn the LED off by making the voltage LOW
+    digitalWrite(LED_BUILTIN, HIGH); // turn the LED off by making the voltage HIGH
     delay(1000); // wait for a second
 }
 ```
+
+***Remember that the built-in RGB LEDs on the Portenta H7 need to be pulled to ground to make them light up. This means that a voltage level of __LOW__ on each of their pins will turn the specific color of the LED on, a voltage level of __HIGH__ will turn them off. Furthermore invoking __pinMode(LED_BUILTIN, OUTPUT)__ pulls the LED LOW which means it turns the LED on.***
 
 For Portenta H7  LED_BUILTIN  represents the built-in RGB LED on the board in green color.
 
