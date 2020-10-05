@@ -171,18 +171,21 @@ while(True):
 
 Click on the "Play" button at the bottom of the left toolbar. Place some objects on your desk and check if the Portenta can detect them.
 
+***The MicroPython script doesn't get compiled and linked into an actual firmware. Instead it gets copied to the internal flash of the Portenta where it gets compiled and executed on the fly.***
+
 # Conclusion
 
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.  
+In this tutorial you learned how to use the OpenMV IDE to develop MicroPython scripts that then run on the Portenta board. You also learned how to configure the camera of the Vision Carrier board to be used for machine vision applications in OpenMV. Last but not least you learned how to interact with the built-in LEDs in MicroPython on the OpenMV firmware.  
 
 # Next Steps
--   A
--   B
+-   Familiarize yourself with the OpenMV IDE. There are many other features that didn't get mentioned in this tutorial.
+-   Try out other machine vision examples that come with the OpenMV IDE (e.g. Face Detection). You can find them in the "Examples" menu.
 
 # Troubleshooting
-## Sketch Upload Troubleshooting
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
+## OpenMV Firmware Flashing Issues
+- If the upload of the OpenMV firmware fails, put the board back in boot loader mode and try again. Give it a few tries until the firmware gets successfully uploaded.
+- If the camera cannot get recognized by the OpenMV IDE, press the reset button of Portenta once and wait until you see the blue LED flashing. Then try again connecting to the board.
 
 **Authors:** Sebastian Romero
 **Reviewed by:** ZZ [18.03.2020]  
-**Last revision:** AA [27.3.2020]
+**Last revision:** Sebastian Romero [5.10.2020]
