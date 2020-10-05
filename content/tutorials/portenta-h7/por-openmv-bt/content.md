@@ -13,18 +13,32 @@ In this tutorial you will use the vision carrier board for Portenta to detect th
 -   Arduino IDE 1.8.10+  or Arduino Pro IDE 0.0.4+ 
 
 # Portenta and the OpenMV IDE
-OpenMV is an IDE that was built for Machine Vision applications. It is meant to provide an Arduino like experience with a camera sensor. OpenMV comes with its own fimware that is built on MicroPython. Among other hardware it supports the Portenta board. [Here](https://openmv.io/) you can read more about the OpenMV IDE.
+The OpenMV IDE was built for Machine Vision applications. It is meant to provide an Arduino like experience for simple computer vision tasks using a camera sensor. OpenMV comes with its own fimware that is built on MicroPython. Among other hardware it supports the Portenta board. A statement from the creators of OpenMV on why they buit it:
+
+>Currently, doing anything serious involving computer vision requires a computer running an operating system running may layers of software and requiring much setup before you can get computer vision code working. This is all well and fine if you need to do many other things than just processing images, like connecting to the internet, running many different applications concurrently, etc.
+>
+>But, what if, I just want to make an LED turn on if a red object appears in front of a white wall. Why do a need to build up a complex system for that? Or, what if I just want to turn on an LED when a face is in view?
+
+[Here](https://openmv.io/) you can read more about the OpenMV IDE.
 
 
 # Configuring the Development Environment
 Before you can start programming OpenMV sketches for the Portenta you need to download and install the OpenMV IDE.
 
-## 1. Downloading OpenMV
-Open the [OpenMV download](https://openmv.io/pages/download) page in your browser and download the version that you need for your operating system. 
+## 1. Downloading the OpenMV IDE
+Open the [OpenMV download](https://openmv.io/pages/download) page in your browser and download the version that you need for your operating system. Follow the instructions of the installer. When the installation is done open the OpenMV IDE.
 
-## 2. Connecting the Portenta Board
+## 2. Flashing the OpenMV Firmware
 
-## 3. Flashing the OpenMV Firmware
+Connect the Portenta to your computer via the USB-C cable if you haven't done so yet. Then put the Portenta in Bootloader mode by double pressing the reset button on the board. The built-in green LED will start fading in and out.
+
+Click on the "connect" symbol at the bottom of the left toolbar. A pop-up will ask you how you would like to proceed "DFU bootloader(s) found. What would you like to do?". Select "Reset Firmware to Release Version". This will install the latest OpenMV firmware on the Portenta. If it asks you whether it should erase the internal file system you can click yes if you hadn't installed OpenMV before. Otherwise click no.
+
+Portenta's green LED will start flashing while the OpenMV firmware is being uploaded to the board. You will see a message saying "DFU firmware update complete!" when the process is done.
+
+***Installing the OpenMV firmware will overwrite any existing sketches in the internal flash of Portenta.***
+
+The Portenta will start flashing its blue LED when it's ready to be connected. After the confirming the completion dialog the Portenta should already be connected to the OpenMV IDE, otherwise click the "connect" button once again.
 
 
 
