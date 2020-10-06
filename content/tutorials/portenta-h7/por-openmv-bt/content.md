@@ -200,5 +200,5 @@ In this tutorial you learned how to use the OpenMV IDE to develop MicroPython sc
 - If the camera cannot get recognized by the OpenMV IDE or if you see a "No OpenMV Cams found!" message, press the reset button of Portenta once and wait until you see the blue LED flashing. Then try again connecting to the board.
 
 **Authors:** Sebastian Romero
-**Reviewed by:** ZZ [18.03.2020]  
+**Reviewed by:** Lenard George [6.10.2020]  
 **Last revision:** Sebastian Romero [5.10.2020]
