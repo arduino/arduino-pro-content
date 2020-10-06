@@ -15,7 +15,7 @@ In this tutorial you will use the vision carrier board for Portenta to detect th
 - OpenMV IDE 2.6.4+
 
 # Portenta and the OpenMV IDE
-The OpenMV IDE was built for Machine Vision applications. It is meant to provide an Arduino like experience for simple computer vision tasks using a camera sensor. OpenMV comes with its own fimware that is built on MicroPython. Among other hardware it supports the Portenta board. A statement from the creators of OpenMV on why they buit it:
+The OpenMV IDE was built for Machine Vision applications. It is meant to provide an Arduino like experience for simple computer vision tasks using a camera sensor. OpenMV comes with its own fimware that is built on MicroPython. Among other hardware it supports the Portenta board. A statement from the creators of OpenMV on why they built it:
 
 >Currently, doing anything serious involving computer vision requires a computer running an operating system running may layers of software and requiring much setup before you can get computer vision code working. This is all well and fine if you need to do many other things than just processing images, like connecting to the internet, running many different applications concurrently, etc.
 >
@@ -41,7 +41,11 @@ Follow the instructions of the installer. When the installation is done open the
 
 ## 2. Flashing the OpenMV Firmware
 
-Connect the Portenta to your computer via the USB-C cable if you haven't done so yet. Then put the Portenta in Bootloader mode by double pressing the reset button on the board. The built-in green LED will start fading in and out.
+Connect the Portenta to your computer via the USB-C cable if you haven't done so yet. Make sure you first update the bootloader to the latest version using the *PortentaH7_updateBootloader* sketch in the from the examples menu in the Arduino IDE. If you can't find this sketch in the menu you may download it directly from the [Github repository](https://github.com/arduino/ArduinoCore-mbed/tree/master/libraries/Portenta_System/examples/PortentaH7_updateBootloader).
+
+***In bootloader versions 17 and older there was a bug that could put the Portenta in a boot loop when the transmission aborted while flashing a large firmware file. This was fixed in the bootloader version 18. We strongly adivse to update the bootloader before you proceed with the next step of this tutorial!***
+
+After updating the bootloader put the Portenta in Bootloader mode by double pressing the reset button on the board. The built-in green LED will start fading in and out.
 
 Click on the "connect" symbol at the bottom of the left toolbar. A pop-up will ask you how you would like to proceed "DFU bootloader(s) found. What would you like to do?". Select "Reset Firmware to Release Version". This will install the latest OpenMV firmware on the Portenta. If it asks you whether it should erase the internal file system you can click yes if you hadn't installed OpenMV before. Otherwise click no.
 
