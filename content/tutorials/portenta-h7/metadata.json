@@ -10,6 +10,7 @@
      "por-ard-dcp", 
      "por-ard-ap", 
      "por-ard-usb",
-     "por-ard-ble"
+     "por-ard-ble",
+     "por-openmv-bt"
     ]
  }
