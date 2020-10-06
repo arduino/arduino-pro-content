@@ -1,5 +1,5 @@
-# Blob Detection using OpenMV
-In this tutorial you will use the vision carrier board for Portenta to detect the position of objects in a camera image. For that you will use a technique that is often referred to as blob detection. For this task you will write a MicroPython script and run it on the Portenta with the help of the OpenMV IDE.
+# Blob Detection with Portenta and OpenMV
+In this tutorial you will use the vision carrier board for Portenta to detect the presence and the position of objects in a camera image. For that you will use a technique that is often referred to as blob detection. For this task you will write a MicroPython script and run it on the Portenta with the help of the OpenMV IDE.
 
 ## What You Will Learn
 - How to use the OpenMV IDE to run MicroPython on Portenta
