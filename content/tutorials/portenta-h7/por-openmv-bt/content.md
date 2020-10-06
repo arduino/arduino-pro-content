@@ -187,7 +187,7 @@ In this tutorial you learned how to use the OpenMV IDE to develop MicroPython sc
 ## OpenMV Firmware Flashing Issues
 - If the upload of the OpenMV firmware fails, put the board back in boot loader mode and try again. Give it a few tries until the firmware gets successfully uploaded.
 - If you experience issues putting the board in bootloader mode, make sure you first update the bootloader to the latest version using the *PortentaH7_updateBootloader* sketch from the examples menu in the Arduino IDE.
-- If the camera cannot get recognized by the OpenMV IDE, press the reset button of Portenta once and wait until you see the blue LED flashing. Then try again connecting to the board.
+- If the camera cannot get recognized by the OpenMV IDE or if you see a "No OpenMV Cams found!" message, press the reset button of Portenta once and wait until you see the blue LED flashing. Then try again connecting to the board.
 
 **Authors:** Sebastian Romero
 **Reviewed by:** ZZ [18.03.2020]  
