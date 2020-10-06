@@ -37,23 +37,33 @@ Open the [OpenMV download](https://openmv.io/pages/download) page in your browse
 - [For Raspberry Pi 0, 1, 2, 3, and 4 or Later](https://github.com/openmv/openmv-ide/releases/download/v2.6.4/openmv-ide-linux-arm-2.6.4.tar.gz)
 
 
-Follow the instructions of the installer. When the installation is done open the OpenMV IDE.
+Follow the instructions of the installer.
 
 ## 2. Flashing the OpenMV Firmware
 
 Connect the Portenta to your computer via the USB-C cable if you haven't done so yet. Make sure you first update the bootloader to the latest version using the *PortentaH7_updateBootloader* sketch in the from the examples menu in the Arduino IDE. If you can't find this sketch in the menu you may download it directly from the [Github repository](https://github.com/arduino/ArduinoCore-mbed/tree/master/libraries/Portenta_System/examples/PortentaH7_updateBootloader).
 
-***In bootloader versions 17 and older there was a bug that could put the Portenta in a boot loop when the transmission aborted while flashing a large firmware file. This was fixed in the bootloader version 18. We strongly adivse to update the bootloader before you proceed with the next step of this tutorial!***
+***In bootloader versions 17 and older there was a bug that could put the Portenta in a boot loop when the transmission aborted while flashing a large firmware file. This was fixed in the bootloader version 18. We strongly advise to update the bootloader before you proceed with the next step of this tutorial!***
 
-After updating the bootloader put the Portenta in Bootloader mode by double pressing the reset button on the board. The built-in green LED will start fading in and out.
+After updating the bootloader put the Portenta in bootloader mode by double pressing the reset button on the board. The built-in green LED will start fading in and out. Now open the OpenMV IDE.
 
-Click on the "connect" symbol at the bottom of the left toolbar. A pop-up will ask you how you would like to proceed "DFU bootloader(s) found. What would you like to do?". Select "Reset Firmware to Release Version". This will install the latest OpenMV firmware on the Portenta. If it asks you whether it should erase the internal file system you can click yes if you hadn't installed OpenMV before. Otherwise click no.
+![The OpenMV IDE after starting it](assets/por_openmv_open_ide.png)
+
+Click on the "connect" symbol at the bottom of the left toolbar. 
+
+![Click the connect button to attach the Portenta to the OpenMV IDE](assets/por_openmv_click_connect.png)
+
+A pop-up will ask you how you would like to proceed "DFU bootloader(s) found. What would you like to do?". Select "Reset Firmware to Release Version". This will install the latest OpenMV firmware on the Portenta. If it asks you whether it should erase the internal file system you can click "No".
+
+![Install the latest version of the OpenMV firmware](assets/por_openmv_reset_firmware.png)
 
 Portenta's green LED will start flashing while the OpenMV firmware is being uploaded to the board. You will see a message saying "DFU firmware update complete!" when the process is done.
 
 ***Installing the OpenMV firmware will overwrite any existing sketches in the internal flash of Portenta.***
 
 The Portenta will start flashing its blue LED when it's ready to be connected. After the confirming the completion dialog the Portenta should already be connected to the OpenMV IDE, otherwise click the "connect" button once again.
+
+![When the Portenta is successfully connected to the OpenMV IDE a green play button appears in the lower left](assets/por_openmv_board_connected.png)
 
 
 
@@ -87,7 +97,7 @@ sensor.set_framesize(sensor.QVGA) # Sets the resolution to 320x240 px
 sensor.skip_frames(time = 2000) # Skip some frames to let the image stabilize
 ```
 
-The most relevant functions in this snipped are `set_pixformat`and `set_framesize`. The camera that comes with the Portenta Vision Carrier only supports gray scale images. Therefore we need to set it via the `sensor.GRAYSCALE`parameter.
+The most relevant functions in this snipped are `set_pixformat`and `set_framesize`. The camera that comes with the Portenta Vision Carrier only supports grey scale images. Therefore we need to set it via the `sensor.GRAYSCALE`parameter.
 
 The resolution of the camera needs to be set to a supported format both by the sensor and the algorithm. Algorithms which use a neural network are usually trained on a specific image resolution. This makes them sensistive to the provided image snapshot resolution. The vision carrier supports `QVGA`which you will use in this tutorial.
 
@@ -187,6 +197,8 @@ while(True):
 Click on the "Play" button at the bottom of the left toolbar. Place some objects on your desk and check if the Portenta can detect them.
 
 ***The MicroPython script doesn't get compiled and linked into an actual firmware. Instead it gets copied to the internal flash of the Portenta where it gets compiled and executed on the fly.***
+
+![An example of a blob detection running in the OpenMV IDE](assets/por_openmv_blob_detected.png)
 
 # Conclusion
 
