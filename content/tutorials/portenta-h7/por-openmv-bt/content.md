@@ -28,10 +28,10 @@ The OpenMV IDE was built for Machine Vision applications. It is meant to provide
 Before you can start programming OpenMV scripts for the Portenta you need to download and install the OpenMV IDE.
 
 ## 1. Downloading the OpenMV IDE
-Open the [OpenMV download](https://openmv.io/pages/download) page in your browser and download the version that you need for your operating system. Alternatively you may use the following direct download links of OpenMV 2.6.4:
+Open the [OpenMV download](https://openmv.io/pages/download) page in your browser and download the version that you need for your operating system. Alternatively you may use the following direct download links of the OpenMV IDE 2.6.4:
 
 - [For Windows Xp, Vista, 7, 8, 10 or Later](https://github.com/openmv/openmv-ide/releases/download/v2.6.4/openmv-ide-windows-2.6.4.exe)
-- [For Osx Snow Leopard 10.6 or Later](https://github.com/openmv/openmv-ide/releases/download/v2.6.4/openmv-ide-mac-2.6.4.dmg)
+- [For OsX Snow Leopard 10.6 or Later](https://github.com/openmv/openmv-ide/releases/download/v2.6.4/openmv-ide-mac-2.6.4.dmg)
 - [For Ubuntu 12.04 Lts 32-Bit or Later](https://github.com/openmv/openmv-ide/releases/download/v2.6.4/openmv-ide-linux-x86-2.6.4.run)
 - [For Ubuntu 12.04 Lts 64-Bit or Later](https://github.com/openmv/openmv-ide/releases/download/v2.6.4/openmv-ide-linux-x86_64-2.6.4.run)
 - [For Raspberry Pi 0, 1, 2, 3, and 4 or Later](https://github.com/openmv/openmv-ide/releases/download/v2.6.4/openmv-ide-linux-arm-2.6.4.tar.gz)
@@ -85,11 +85,11 @@ sensor.skip_frames(time = 2000) # Skip some frames to let the image stabilize
 
 The most relevant functions in this snipped are `set_pixformat`and `set_framesize`. The camera that comes with the Portenta Vision Carrier only supports gray scale images. Therefore we need to set it via the `sensor.GRAYSCALE`parameter.
 
-The resolution of the camera needs to be set to a supported format both by the sensor and the algorithm. Algorithms which use a neural network are ususally trained on a specific image resolution. This makes them sensistive to the provided image snapshot resolution. The vision carrier supports `QVGA`which you will use in this tutorial.
+The resolution of the camera needs to be set to a supported format both by the sensor and the algorithm. Algorithms which use a neural network are usually trained on a specific image resolution. This makes them sensistive to the provided image snapshot resolution. The vision carrier supports `QVGA`which you will use in this tutorial.
 
 ## 3. Detecting Blobs
 
-In order to feed the blob detection algorithm with an image you have to take a snapshot from the camera or load the image from memory (e.g. SD card or internal flash). In this case you will take a snapshot using the `snapshot()`function. The resulting image needs then to be fed to the algorithm using the `find_blobs`function. You will notice theat a list of tuples gets passed to the algorithm. In this list you can specify the gray scale values (brightness) that are mostly contained in the object that you would like to track. If you were for example to dect white objects on a black background the resulting range of brightness would be very narrow (e.g. from 200 - 255). Remember that 255 denotes the maximum brightess / white. If we're interested in a wider range of gray scale values to detect various objects we can set the threshold range for example to (100, 255).
+In order to feed the blob detection algorithm with an image you have to take a snapshot from the camera or load the image from memory (e.g. SD card or internal flash). In this case you will take a snapshot using the `snapshot()`function. The resulting image needs then to be fed to the algorithm using the `find_blobs`function. You will notice that a list of tuples gets passed to the algorithm. In this list you can specify the grey scale values (brightness) that are mostly contained in the object that you would like to track. If you were for example to detect white objects on a black background the resulting range of brightness would be very narrow (e.g. from 200 - 255). Remember that 255 denotes the maximum brightness / white. If we're interested in a wider range of grey scale values to detect various objects we can set the threshold range for example to (100, 255).
 
 ```py
 thresholds = (100, 255) # Define the min/max gray scale values we're looking for
@@ -199,6 +199,6 @@ In this tutorial you learned how to use the OpenMV IDE to develop MicroPython sc
 - If you experience issues putting the board in bootloader mode, make sure you first update the bootloader to the latest version using the *PortentaH7_updateBootloader* sketch from the examples menu in the Arduino IDE.
 - If the camera cannot get recognized by the OpenMV IDE or if you see a "No OpenMV Cams found!" message, press the reset button of Portenta once and wait until you see the blue LED flashing. Then try again connecting to the board.
 
-**Authors:** Sebastian Romero
+**Authors:** Sebastian Romero  
 **Reviewed by:** Lenard George [6.10.2020]  
 **Last revision:** Sebastian Romero [5.10.2020]
