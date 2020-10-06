@@ -2,15 +2,17 @@
 In this tutorial you will use the vision carrier board for Portenta to detect the position of objects in a camera image. For that you will use a technique that is often referred to as blob detection. For this task you will write a MicroPython script and run it on the Portenta with the help of the OpenMV IDE.
 
 ## What You Will Learn
--   How to use the OpenMV IDE to run MicroPython on Portenta
--   How to use the built-in blob detection algorithm of OpenMV
--   How to use MicroPython to toggle the built-in LEDs
+- How to use the OpenMV IDE to run MicroPython on Portenta
+- How to use the built-in blob detection algorithm of OpenMV
+- How to use MicroPython to toggle the built-in LEDs
 
 ## Required Hardware and Software
--   Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
--   Portenta Vision Carrier board
--   USB C cable (either USB A to USB C or USB C to USB C)
--   Arduino IDE 1.8.10+  or Arduino Pro IDE 0.0.4+ 
+- Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
+- Portenta Vision Carrier board
+- USB C cable (either USB A to USB C or USB C to USB C)
+- Arduino IDE 1.8.10+  or Arduino Pro IDE 0.0.4+ 
+- Portenta Bootloader Version 20+
+- OpenMV IDE 2.6.4+
 
 # Portenta and the OpenMV IDE
 The OpenMV IDE was built for Machine Vision applications. It is meant to provide an Arduino like experience for simple computer vision tasks using a camera sensor. OpenMV comes with its own fimware that is built on MicroPython. Among other hardware it supports the Portenta board. A statement from the creators of OpenMV on why they buit it:
@@ -184,6 +186,7 @@ In this tutorial you learned how to use the OpenMV IDE to develop MicroPython sc
 # Troubleshooting
 ## OpenMV Firmware Flashing Issues
 - If the upload of the OpenMV firmware fails, put the board back in boot loader mode and try again. Give it a few tries until the firmware gets successfully uploaded.
+- If you experience issues putting the board in bootloader mode, make sure you first update the bootloader to the latest version using the *PortentaH7_updateBootloader* sketch from the examples menu in the Arduino IDE.
 - If the camera cannot get recognized by the OpenMV IDE, press the reset button of Portenta once and wait until you see the blue LED flashing. Then try again connecting to the board.
 
 **Authors:** Sebastian Romero
