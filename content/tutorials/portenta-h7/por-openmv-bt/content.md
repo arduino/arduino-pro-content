@@ -177,7 +177,7 @@ while(True):
     clock.tick() # Advances the clock
     img = sensor.snapshot() # Takes a snapshot and saves it in memory
 
-    # Find blobs with a minimal area of 15x15 = 200 px
+    # Find blobs with a minimal area of 15x15 = 225 px
     # Overlapping blobs won't be merged
     blobs = img.find_blobs([thresholds], area_threshold=225, merge=False)
 
