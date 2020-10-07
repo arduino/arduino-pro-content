@@ -59,7 +59,7 @@ A pop-up will ask you how you would like to proceed "DFU bootloader(s) found. Wh
 
 ![Install the latest version of the OpenMV firmware](assets/por_openmv_reset_firmware.png)
 
-Portenta's green LED will start flashing while the OpenMV firmware is being uploaded to the board. You will see a message saying "DFU firmware update complete!" when the process is done.
+Portenta's green LED will start flashing while the OpenMV firmware is being uploaded to the board. A terminal window will open which shows you the upload progress. Wait until the green LED stops flashing and fading. You will see a message saying "DFU firmware update complete!" when the process is done.
 
 ***Installing the OpenMV firmware will overwrite any existing sketches in the internal flash of Portenta.***
 
