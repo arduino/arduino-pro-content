@@ -97,9 +97,9 @@ sensor.set_framesize(sensor.QVGA) # Sets the resolution to 320x240 px
 sensor.skip_frames(time = 2000) # Skip some frames to let the image stabilize
 ```
 
-The most relevant functions in this snipped are `set_pixformat`and `set_framesize`. The camera that comes with the Portenta Vision Carrier only supports grey scale images. Therefore we need to set it via the `sensor.GRAYSCALE`parameter.
+The most relevant functions in this snipped are `set_pixformat` and `set_framesize`. The camera that comes with the Portenta Vision Carrier only supports grey scale images. Therefore we need to set it via the `sensor.GRAYSCALE` parameter.
 
-The resolution of the camera needs to be set to a supported format both by the sensor and the algorithm. Algorithms which use a neural network are usually trained on a specific image resolution. This makes them sensistive to the provided image snapshot resolution. The vision carrier supports `QVGA`which you will use in this tutorial.
+The resolution of the camera needs to be set to a supported format both by the sensor and the algorithm. Algorithms which use a neural network are usually trained on a specific image resolution. This makes them sensistive to the provided image snapshot resolution. The vision carrier supports `QVGA` which you will use in this tutorial.
 
 ## 3. Detecting Blobs
 
@@ -129,7 +129,14 @@ The result of that will be visible in the Frame Buffer preview panel on the righ
 
 ## 4. Toggling LEDs
 
-What if you want some visual feedback from the blob detection without any computer connected to your Portenta? You could use for example the built-in LEDs to indicate whether or not a blob was found in the camera image.
+What if you want some visual feedback from the blob detection without any computer connected to your Portenta? You could use for example the built-in LEDs to indicate whether or not a blob was found in the camera image. Let's initialise the red and the green LEDs with the following code:
+
+```py
+ledRed = pyb.LED(1) # Initiates the red led
+ledGreen = pyb.LED(2) # Initiates the green led
+```
+
+And then add the logic that will turn on the appropriate LED if a blob is present. This part of the code will be added after the "Draw Blobs" logic.
 
 ```py
 # Turn on green LED if a blob was found
