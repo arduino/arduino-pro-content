@@ -63,7 +63,7 @@ Portenta's green LED will start flashing while the OpenMV firmware is being uplo
 
 ***Installing the OpenMV firmware will overwrite any existing sketches in the internal flash of Portenta.***
 
-The Portenta will start flashing its blue LED when it's ready to be connected. After the confirming the completion dialog the Portenta should already be connected to the OpenMV IDE, otherwise click the "connect" button once again.
+The Portenta will start flashing its blue LED when it's ready to be connected. After confirming the completion dialog the Portenta should already be connected to the OpenMV IDE, otherwise click the "connect" button once again.
 
 ![When the Portenta is successfully connected to the OpenMV IDE a green play button appears in the lower left](assets/por_openmv_board_connected.png)
 
@@ -105,7 +105,7 @@ The resolution of the camera needs to be set to a supported format both by the s
 
 ## 3. Detecting Blobs
 
-In order to feed the blob detection algorithm with an image you have to take a snapshot from the camera or load the image from memory (e.g. SD card or internal flash). In this case you will take a snapshot using the `snapshot()`function. The resulting image needs then to be fed to the algorithm using the `find_blobs`function. You will notice that a list of tuples gets passed to the algorithm. In this list you can specify the grey scale values (brightness) that are mostly contained in the object that you would like to track. If you were for example to detect white objects on a black background the resulting range of brightness would be very narrow (e.g. from 200 - 255). Remember that 255 denotes the maximum brightness / white. If we're interested in a wider range of grey scale values to detect various objects we can set the threshold range for example to (100, 255).
+In order to feed the blob detection algorithm with an image you have to take a snapshot from the camera or load the image from memory (e.g. SD card or internal flash). In this case you will take a snapshot using the `snapshot()` function. The resulting image needs then to be fed to the algorithm using the `find_blobs` function. You will notice that a list of tuples gets passed to the algorithm. In this list you can specify the grey scale values (brightness) that are mostly contained in the object that you would like to track. If you were for example to detect white objects on a black background the resulting range of brightness would be very narrow (e.g. from 200 - 255). Remember that 255 denotes the maximum brightness / white and 0 corresponds to the minimum brightness / black. If we're interested in a wider range of grey scale values to detect various objects we can set the threshold range for example to (100, 255).
 
 ```py
 thresholds = (100, 255) # Define the min/max gray scale values we're looking for
@@ -220,10 +220,11 @@ In this tutorial you learned how to use the OpenMV IDE to develop MicroPython sc
 # Troubleshooting
 ## OpenMV Firmware Flashing Issues
 - If the upload of the OpenMV firmware fails during the download, put the board back in boot loader mode and try again. Give it a few tries until the firmware gets successfully uploaded.
-- If the upload of the OpenMV firmware fails without even starting, try uploading the latest firmware using the "Load Specific Firmware File" option. You can find the latest firmware on the [OpenMV Github repository](https://github.com/openmv/openmv/releases).
+- If the upload of the OpenMV firmware fails without even starting, try uploading the latest firmware using the "Load Specific Firmware File" option. You can find the latest firmware on the [OpenMV Github repository](https://github.com/openmv/openmv/releases). Look for a file called *firmware.bin* in the PORTENTA folder.
 - If you experience issues putting the board in bootloader mode, make sure you first update the bootloader to the latest version using the *PortentaH7_updateBootloader* sketch from the examples menu in the Arduino IDE.
 - If the camera cannot get recognized by the OpenMV IDE or if you see a "No OpenMV Cams found!" message, press the reset button of Portenta once and wait until you see the blue LED flashing. Then try again connecting to the board.
+- If you see a "OSError: Reset Failed" message, reset the board by pressing the reset button. Wait until you see the blue LED flashing, connect the board to the OpenMV IDE and try running the script again.
 
 **Authors:** Sebastian Romero  
 **Reviewed by:** Lenard George [6.10.2020]  
-**Last revision:** Sebastian Romero [5.10.2020]
+**Last revision:** Sebastian Romero [7.10.2020]
