@@ -21,7 +21,7 @@ The OpenMV IDE was built for Machine Vision applications. It is meant to provide
 >
 >But, what if, I just want to make an LED turn on if a red object appears in front of a white wall. Why do a need to build up a complex system for that? Or, what if I just want to turn on an LED when a face is in view?
 
-[Here](https://openmv.io/) you can read more about the OpenMV IDE.
+This is where OpenMV comes in. [Here](https://openmv.io/) you can read more about the OpenMV IDE.
 
 
 # Configuring the Development Environment
