@@ -27,6 +27,8 @@ The OpenMV IDE was built for Machine Vision applications. It is meant to provide
 # Configuring the Development Environment
 Before you can start programming OpenMV scripts for the Portenta you need to download and install the OpenMV IDE.
 
+***IMPORTANT: Before you connect the Portenta to the OpenMV IDE make sure you update the bootloader as explained in section 2 of this tutorial!***
+
 ## 1. Downloading the OpenMV IDE
 Open the [OpenMV download](https://openmv.io/pages/download) page in your browser and download the version that you need for your operating system. Alternatively you may use the following direct download links of the OpenMV IDE 2.6.4:
 
@@ -212,7 +214,7 @@ Click on the "Play" button at the bottom of the left toolbar. Place some objects
 In this tutorial you learned how to use the OpenMV IDE to develop MicroPython scripts that then run on the Portenta board. You also learned how to configure the camera of the Vision Carrier board to be used for machine vision applications in OpenMV. Last but not least you learned how to interact with the built-in LEDs in MicroPython on the OpenMV firmware.  
 
 # Next Steps
--   Familiarize yourself with the OpenMV IDE. There are many other features that didn't get mentioned in this tutorial.
+-   Familiarize yourself with the OpenMV IDE. There are many other features that didn't get mentioned in this tutorial (e.g. the Serial Terminal).
 -   Try out other machine vision examples that come with the OpenMV IDE (e.g. Face Detection). You can find them in the "Examples" menu.
 
 # Troubleshooting
