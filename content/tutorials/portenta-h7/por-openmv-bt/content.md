@@ -8,7 +8,7 @@ In this tutorial you will use the vision carrier board for Portenta to detect th
 
 ## Required Hardware and Software
 - Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
-- Portenta Vision Carrier board
+- Arduino Portenta Vision Shield (https://store.arduino.cc/portenta-vision-shield)
 - USB C cable (either USB A to USB C or USB C to USB C)
 - Arduino IDE 1.8.10+  or Arduino Pro IDE 0.0.4+ 
 - Portenta Bootloader Version 20+
@@ -26,6 +26,8 @@ The OpenMV IDE was built for Machine Vision applications. It is meant to provide
 
 # Configuring the Development Environment
 Before you can start programming OpenMV scripts for the Portenta you need to download and install the OpenMV IDE.
+
+***IMPORTANT: Before you connect the Portenta to the OpenMV IDE make sure you update the bootloader as explained in the "Flashing the OpenMV Firmware" section!***
 
 ## 1. Downloading the OpenMV IDE
 Open the [OpenMV download](https://openmv.io/pages/download) page in your browser and download the version that you need for your operating system. Alternatively you may use the following direct download links of the OpenMV IDE 2.6.4:
@@ -97,9 +99,9 @@ sensor.set_framesize(sensor.QVGA) # Sets the resolution to 320x240 px
 sensor.skip_frames(time = 2000) # Skip some frames to let the image stabilize
 ```
 
-The most relevant functions in this snipped are `set_pixformat`and `set_framesize`. The camera that comes with the Portenta Vision Carrier only supports grey scale images. Therefore we need to set it via the `sensor.GRAYSCALE`parameter.
+The most relevant functions in this snipped are `set_pixformat` and `set_framesize`. The camera that comes with the Portenta Vision Carrier only supports grey scale images. Therefore we need to set it via the `sensor.GRAYSCALE` parameter.
 
-The resolution of the camera needs to be set to a supported format both by the sensor and the algorithm. Algorithms which use a neural network are usually trained on a specific image resolution. This makes them sensistive to the provided image snapshot resolution. The vision carrier supports `QVGA`which you will use in this tutorial.
+The resolution of the camera needs to be set to a supported format both by the sensor and the algorithm. Algorithms which use a neural network are usually trained on a specific image resolution. This makes them sensistive to the provided image snapshot resolution. The vision carrier supports `QVGA` which you will use in this tutorial.
 
 ## 3. Detecting Blobs
 
@@ -129,7 +131,14 @@ The result of that will be visible in the Frame Buffer preview panel on the righ
 
 ## 4. Toggling LEDs
 
-What if you want some visual feedback from the blob detection without any computer connected to your Portenta? You could use for example the built-in LEDs to indicate whether or not a blob was found in the camera image.
+What if you want some visual feedback from the blob detection without any computer connected to your Portenta? You could use for example the built-in LEDs to indicate whether or not a blob was found in the camera image. Let's initialise the red and the green LEDs with the following code:
+
+```py
+ledRed = pyb.LED(1) # Initiates the red led
+ledGreen = pyb.LED(2) # Initiates the green led
+```
+
+And then add the logic that will turn on the appropriate LED if a blob is present. This part of the code will be added after the "Draw Blobs" logic.
 
 ```py
 # Turn on green LED if a blob was found
@@ -205,7 +214,7 @@ Click on the "Play" button at the bottom of the left toolbar. Place some objects
 In this tutorial you learned how to use the OpenMV IDE to develop MicroPython scripts that then run on the Portenta board. You also learned how to configure the camera of the Vision Carrier board to be used for machine vision applications in OpenMV. Last but not least you learned how to interact with the built-in LEDs in MicroPython on the OpenMV firmware.  
 
 # Next Steps
--   Familiarize yourself with the OpenMV IDE. There are many other features that didn't get mentioned in this tutorial.
+-   Familiarize yourself with the OpenMV IDE. There are many other features that didn't get mentioned in this tutorial (e.g. the Serial Terminal).
 -   Try out other machine vision examples that come with the OpenMV IDE (e.g. Face Detection). You can find them in the "Examples" menu.
 
 # Troubleshooting
