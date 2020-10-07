@@ -36,7 +36,9 @@ Both the bootloader and the firmware have predefined (but adjustable) locations 
 Even though the Arduino boards come pre-flashed with a bootloader there are sometimes improvements or bug fixes which get integrated into an updated bootloader version. To benefit from that it makes sense to update it when there is a new version.
 
 ## 1. Updating the Core
-New versions of the bootloader normally get shipped together with the core. That means you first have to update the core before you can update the bootloader. To do so open the board manager in the menu under Tools->Board->Boards Manager...
+New versions of the bootloader normally get shipped together with the core. That means you first have to update the core before you can update the bootloader. To do so open the board manager in the menu under *Tools->Board->Boards Manager...*
+
+![Open the Boards Manager from the Tools menu](assets/por_ard_bl_boards_manager.png)
 
 In the board manager and search for "portenta".  Find the Arduino mbed-enabled Boards package and click on "Install" to install the latest version of the mbed core (1.2.3 at the time of writing this tutorial).
 
@@ -56,5 +58,5 @@ In the board manager and search for "portenta".  Find the Arduino mbed-enabled B
 -> Lenard
 
 **Authors:** Sebastian Romero, Lenard George  
-**Reviewed by:** ZZ [18.03.2020]  
-**Last revision:** AA [27.3.2020]
+**Reviewed by:** Lenard George [7.10.2020]  
+**Last revision:** Sebastian Romero [7.10.2020]
