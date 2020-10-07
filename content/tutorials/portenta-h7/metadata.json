@@ -11,6 +11,7 @@
      "por-ard-ap", 
      "por-ard-usb",
      "por-ard-ble",
-     "por-openmv-bt"
+     "por-openmv-bt",
+     "por-ard-bl"
     ]
  }
