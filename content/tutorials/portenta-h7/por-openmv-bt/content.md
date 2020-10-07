@@ -27,7 +27,7 @@ The OpenMV IDE was built for Machine Vision applications. It is meant to provide
 # Configuring the Development Environment
 Before you can start programming OpenMV scripts for the Portenta you need to download and install the OpenMV IDE.
 
-***IMPORTANT: Before you connect the Portenta to the OpenMV IDE make sure you update the bootloader as explained in section 2 of this tutorial!***
+***IMPORTANT: Before you connect the Portenta to the OpenMV IDE make sure you update the bootloader as explained in the "Flashing the OpenMV Firmware" section!***
 
 ## 1. Downloading the OpenMV IDE
 Open the [OpenMV download](https://openmv.io/pages/download) page in your browser and download the version that you need for your operating system. Alternatively you may use the following direct download links of the OpenMV IDE 2.6.4:
