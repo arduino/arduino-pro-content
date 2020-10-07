@@ -8,7 +8,7 @@ In this tutorial you will use the vision carrier board for Portenta to detect th
 
 ## Required Hardware and Software
 - Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
-- Portenta Vision Carrier board
+- Arduino Portenta Vision Shield (https://store.arduino.cc/portenta-vision-shield)
 - USB C cable (either USB A to USB C or USB C to USB C)
 - Arduino IDE 1.8.10+  or Arduino Pro IDE 0.0.4+ 
 - Portenta Bootloader Version 20+
