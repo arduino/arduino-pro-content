@@ -17,5 +17,5 @@
    ],
    "abstract":"This tutorial will show you how to use the vision carrier board for Portenta to detect the presence and the position of objects in a camera image.",
    "previousArticle":"por-ard-ble",
-   "nextArticle":null
+   "nextArticle":"por-ard-bl"
 }
