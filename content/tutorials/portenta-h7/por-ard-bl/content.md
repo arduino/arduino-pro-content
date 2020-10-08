@@ -23,7 +23,7 @@ A bootloader is a small application that gets started when an Arduino board gets
 
 The bootloader helps to upload a new sketch to the board. If the bootloader wasn't there you would need an external programmer device to upload your sketch to the board. The bootloader determines whether it should upload a new firmware or if it should launch an existing one that was uploaded previously. If you don't take any action the bootloader launches an existing firmware. On the other hand, when you double press the reset button on the board the bootloader recognises that and waits for a firmware to be uploaded. The bootloader then takes care of storing the new firmware in the memory.
 
-![The firmware consists of your sketch plus the core for the chosen micro controller board](assets/por_ard_bl_booting_process.svg)
+![This chart shows a simplified version of the steps the Portenta goes through when it boots](assets/por_ard_bl_booting_process.svg)
 
 ## Memory Layout
 
