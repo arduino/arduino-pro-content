@@ -1,0 +1,21 @@
+{
+   "id":"por-ard-bl",
+   "index": 6,
+   "title":"Updating the Portenta Bootloader",
+   "slug":"por-ard-bl",
+   "authors":[
+      "Sebastian Hunkeler",
+      "Lenard George"
+   ],
+   "coverImage":{
+      "src":"assets/por_ard_bl_cover.svg?sanitize=true"
+   },
+   "tags":[
+      "Bootloader",
+      "Firmware",
+      "Core"            
+   ],
+   "abstract":"This tutorial will explain what a bootloader is, why you should consider keeping it updated and how you can update it.",
+   "previousArticle":"por-openmv-bt",
+   "nextArticle":null
+}
