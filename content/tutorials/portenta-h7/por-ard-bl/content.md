@@ -35,7 +35,7 @@ Both the bootloader and the firmware have predefined (but adjustable) locations 
 
 
 # Flashing the Latest Bootloader
-Even though the Arduino boards come pre-flashed with a bootloader there are sometimes improvements or bug fixes which get integrated into an updated bootloader version. To benefit from that it makes sense to update it when there is a new version.
+Even though the Arduino boards come pre-flashed with a bootloader there are sometimes improvements or bug fixes which get integrated into an updated bootloader version. They usually improve stability and performance. To benefit from that it makes sense to update it when there is a new version.
 
 ## 1. Updating the Core
 New versions of the bootloader normally get shipped together with the core. That means you first have to update the core before you can update the bootloader. To do so open the board manager in the menu under *Tools->Board->Boards Manager...*
@@ -47,7 +47,7 @@ In the board manager and search for "portenta".  Find the Arduino mbed-enabled B
 ![A search for "portenta" reveals the core that needs to be updated to get the latest bootloader](assets/por_ard_bl_update_core.png)
 
 ## 2. Updating the Bootloader
-To update the bootloader you will be using the **PortentaH7_updateBootloader** sketch. You can find the sketch file at **File > Examples > Portenta_System**
+To update the bootloader you can use the **PortentaH7_updateBootloader** sketch. You can find the sketch file under **File > Examples > Portenta_System**
 
 
 
@@ -55,7 +55,7 @@ To update the bootloader you will be using the **PortentaH7_updateBootloader** s
 
 
 
-Compile and upload the sketch to the Board. Make sure you have the you have selected the right port before you upload.
+Compile and upload the sketch to the board. Make sure you have selected the right port before you upload.
 
 
 
@@ -63,18 +63,18 @@ Compile and upload the sketch to the Board. Make sure you have the you have sele
 
 
 
-Open the Serial monitor and you will see the specifications of your board displayed on the monitor. Enter Y in the text field and press enter to begin the update process
+Open the Serial monitor and you will see the specifications of your current bootloader and your board. Enter **Y** in the text field and press enter to begin the update process.
 
 
 
 ![Serial monitor with specifications](assets/por_ard_bl_update_available.png)
 
-
+You will see the message "Bootloader update complete. You may now disconnect the board." when the update is complete.
 
 ![Bootloader update process](assets/por_ard_bl_update_complete.png)
 
 # Conclusion
-Having an updated bootloader with a new firmware means that the board is capable of supporting new functionalities with improved performance and resolved bugs. As mentioned earlier we recommend you to keep an eye out for new releases on our [Github repo](https://github.com/arduino/ArduinoCore-mbed) and update the bootloader quite frequently 
+Having an updated bootloader is important to benefit from improved performance and resolved bugs. As mentioned earlier we recommend to keep an eye out for new releases on our [Github repository](https://github.com/arduino/ArduinoCore-mbed/tree/master/bootloaders) and update the bootloader whenever there is a new release available.
 
 # Troubleshooting
 ## LIBUSB_ERROR_IO Error
