@@ -118,6 +118,8 @@ Let's now to create a new sketch to  blink both of LEDs with random sequences, t
 Let's start by opening a new sketch and naming it **blink_2cores.ino**. Then let's add the following lines of code. 
 
 ```cpp
+int myLED;
+
 void setup() {
 
    randomSeed(analogRead(0));
