@@ -49,23 +49,13 @@ In the board manager and search for "portenta".  Find the Arduino mbed-enabled B
 ## 2. Updating the Bootloader
 To update the bootloader you can use the **PortentaH7_updateBootloader** sketch. You can find the sketch file under **File > Examples > Portenta_System**
 
-
-
 ![Finding the bootloader updater sketch](assets/por_ard_bl_find_sketch_file.png)
-
-
 
 Compile and upload the sketch to the board. Make sure you have selected the right port before you upload.
 
-
-
 ![The bootloader updater sketch](assets/por_ard_bl_updater_sketch.png)
 
-
-
 Open the Serial monitor and you will see the specifications of your current bootloader and your board. Enter **Y** in the text field and press enter to begin the update process.
-
-
 
 ![Serial monitor with specifications](assets/por_ard_bl_update_available.png)
 
