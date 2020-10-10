@@ -62,7 +62,7 @@ A pop-up will ask you how you would like to proceed "DFU bootloader(s) found. Wh
 
 Portenta's green LED will start flashing while the OpenMV firmware is being uploaded to the board. You will see a message saying "DFU firmware update complete!" when the process is done.
 
-***Installing the OpenMV firmware will overwrite any existing sketches in the internal flash of Portenta.***
+***Installing the OpenMV firmware will overwrite any existing sketches in the internal flash of Portenta. As a result the M7 port won't be exposed in the Arduino IDE anymore. To re-flash the M7 with an Arduino firmware you need to put the board into bootloader mode. To do so double press the reset button on the Portenta H7 board. The built-in green LED will start fading in and out. In bootloader mode you will see the Portenta M7 port again in the Arduino IDE.***
 
 The Portenta will start flashing its blue LED when it's ready to be connected. After the confirming the completion dialog the Portenta should already be connected to the OpenMV IDE, otherwise click the "connect" button once again.
 
