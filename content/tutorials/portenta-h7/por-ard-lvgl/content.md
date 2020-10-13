@@ -35,7 +35,7 @@ we are going to work on the **Portenta_lvgl** example , The Portenta H7 comes wi
    ![por_ard_lvgl_download_library](assets/por_ard_lvgl_select_library.svg)
    
    
-   Once you have installed the library, open the **Portenta_lvgl** sketch from **File -> Examples -> LittleVGL**.
+   Once you have installed the library, create a new Sketch **File --> New**
    
    *** If you cant find the sketch, make sure you have selected the right board inside Tools > Boards ***
    
@@ -45,34 +45,19 @@ we are going to work on the **Portenta_lvgl** example , The Portenta H7 comes wi
    
 3. The Hello World label widget 
 
-   For the first part of the tutorial you will be displaying a `Hello Arduino` label on the monitor.  Scroll to the bottom of the sketch and uncomment the all the lines below the ` /*Hello world label*/`and Comment out  `lv_demo_widgets()`. 
-
-   ![por_ard_lvgl_select_example](assets/por_ard_lvgl_hello_world_snippet.svg) 
-
+   Lets start by including the libraries that we are going to use.
    
-
-   In this sketch we are first creating a `label` object is a widget of the type label. the following line declares a new label.  We then set the text of the label using the `lv_label_set_text()`  method which takes the preferred name as a parameter. The `lv_obj_align`is then used to align the label in your preferred position on the screen. 
-
    ```cpp
-   lv_obj_t * label = lv_label_create(lv_scr_actr(),NULL); 
-   lv_label_set_text(label,"Hello Arduino! Dev-7.0");
-   lv_obj_align(label, NULL, LV_ALIGN_CENTER, 0, 0); 
+   #include "Portenta_LittleVGL.h"
+   #include "USBHost.h"
    ```
-
-4. Connect an external monitor
-
-   Compile and upload the sketch, to your Portenta H7. At this point your board becomes as the host. Unplug the board from your computer and connect it to USB hub along with a monitor that is connected to the HDMI port. Power up your hub by connecting it to an external power source and the monitor will display a `Hello Arduino! Dev-7,0`. 
-
-   ![por_ard_lvgl_connect_monitor](assets/por_ard_lvgl_connect_monitor.svg)
-
-   *** If you arent familiar with how the USB host works, we recommend you to have a look at the [USB Host tutorial](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-usb ) ***
-
+   
 4. Adding a Button widget 
 
-   Unplug the board and connect it back to your computer. lets add custom button widget using the `lv_btn` object, This object allows you to have an inner label whose text can be easily configure. The following lines of code initialises the button variable and its label which you can add it at the beginning of the sketch. 
+   Lets add custom button widget using the `lv_btn` object, This object allows you to have an inner label whose text can be easily configure. The following lines of code initialises the button variable and its label which you can add it at the beginning of the sketch. 
 
    ```cpp
-   static lv_obj_t *btn1;
+   static lv_obj_t *lv_btn;
    static lv_obj_t *myCustomLabel;
    ```
 
@@ -84,44 +69,53 @@ we are going to work on the **Portenta_lvgl** example , The Portenta H7 comes wi
 
    ```cpp
    //Setting up the Button
-   btn1 = lv_btn_create(lv_scr_act(), NULL);
-   lv_obj_align(btn1, NULL, LV_ALIGN_CENTER, 0, -40);
-   lv_obj_set_event_cb(btn2, event_handler);
+   lv_btn = lv_btn_create(lv_scr_act(), NULL);
+   lv_obj_align(lv_btn, NULL, LV_ALIGN_CENTER, 0, -40);
+   //lv_obj_set_event_cb(lv_btn, event_handler);               //If you want to handle the button's callback create a cb_btn function
    
    //Setting up inner Label
    myCustomLabel = lv_label_create(lv_scr_act(), NULL);        //We make the object be a label widget
-   lv_obj_align(myCustomLabel, NULL, LV_ALIGN_CENTER, 0, 4);   //We move it to the center of the screen below the 'Hello world' and align centered
+   lv_obj_align(myCustomLabel, NULL, LV_ALIGN_CENTER, 0, -40);   //We move it to the center of the screen below the 'Hello world' and align centered
    lv_label_set_text(myCustomLabel , "Custom Button");          //We set the default text
    ```
 
    ![por_ard_lvgl_setup_widgets](assets/por_ard_lvgl_setup_widgets.png)
 
-   Compile and Upload the sketch to your board. Connect the board to the USB hub with the Monitor attached to the HDMI port.  Once you power up the HUB, you will see a button with a label **CustomLabel** along with the previously created label, **Hello Arduino! Dev-7.0** 
+   Compile and Upload the sketch to your board. Connect the board to the USB hub with the Monitor attached to the HDMI port.  Once you power up the HUB, you will see a button with a label **CustomLabel**.
+
+   
+4. Connect an external monitor
+
+   Compile and upload the sketch, to your Portenta H7. At this point your board becomes as the host. Unplug the board from your computer and connect it to USB hub along with a monitor that is connected to the HDMI port. Power up your hub by connecting it to an external power source and the monitor will display a `Custom Button`. 
+
+   ![por_ard_lvgl_connect_monitor](assets/por_ard_lvgl_connect_monitor.svg)
+
+   *** If you arent familiar with how the USB host works, we recommend you to have a look at the [USB Host tutorial](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-usb ) ***
+
 
 5. Create a simple counter
 
    To make a counter we need to update periodically a label and change it value, to be able to do that we are going to use the LVGL feature called 'Task'. First of all lets declare our new task by adding function and an int to count
 
    ```cpp
-static void label_Task(lv_task_t * myTask);
+   static void label_Task(lv_task_t * myTask);
    uint32_t count = 0;
    ```
-```
    
    After that we need to create the void that we declared before:
    
    ```cpp
    static void label_Task(lv_task_t * myTask) {
       //printf("count: %d\n", count);                        //We can see in the Serial monitor the count
-   lv_label_set_text_fmt(myCustomLabel, "%d" , count);    //Update the text from the label
+      lv_label_set_text_fmt(myCustomLabel, "%d" , count);    //Update the text from the label
       count++;      //Increase the count number
    }
-```
+   ```
 
    To make it work we need to take the task and add it inside the LVGL task handler, by adding  at the end `of the setup()`We set the task to refresh each second.
 
    ```cpp
-   lv_task_create(label_Task, 1000, LV_TASK_PRIO_MID, NULL);
+    lv_task_create(label_Task, 1000, LV_TASK_PRIO_MID, NULL);
    ```
 
 # Conclusion
@@ -143,7 +137,7 @@ Try to uncomment the printf inside the task to check if the Serial Monitor its u
 
 
 ## Sketch Upload Troubleshooting
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
+* Make sure you set the board in bootloader mode, by clicking twice the reset button, then you should see the built-in LED fading.
 
 **Authors:** Pablo Marquinez & Lenard George
 **Reviewed by:** ZZ [18.03.2020]  
