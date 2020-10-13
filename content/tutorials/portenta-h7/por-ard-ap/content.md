@@ -64,6 +64,13 @@ void setup() {
   // by default the local IP address of will be 192.168.3.1
   // you can override it with the following:
   // WiFi.config(IPAddress(10, 0, 0, 1));
+
+  if(strlen(pass) < 8){    
+    Serial.println("Creating access point failed");
+    Serial.println("The WiFi password must be at least 8 characters long");
+    // don't continue
+    while(true);
+  }
     
   // print the network name (SSID);
   Serial.print("Creating access point named: ");
@@ -223,7 +230,7 @@ Once you’ve created the new tab, you will see an empty page in the IDE. Define
 # define SECRET_PASS "123Qwerty"
 ```
 
-***The SSID (PortentaAccessPoint) and password (123Qwerty) are placeholder strings made for this tutorial. For security reasons you should rename them to something memorisable but not easy to guess.*** 
+***The SSID (PortentaAccessPoint) and password (123Qwerty) are placeholder strings made for this tutorial. For security reasons you should rename them to something memorisable but not easy to guess. Keep in mind that the password must be at least 8 characters long.*** 
 
 In order to access the `SECRET_SSID` and `SECRET_PASS` constants in the **simpleWebServer.ino** sketch file, the header file that you’ve just created needs to be included. In your sketch file this has already been taken care of by the following line at the beginning of the sketch: 
 
