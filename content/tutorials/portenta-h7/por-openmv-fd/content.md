@@ -56,8 +56,9 @@ To overlay an image once a face is detected we need to have preloaded image in a
 In order to...
 
 ## 4. Overlaying an Image
+## 5. Finding the face features
 
-...
+https://openmv-doc.readthedocs.io/library/omv.image.html#image.image.find_features
 
 ## 5. Uploading the Script
 Let's program the Portenta with the complete script and test if the algorithm works. Copy the following script and paste it into the new script file that you created.
