@@ -50,19 +50,44 @@ face_cascade = image.HaarCascade("frontalface", stages=25)
 print(face_cascade)
 ```
 
-## 4. Reading a bitmap image
-
-To overlay an image once a face is detected we need to have preloaded image in a [Portable Bitmap Image](https://en.wikipedia.org/wiki/Netpbm) (.pbm) format. The reason behind using the .pbm format is because t These files are text-based, black and white image files that contain either a 1 for a black pixel or a 0 for a white pixe be in text files.  Load your image into `faceImage` using the image.Image() method 
-
-```
-faceImage = image.Image("/face.pbm", copy_to_fb=False)
-```
-
-## 5. Finding the face features
+## 4. Finding the Face Features
 
 https://openmv-doc.readthedocs.io/library/omv.image.html#image.image.find_features
 
+## 5. Displaying a Bitmap Image
+
+Once you know the location of the faces in the camera image you can overlay them with an image of your choice. OpenMV currently supports bmp, pgm or ppm image formats. Image formats with an alpha layer such as PNG are not supported yet.
+
+In this tutorial you will use a  preloaded image in the monochrome [Portable Bitmap Image](https://en.wikipedia.org/wiki/Netpbm) (.pbm) format. This format basically consists of a matrix of zeroes and ones denoting black and white pixels. 1 stands for a black pixel, 0 for a white one. 
+
+Connect your Portenta board to your computer if you haven't done so. Make sure you are running the OpenMV firmware on the Portenta. If you haven't installed the OpenMV firmware yet take a look at the "Configuring the Development Environment" section which explains how to proceed in that case. 
+
+Download [this file](/assets/face.pbm) containing the smiley bitmap and copy it to the flash drive that was mounted when you connected the Portenta. Load the image into a variable called `faceImage` using the `Image()` function from the `image` module. The inital slash refers to the root directoy of the flash drive.
+
+```py
+faceImage = image.Image("/face.pbm", copy_to_fb=False)
+```
+
+Before you can draw the image on top of the camera stream you need to figure out the scale ratio to match the face size in the camera stream. The bitmap comes in a 128x128 px resolution. You can calculate the correct scale ratio with the following formula:
+
+```py
+faceX = boundingBox[0]
+faceY = boundingBox[1]
+faceWidth = boundingBox[2]
+
+# Calculates the scale ratio to scale the bitmap image to match the bounding box
+scale_ratio = faceWidth / faceImage.width()        
+```
+
+You can then draw the scaled bitmap image on top of the camera image using the `draw_image` function:
+
+```py
+# Draws the bitmap on top of the camera stream
+cameraImage.draw_image(faceImage, faceX, faceY, x_scale=scale_ratio, y_scale=scale_ratio)
+```
+
 ## 6. Uploading the Script
+
 Let's program the Portenta with the complete script and test if the algorithm works. Copy the following script and paste it into the new script file that you created.
 
 ```py
