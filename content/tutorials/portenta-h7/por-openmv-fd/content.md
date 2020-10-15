@@ -53,14 +53,15 @@ print(face_cascade)
 
 To overlay an image once a face is detected we need to have preloaded image in a [Portable Bitmap Image](https://en.wikipedia.org/wiki/Netpbm) (.pbm) format. The reason behind using the .pbm format is because t These files are text-based, black and white image files that contain either a 1 for a black pixel or a 0 for a white pixe be in text files.  Load your image into `faceImage` using the image.Image() method 
 
-In order to...
+```
+faceImage = image.Image("/face.pbm", copy_to_fb=False)
+```
 
-## 4. Overlaying an Image
 ## 5. Finding the face features
 
 https://openmv-doc.readthedocs.io/library/omv.image.html#image.image.find_features
 
-## 5. Uploading the Script
+## 6. Uploading the Script
 Let's program the Portenta with the complete script and test if the algorithm works. Copy the following script and paste it into the new script file that you created.
 
 ```py
