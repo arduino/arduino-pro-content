@@ -71,6 +71,8 @@ sensor.set_pixformat(sensor.GRAYSCALE)
 face_cascade = image.HaarCascade("frontalface", stages=25)
 print(face_cascade)
 
+faceImage = image.Image("/face.pbm", copy_to_fb=False)
+
 # FPS clock
 clock = time.clock()
 
@@ -88,12 +90,13 @@ while (True):
     # Draw objects
     for r in objects:
         img.draw_rectangle(r)
+        scale_ratio = r[2] / 175.0
+        img.draw_image(faceImage, r[0], r[1], x_scale=scale_ratio, y_scale=scale_ratio)
+
 
     # Print FPS.
     # Note: Actual FPS is higher, streaming the FB makes it slower.
     print(clock.fps())
-
-
 ```
 
 # Conclusion
