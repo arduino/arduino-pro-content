@@ -98,8 +98,7 @@ You can then draw the scaled bitmap image on top of the camera image using the `
 cameraImage.draw_image(faceImage, faceX, faceY, x_scale=scale_ratio, y_scale=scale_ratio)
 ```
 
-## 6. Uploading the Script
-
+## 7. Uploading the Script
 Let's program the Portenta with the complete script and test if the algorithm works. Copy the following script and paste it into the new script file that you created.
 
 ```py
