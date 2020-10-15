@@ -43,7 +43,7 @@ import image # Import module containing machine vision algorithms
 import time # Import module for tracking elapsed time
 ```
 
-## 2. Preparing the Sensor
+## 3. Preparing the Sensor
 
 -> LENARD
 
