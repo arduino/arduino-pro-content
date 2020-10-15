@@ -156,9 +156,11 @@ Click on the "Play" button at the bottom of the left toolbar. Point the camera o
 In this tutorial you learned how to use OpenMV's built-in face detection algorithm which is based on Haar Cascade. Furthermore you learned how to copy a file to the internal flash and how to load an image from the flash into the memory. You have also learned how to draw an image on top of a snapshot from the camera stream.
 
 # Next Steps
-- TBD
+The [HaarCascade](https://docs.openmv.io/library/omv.image.html#class-haarcascade-feature-descriptor) class provided by openMV can also detect other facial features such as eyes and smiles. For example you can tweak your **face_detection.py** script to detect eyes simply by changing the `path`from `frontalface`to `eye`. Go ahead and replace the following line in your script and replace the emoji bitmap with an eye of a eye. 
 
-  -> LENARD
+```python 
+face_cascade = image.HaarCascade("eye", stages=25)
+```
 
 # Troubleshooting
 
