@@ -21,10 +21,9 @@ Face detection happens by using a machine learning based approach called HAAR ca
 
 ![The HAAR Cascade Process](assets/por_openmv_haar_cascade.svg)
 
+# Configuring the Development Environment
 
-# Face Detection
-
-In this section you will learn how to use the built-in ...
+If you haven't installed the OpenMV IDE yet, please have a look at the tutorial XYZ...
 
 ## 1. Prepare the Script
 
