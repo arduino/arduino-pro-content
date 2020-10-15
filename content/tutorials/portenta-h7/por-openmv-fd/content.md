@@ -21,9 +21,9 @@ Face detection happens by using a machine learning based approach called HAAR ca
 
 ![The HAAR Cascade Process](assets/por_openmv_haar_cascade.svg)
 
-# Configuring the Development Environment
+## 1. The Basic Setup
 
-If you haven't installed the OpenMV IDE yet, please have a look at the tutorial XYZ...
+For this tutorial you will be using the OpenMV IDE along with the OpenMV firmare on your Portenta H7 to build the face detection sketch. If this is your first time using the Vision Carrier and OpenMV, We recommend you to take a look at the "Configuring the Development Environment" section inside the [Blob Detection tutorial](https://www.arduino.cc/pro/tutorials/portenta-h7/por-openmv-bt) to configure the development environment. 
 
 -> LENARD
 
