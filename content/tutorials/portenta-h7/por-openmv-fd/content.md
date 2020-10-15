@@ -138,11 +138,11 @@ while (True):
     print(clock.fps())
 ```
 
+Click on the "Play" button at the bottom of the left toolbar. Point the camera on the Vision Shield towards your face check if the Portenta can detect it. Once it dects your face it should be covered by a smiley. If it can't detect your face try moving the camera further away or position yourself in front of a wall or another plain background.
+
 # Conclusion
 
-In this tutorial you learned...
-
--> SEBASTIAN
+In this tutorial you learned how to use OpenMV's built-in face detection algorithm which is based on Haar Cascade. Furthermore you learned how to copy a file to the internal flash and how to load an image from the flash into the memory. You have also learned how to draw an image on top of a snapshot from the camera stream.
 
 # Next Steps
 - TBD
