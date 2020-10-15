@@ -44,7 +44,14 @@ import time # Import module for tracking elapsed time
 
 OpenMV provides a packaged Haar Cascade class formatted for the Vision Shield's Camera. The [`image.HaarCascade(path, number of stages)`](https://docs.openmv.io/library/omv.image.html#class-haarcascade-feature-descriptor) is used to load the built in HaarCascade binary file into the memory using the [`image`](https://docs.openmv.io/library/omv.image.html#) module. The `path` helps to specify the type of Haar Cascade file thats required which in this case is of the type `frontalface`. The `number of stages`is use to specify the Haar Cascade Stages required. 
 
-## 3. Detecting the Face
+```python
+face_cascade = image.HaarCascade("frontalface", stages=25)
+print(face_cascade)
+```
+
+## 4. Reading a bitmap image
+
+To overlay an image once a face is detected we need to have preloaded image in a [Portable Bitmap Image](https://en.wikipedia.org/wiki/Netpbm) (.pbm) format. The reason behind using the .pbm format is because t These files are text-based, black and white image files that contain either a 1 for a black pixel or a 0 for a white pixe be in text files.  Load your image into `faceImage` using the image.Image() method 
 
 In order to...
 
