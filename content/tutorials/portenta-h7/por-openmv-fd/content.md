@@ -25,6 +25,8 @@ Face detection happens by using a machine learning based approach called HAAR ca
 
 If you haven't installed the OpenMV IDE yet, please have a look at the tutorial XYZ...
 
+-> LENARD
+
 ## 1. Prepare the Script
 
 Create a new script by clicking the "New File" button in the toolbar on the left side. Import the required modules:
@@ -38,7 +40,7 @@ import time # Import module for tracking elapsed time
 
 ## 2. Preparing the Sensor
 
-
+-> LENARD
 
 ## 3. Loading the Hair Cascade 
 
@@ -114,8 +116,12 @@ while (True):
 
 In this tutorial you learned...
 
+-> SEBASTIAN
+
 # Next Steps
--   TBD
+- TBD
+
+  -> LENARD
 
 # Troubleshooting
 
