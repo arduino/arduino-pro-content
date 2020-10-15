@@ -2,9 +2,10 @@
 In this tutorial you will ...
 
 ## What You Will Learn
-- How to use the OpenMV IDE to run MicroPython on Portenta
-- How to use the built-in face detection algorithm of OpenMV
-- How to use MicroPython to read files from the internal flash
+- How to use the OpenMV IDE to run MicroPython on Portenta,
+- About the face detection method implemented in the example, 
+- How to use the built-in face detection algorithm of OpenMV,
+- How to use MicroPython to read files from the internal flash.
 
 ## Required Hardware and Software
 - Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
