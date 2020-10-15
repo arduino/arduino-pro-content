@@ -67,48 +67,50 @@ https://openmv-doc.readthedocs.io/library/omv.image.html#image.image.find_featur
 Let's program the Portenta with the complete script and test if the algorithm works. Copy the following script and paste it into the new script file that you created.
 
 ```py
-import sensor, time, image
+import sensor # Import the module for sensor related functions
+import image # Import module containing machine vision algorithms
+import time # Import module for tracking elapsed time
 
-# Reset sensor
-sensor.reset()
+sensor.reset() # Resets the sensor
 
-# Sensor settings
-sensor.set_contrast(3)
+sensor.set_contrast(3) # Sets the contrast to the highest level (min -3, max 3)
 sensor.set_gainceiling(16)
+
 # HQVGA and GRAYSCALE are the best for face tracking.
 sensor.set_framesize(sensor.HQVGA)
 sensor.set_pixformat(sensor.GRAYSCALE)
 
-# Load Haar Cascade
-# By default this will use all stages, lower satges is faster but less accurate.
+# Load the built-in frontal face Haar Cascade
+# By default this will use all stages, lower stages is faster but less accurate.
 face_cascade = image.HaarCascade("frontalface", stages=25)
-print(face_cascade)
+print(face_cascade) # Prints the Haar Cascade configuration
 
-faceImage = image.Image("/face.pbm", copy_to_fb=False)
-
-# FPS clock
-clock = time.clock()
+faceImage = image.Image("/face.pbm", copy_to_fb=False) # Loads a bitmap file from the flash storage
+clock = time.clock() # Instantiates a clock object to calculate the FPS
 
 while (True):
-    clock.tick()
-
-    # Capture snapshot
-    img = sensor.snapshot()
+    clock.tick() # Advances the clock
+    cameraImage = sensor.snapshot() # Takes a snapshot and saves it in memory
 
     # Find objects.
     # Note: Lower scale factor scales-down the image more and detects smaller objects.
     # Higher threshold results in a higher detection rate, with more false positives.
-    objects = img.find_features(face_cascade, threshold=0.75, scale_factor=1.25)
+    boundingBoxes = cameraImage.find_features(face_cascade, threshold=1, scale_factor=1.5)
 
     # Draw objects
-    for r in objects:
-        img.draw_rectangle(r)
-        scale_ratio = r[2] / 175.0
-        img.draw_image(faceImage, r[0], r[1], x_scale=scale_ratio, y_scale=scale_ratio)
+    for boundingBox in boundingBoxes:
+        boxWidth = boundingBox[2]
+        boxX = boundingBox[0]
+        boxY = boundingBox[1]
+
+        # Calculates the scale ratio to scale the bitmap image to match the bounding box
+        scale_ratio = boxWidth / faceImage.width()
+        # Draws the bitmap on top of the camera stream
+        cameraImage.draw_image(faceImage, boxX, boxY, x_scale=scale_ratio, y_scale=scale_ratio)
 
 
     # Print FPS.
-    # Note: Actual FPS is higher, streaming the FB makes it slower.
+    # Note: The actual FPS is higher when not displaying a frame buffer preview in the IDE
     print(clock.fps())
 ```
 
