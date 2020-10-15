@@ -29,7 +29,13 @@ For this tutorial you will be using the OpenMV IDE along with the OpenMV firmare
 
 Attach your Vision Carrier to your Portenta H7 and open the **openMV** Editor.  For this tutorial, you will be using **face_detection.py** example provided by OpenMV as a starting point. This example can be found inside **File->Examples->Face-Detection->face_detection.py**. 
 
-Create a new script by clicking the "New File" button in the toolbar on the left side. Import the required modules:
+![The face_detection.py example sketch](assets/por_openmv_fd_example.png)
+
+You will also have to download a bitmap file (.pbm format) of your favourite emoji and Store it on the microSD card. Insert the microSD card into the Vision Carrier's SD card slot and connect the board to your computer. 
+
+## 2. Preparing the Script
+
+The Script starts by importing the `pyb`, `sensor`, `image` and  `time` modules for handling the board functions, camera sensor settings, machine vision algorithms and time tracking methods. 
 
 ```py
 import sensor # Import the module for sensor related functions
