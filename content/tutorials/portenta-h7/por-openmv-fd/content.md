@@ -98,14 +98,14 @@ while (True):
 
     # Draw objects
     for boundingBox in boundingBoxes:
-        boxWidth = boundingBox[2]
-        boxX = boundingBox[0]
-        boxY = boundingBox[1]
+        faceX = boundingBox[0]
+        faceY = boundingBox[1]
+        faceWidth = boundingBox[2]
 
         # Calculates the scale ratio to scale the bitmap image to match the bounding box
-        scale_ratio = boxWidth / faceImage.width()
+        scale_ratio = faceWidth / faceImage.width()
         # Draws the bitmap on top of the camera stream
-        cameraImage.draw_image(faceImage, boxX, boxY, x_scale=scale_ratio, y_scale=scale_ratio)
+        cameraImage.draw_image(faceImage, faceX, faceY, x_scale=scale_ratio, y_scale=scale_ratio)
 
 
     # Print FPS.
