@@ -45,7 +45,7 @@ import time # Import module for tracking elapsed time
 
 ## 3. Preparing the Sensor
 
--> LENARD
+The next step is to calibrate the camera sensor for achieving the best results using the `sensor` module. The `set_contrast()`function sets the contrast of the sensor to its highest value 3 to easily identify lines and edges. `set_gainceiling()` a controls the amplification of the signal from the camera sensor including any associated background noise. For maximisng the detection rate for a gray scale camera, it is recommended to reduce the frame size to `HQVGA`.
 
 ## 3. Loading the Hair Cascade 
 
