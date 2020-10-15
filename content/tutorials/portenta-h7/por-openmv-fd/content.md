@@ -32,7 +32,6 @@ If you haven't installed the OpenMV IDE yet, please have a look at the tutorial 
 Create a new script by clicking the "New File" button in the toolbar on the left side. Import the required modules:
 
 ```py
-import pyb # Import module for board related functions
 import sensor # Import the module for sensor related functions
 import image # Import module containing machine vision algorithms
 import time # Import module for tracking elapsed time
