@@ -25,9 +25,9 @@ Face detection happens by using a machine learning based approach called HAAR ca
 
 For this tutorial you will be using the OpenMV IDE along with the OpenMV firmare on your Portenta H7 to build the face detection sketch. If this is your first time using the Vision Carrier and OpenMV, We recommend you to take a look at the "Configuring the Development Environment" section inside the [Blob Detection tutorial](https://www.arduino.cc/pro/tutorials/portenta-h7/por-openmv-bt) to configure the development environment. 
 
--> LENARD
+## 2. The face_detection.py Sketch
 
-## 1. Prepare the Script
+Attach your Vision Carrier to your Portenta H7 and open the **openMV** Editor.  For this tutorial, you will be using **face_detection.py** example provided by OpenMV as a starting point. This example can be found inside **File->Examples->Face-Detection->face_detection.py**. 
 
 Create a new script by clicking the "New File" button in the toolbar on the left side. Import the required modules:
 
