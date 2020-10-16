@@ -15,27 +15,27 @@ In this tutorial you will build a MicroPython application with OpenMV that uses 
 - Portenta Bootloader Version 20+
 - OpenMV IDE 2.6.4+
 
-# Face Detection through HAAR Cascade. 
+# The HAAR Cascade Algorithm
 
 Face detection happens by using a machine learning based approach called HAAR cascade. This approach uses a cascade algorithm that has multiple stages where the output from one stage acts as additional information for the next stage in the cascade. The different stages are responsible for detecting edges, lines, contrast checks and calculating pixel values in a given image. Larger areas of the image are checked first in the earlier stages followed by more numerous and smaller area checks in later stages. The HAAR Cascade function provided by OpenMV contains 25 such stages. HAAR Cascades are trained against hundreds of images with a face that are labelled as faces and an equivalent amount of images that dont have faces in them labeled differently. 
 
 ![The HAAR Cascade Process](assets/por_openmv_haar_cascade.svg)
 
-## 1. The Basic Setup
+# Creating the Face Detection Script
 
 For this tutorial you will be using the OpenMV IDE along with the OpenMV firmare on your Portenta H7 to build the face detection sketch. If this is your first time using the Vision Carrier and OpenMV, We recommend you to take a look at the "Configuring the Development Environment" section inside the [Blob Detection tutorial](https://www.arduino.cc/pro/tutorials/portenta-h7/por-openmv-bt) to configure the development environment. 
 
-## 2. The face_detection.py Sketch
+## 1. The Basic Setup
 
-Attach your Vision Carrier to your Portenta H7 and open the **openMV** Editor.  For this tutorial, you will be using **face_detection.py** example provided by OpenMV as a starting point. This example can be found inside **File->Examples->Face-Detection->face_detection.py**. 
+Attach your Vision Carrier to your Portenta H7 and open the **OpenMV** Editor.  For this tutorial, you will be using **face_detection.py** example provided by OpenMV as a starting point. This example can be found inside **File->Examples->Face-Detection->face_detection.py**. 
 
 ![The face_detection.py example sketch](assets/por_openmv_fd_example.png)
 
 You will also have to download a bitmap file (.pbm format) of your favourite emoji and Store it on the microSD card. Insert the microSD card into the Vision Carrier's SD card slot and connect the board to your computer. 
 
-## 2. Preparing the Script
+## 2. Importing the Modules
 
-The Script starts by importing the `pyb`, `sensor`, `image` and  `time` modules for handling the board functions, camera sensor settings, machine vision algorithms and time tracking methods. 
+The script starts by importing the  `sensor`, `image` and  `time` modules for handling the camera sensor, using machine vision algorithms and time tracking functions.
 
 ```py
 import sensor # Import the module for sensor related functions
@@ -55,16 +55,14 @@ sensor.set_framesize(sensor.HQVGA)
 sensor.set_pixformat(sensor.GRAYSCALE)
 ```
 
+## 4. Finding the Face Features
+
 OpenMV provides a packaged Haar Cascade class formatted for the Vision Shield's Camera. The [`image.HaarCascade(path, number of stages)`](https://docs.openmv.io/library/omv.image.html#class-haarcascade-feature-descriptor) is used to load the built in HaarCascade binary file into the memory using the [`image`](https://docs.openmv.io/library/omv.image.html#) module. The `path` helps to specify the type of Haar Cascade file thats required which in this case is of the type `frontalface`. The `number of stages`is use to specify the Haar Cascade Stages required. 
 
 ```python
 face_cascade = image.HaarCascade("frontalface", stages=25)
 print(face_cascade)
 ```
-
-## 4. Finding the Face Features
-
-https://openmv-doc.readthedocs.io/library/omv.image.html#image.image.find_features
 
 ## 5. Displaying a Bitmap Image
 
@@ -107,9 +105,8 @@ import image # Import module containing machine vision algorithms
 import time # Import module for tracking elapsed time
 
 sensor.reset() # Resets the sensor
-
 sensor.set_contrast(3) # Sets the contrast to the highest level (min -3, max 3)
-sensor.set_gainceiling(16)
+sensor.set_gainceiling(16) # Sets the amplification of camera sensor signal
 
 # HQVGA and GRAYSCALE are the best for face tracking.
 sensor.set_framesize(sensor.HQVGA)
