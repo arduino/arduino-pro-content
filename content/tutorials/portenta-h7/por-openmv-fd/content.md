@@ -45,7 +45,7 @@ import time # Import module for tracking elapsed time
 
 The next step is to calibrate the camera sensor for achieving the best results using the `sensor` module. You can use the `set_contrast()` function to set the contrast of the sensor to its highest value (3). This can help the algorithm identifying lines and edges more easily. `set_gainceiling()` controls the amplification of the signal from the camera sensor including any associated background noise. For maximising the detection success rate it is recommended to set the camera frame size to `HQVGA`.
 
-```python
+```py
 # Sensor settings
 sensor.set_contrast(3)
 sensor.set_gainceiling(16)
@@ -59,7 +59,7 @@ OpenMV provides a Haar Cascade class ready to be used with the Vision Shield's c
 
 ***Remember: Fewer stages make the detection faster while leading to more false positives.***
 
-```python
+```py
 face_cascade = image.HaarCascade("frontalface", stages=25)
 print(face_cascade) # Prints the Haar Cascade configuration
 ```
@@ -78,13 +78,13 @@ Download [this file](assets/face.pbm) containing the smiley bitmap and copy it t
 
 Load the image into a variable called `faceImage` using the `Image()` function from the `image` module. The inital slash refers to the root directoy of the flash drive. In order to use the image as an overlay to the camera stream instead of directly displaying it set the `copy_to_fb` to False such that it doesn't get copied into the frame buffer automatically.
 
-```python
+```py
 faceImage = image.Image("/face.pbm", copy_to_fb=False)
 ```
 
 Before drawing the image on top of the camera stream you need to figure out the scale ratio to match the detected face size in the camera stream. The provided bitmap image comes in a 128x128 px resolution. You can calculate the correct scale ratio with the following formula:
 
-```python
+```py
 faceX = boundingBox[0]
 faceY = boundingBox[1]
 faceWidth = boundingBox[2]
@@ -95,7 +95,7 @@ scale_ratio = faceWidth / faceImage.width()
 
 You can then draw the scaled bitmap image on top of the camera image using the `draw_image` function:
 
-```python
+```py
 # Draws the bitmap on top of the camera stream
 cameraImage.draw_image(faceImage, faceX, faceY, x_scale=scale_ratio, y_scale=scale_ratio)
 ```
@@ -103,7 +103,7 @@ cameraImage.draw_image(faceImage, faceX, faceY, x_scale=scale_ratio, y_scale=sca
 ## 7. Uploading the Script
 Let's program the Portenta with the complete script and test if the algorithm works. Copy the following script and paste it into the new script file that you created.
 
-```python
+```py
 import sensor # Import the module for sensor related functions
 import image # Import module containing machine vision algorithms
 import time # Import module for tracking elapsed time
@@ -161,7 +161,7 @@ In this tutorial you learned how to use OpenMV's built-in face detection algorit
 # Next Steps
 The [HaarCascade](https://docs.openmv.io/library/omv.image.html#class-Haarcascade-feature-descriptor) class provided by OpenMV can also detect other facial features such as eyes. For example you could tweak your **face_detection.py** script to detect your eyes simply by changing the `path` parameter from `frontalface ` to `eye` which is also a built-in model. Go ahead and replace the following line in your script and try to figure out how to overlay your eyes with a bitmap image of an eye. 
 
-```python 
+```py 
 face_cascade = image.HaarCascade("eye", stages=25)
 ```
 
