@@ -12,6 +12,7 @@
      "por-ard-usb",
      "por-ard-ble",
      "por-openmv-bt",
-     "por-ard-bl"
+     "por-ard-bl",
+     "por-openmv-fd"
     ]
  }

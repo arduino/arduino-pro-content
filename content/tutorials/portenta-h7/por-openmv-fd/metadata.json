@@ -1,0 +1,23 @@
+{
+   "id":"por-openmv-fd",
+   "index": 6,
+   "title":"Face Detection with Portenta and OpenMV",
+   "slug":"por-openmv-fd",
+   "authors":[      
+      "Sebastian Romero",
+      "Lenard George"
+   ],
+   "coverImage":{
+      "src":"assets/por_openmv_fd_cover.svg?sanitize=true"
+   },
+   "tags":[
+      "OpenMV",
+      "Face Detection",
+      "Haar Cascade",
+      "Machine Vision",
+      "Machine Learning"
+   ],
+   "abstract":"In this tutorial you will build a MicroPython application with OpenMV that uses the Portenta Vision Shield to detect faces and overlay them with a custom image, in this case, a smiley.",
+   "previousArticle":"por-ard-bl",
+   "nextArticle":null
+}
