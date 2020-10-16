@@ -17,5 +17,5 @@
    ],
    "abstract":"This tutorial will explain what a bootloader is, why you should consider keeping it updated and how you can update it.",
    "previousArticle":"por-openmv-bt",
-   "nextArticle":null
+   "nextArticle":"por-openmv-fd"
 }

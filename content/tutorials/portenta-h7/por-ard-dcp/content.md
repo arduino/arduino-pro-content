@@ -4,7 +4,7 @@ The Portenta H7 is equipped with a processor that has two processing units calle
 ## What You Will Learn
 -   How to upload and run applications on Portenta's M7 and M4 cores.
 -   About the characteristics of the M7 and the M4 cores.
--   How to force bootForce booting the M4 core through the M7 core and why that is necessary.
+-   How to force boot the M4 core through the M7 core and why that is necessary.
 -   Controlling the colours of the built-in RGB LED. 
 
 ## Required Hardware and Software
