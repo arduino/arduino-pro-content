@@ -17,7 +17,7 @@
       "Machine Vision",
       "Machine Learning"
    ],
-   "abstract":"In this tutorial you will build a MicroPython application with OpenMV that uses the Portenta Vision Shield to detect faces and overlay them with a custom image, in this case, a smiley.",
+   "abstract":"In this tutorial you will build a MicroPython application with OpenMV that uses the Portenta Vision Shield to detect faces and overlay them with a custom bitmap image.",
    "previousArticle":"por-ard-bl",
    "nextArticle":null
 }
