@@ -72,7 +72,7 @@ In this tutorial you will use a preloaded smiley image in the monochrome [Portab
 
 Connect your Portenta board to your computer if you haven't done so. Make sure you are running the OpenMV firmware on the Portenta. If you haven't installed the OpenMV firmware yet take a look at the "Configuring the Development Environment" section which explains how to proceed in that case. 
 
-Download [this file](./assets/face.pbm) containing the smiley bitmap and copy it to the flash drive that was mounted when you connected the Portenta running the OpenMV firmware. 
+Download [this file](por-openmv-fd/assets/face.pbm) containing the smiley bitmap and copy it to the flash drive that was mounted when you connected the Portenta running the OpenMV firmware. 
 
 ![Copy the bitmap image to the flash drive](assets/por_openmv_fd_drive.png)
 
