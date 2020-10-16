@@ -15,13 +15,13 @@ In this tutorial you will build a MicroPython application with OpenMV that uses 
 - Portenta Bootloader Version 20+
 - OpenMV IDE 2.6.4+
 
-# The HAAR Cascade Algorithm
+# The Haar Cascade Algorithm
 
-By harnessing the power of machine vision algorithms objects can be detected in a camera stream. Those algorithms can be trained to detect the desired type of object. In this tutorial you will use a machine learning based approach called HAAR cascade to detect faces.
-This approach uses a cascade algorithm that has multiple stages where the output from one stage acts as additional information for the next stage in the cascade. The different stages are responsible for detecting edges, lines, contrast checks and calculating pixel values in a given image. Larger areas of the image are checked first in the earlier stages followed by more numerous and smaller area checks in later stages. The HAAR Cascade function provided by OpenMV allows to specify the amount of stages. Fewer stages make the detection faster while leading to more false positives.
-The built-in HAAR Cascade model for faces is trained against hundreds of images containing faces that are labeled as faces and an equivalent amount of images that don't contain faces in them labeled differently. That allows the algorithm to distinguish such images after it is being trained.
+By harnessing the power of machine vision algorithms objects can be detected in a camera stream. Those algorithms can be trained to detect the desired type of object. In this tutorial you will use a machine learning based approach called Haar cascade to detect faces.
+This approach uses a cascade algorithm that has multiple stages where the output from one stage acts as additional information for the next stage in the cascade. The different stages are responsible for detecting edges, lines, contrast checks and calculating pixel values in a given image. Larger areas of the image are checked first in the earlier stages followed by more numerous and smaller area checks in later stages. The Haar Cascade function provided by OpenMV allows to specify the amount of stages. Fewer stages make the detection faster while leading to more false positives.
+The built-in Haar Cascade model for faces is trained against hundreds of images containing faces that are labeled as faces and an equivalent amount of images that don't contain faces in them labeled differently. That allows the algorithm to distinguish such images after it is being trained.
 
-![The HAAR Cascade process](assets/por_openmv_haar_cascade.svg)
+![The Haar Cascade process](assets/por_openmv_Haar_cascade.svg)
 
 # Creating the Face Detection Script
 
@@ -55,7 +55,7 @@ sensor.set_pixformat(sensor.GRAYSCALE)
 
 ## 4. Finding the Face Features
 
-OpenMV provides a Haar Cascade class ready to be used with the Vision Shield's camera. The function [`image.HaarCascade(path, number of stages)`](https://docs.openmv.io/library/omv.image.html#class-haarcascade-feature-descriptor) is used to load a Haar Cascade model into memory. The `path` parameter can be used to either specify the location of a custom Haar Cascade model or to use the built-in `frontalface` model. The `stages` parameter is use to specify the desired Haar Cascade stages.
+OpenMV provides a Haar Cascade class ready to be used with the Vision Shield's camera. The function [`image.HaarCascade(path, number of stages)`](https://docs.openmv.io/library/omv.image.html#class-Haarcascade-feature-descriptor) is used to load a Haar Cascade model into memory. The `path` parameter can be used to either specify the location of a custom Haar Cascade model or to use the built-in `frontalface` model. The `stages` parameter is use to specify the desired Haar Cascade stages.
 
 ***Remember: Fewer stages make the detection faster while leading to more false positives.***
 
@@ -159,7 +159,7 @@ Click on the "Play" button at the bottom of the left toolbar. Point the camera o
 In this tutorial you learned how to use OpenMV's built-in face detection algorithm which is based on Haar Cascade. Furthermore you learned how to copy a file to the internal flash and how to load an image from the flash into the memory. You have also learned how to draw an image on top of a snapshot from the camera stream.
 
 # Next Steps
-The [HaarCascade](https://docs.openmv.io/library/omv.image.html#class-haarcascade-feature-descriptor) class provided by OpenMV can also detect other facial features such as eyes. For example you could tweak your **face_detection.py** script to detect your eyes simply by changing the `path` parameter from `frontalface ` to `eye` which is also a built-in model. Go ahead and replace the following line in your script and try to figure out how to overlay your eyes with a bitmap image of an eye. 
+The [HaarCascade](https://docs.openmv.io/library/omv.image.html#class-Haarcascade-feature-descriptor) class provided by OpenMV can also detect other facial features such as eyes. For example you could tweak your **face_detection.py** script to detect your eyes simply by changing the `path` parameter from `frontalface ` to `eye` which is also a built-in model. Go ahead and replace the following line in your script and try to figure out how to overlay your eyes with a bitmap image of an eye. 
 
 ```python 
 face_cascade = image.HaarCascade("eye", stages=25)
