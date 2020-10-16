@@ -17,7 +17,7 @@ In this tutorial you will build a MicroPython application with OpenMV that uses 
 
 # The Haar Cascade Algorithm
 
-By harnessing the power of machine vision algorithms objects can be detected in a camera stream. Those algorithms can be trained to detect the desired type of object. In this tutorial you will use a machine learning based approach called Haar cascade to detect faces.
+By harnessing the power of machine vision algorithms objects can be detected in a camera stream. Those algorithms can be trained to detect the desired type of object. In this tutorial you will use a machine learning based approach called Haar Cascade to detect faces.
 
 This approach uses a cascade algorithm that has multiple stages where the output from one stage acts as additional information for the next stage in the cascade. The different stages are responsible for detecting edges, lines, contrast checks and calculating pixel values in a given image. Larger areas of the image are checked first in the earlier stages followed by more numerous and smaller area checks in later stages. The Haar Cascade function provided by OpenMV allows to specify the amount of stages. Fewer stages make the detection faster while leading to more false positives.
 
@@ -154,7 +154,7 @@ while (True):
 
 Click on the "Play" button at the bottom of the left toolbar. Point the camera on the Vision Shield towards your face check if the Portenta can detect it. Once it detects your face it should be covered with a smiley. 
 
-![Load the bitmap Image on to flash drive](assets/por_openmv_fd_output.png)
+![Copy the bitmap image to flash drive](assets/por_openmv_fd_output.png)
 
 # Conclusion
 
