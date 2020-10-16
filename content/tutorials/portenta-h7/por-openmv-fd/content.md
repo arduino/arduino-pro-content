@@ -70,7 +70,11 @@ In this tutorial you will use a preloaded image in the monochrome [Portable Bitm
 
 Connect your Portenta board to your computer if you haven't done so. Make sure you are running the OpenMV firmware on the Portenta. If you haven't installed the OpenMV firmware yet take a look at the "Configuring the Development Environment" section which explains how to proceed in that case. 
 
-Download [this file](/assets/face.pbm) containing the smiley bitmap and copy it to the flash drive that was mounted when you connected the Portenta. Load the image into a variable called `faceImage` using the `Image()` function from the `image` module. The inital slash refers to the root directoy of the flash drive.
+Download [this file](/assets/face.pbm) containing the smiley bitmap and copy it to the flash drive that was mounted when you connected the Portenta. 
+
+![Load the bitmap Image on to flash drive](assets/por_openmv_fd_drive.png)
+
+Load the image into a variable called `faceImage` using the `Image()` function from the `image` module. The inital slash refers to the root directoy of the flash drive.
 
 ```py
 faceImage = image.Image("/face.pbm", copy_to_fb=False)
@@ -146,6 +150,8 @@ while (True):
 
 Click on the "Play" button at the bottom of the left toolbar. Point the camera on the Vision Shield towards your face check if the Portenta can detect it. Once it dects your face it should be covered by a smiley. If it can't detect your face try moving the camera further away or position yourself in front of a wall or another plain background.
 
+![Load the bitmap Image on to flash drive](assets/por_openmv_fd_output.png)
+
 # Conclusion
 
 In this tutorial you learned how to use OpenMV's built-in face detection algorithm which is based on Haar Cascade. Furthermore you learned how to copy a file to the internal flash and how to load an image from the flash into the memory. You have also learned how to draw an image on top of a snapshot from the camera stream.
@@ -161,5 +167,5 @@ face_cascade = image.HaarCascade("eye", stages=25)
 
 
 **Authors:** Sebastian Romero, Lenard George  
-**Reviewed by:** Lenard George [6.10.2020]  
-**Last revision:** Sebastian Romero [7.10.2020]
+**Reviewed by:** Lenard George [15.10.2020]  
+**Last revision:** Sebastian Romero [16.10.2020]
