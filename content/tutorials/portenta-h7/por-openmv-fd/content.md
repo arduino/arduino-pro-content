@@ -19,11 +19,11 @@ In this tutorial you will build a MicroPython application with OpenMV that uses 
 
 By harnessing the power of machine vision algorithms objects can be detected in a camera stream. Those algorithms can be trained to detect the desired type of object. In this tutorial you will use a machine learning based approach called Haar Cascade to detect faces.
 
+![The Haar Cascade process for detecting faces](assets/por_openmv_haar_cascade.svg)
+
 This approach uses a cascade algorithm that has multiple stages where the output from one stage acts as additional information for the next stage in the cascade. The different stages are responsible for detecting edges, lines, contrast checks and calculating pixel values in a given image. Larger areas of the image are checked first in the earlier stages followed by more numerous and smaller area checks in later stages. The Haar Cascade function provided by OpenMV allows to specify the amount of stages. Fewer stages make the detection faster while leading to more false positives.
 
 The built-in Haar Cascade model for faces is trained against hundreds of images containing faces that are labeled as faces and an equivalent amount of images that don't contain faces in them labeled differently. That allows the algorithm to distinguish such images after it is being trained.
-
-![The Haar Cascade process](assets/por_openmv_haar_cascade.svg)
 
 # Creating the Face Detection Script
 
