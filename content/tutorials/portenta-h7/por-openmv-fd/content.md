@@ -1,11 +1,11 @@
 # Face Detection with Portenta and OpenMV
-In this tutorial you will build a MicroPython application with OpenMV that uses the Portenta Vision Shield to detect faces and overlay them with a custom image, in this case, a smiley. Think of it as building your own camera filter that puts a smile on every face it detects.
+In this tutorial you will build a MicroPython application with OpenMV that uses the Portenta Vision Shield to detect faces and overlay them with a custom image, in this case, a smiley. Think of it as building your own camera filter that puts a smile on every face it detects. This tutorial is based on the face detection example that comes with the OpenMV IDE.
 
 ## What You Will Learn
-- How to use the OpenMV IDE to run MicroPython on Portenta,
-- About the face detection method implemented in the example, 
-- How to use the built-in face detection algorithm of OpenMV,
-- How to use MicroPython to read files from the internal flash.
+- How to use the OpenMV IDE to run MicroPython on Portenta
+- How to use the built-in face detection algorithm of OpenMV
+- Copying files to the internal flash of the Portenta
+- Using MicroPython to read files from the internal flash
 
 ## Required Hardware and Software
 - Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
@@ -17,21 +17,19 @@ In this tutorial you will build a MicroPython application with OpenMV that uses 
 
 # The HAAR Cascade Algorithm
 
-Face detection happens by using a machine learning based approach called HAAR cascade. This approach uses a cascade algorithm that has multiple stages where the output from one stage acts as additional information for the next stage in the cascade. The different stages are responsible for detecting edges, lines, contrast checks and calculating pixel values in a given image. Larger areas of the image are checked first in the earlier stages followed by more numerous and smaller area checks in later stages. The HAAR Cascade function provided by OpenMV contains 25 such stages. HAAR Cascades are trained against hundreds of images with a face that are labelled as faces and an equivalent amount of images that dont have faces in them labeled differently. 
+By harnessing the power of machine vision algorithms objects can be detected in a camera stream. Those algorithms can be trained to detect the desired type of object. In this tutorial you will use a machine learning based approach called HAAR cascade to detect faces.
+This approach uses a cascade algorithm that has multiple stages where the output from one stage acts as additional information for the next stage in the cascade. The different stages are responsible for detecting edges, lines, contrast checks and calculating pixel values in a given image. Larger areas of the image are checked first in the earlier stages followed by more numerous and smaller area checks in later stages. The HAAR Cascade function provided by OpenMV allows to specify the amount of stages. Fewer stages make the detection faster while leading to more false positives.
+The built-in HAAR Cascade model for faces is trained against hundreds of images containing faces that are labeled as faces and an equivalent amount of images that don't contain faces in them labeled differently. That allows the algorithm to distinguish such images after it is being trained.
 
 ![The HAAR Cascade Process](assets/por_openmv_haar_cascade.svg)
 
 # Creating the Face Detection Script
 
-For this tutorial you will be using the OpenMV IDE along with the OpenMV firmare on your Portenta H7 to build the face detection sketch. If this is your first time using the Vision Carrier and OpenMV, We recommend you to take a look at the "Configuring the Development Environment" section inside the [Blob Detection tutorial](https://www.arduino.cc/pro/tutorials/portenta-h7/por-openmv-bt) to configure the development environment. 
+For this tutorial you will be using the OpenMV IDE along with the OpenMV firmare on your Portenta H7 to build the face detection script. If this is your first time using the Vision Carrier and OpenMV we recommend you to take a look at the "Configuring the Development Environment" section inside the [Blob Detection tutorial](https://www.arduino.cc/pro/tutorials/portenta-h7/por-openmv-bt) to configure the development environment. 
 
 ## 1. The Basic Setup
 
-Attach your Vision Carrier to your Portenta H7 and open the **OpenMV** Editor.  For this tutorial, you will be using **face_detection.py** example provided by OpenMV as a starting point. This example can be found inside **File->Examples->Face-Detection->face_detection.py**. 
-
-![The face_detection.py example sketch](assets/por_openmv_fd_example.png)
-
-You will also have to download a bitmap file (.pbm format) of your favourite emoji and Store it on the microSD card. Insert the microSD card into the Vision Carrier's SD card slot and connect the board to your computer. 
+Attach your Vision Carrier to your Portenta H7 and open the **OpenMV** Editor.  For this tutorial, you will create a new script that is based on the face detection example provided by OpenMV. Create a new script by clicking the "New File" button in the toolbar on the left side.
 
 ## 2. Importing the Modules
 
