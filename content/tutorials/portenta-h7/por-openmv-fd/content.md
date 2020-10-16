@@ -43,7 +43,7 @@ import time # Import module for tracking elapsed time
 
 ## 3. Preparing the Sensor
 
-The next step is to calibrate the camera sensor for achieving the best results using the `sensor` module. The `set_contrast()`function sets the contrast of the sensor to its highest value 3 to easily identify lines and edges. `set_gainceiling()` a controls the amplification of the signal from the camera sensor including any associated background noise. For maximisng the detection rate for a gray scale camera, it is recommended to reduce the frame size to `HQVGA`.
+The next step is to calibrate the camera sensor for achieving the best results using the `sensor` module. You can use the `set_contrast()` function to set the contrast of the sensor to its highest value (3). This can help the algorithm identifying lines and edges more easily. `set_gainceiling()` controls the amplification of the signal from the camera sensor including any associated background noise. For maximising the detection success rate it is recommended to set the camera frame size to `HQVGA`.
 
 ```pyt
 # Sensor settings
@@ -66,7 +66,7 @@ print(face_cascade)
 
 Once you know the location of the faces in the camera image you can overlay them with an image of your choice. OpenMV currently supports bmp, pgm or ppm image formats. Image formats with an alpha layer such as PNG are not supported yet.
 
-In this tutorial you will use a preloaded image in the monochrome [Portable Bitmap Image](https://en.wikipedia.org/wiki/Netpbm) (.pbm) format. This format consists of a matrix of zeroes and ones denoting black and white pixels. 1 stands for a black pixel, 0 for a white one. 
+In this tutorial you will use a preloaded image in the monochrome [Portable Bitmap Image](https://en.wikipedia.org/wiki/Netpbm) (.pbm) format. This format consists of a matrix of zeroes and ones denoting black and white pixels. 1 stands for a black pixel, 0 for a white one. If you want to create your custom image make sure you save it in one of the suppoerted bitmap formats (bmp, pgm or ppm). You may use an image editor of your choice which supports exporting images in one of these formats. For this tutorial Adobe Photoshop was used.
 
 Connect your Portenta board to your computer if you haven't done so. Make sure you are running the OpenMV firmware on the Portenta. If you haven't installed the OpenMV firmware yet take a look at the "Configuring the Development Environment" section which explains how to proceed in that case. 
 
