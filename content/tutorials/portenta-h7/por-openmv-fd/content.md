@@ -1,4 +1,4 @@
-# Creating a Basic Face Filter
+# Creating a Basic Face Filter With OpenMV
 In this tutorial you will build a MicroPython application with OpenMV that uses the Portenta Vision Shield to detect faces and overlay them with a custom image, in this case, a smiley. Think of it as building your own camera filter that puts a smile on every face it detects. This tutorial is based on the face detection example that comes with the OpenMV IDE.
 
 ## What You Will Learn
@@ -29,7 +29,7 @@ For this tutorial you will be using the OpenMV IDE along with the OpenMV firmare
 
 ## 1. The Basic Setup
 
-Attach your Vision Carrier to your Portenta H7 and open the **OpenMV** Editor.  For this tutorial, you will create a new script that is based on the face detection example provided by OpenMV. Create a new script by clicking the "New File" button in the toolbar on the left side.
+Attach your Vision Carrier to your Portenta H7 and open the **OpenMV** Editor. For this tutorial, you will create a new script that is based on the face detection example provided by OpenMV. Create a new script by clicking the "New File" button in the toolbar on the left side and save it as **face_detection.py**.
 
 ## 2. Importing the Modules
 
@@ -74,7 +74,7 @@ Connect your Portenta board to your computer if you haven't done so. Make sure y
 
 Download [this file](assets/face.pbm) containing the smiley bitmap and copy it to the flash drive that was mounted when you connected the Portenta running the OpenMV firmware. 
 
-![Copy the bitmap image to flash drive](assets/por_openmv_fd_drive.png)
+![Copy the bitmap image to the flash drive](assets/por_openmv_fd_drive.png)
 
 Load the image into a variable called `faceImage` using the `Image()` function from the `image` module. The inital slash refers to the root directoy of the flash drive. In order to use the image as an overlay to the camera stream instead of directly displaying it set the `copy_to_fb` to False such that it doesn't get copied into the frame buffer automatically.
 
