@@ -21,7 +21,7 @@ By harnessing the power of machine vision algorithms objects can be detected in 
 This approach uses a cascade algorithm that has multiple stages where the output from one stage acts as additional information for the next stage in the cascade. The different stages are responsible for detecting edges, lines, contrast checks and calculating pixel values in a given image. Larger areas of the image are checked first in the earlier stages followed by more numerous and smaller area checks in later stages. The Haar Cascade function provided by OpenMV allows to specify the amount of stages. Fewer stages make the detection faster while leading to more false positives.
 The built-in Haar Cascade model for faces is trained against hundreds of images containing faces that are labeled as faces and an equivalent amount of images that don't contain faces in them labeled differently. That allows the algorithm to distinguish such images after it is being trained.
 
-![The Haar Cascade process](assets/por_openmv_Haar_cascade.svg)
+![The Haar Cascade process](assets/por_openmv_haar_cascade.svg)
 
 # Creating the Face Detection Script
 
@@ -72,7 +72,7 @@ In this tutorial you will use a preloaded smiley image in the monochrome [Portab
 
 Connect your Portenta board to your computer if you haven't done so. Make sure you are running the OpenMV firmware on the Portenta. If you haven't installed the OpenMV firmware yet take a look at the "Configuring the Development Environment" section which explains how to proceed in that case. 
 
-Download [this file](/assets/face.pbm) containing the smiley bitmap and copy it to the flash drive that was mounted when you connected the Portenta running the OpenMV firmware. 
+Download [this file](assets/face.pbm) containing the smiley bitmap and copy it to the flash drive that was mounted when you connected the Portenta running the OpenMV firmware. 
 
 ![Copy the bitmap image to flash drive](assets/por_openmv_fd_drive.png)
 
