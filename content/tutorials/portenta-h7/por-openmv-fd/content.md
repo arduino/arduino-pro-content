@@ -1,4 +1,4 @@
-# Face Detection with Portenta and OpenMV
+# Creating a Basic Face Filter
 In this tutorial you will build a MicroPython application with OpenMV that uses the Portenta Vision Shield to detect faces and overlay them with a custom image, in this case, a smiley. Think of it as building your own camera filter that puts a smile on every face it detects. This tutorial is based on the face detection example that comes with the OpenMV IDE.
 
 ## What You Will Learn

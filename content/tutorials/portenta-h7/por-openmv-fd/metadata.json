@@ -1,7 +1,7 @@
 {
    "id":"por-openmv-fd",
    "index": 6,
-   "title":"Face Detection with Portenta and OpenMV",
+   "title":"Creating a Basic Face Filter",
    "slug":"por-openmv-fd",
    "authors":[      
       "Sebastian Romero",
