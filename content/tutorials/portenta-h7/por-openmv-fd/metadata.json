@@ -1,7 +1,7 @@
 {
    "id":"por-openmv-fd",
    "index": 6,
-   "title":"Creating a Basic Face Filter",
+   "title":"Creating a Basic Face Filter With OpenMV",
    "slug":"por-openmv-fd",
    "authors":[      
       "Sebastian Romero",
