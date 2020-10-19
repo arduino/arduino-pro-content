@@ -1,16 +1,16 @@
 # Creating GUIs With LVGL  
-In this tutorial you will learn to use the [LVGL](https://lvgl.io/) library and the Portenta_lvgl example to create a simple graphical user interface that consists of a label that updates itself.
+In this tutorial you will learn to use the [LVGL](https://lvgl.io/) library to create a simple graphical user interface that consists of a label that updates itself.
 
 ## What You Will Learn
--   Understanding the Portenta_lvgl example.
--   Building a simple UI with a text label and a text button. 
+-   Understanding the structure to build LVGL interfaces.
+-   Building a simple UI with a text label and a button. 
 -   Configuring the setup to display the User-Interface. 
 
 ## Required Hardware and Software
 -   Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
 -   USB C cable (either USB A to USB C or USB C to USB C)
 -   Arduino IDE 1.8.10+  or Arduino Pro IDE 0.0.4+ 
--   USB 
+-   USB-C hub with HDMI
 -   External monitor 
 -   HDMI cable 
 
@@ -20,7 +20,7 @@ Graphical User interfaces are necessary for visualising information and interact
 
 # Building a simple GUI 
 
-we are going to work on the **Portenta_lvgl** example , The Portenta H7 comes with an inbuilt,  In this tutorial we are going to upload the lvgl example to the portenta board. Once the sketch is uploaded the board becomes a usb host where it then is connected to the usb hub which then is connected to an external monitor and powered externally. when connected the monitor the buttons and text fields will be connected. 
+We are going to build a sketch from scratch,  In this tutorial we are going to upload our sketch to the portenta board. Once the sketch is uploaded the board becomes a usb host where it then is connected to the usb hub which then is connected to an external monitor and powered externally. when connected the monitor the buttons and text fields will be connected. 
 
 ![por_ard_lvgl_tutorial_steps](assets/por_ard_lvgl_tutorial_steps.svg)
 
@@ -37,15 +37,12 @@ we are going to work on the **Portenta_lvgl** example , The Portenta H7 comes wi
    
    Once you have installed the library, create a new Sketch **File --> New**
    
-   *** If you cant find the sketch, make sure you have selected the right board inside Tools > Boards ***
-   
-   ![por_ard_lvgl_select_example](assets/por_ard_lvgl_select_example.svg)
+   *** Make sure you have selected the right board inside Tools > Boards ***
    
    
    
-3. The Hello World label widget 
-
-   Lets start by including the libraries that we are going to use.
+   
+3. Including the libraries that we are going to use.
    
    ```cpp
    #include "Portenta_LittleVGL.h"
@@ -54,18 +51,15 @@ we are going to work on the **Portenta_lvgl** example , The Portenta H7 comes wi
    
 4. Adding a Button widget 
 
-   Lets add custom button widget using the `lv_btn` object, This object allows you to have an inner label whose text can be easily configure. The following lines of code initialises the button variable and its label which you can add it at the beginning of the sketch. 
+   Lets add custom button widget using the `lv_btn` object, This object allows you to have an inner label whose text can be easily configure. The following lines of code initialises the button variable and its label (`myCustomLabel`) which you can add it at the beginning of the sketch. 
 
    ```cpp
    static lv_obj_t *lv_btn;
    static lv_obj_t *myCustomLabel;
    ```
-
-   ![por_ard_lvgl_create_variables](assets/por_ard_lvgl_create_variables.png)
-
    
 
-   Then at the end of the `setup()` you can configure the type, style and the position of the button. 
+   Then at the end of the `setup()` you can configure the type, style and the position of the button and label. 
 
    ```cpp
    //Setting up the Button
@@ -78,10 +72,19 @@ we are going to work on the **Portenta_lvgl** example , The Portenta H7 comes wi
    lv_obj_align(myCustomLabel, NULL, LV_ALIGN_CENTER, 0, -40);   //We move it to the center of the screen below the 'Hello world' and align centered
    lv_label_set_text(myCustomLabel , "Custom Button");          //We set the default text
    ```
-
+   
    ![por_ard_lvgl_setup_widgets](assets/por_ard_lvgl_setup_widgets.png)
+   
+   Now that we have configured all our widgets we need to update the output by using `lv_task_handler()` `inside the loop()`
+   
+   ```cpp
+   void loop() {
+      // put your main code here, to run repeatedly:
+      lv_task_handler();
+   }
+   ```
 
-   Compile and Upload the sketch to your board. Connect the board to the USB hub with the Monitor attached to the HDMI port.  Once you power up the HUB, you will see a button with a label **CustomLabel**.
+   Compile and Upload the sketch to your board. Connect the board to the USB hub with the Monitor attached to the HDMI port.  Once you power up the HUB, you will see a button with a label saying **Custom Button**.
 
    
 4. Connect an external monitor
@@ -112,7 +115,7 @@ we are going to work on the **Portenta_lvgl** example , The Portenta H7 comes wi
    }
    ```
 
-   To make it work we need to take the task and add it inside the LVGL task handler, by adding  at the end `of the setup()`We set the task to refresh each second.
+   To make it work we need to take the task and add it inside the LVGL task handler, by adding  at the end of the `setup()`We set the task to refresh each second.
 
    ```cpp
     lv_task_create(label_Task, 1000, LV_TASK_PRIO_MID, NULL);
