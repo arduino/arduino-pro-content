@@ -17,12 +17,6 @@ In this tutorial you will learn what RPC is and will develop an application that
 # What is RPC
 A remote procedure call (RPC) is when a computer program calls for a procedure (set of instructions) to be executed in a different address space, for example on another computer or a different memory section of the device. In Portenta H7 for example, the M7 core is able to run a sketch which calls for a subroutine to be executed on M4 or vice versa. Once the procedure is run by the remote (server), the results of the subroutine are returned to the local computer (client) to carry on with the following instruction. RPC are based on a client-server relation model, in which the caller is the client and the executor is server.
 
-
-
-
-
-
-
 # Configuring the Development Environment
 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
 
