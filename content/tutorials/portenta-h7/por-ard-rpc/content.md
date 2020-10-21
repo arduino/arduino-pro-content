@@ -1,5 +1,5 @@
 # Using RPC serial communication
-In this tutorial you will learn what RPC is and will develop an application that illustrates this concept. By doing this, you will understand what RPC is and how to use the `RPC_internal.h` library that allows to take advantage of the RPC feature of yoour Portenta H7.    
+In this tutorial you will learn what RPC is and will develop an application that illustrates this concept. By doing this, you will understand what RPC is and how to use the `RPC_internal.h` library that allows to take advantage of the RPC feature of your Portenta H7.    
 
 ## What You Will Learn
 -   What is RPC and its applications
