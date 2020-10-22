@@ -37,6 +37,8 @@ Both the bootloader and the firmware have predefined (but adjustable) locations 
 # Flashing the Latest Bootloader
 Even though the Arduino boards come pre-flashed with a bootloader there are sometimes improvements or bug fixes which get integrated into an updated bootloader version. They usually improve stability and performance. To benefit from that it makes sense to update it when there is a new version.
 
+The bootloader is stored in a location that doesn't get overwritten by a firmware being uploaded to the Portenta. If you upload for example the OpenMV firmware and then later decide to switch back to a regular Arduino firmware the bootloader won't be affected.
+
 ## 1. Updating the Core
 New versions of the bootloader normally get shipped together with the core. That means you first have to update the core before you can update the bootloader. To do so open the board manager in the menu under *Tools->Board->Boards Manager...*
 
