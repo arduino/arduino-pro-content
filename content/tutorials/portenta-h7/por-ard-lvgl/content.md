@@ -1,5 +1,5 @@
 # Creating GUIs With LVGL  
-In this tutorial you will learn to use the [LVGL](https://lvgl.io/) library to create a simple graphical user interface that consists of a label that updates itself.
+In this tutorial you will learn to use the [LVGL](https://lvgl.io/) library to create a simple graphical user interface that consists of a button and the inner text label that updates itself.
 
 ## What You Will Learn
 -   Understanding the structure to build LVGL interfaces.
@@ -10,7 +10,7 @@ In this tutorial you will learn to use the [LVGL](https://lvgl.io/) library to c
 -   Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
 -   USB C cable (either USB A to USB C or USB C to USB C)
 -   Arduino IDE 1.8.10+  or Arduino Pro IDE 0.0.4+ 
--   USB-C hub with HDMI
+-   USB-C hub with HDMI [The one we used](https://www.dustinhome.se/product/5011166993/travel-port-usb-c-total)
 -   External monitor 
 -   HDMI cable 
 
@@ -20,7 +20,7 @@ Graphical User interfaces are necessary for visualising information and interact
 
 # Building a simple GUI 
 
-The program you are going to create in this tutorial will, on one hand, convert your portents board into a USB Host that will handle the connection with a monitor (externaly powered), and in the other hand, you will configure the Portenta  to display information from the board in the Monitor connected to it.
+This tutorial will guide you to build a basic user interface using the LVGL and the USBhost Libraries that you will have download using the Arduino Library Manager. The setup for this tutorial requires you to first to upload the finished sketch file to the Portenta board where it converts the board into a usb host Device. You will then connect the board to a USB-hub and connect an external monitor. Once the HUB is powered externally, a graphical user interface with a button and a text-field will be displayed on the screen.
 
 ![por_ard_lvgl_tutorial_steps](assets/por_ard_lvgl_tutorial_steps.svg)
 
@@ -103,12 +103,12 @@ Compile and upload the sketch, to your Portenta H7. At this point your board bec
    ```cpp
    static void label_Task(lv_task_t * myTask) {
       //printf("count: %d\n", count);                        //We can see in the Serial monitor the count
-   lv_label_set_text_fmt(myCustomLabel, "%d" , count);    //Update the text from the label
+      lv_label_set_text_fmt(myCustomLabel, "%d" , count);    //Update the text from the label
       count++;      //Increase the count number
-}
+   }
    ```
    
-   * And, to finish, to program the execution of the task each second, we ned to add the next line of code as the last command inside the `setup()` function 
+   * And, to finish, to program the execution of the task each second, we need to add the next line of code as the last command inside the `setup()` function 
    
    ```cpp
     lv_task_create(label_Task, 1000, LV_TASK_PRIO_MID, NULL);
