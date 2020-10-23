@@ -77,7 +77,7 @@ This tutorial will guide you to build a basic user interface using the LVGL and 
 
 4. Connect an external monitor
 
-Compile and upload the sketch, to your Portenta H7. At this point your board becomes as the host. Unplug the board from your computer and connect it to USB hub along with a monitor that is connected to the HDMI port. Power up your hub by connecting it to an external power source and the monitor will display a "`Custom Button`". 
+   Compile and upload the sketch, to your Portenta H7. At this point your board becomes as the host. Unplug the board from your computer and connect it to USB hub along with a monitor that is connected to the HDMI port. Power up your hub by connecting it to an external power source and the monitor will display a "`Custom Button`". 
 
 
    ![por_ard_lvgl_connect_monitor](assets/por_ard_lvgl_connect_monitor.svg)
