@@ -137,6 +137,6 @@ Try to uncomment the printf inside the task to check if the Serial Monitor its u
 ## Sketch Upload Troubleshooting
 * Make sure you set the board in bootloader mode, by clicking twice the reset button, then you should see the built-in LED fading.
 
-**Authors:** Pablo Marquinez & Lenard George
+**Authors:** Pablo Marquínez & Lenard George
 **Reviewed by:** Jose Garcia [20.10.2020]  
 **Last revision:**  [20.10.2020]
