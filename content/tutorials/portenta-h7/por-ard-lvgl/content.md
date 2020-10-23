@@ -32,48 +32,48 @@ This tutorial will guide you to build a basic user interface using the LVGL and 
 
 2. Download the lvgl library
 
-Next, select Portenta in the Tool > Board menu before to install the [lvgl Library](https://github.com/lvgl/lvgl) from the Library Manager. To do so, go to **Sketch** **->** **Include Libraries** **-> Manage Libraries** and search for LVGL. Dowload the **lvgl library** by [kisvegabor](https://github.com/kisvegabor).  
+   Next, select Portenta in the Tool > Board menu before to install the [lvgl Library](https://github.com/lvgl/lvgl) from the Library Manager. To do so, go to **Sketch** **->** **Include Libraries** **-> Manage Libraries** and search for LVGL. Dowload the **lvgl library** by [kisvegabor](https://github.com/kisvegabor).  
 
 ![por_ard_lvgl_download_library](assets/por_ard_lvgl_select_library.svg)
 
-***Make sure you have selected the right board inside Tools > Boards, otherwise you won't see the library or you may isntall a library that is not compatible with Portenta .***
+   ***Make sure you have selected the right board inside Tools > Boards, otherwise you won't see the library or you may isntall a library that is not compatible with Portenta .***
 
 3. Once you have installed the library,  copy the following code, paste it into a new sketch file and name it **lvglExample.ino**
 
-```cpp
-#include "Portenta_LittleVGL.h"
-#include "USBHost.h"
+   ```cpp
+   #include "Portenta_LittleVGL.h"
+   #include "USBHost.h"
 
-static lv_obj_t *lv_btn;
-static lv_obj_t *myCustomLabel;
+   static lv_obj_t *lv_btn;
+   static lv_obj_t *myCustomLabel;
 
-void setup() {
+   void setup() {
 
-  portenta_init_video();
+     portenta_init_video();
 
-  //Setting up the Button
-  lv_btn = lv_btn_create(lv_scr_act(), NULL);
-  lv_obj_align(lv_btn, NULL, LV_ALIGN_CENTER, 0, -40);
-  //lv_obj_set_event_cb(lv_btn, event_handler);               //If you want to handle the button’s callback create a cb_btn function
+     //Setting up the Button
+     lv_btn = lv_btn_create(lv_scr_act(), NULL);
+     lv_obj_align(lv_btn, NULL, LV_ALIGN_CENTER, 0, -40);
+     //lv_obj_set_event_cb(lv_btn, event_handler);               //If you want to handle the button’s callback create a cb_btn function
 
-  //Setting up inner Label
-  myCustomLabel = lv_label_create(lv_scr_act(), NULL);        //We make the object be a label widget
-  lv_obj_align(myCustomLabel, NULL, LV_ALIGN_CENTER, 0, -40);   //We move it to the center of the screen below the ‘Hello world’ and align centered
-  lv_label_set_text(myCustomLabel , "Custom Button");          //We set the default text
-}
+     //Setting up inner Label
+     myCustomLabel = lv_label_create(lv_scr_act(), NULL);        //We make the object be a label widget
+     lv_obj_align(myCustomLabel, NULL, LV_ALIGN_CENTER, 0, -40);   //We move it to the center of the screen below the ‘Hello world’ and align centered
+     lv_label_set_text(myCustomLabel , "Custom Button");          //We set the default text
+   }
 
-void loop() {
+   void loop() {
 
-  // put your main code here, to run repeatedly:
-  lv_task_handler();
-}
-```
+     // put your main code here, to run repeatedly:
+     lv_task_handler();
+   }
+   ```
 
-This sketch creates a button that will be displayed in the monitor. By using the `lv_btn` statement we create the phisical button and then by modifying the `myCustomLabel`part, you will be able to add the text you want to the button.
+   This sketch creates a button that will be displayed in the monitor. By using the `lv_btn` statement we create the phisical button and then by modifying the `myCustomLabel`part, you will be able to add the text you want to the button.
 
-Then, in the setup, it configures  the type, style and the position of the button and lits abel.
+   Then, in the setup, it configures  the type, style and the position of the button and lits abel.
 
-To finish, in the loop, it calls to the `lv_task_handler()` which will update the output to the external monitor. 
+   To finish, in the loop, it calls to the `lv_task_handler()` which will update the output to the external monitor. 
 
 4. Connect an external monitor
 
