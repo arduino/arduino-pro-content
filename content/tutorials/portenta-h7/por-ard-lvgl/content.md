@@ -10,7 +10,7 @@ In this tutorial you will learn to use the [LVGL](https://lvgl.io/) library to c
 -   Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
 -   USB C cable (either USB A to USB C or USB C to USB C)
 -   Arduino IDE 1.8.10+  or Arduino Pro IDE 0.0.4+ 
--   USB-C hub with HDMI [The one we used](https://www.dustinhome.se/product/5011166993/travel-port-usb-c-total)
+-   USB-C hub with HDMI (<[The one we used](https://www.dustinhome.se/product/5011166993/travel-port-usb-c-total)>)
 -   External monitor 
 -   HDMI cable 
 
@@ -82,7 +82,7 @@ This tutorial will guide you to build a basic user interface using the LVGL and 
 
    ![por_ard_lvgl_connect_monitor](assets/por_ard_lvgl_connect_monitor.svg)
 
-   *** If you arent familiar with how the USB host works, we recommend you to have a look at the [USB Host tutorial](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-usb ) ***
+   ***If you arent familiar with how the USB host works, we recommend you to have a look at the [USB Host tutorial](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-usb )***
 
 
 5. Create a simple counter
