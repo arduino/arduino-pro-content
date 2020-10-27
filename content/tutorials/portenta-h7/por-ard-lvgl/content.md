@@ -156,6 +156,9 @@ Try to uncomment the printf inside the task to check if the Serial Monitor its u
 
 ## Sketch Upload Troubleshooting
 * Make sure you set the board in bootloader mode, by clicking twice the reset button, then you should see the built-in LED fading.
+* If you uploaded the sketch and you dont have any output in the display, make sure you have in the setup `portenta_init_video()`.
+* Unplug and plug back the HDMI cable.
+* Reset the Portenta once its connected to the HUB.
 
 **Authors:** Pablo Marquínez & Lenard George
 **Reviewed by:** Jose Garcia [20.10.2020]  
