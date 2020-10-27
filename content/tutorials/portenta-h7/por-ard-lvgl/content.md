@@ -48,22 +48,22 @@ This tutorial will guide you to build a basic user interface using the LVGL and 
    static lv_obj_t *myCustomLabel;
 
    void setup() {
-
+     // put your setup code here, to run once:
+     Serial1.begin(115200);
+     
      portenta_init_video();
 
      //Setting up the Button
      lv_btn = lv_btn_create(lv_scr_act(), NULL);
      lv_obj_align(lv_btn, NULL, LV_ALIGN_CENTER, 0, -40);
-     //lv_obj_set_event_cb(lv_btn, event_handler);               //If you want to handle the button’s callback create a cb_btn function
+     //lv_obj_set_event_cb(lv_btn, event_handler);            // If you want to handle the button’s callback create a cb_btn function
 
      //Setting up inner Label
-     myCustomLabel = lv_label_create(lv_scr_act(), NULL);        //We make the object be a label widget
-     lv_obj_align(myCustomLabel, NULL, LV_ALIGN_CENTER, 0, -40);   //We move it to the center of the screen below the ‘Hello world’ and align centered
-     lv_label_set_text(myCustomLabel , "Custom Button");          //We set the default text
+     myCustomLabel = lv_label_create(lv_btn, NULL);           // We make the object be a label widget, lv_btn child     lv_obj_align(myCustomLabel, NULL, LV_ALIGN_CENTER, 0, -40);   // We move it to the center of the screen below the ‘Hello world’ and align centered
+     lv_label_set_text(myCustomLabel , "Button");      // We set the default text
    }
 
    void loop() {
-
      // put your main code here, to run repeatedly:
      lv_task_handler();
    }
@@ -77,7 +77,7 @@ This tutorial will guide you to build a basic user interface using the LVGL and 
 
 4. Connect an external monitor
 
-   Compile and upload the sketch, to your Portenta H7. At this point your board becomes as the host. Unplug the board from your computer and connect it to USB hub along with a monitor that is connected to the HDMI port. Power up your hub by connecting it to an external power source and the monitor will display a "`Custom Button`". 
+   Compile and upload the sketch, to your Portenta H7. At this point your board becomes as the host. Unplug the board from your computer and connect it to USB hub along with a monitor that is connected to the HDMI port. Power up your hub by connecting it to an external power source and the monitor will display a Button with the inner text `Button`". 
 
 
    ![por_ard_lvgl_connect_monitor](assets/por_ard_lvgl_connect_monitor.svg)
@@ -91,9 +91,12 @@ This tutorial will guide you to build a basic user interface using the LVGL and 
 
    Let's update the sketch by adding the following portions of code: 
    
-   * First the new task declaration and the counter variable at the beginninf of the program (before the Setup() function)
+   * First the new task declaration and the counter variable at the beginninf of the program (before the `setup()` function)
    
    ```cpp
+   static lv_obj_t * lv_btn;
+   static lv_obj_t * myCustomLabel;
+
    static void label_Task(lv_task_t * myTask);
    uint32_t count = 0;
    ```
@@ -111,7 +114,24 @@ This tutorial will guide you to build a basic user interface using the LVGL and 
    * And, to finish, to program the execution of the task each second, we need to add the next line of code as the last command inside the `setup()` function 
    
    ```cpp
-    lv_task_create(label_Task, 1000, LV_TASK_PRIO_MID, NULL);
+    void setup() {
+     // put your setup code here, to run once:
+     Serial1.begin(115200);
+
+     portenta_init_video();
+
+     //Setting up the Button
+     lv_btn = lv_btn_create(lv_scr_act(), NULL);
+     lv_obj_align(lv_btn, NULL, LV_ALIGN_CENTER, -40, -40);
+     //lv_obj_set_event_cb(lv_btn, event_handler);        // If you want to handle the button's callback create a cb_btn function
+
+     //Setting up inner Label
+     myCustomLabel = lv_label_create(lv_btn, NULL);       // We make the object be a label widget, lv_btn child
+     lv_label_set_text(myCustomLabel , "Button");         // We set the default text
+
+     //Create a task
+     lv_task_create(label_Task, 1000, LV_TASK_PRIO_MID, NULL);
+   }
    ```
 
 # Conclusion
