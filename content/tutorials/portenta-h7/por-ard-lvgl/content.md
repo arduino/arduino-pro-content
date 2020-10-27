@@ -84,6 +84,7 @@ This tutorial will guide you to build a basic user interface using the LVGL and 
 
    ***If you arent familiar with how the USB host works, we recommend you to have a look at the [USB Host tutorial](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-usb )***
 
+   The button should be the default one, have a look <https://docs.lvgl.io/latest/en/html/widgets/btn.html#simple-buttons>
 
 5. Create a simple counter
 
