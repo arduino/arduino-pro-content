@@ -1,4 +1,26 @@
 # Creating GUIs With LVGL  
+In this tutorial you will learn to use the [LVGL](https://lvgl.io/) library and the Portenta_lvgl example to create a simple graphical user interface that consists of a label that updates itself.
+
+## What You Will Learn
+-   Understanding the Portenta_lvgl example.
+-   Building a simple UI with a text label and a text button. 
+-   Configuring the setup to display the User-Interface. 
+
+## Required Hardware and Software
+-   Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
+-   USB C cable (either USB A to USB C or USB C to USB C)
+-   Arduino IDE 1.8.10+  or Arduino Pro IDE 0.0.4+ 
+-   USB 
+-   External monitor 
+-   HDMI cable 
+
+# The Light and Versatile Graphics Library...
+
+Graphical User interfaces are necessary for visualising information and interacting with certain aspects of the applications. Also known as LVGL this open-sourced library is used to create graphical user-interfaces for microcontrollers and high-end processors. The light weight embedded library provides all the necessary widgets and the user interface elements that will allow you to easily  create user interfaces for displays like OLED, TFT, monitors, Drive Monochrom and touch screens.
+
+# Building a simple GUI 
+
+we are going to work on the **Portenta_lvgl** example , The Portenta H7 comes with an inbuilt,  In this tutorial we are going to upload the lvgl example to the portenta board. Once the sketch is uploaded the board becomes a usb host where it then is connected to the usb hub which then is connected to an external monitor and powered externally. when connected the monitor the buttons and text fields will be connected. 
 
 ![por_ard_lvgl_tutorial_steps](assets/por_ard_lvgl_tutorial_steps.svg)
 
@@ -9,15 +31,19 @@
 2. Download the lvgl library
 
    To start with, you need to download the [lvgl Library](https://github.com/lvgl/lvgl) from the Library Manager. Go to **Sketch** **->** **Include Libraries** **-> Manage Libraries** and search for LVGL. Dowload the **lvgl library** by [kisvegabor](https://github.com/kisvegabor).  
-
+   
    ![por_ard_lvgl_download_library](assets/por_ard_lvgl_select_library.svg)
    
    
    Once you have installed the library, create a new Sketch **File --> New**
    
    *** If you cant find the sketch, make sure you have selected the right board inside Tools > Boards ***
-
+   
    ![por_ard_lvgl_select_example](assets/por_ard_lvgl_select_example.svg)
+   
+   
+   
+3. The Hello World label widget 
 
    Lets start by including the libraries that we are going to use.
    
@@ -37,9 +63,9 @@
 
    ![por_ard_lvgl_create_variables](assets/por_ard_lvgl_create_variables.png)
 
+   
 
-
-   Then at the end of the `setup()` you can configure the type, style and the position of the button.
+   Then at the end of the `setup()` you can configure the type, style and the position of the button. 
 
    ```cpp
    //Setting up the Button
@@ -77,7 +103,7 @@
    ```
    
    After that we need to create the void that we declared before:
-
+   
    ```cpp
    static void label_Task(lv_task_t * myTask) {
       //printf("count: %d\n", count);                        //We can see in the Serial monitor the count
@@ -94,7 +120,7 @@
 
 # Conclusion
 
-in this tutorial you learned how to build a simple user interface for the Portenta H7 and the configuration required to view the
+in this tutorial you learned how to build a simple user interface for the Portenta H7 and the configuration required to view the 
 
 # Next Steps
 -   
