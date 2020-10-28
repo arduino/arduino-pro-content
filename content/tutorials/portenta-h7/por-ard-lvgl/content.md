@@ -40,41 +40,50 @@ Next, select Portenta in the Tool > Board menu before to install the [lvgl Libra
 
 ## 3. Add the button widget  
 
-   ```cpp
-   #include "Portenta_LittleVGL.h"
-   #include "USBHost.h"
+Let's start by including the libraries that we are going to use.
 
-   static lv_obj_t *lv_btn;
-   static lv_obj_t *myCustomLabel;
+```c++
+#include "Portenta_LittleVGL.h"
+#include "USBHost.h"
+```
 
-   void setup() {
-     // put your setup code here, to run once:
-     Serial1.begin(115200);
-     
-     portenta_init_video();
+Add custom button widget using the `lv_btn` object, This object allows you to have an inner label whose text can be easily configure. The following lines of code initialises the button variable and its label which you can add it at the beginning of the sketch.
 
-     //Setting up the Button
-     lv_btn = lv_btn_create(lv_scr_act(), NULL);
-     lv_obj_align(lv_btn, NULL, LV_ALIGN_CENTER, 0, -40);
-     //lv_obj_set_event_cb(lv_btn, event_handler);            // If you want to handle the button’s callback create a cb_btn function
+```cpp
+static lv_obj_t *lv_btn;
+static lv_obj_t *myCustomLabel;
+```
 
-     //Setting up inner Label
-     myCustomLabel = lv_label_create(lv_btn, NULL);           // We make the object be a label widget, lv_btn child     lv_obj_align(myCustomLabel, NULL, LV_ALIGN_CENTER, 0, -40);   // We move it to the center of the screen below the ‘Hello world’ and align centered
-     lv_label_set_text(myCustomLabel , "Button");      // We set the default text
-   }
+Then inside the `setup()` configure the type, style and the position of the button.
 
-   void loop() {
-     // put your main code here, to run repeatedly:
-     lv_task_handler();
-   }
-   ```
+```c++
+void setup() {
+  // put your setup code here, to run once:
+  Serial1.begin(115200);
 
-   This sketch creates a button that will be displayed in the monitor. By using the `lv_btn` statement we create the phisical button and then by modifying the `myCustomLabel`part, you will be able to add the text you want to the button.
+  portenta_init_video();
 
-   Then, in the setup, it configures  the type, style and the position of the button and lits abel.
+  //Setting up the Button
+  lv_btn = lv_btn_create(lv_scr_act(), NULL);
+  lv_obj_align(lv_btn, NULL, LV_ALIGN_CENTER, 0, -40);
+  //lv_obj_set_event_cb(lv_btn, event_handler);            // If you want to handle the button’s callback create a cb_btn function
 
-   To finish, in the loop, it calls to the `lv_task_handler()` which will update the output to the external monitor. 
+  //Setting up inner Label
+  myCustomLabel = lv_label_create(lv_btn, NULL);           // We make the object be a label widget, lv_btn child     lv_obj_align(myCustomLabel, NULL, LV_ALIGN_CENTER, 0, -40);   // We move it to the center of the screen below the ‘Hello world’ and align centered
+  lv_label_set_text(myCustomLabel , "Button");      // We set the default text
+}
+```
 
+To finish, in the loop, it calls to the `lv_task_handler()` which will update the output to the external monitor. 
+
+```c++
+void loop() {
+  // put your main code here, to run repeatedly:
+  lv_task_handler();
+}
+```
+
+This sketch creates a button that will be displayed in the monitor. By using the `lv_btn` statement we create the  button and then by modifying the `myCustomLabel`part, you will be able to add the text you want to the button.
 
 ## 4. Connect an external monitor
 
