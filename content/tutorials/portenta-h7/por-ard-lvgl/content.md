@@ -24,13 +24,13 @@ This tutorial will guide you to build a basic user interface using the LVGL and 
 
 ![por_ard_lvgl_tutorial_steps](assets/por_ard_lvgl_tutorial_steps.svg)
 
-1. The Basic Setup
+## 1. The Basic Setup
 
    Begin by plugging in your Portenta board to the computer using a USB-C cable and open the Arduino IDE or the Arduino Pro IDE. If this is your first time running Arduino sketch files on the board, we suggest you check out how to [set up the Portenta H7 for Arduino](https://github.com/bcmi-labs/arduino-pro-content/blob/master/content/tutorials/portenta-h7/por-ard-usb/por-ard-gs) before you proceed.
 
 ![por_ard_usbh_basic_setup](assets/por_ard_usbh_basic_setup.svg)
 
-2. Download the lvgl library
+## 2. Download the lvgl library
 
    Next, select Portenta in the Tool > Board menu before to install the [lvgl Library](https://github.com/lvgl/lvgl) from the Library Manager. To do so, go to **Sketch** **->** **Include Libraries** **-> Manage Libraries** and search for LVGL. Dowload the **lvgl library** by [kisvegabor](https://github.com/kisvegabor).  
 
@@ -38,7 +38,7 @@ This tutorial will guide you to build a basic user interface using the LVGL and 
 
    ***Make sure you have selected the right board inside Tools > Boards, otherwise you won't see the library or you may isntall a library that is not compatible with Portenta .***
 
-3. Once you have installed the library,  copy the following code, paste it into a new sketch file and name it **lvglExample.ino**
+## 3. Add the button widget  
 
    ```cpp
    #include "Portenta_LittleVGL.h"
@@ -75,9 +75,9 @@ This tutorial will guide you to build a basic user interface using the LVGL and 
 
    To finish, in the loop, it calls to the `lv_task_handler()` which will update the output to the external monitor. 
 
-4. Connect an external monitor
 
    Compile and upload the sketch, to your Portenta H7. At this point your board becomes as the host. Unplug the board from your computer and connect it to USB hub along with a monitor that is connected to the HDMI port. Power up your hub by connecting it to an external power source and the monitor will display a Button with the inner text `Button`". 
+## 4. Connect an external monitor
 
 
    ![por_ard_lvgl_connect_monitor](assets/por_ard_lvgl_connect_monitor.svg)
@@ -86,7 +86,6 @@ This tutorial will guide you to build a basic user interface using the LVGL and 
 
    The button should be the default one, have a look <https://docs.lvgl.io/latest/en/html/widgets/btn.html#simple-buttons>
 
-5. Create a simple counter
 
    Once you know that it is working, let's create a counter that increases each second and update it in the screen. To do so, we will create a new label that is going to be updated periodically and then change its value in the screen, this is possible using the LVGL feature called 'Task'. 
 
@@ -134,6 +133,8 @@ This tutorial will guide you to build a basic user interface using the LVGL and 
      lv_task_create(label_Task, 1000, LV_TASK_PRIO_MID, NULL);
    }
    ```
+## 5. Create a simple counter
+## 6. Upload the Sketch
 
 # Conclusion
 
