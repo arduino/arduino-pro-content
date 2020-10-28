@@ -87,7 +87,7 @@ This sketch creates a button that will be displayed in the monitor. By using the
 
 ## 4. Connect an external monitor
 
-Compile and upload the sketch, to your Portenta H7. At this point your board becomes as the host. Unplug the board from your computer and connect it to USB hub along with a monitor that is connected to the HDMI port. Power up your hub by connecting it to an external power source and the monitor will display a Button with the inner text `Button`". 
+Compile and upload the sketch, to your Portenta H7. At this point your board becomes as the host. Unplug the board from your computer and connect it to USB hub along with a monitor that is connected to the HDMI port. Power up your hub by connecting it to an external power source and the monitor will display a Button with the inner text `Button`. 
 
 
    ![por_ard_lvgl_connect_monitor](assets/por_ard_lvgl_connect_monitor.svg)
@@ -110,7 +110,7 @@ static void label_Task(lv_task_t * myTask);
 uint32_t count = 0;
 ```
 
-Then, the function that is going to update the value of the counter, its label and that is going to send it through the Serial Monitor (after and outside the loop() function)
+Then, the function that is going to update the value of the counter, its label and that is going to send it through the Serial Monitor (after and outside the `loop()` function)
 
 ```cpp
 static void label_Task(lv_task_t * myTask) {
