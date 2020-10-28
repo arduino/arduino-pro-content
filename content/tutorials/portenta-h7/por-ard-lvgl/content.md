@@ -96,53 +96,6 @@ Compile and upload the sketch, to your Portenta H7. At this point your board bec
 
    The button should be the default one, have a look <https://docs.lvgl.io/latest/en/html/widgets/btn.html#simple-buttons>
 
-
-   Once you know that it is working, let's create a counter that increases each second and update it in the screen. To do so, we will create a new label that is going to be updated periodically and then change its value in the screen, this is possible using the LVGL feature called 'Task'. 
-
-   Let's update the sketch by adding the following portions of code: 
-   
-   * First the new task declaration and the counter variable at the beginninf of the program (before the `setup()` function)
-   
-   ```cpp
-   static lv_obj_t * lv_btn;
-   static lv_obj_t * myCustomLabel;
-
-   static void label_Task(lv_task_t * myTask);
-   uint32_t count = 0;
-   ```
-   
-   * Then, the function that is going to update the value of the counter, its label and that is going to send it through the Serial Monitor (after and outside the loop() function)
-   
-   ```cpp
-   static void label_Task(lv_task_t * myTask) {
-      //printf("count: %d\n", count);                        //We can see in the Serial monitor the count
-      lv_label_set_text_fmt(myCustomLabel, "%d" , count);    //Update the text from the label
-      count++;      //Increase the count number
-   }
-   ```
-   
-   * And, to finish, to program the execution of the task each second, we need to add the next line of code as the last command inside the `setup()` function 
-   
-   ```cpp
-    void setup() {
-     // put your setup code here, to run once:
-     Serial1.begin(115200);
-
-     portenta_init_video();
-
-     //Setting up the Button
-     lv_btn = lv_btn_create(lv_scr_act(), NULL);
-     lv_obj_align(lv_btn, NULL, LV_ALIGN_CENTER, -40, -40);
-     //lv_obj_set_event_cb(lv_btn, event_handler);        // If you want to handle the button's callback create a cb_btn function
-
-     //Setting up inner Label
-     myCustomLabel = lv_label_create(lv_btn, NULL);       // We make the object be a label widget, lv_btn child
-     lv_label_set_text(myCustomLabel , "Button");         // We set the default text
-
-     //Create a task
-     lv_task_create(label_Task, 1000, LV_TASK_PRIO_MID, NULL);
-   }
-   ```
 ## 5. Create a simple counter
 
 Once you know that it is working, let's create a counter that increases each second and update it in the screen. To do so, we will create a new label that is going to be updated periodically and then change its value in the screen, this is possible using the LVGL feature called 'Task'. 
@@ -235,8 +188,6 @@ static void label_Task(lv_task_t * myTask) {
 
 This tutorial shows how to build a simple user interface with your Portenta showing first a static view in the monitor and then, convert this UI into a simple dynamic application that shows in the screen a variable that updates with the time. The tutorial also shows how to  use the "task" feature of the LVGL library to run instructions recurrently.
 
-in this tutorial you learned how to build a simple user interface for the Portenta H7 and the configuration required to view the 
-
 # Next Steps
 Now that you know how to build a simple UI in a screen, you can try to add more labels in the screen to show different stuff. Also be alert because we will continue growing the tutorials about how to combine LVGL with other features of your Portenta
 
@@ -259,4 +210,4 @@ Try to uncomment the printf inside the task to check if the Serial Monitor its u
 
 **Authors:** Pablo Marquínez & Lenard George
 **Reviewed by:** Jose Garcia [20.10.2020]  
-**Last revision:**  [20.10.2020]
+**Last revision:** Lenard George  [28.10.2020]
