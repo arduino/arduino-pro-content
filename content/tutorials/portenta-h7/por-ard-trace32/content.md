@@ -37,13 +37,13 @@ There are two alternative ways to detect the board serial number:
 
 - In the Arduino IDE select the "Tools->Get Board Info" menu command after selecting the port to which the Portenta is connected to. This should show a 24 character (96 bit) long serial number.
 
-  ![board-info](assets/por_ard_trace32_board_info.png)
+![Portenta's serial number can be displayed in the Arduino IDE using the "Get Board Info" command](assets/por_ard_trace32_board_info.png)
 
 ***If you see a 16 character (64-bit) long serial number, then you need to update your Arduino IDE and/or the Arduino Core software in your board. Details of how to do this can be found on the Arduino website.***
 
 - Use the TRACE32 debugger. Check section "3. Start the TRACE32 Debugger" on how to start it. Click the menu item "Board S/N and License State". Your board's serial number will be printed in the AREA window and a dialog LICENSE.state will be opened.
 
-  ![Click the menu item "Detect Board S/N" to display the serial number](assets/por_ard_trace32_board_sn.png)
+![Click the menu item "Detect Board S/N" to display the serial number](assets/por_ard_trace32_board_sn.png)
 
 ![Licence State Dialog](assets/por_ard_trace32_license_state.png)
 
@@ -93,11 +93,9 @@ Select "T32ThreadDebug" from the "Portenta H7 Demos" menu and you will be presen
 
 ![Elf File Selection](assets/por_ard_trace32_elf_file_selection.png)
 
-
-
 In this dialog you can select which variant of the Arduino IDE you would like to use to source ELF files or if you want to use the current directory. To follow this tutorial please select "current dir". 
 
-The list to the right of the "Options" selection should then become populated with a number of available ELF files for downloading and debugging. Select the one you want with a double-click. In this case select "T32ThreadDebug.ino.elf". This will also show file attributes such as date, time and size. To select an ELF file from a custom directory, click the "File" button underneath the "User's choice" field and browse for the desired ELF file. You can opt for changing the behavior of this script the next time it is executed.
+The list to the right of the "Options" selection should then become populated with a number of available ELF files for downloading and debugging. Select the one you want with a double click. In this case select "T32ThreadDebug.ino.elf". This will also show file attributes such as date, time and size. To select an ELF file from a custom directory, click the "File" button underneath the "User's choice" field and browse for the desired ELF file. You can opt for changing the behaviour of this script the next time it is executed.
 
 If the application has already been programmed to flash, for instance via the Arduino IDE or a previous TRACE32 session, select "Load debug symbols (program is already in flash)" to prevent an unnecessary erase and write of the on-chip flash memory.
 
@@ -107,7 +105,7 @@ Click the "OK" button to confirm all of your choices and start the session.
 
 ### Debugging Session
 
-If the flash is being programmed, TRACE32 will prompt you to double-click the reset button on the board to enable the bootloader mode. The built-in green LED of the Protenta fades in and out when in bootloader mode. Click the "OK" button to proceed. Diagnostic messages will be displayed in the TRACE32 AREA window whilst the erase and programming take place.
+If the flash is being programmed, TRACE32 will prompt you to double-click the reset button on the board to enable the bootloader mode. The built-in green LED of the Portenta fades in and out when in bootloader mode. Click the "OK" button to proceed. Diagnostic messages will be displayed in the TRACE32 AREA window whilst the erasing and programming take place.
 
 The script will then attach to the Portenta H7 board and cause TRACE32 to open some debug windows. When everything is ready, you should see the Program Counter halted at the entry to the setup() function. You may now use the arrow buttons in the toolbar to step through the code and inspect the variables, registers, call stack etc.
 
@@ -168,7 +166,7 @@ In case the debugger encounters any issues while connecting to the Portenta, try
 
 ## Flashing Issues
 
-- Before flashing the Portenta H7 board from the Arduino IDE, please disconnect the TRACE32 debugger by typing the command: “SYStem.Down” on the command line interface. Alternatively open the menu: “CPU-> System Settings…” and press the radiobutton “Down” in the “Mode” section.
+- Before flashing the Portenta H7 board from the Arduino IDE, please disconnect the TRACE32 debugger by typing the command: “SYStem.Down” on the command line interface. Alternatively open the menu: “CPU-> System Settings…” and press the radio button “Down” in the “Mode” section.
 
 ## Debugger Hanging Issues
 
