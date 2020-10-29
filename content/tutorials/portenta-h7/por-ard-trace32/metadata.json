@@ -1,0 +1,22 @@
+{
+   "id":"por-ard-trace32",
+   "index": 7,
+   "title":"Setting Up Portenta H7 For Arduino",
+   "slug":"por-ard-trace32",
+   "authors":[
+      "Marco Ferrario", 
+      "Lauterbach Italy", 
+      "Sebastian Romero"
+   ],
+   "coverImage":{
+      "src":"assets/por_ard_trace32_cover.svg?sanitize=true"
+   },
+   "tags":[
+      "Debugging",
+      "Lauterbach",
+      "TRACE32"      
+   ],
+   "abstract":"This tutorial will show you how to use the Lauterbach TRACE32 GDB front-end debugger to debug your Portenta H7 application via GDB on a serial interface.",
+   "previousArticle":"por-openmv-fd",
+   "nextArticle":null
+}
