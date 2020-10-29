@@ -65,6 +65,8 @@ You will see the message "Bootloader update complete. You may now disconnect the
 
 ![Bootloader update process](assets/por_ard_bl_update_complete.png)
 
+**Expert tip:** Newer versions of the bootloader allow to fetch the version number via dfu-util. To see it, put the Portenta board into bootloader mode and invoke the dfu-util command: `dfu-util -l | grep "Bootloader"`. The dfu-util command can be found in the Arduino15/packages/arduino/tools/dfu-util directory.
+
 # Conclusion
 Having an updated bootloader is important to benefit from improved performance and resolved bugs. As mentioned earlier we recommend to keep an eye out for new releases on our [Github repository](https://github.com/arduino/ArduinoCore-mbed/tree/master/bootloaders) and update the bootloader whenever there is a new release available.
 
