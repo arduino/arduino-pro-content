@@ -31,21 +31,21 @@ Without a valid license, the TRACE32 debugger only works for few minutes in demo
 
 Enter the board's serial number (instructions below), your name and e-mail address and you will be sent your license key.
 
-![Request a Debug License for Arduino Pro](assets/por_ard_trace32_register.jpg)
+![Request a Debug License for Arduino Pro](assets/por_ard_trace32_register.png)
 
 There are two alternative ways to detect the board serial number:
 
 - In the Arduino IDE select the "Tools->Get Board Info" menu command after selecting the port to which the Portenta is connected to. This should show a 24 character (96 bit) long serial number.
 
-  ![board-info](assets/por_ard_trace32_board_info.jpg)
+  ![board-info](assets/por_ard_trace32_board_info.png)
 
 ***If you see a 16 character (64-bit) long serial number, then you need to update your Arduino IDE and/or the Arduino Core software in your board. Details of how to do this can be found on the Arduino website.***
 
 - Use the TRACE32 debugger. Check section "3. Start the TRACE32 Debugger" on how to start it. Click the menu item "Board S/N and License State". Your board's serial number will be printed in the AREA window and a dialog LICENSE.state will be opened.
 
-  ![Click the menu item "Detect Board S/N" to display the serial number](assets/por_ard_trace32_board_sn.jpg)
+  ![Click the menu item "Detect Board S/N" to display the serial number](assets/por_ard_trace32_board_sn.png)
 
-![Licence State Dialog](assets/por_ard_trace32_license_state.jpg)
+![Licence State Dialog](assets/por_ard_trace32_license_state.png)
 
 Either copy & paste the displayed serial number manually to the Lauterbach registration page or click on the provided link in the dialog window.
 
@@ -91,7 +91,7 @@ The demo directory already includes the symbolic file (.elf) for debugging and t
 
 Select "T32ThreadDebug" from the "Portenta H7 Demos" menu and you will be presented with a dialog called "Elf File Selection". This is where the TRACE32 initial environment can be configured.
 
-![Elf File Selection](assets/por_ard_trace32_elf_file_selection.jpg)
+![Elf File Selection](assets/por_ard_trace32_elf_file_selection.png)
 
 
 
@@ -111,7 +111,7 @@ If the flash is being programmed, TRACE32 will prompt you to double-click the re
 
 The script will then attach to the Portenta H7 board and cause TRACE32 to open some debug windows. When everything is ready, you should see the Program Counter halted at the entry to the setup() function. You may now use the arrow buttons in the toolbar to step through the code and inspect the variables, registers, call stack etc.
 
-![TRACE32 debug session on Portenta H7 - T32ThreadDebug demo application](assets/por_ard_trace32_main_screen.jpg)
+![TRACE32 debug session on Portenta H7 - T32ThreadDebug demo application](assets/por_ard_trace32_main_screen.png)
 
 In case of errors, please check the physical connection to the board, check if your host PC has detected the board's serial port and if this is the port configured in TRACE32. Reset the board and retry.
 
