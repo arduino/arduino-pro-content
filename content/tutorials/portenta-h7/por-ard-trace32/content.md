@@ -45,7 +45,7 @@ There are two alternative ways to detect the board serial number:
 - Once you receive the email with the license key, follow the instructions provided at the end of the message: 
 - Add the whole line of code provided to the file **license.t32** in your TRACE32 main directory.
   Create the file license.t32 if it does not yet exist. On Windows the TRACE32 system directory is by default "C:\T32".
-  Please restart TRACE32 after adding the license key.
+- Restart TRACE32 after adding the license key.
 - Use the TRACE32 debugger. Check section "3. Start the TRACE32 Debugger" on how to start it. Click the menu item "Board S/N and License State". Your board's serial number will be printed in the AREA window and a dialog LICENSE.state will be opened.
 
 ![Click the menu item "Detect Board S/N" to display the serial number](assets/por_ard_trace32_board_sn.png)
