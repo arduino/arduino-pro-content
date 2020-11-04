@@ -43,7 +43,7 @@ There are two alternative ways to detect the board serial number:
 ***If you only see a 16 character (64-bit) long serial number, then you need to update your Arduino IDE and the "Arduino mbed-enabled Boards" core from the boards manager in the IDE. Details of how to do this can be found on the Arduino website. Also, make sure your Portenta H7 has the [latest bootloader](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-bl) installed.***
 
 - Once you receive the email with the license key, follow the instructions provided at the end of the message: 
-- Add the whole line of code provided to the file **license.t32** in your TRACE32 main directory.
+- Add the complete line of code provided in the e-mail to the **license.t32** text file in your TRACE32 installation directory.
   Create the file license.t32 if it does not yet exist. On Windows the TRACE32 system directory is by default "C:\T32".
 - Restart TRACE32 after adding the license key.
 - Use the TRACE32 debugger. Check section "3. Start the TRACE32 Debugger" on how to start it. Click the menu item "Board S/N and License State". Your board's serial number will be printed in the AREA window and a dialog LICENSE.state will be opened.
