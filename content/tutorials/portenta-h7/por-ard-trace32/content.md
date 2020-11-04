@@ -14,13 +14,13 @@ This tutorial will show you how to use the Lauterbach TRACE32 GDB front-end debu
 
 # TRACE32 GDB Front End Debugger
 
-In this tutorial you will load an application on the Portenta H7 board which includes the Monitor for Remote Inspection (MRI). This is a GDB compatible serial monitor which is included in the ThreadDebug sketch in the Arduino IDE Examples for Portenta H7 (M7 core) and in all examples in the TRACE32/demo directory of the TRACE32 installation. Throughout this document **(INSTALLATION DIRECTORY)** is used as a place holder for the directory where you unzipped the TRACE32 software.
+In this tutorial you will load an application on the Portenta H7 board which includes the Monitor for Remote Inspection (MRI). This is a GDB compatible serial monitor which is included in the ThreadDebug sketch in the Arduino IDE Examples for Portenta H7 (M7 core) and in all examples in the TRACE32 demo directory of the TRACE32 installation. Throughout this document the **double-tilde (~~)** is used as a place holder for the directory where you unzipped the TRACE32 software.
 
 ***This tutorial assumes that you have already installed the Arduino IDE or Arduino Pro IDE and configured it to support the Portenta H7 board. Please refer to [Setting Up Portenta H7 For Arduino](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-gs) before you proceed.***
 
 ## 1. Downloading the TRACE32 Debugger
 
-In order download the TRACE32 debugger open the [Lauterbach download page](https://www.lauterbach.com/download_demo.html) in your browser. Download the zip file named **Debugger for GDB target (Arduino Pro)**  which contains TRACE32 for Portenta-H7.
+In order download the TRACE32 debugger open the [Lauterbach download page](https://www.lauterbach.com/download_demo.html) in your browser. Download the zip file named **Debugger for GDB target (Arduino Pro)**  which contains TRACE32 for Portenta-H7 and demo applications.
 
 Extract the zip file to a directory of your choice. On Windows systems, please avoid C:\T32, because this is the default installation directory for the full TRACE32 distribution.
 
@@ -42,10 +42,6 @@ There are two alternative ways to detect the board serial number:
 
 ***If you only see a 16 character (64-bit) long serial number, then you need to update your Arduino IDE and the "Arduino mbed-enabled Boards" core from the boards manager in the IDE. Details of how to do this can be found on the Arduino website. Also, make sure your Portenta H7 has the [latest bootloader](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-bl) installed.***
 
-Once you receive the email with the license key, follow the instructions provided at the end of the message: 
-- Add the complete line of code provided in the e-mail to the **license.t32** text file in your TRACE32 installation directory.
-  Create the file license.t32 if it does not yet exist. On Windows the TRACE32 system directory is by default "C:\T32".
-- Restart TRACE32 after adding the license key.
 - Use the TRACE32 debugger. Check section "3. Start the TRACE32 Debugger" on how to start it. Click the menu item "Board S/N and License State". Your board's serial number will be printed in the AREA window and a dialog LICENSE.state will be opened.
 
 ![Click the menu item "Detect Board S/N" to display the serial number](assets/por_ard_trace32_board_sn.png)
@@ -56,19 +52,22 @@ Either copy & paste the displayed serial number manually to the Lauterbach regis
 
 Note: Newer TRACE32 software version should automatically detect and show the board serial number, at first attach to the target.
 
-Once you receive the e-mail containing your licence key copy & paste it into a text file named `license.t32` and save it to the root directory of your TRACE32 installation.
+When you receive the email containing your license key, follow the instructions provided at the end of the message: 
+- Copy the complete line of code provided in the email and paste it into the **license.t32** text file in your TRACE32 installation directory. Create the file license.t32 if it does not exist yet. On Windows the TRACE32 system directory is by default "C:\T32".
+- Restart TRACE32 after adding the license key.
+
 
 ## 3. Starting the TRACE32 Debugger
 
 To use the debugger launch the appropriate executable for your host operating system. The executables can be found in the corresponding sub-directory for your operating system:
 
-`(INSTALLATION DIRECTORY)/bin/windows` for 32bit Windows hosts
+`~~/bin/windows` for 32-bit Windows hosts
 
-`(INSTALLATION DIRECTORY)/bin/windows64` for 64-bit Windows hosts
+`~~/bin/windows64` for 64-bit Windows hosts
 
-`(INSTALLATION DIRECTORY)/bin/linux` for 32-bit Linux hosts
+`~~/bin/linux` for 32-bit Linux hosts
 
-`(INSTALLATION DIRECTORY)/bin/linux64` for 64-bit Linux hosts.
+`~~/bin/linux64` for 64-bit Linux hosts.
 
 For easy access, we suggest creating a link to the corresponding executable file on your desktop:
 
@@ -86,7 +85,7 @@ On Linux systems, you will need to edit the system-settings.cmm file to manually
 
 ## 4. Running Your First Demo
 
-A number of pre-built demo programs are available .They can be accessed from the "Portenta H7 Demos" menu. The following instructions relate to the T32ThreadDebug example. However, the other examples follow a similar pattern.
+A number of pre-built demo programs are available.They can be accessed from the "Portenta H7 Demos" menu. The following instructions relate to the T32ThreadDebug example. However, the other examples follow a similar pattern.
 
 The demo directory already includes the symbolic file (.elf) for debugging and the binary file (.bin) for flash programming.
 
@@ -145,8 +144,8 @@ SYStem.Mode Attach
 
 Data.LOAD.Elf * /NoCODE
 
-TASK.CONFIG (INSTALLATION DIRECTORY)/demo/arm/kernel/rtxarm/v5/rtx.t32
-MENU.ReProgram (INSTALLATION DIRECTORY)/demo/arm/kernel/rtxarm/v5/rtx.men
+TASK.CONFIG ~~/demo/arm/kernel/rtxarm/v5/rtx.t32
+MENU.ReProgram ~~/demo/arm/kernel/rtxarm/v5/rtx.men
 
 List.auto
 ENDDO
