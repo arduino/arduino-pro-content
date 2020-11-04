@@ -162,7 +162,7 @@ In this tutorial you learned how to acquire a free version of the TRACE32 GDB Fr
 
 # Troubleshooting
 
-### Portenta's serial number is not 24 digit long:
+### Portenta’s Serial Number Is Not 24 Digits Long
 
 * Update Arduino IDE to the latest version available
 * Update **Arduino mbed-enabled Boards** core from Arduino IDE menu: _Tools > Board > Boards Manager_
