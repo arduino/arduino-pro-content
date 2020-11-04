@@ -40,7 +40,7 @@ There are two alternative ways to detect the board serial number:
 
 ![Portenta's serial number can be displayed in the Arduino IDE using the "Get Board Info" command](assets/por_ard_trace32_board_info.png)
 
-***If you see a 16 character (64-bit) long serial number, then you need to update your Arduino IDE, the Arduino mbed-enabled Boards Core software in your board. Also, make sure your Portenta H7 has the [latest bootloader](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-bl) installed. Details of how to do this can be found on the Arduino website.***
+***If you only see a 16 character (64-bit) long serial number, then you need to update your Arduino IDE and the "Arduino mbed-enabled Boards" core from the boards manager in the IDE. Details of how to do this can be found on the Arduino website. Also, make sure your Portenta H7 has the [latest bootloader](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-bl) installed.***
 
 - Once you receive the email with the license key, follow the instructions provided at the end of the message: 
 - Add the whole line of code provided to the file **license.t32** in your TRACE32 main directory.
