@@ -166,7 +166,7 @@ In this tutorial you learned how to acquire a free version of the TRACE32 GDB Fr
 
 * Update Arduino IDE to the latest version available
 * Update **Arduino mbed-enabled Boards** core from Arduino IDE menu: _Tools > Board > Boards Manager_
-* Update the Portenta's bootloader [here](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-bl).
+- Update the Portenta's bootloader using the instructions found [here](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-bl).
 
 
 
