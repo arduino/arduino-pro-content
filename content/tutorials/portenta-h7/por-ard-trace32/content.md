@@ -176,8 +176,6 @@ In this tutorial you learned how to acquire a free version of the TRACE32 GDB Fr
 
 ![Error Message in AREA View](assets/por_ard_trace32_troubleshooting.png)
 
-
-
 ## Debugger Connection Issues
 
 In case the debugger encounters any issues while connecting to the Portenta, try the following:
