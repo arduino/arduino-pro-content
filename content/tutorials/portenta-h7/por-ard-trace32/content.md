@@ -40,8 +40,12 @@ There are two alternative ways to detect the board serial number:
 
 ![Portenta's serial number can be displayed in the Arduino IDE using the "Get Board Info" command](assets/por_ard_trace32_board_info.png)
 
-***If you see a 16 character (64-bit) long serial number, then you need to update your Arduino IDE and/or the Arduino Core software in your board. Details of how to do this can be found on the Arduino website.***
+***If you only see a 16 character (64-bit) long serial number, then you need to update your Arduino IDE and the "Arduino mbed-enabled Boards" core from the boards manager in the IDE. Details of how to do this can be found on the Arduino website. Also, make sure your Portenta H7 has the [latest bootloader](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-bl) installed.***
 
+Once you receive the email with the license key, follow the instructions provided at the end of the message: 
+- Add the complete line of code provided in the e-mail to the **license.t32** text file in your TRACE32 installation directory.
+  Create the file license.t32 if it does not yet exist. On Windows the TRACE32 system directory is by default "C:\T32".
+- Restart TRACE32 after adding the license key.
 - Use the TRACE32 debugger. Check section "3. Start the TRACE32 Debugger" on how to start it. Click the menu item "Board S/N and License State". Your board's serial number will be printed in the AREA window and a dialog LICENSE.state will be opened.
 
 ![Click the menu item "Detect Board S/N" to display the serial number](assets/por_ard_trace32_board_sn.png)
@@ -157,6 +161,20 @@ For each demo the corresponding start.cmm script comes with a predefined window 
 In this tutorial you learned how to acquire a free version of the TRACE32 GDB Front End debugger, fully licensed for Portenta H7 for one year. You learned how to start the debugger and debug some ready-to-run demos. Furthermore you learned how to debug an application compiled with the classic Arduino IDE or the Arduino Pro IDE.
 
 # Troubleshooting
+
+### Portenta’s Serial Number Is Not 24 Digits Long
+
+* Update Arduino IDE to the latest version available
+* Update **Arduino mbed-enabled Boards** core from Arduino IDE menu: _Tools > Board > Boards Manager_
+- Update the Portenta's bootloader using the instructions found [here](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-bl).
+
+
+
+### Error Message in AREA View: 'No more arguments expected' 
+
+- This may be caused by unsupported characters in your Windows user name. Make sure your user name neither contains any spaces nor special characters.
+
+![Error Message in AREA View](assets/por_ard_trace32_troubleshooting.png)
 
 ## Debugger Connection Issues
 
