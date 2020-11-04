@@ -2,15 +2,15 @@
 This tutorial will show you how to use the Lauterbach TRACE32 GDB front-end debugger to debug your Portenta H7 application via GDB on a serial interface. It also explains how to obtain a free one-year licence of a fully functional version of TRACE32 using your Portenta's serial number.
 
 ## What You Will Learn
--   How to get a free one-year license key for TRACE32 GDB Front End debugger for Portenta H7 - M7 core
--   How to download and start the Lauterbach TRACE32 GDB Front End debugger
--   How to flash and debug some ready-to-run demos
+-  How to get a free one-year license key for TRACE32 GDB Front End debugger for Portenta H7 - M7 core
+-  How to download and start the Lauterbach TRACE32 GDB Front End debugger
+-  How to flash and debug some ready-to-run demos
 
 ## Required Hardware and Software
--   Portenta H7 board (https://store.arduino.cc/portenta-h7)
--   USB C cable (either USB A to USB C or USB C to USB C)
--   Arduino IDE 1.8.13+ or Arduino Pro IDE 0.1.0+
--   Lauterbach TRACE32 (https://www.lauterbach.com/download_demo.html)
+-  Portenta H7 board (https://store.arduino.cc/portenta-h7)
+-  USB C cable (either USB A to USB C or USB C to USB C)
+-  Arduino IDE 1.8.13+ or Arduino Pro IDE 0.1.0+
+-  Lauterbach TRACE32 (https://www.lauterbach.com/download_demo.html)
 
 # TRACE32 GDB Front End Debugger
 
@@ -162,19 +162,15 @@ In this tutorial you learned how to acquire a free version of the TRACE32 GDB Fr
 
 # Troubleshooting
 
-### Portenta’s Serial Number Is Not 24 Digits Long
+## Portenta’s Serial Number Is Not 24 Digits Long
 
-* Update Arduino IDE to the latest version available
-* Update **Arduino mbed-enabled Boards** core from Arduino IDE menu: _Tools > Board > Boards Manager_
+- Update Arduino IDE to the latest version available
+- Update **Arduino mbed-enabled Boards** core from Arduino IDE menu: *Tools > Board > Boards Manager*
 - Update the Portenta's bootloader using the instructions found [here](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-bl).
 
-
-
-### Error Message in AREA View: 'No more arguments expected' 
+## Error Message in AREA View: 'No more arguments expected' 
 
 - This may be caused by unsupported characters in your Windows user name. Make sure your user name neither contains any spaces nor special characters.
-
-![Error Message in AREA View](assets/por_ard_trace32_troubleshooting.png)
 
 ## Debugger Connection Issues
 
@@ -194,12 +190,10 @@ In case the debugger encounters any issues while connecting to the Portenta, try
 ## Issues While Starting TRACE32 on Linux
 
 - The TRACE32 executable for Linux requires the Qt libraries. Please verify that  one of the following versions of Qt is installed:
-
 - Qt4 >= 4.6.2	(Linux 32 bit or 64 bit)
-
 - or Qt5 >= 5.9	(Linux 64 bit)
 
-  On Ubuntu Linux for example you can install the Qt5 libraries using apt-get: `sudo apt-get install qt5-default`
+On Ubuntu Linux for example you can install the Qt5 libraries using apt-get: `sudo apt-get install qt5-default`
 
 ## Issues With the GDB Serial Port on Host Linux
 
