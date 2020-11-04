@@ -30,7 +30,6 @@ Begin by plugging in your Portenta board to the computer using a USB-C cable and
 
 ![por_ard_usbh_basic_setup](assets/por_ard_usbh_basic_setup.svg)
 
-<<<<<<< Updated upstream
 ## 2. Download the lvgl library
 
 Next, select Portenta in the Tool > Board menu before to install the [lvgl Library](https://github.com/lvgl/lvgl) from the Library Manager. To do so, go to **Sketch** **->** **Include Libraries** **-> Manage Libraries** and search for LVGL. Dowload the **lvgl library** by [kisvegabor](https://github.com/kisvegabor).  
@@ -89,57 +88,12 @@ This sketch creates a button that will be displayed in the monitor. By using the
 ## 4. Connect an external monitor
 
 Compile and upload the sketch, to your Portenta H7. At this point your board becomes as the host. Unplug the board from your computer and connect it to USB hub along with a monitor that is connected to the HDMI port. Power up your hub by connecting it to an external power source and the monitor will display a Button with the inner text `Button`. 
-=======
-   To start with, you need to download the [lvgl Library](https://github.com/lvgl/lvgl) from the Library Manager. Go to **Sketch** **->** **Include Libraries** **-> Manage Libraries** and search for LVGL. Dowload the **lvgl library** by [kisvegabor](https://github.com/kisvegabor).  
-   
-   ![por_ard_lvgl_download_library](assets/por_ard_lvgl_select_library.svg)
-   
-   
-   Once you have installed the library, create a new Sketch **File --> New**
-   
-   *** If you cant find the sketch, make sure you have selected the right board inside Tools > Boards ***
-   
-3. Adding a Button widget 
-
-   Let's start by including the libraries that we are going to use.
-   
-   ```cpp
-   #include "Portenta_LittleVGL.h"
-   #include "USBHost.h"
-   ```
-   
-   Add custom button widget using the `lv_btn` object, This object allows you to have an inner label whose text can be easily configure. The following lines of code initialises the button variable and its label which you can add it at the beginning of the sketch. 
-   
-   ```cpp
-   static lv_obj_t *lv_btn;
-   static lv_obj_t *myCustomLabel;
-   ```
-   
-   Inside `setup()`,  you can configure the type, style and the position of the button. 
-   
-   ```cpp
-   //Setting up the Button
-   lv_btn = lv_btn_create(lv_scr_act(), NULL);
-   lv_obj_align(lv_btn, NULL, LV_ALIGN_CENTER, 0, -40);
-   //lv_obj_set_event_cb(lv_btn, event_handler);                //If you want to handle the button's callback create a cb_btn function
-   
-   //Setting up inner Label
-   myCustomLabel = lv_label_create(lv_scr_act(), NULL);         //We make the object be a label widget
-   lv_obj_align(myCustomLabel, NULL, LV_ALIGN_CENTER, 0, -40);  //We move it to the center of the screen below the 'Hello world' and align centered
-   lv_label_set_text(myCustomLabel , "Custom Button");          //We set the default text
-   ```
-   
-   Heres a complete version of how the sketch needs to look Compile and Upload the sketch to your board. Connect the board to the USB hub with the Monitor attached to the HDMI port.  Once you power up the HUB, you will see a button with a label **CustomLabel**.
-   
-4. Connect an external monitor
->>>>>>> Stashed changes
-
 
    ![por_ard_lvgl_connect_monitor](assets/por_ard_lvgl_connect_monitor.svg)
 
    ***If you arent familiar with how the USB host works, we recommend you to have a look at the [USB Host tutorial](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-usb )***
 
-   The button should be the default one, have a look <https://docs.lvgl.io/latest/en/html/widgets/btn.html#simple-buttons>
+The button should be the default one, have a look <https://docs.lvgl.io/latest/en/html/widgets/btn.html#simple-buttons>
 
 ## 5. Create a simple counter
 
@@ -226,7 +180,6 @@ static void label_Task(lv_task_t * myTask) {
   lv_label_set_text_fmt(myCustomLabel, "%d" , count);  // Update the text from the label
   count++;                                             // Increase the count number
 }
-
 ```
 
 # Conclusion
