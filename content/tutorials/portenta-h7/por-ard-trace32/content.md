@@ -172,7 +172,7 @@ In this tutorial you learned how to acquire a free version of the TRACE32 GDB Fr
 
 ### Error Message in AREA View: 'No more arguments expected' 
 
-* This may be caused by your Windows user name. Check there is no 'spaces' or special characters within the user name to avoid the error.
+- This may be caused by unsupported characters in your Windows user name. Make sure your user name neither contains any spaces nor special characters.
 
 ![](assets/por_ard_trace32_troubleshooting.png)
 
