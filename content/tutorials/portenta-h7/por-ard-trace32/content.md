@@ -174,7 +174,7 @@ In this tutorial you learned how to acquire a free version of the TRACE32 GDB Fr
 
 - This may be caused by unsupported characters in your Windows user name. Make sure your user name neither contains any spaces nor special characters.
 
-![](assets/por_ard_trace32_troubleshooting.png)
+![Error Message in AREA View](assets/por_ard_trace32_troubleshooting.png)
 
 
 
