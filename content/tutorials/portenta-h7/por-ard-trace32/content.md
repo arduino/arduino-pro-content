@@ -26,7 +26,7 @@ Extract the zip file to a directory of your choice. On Windows systems, please a
 
 ## 2. Registration and License Key
 
-Without a valid license, the TRACE32 debugger only works for few minutes in demo mode. Lauterbach can generate a **free one-year license** based on the serial number of your Portenta H7 board. In order to obtain a license, please register here:
+Without a valid license, the TRACE32 debugger only works for few minutes in demo mode. Lauterbach can generate a **free license** based on the serial number of your Portenta H7 board. The license will be valid for one year and can easily be renewed for free after this period using the same procedure. In order to obtain a license, please register here:
 
 [www.lauterbach.com/4543](http://www.lauterbach.com/4543)
 
