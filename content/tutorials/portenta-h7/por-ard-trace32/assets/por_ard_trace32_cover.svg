@@ -1,6 +1,5 @@
 <svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g clip-path="url(#clip0)">
-<rect width="1920" height="1080" fill="#363636"/>
 <rect x="552" y="497.426" width="76.1873" height="86.613" fill="#DADBDC"/>
 <rect x="552" y="497.426" width="4.81183" height="86.613" fill="#202020"/>
 <path d="M628.187 493.179C628.187 484.894 634.903 478.179 643.187 478.179H792.592V603.286H643.187C634.903 603.286 628.187 596.571 628.187 588.286V493.179Z" fill="#202020"/>
