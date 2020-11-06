@@ -13,6 +13,7 @@
      "por-ard-ble",
      "por-openmv-bt",
      "por-ard-bl",
-     "por-openmv-fd"
+     "por-openmv-fd",
+     "por-ard-trace32"
     ]
  }
