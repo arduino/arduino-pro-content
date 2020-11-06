@@ -79,7 +79,7 @@ For easy access, we suggest creating a link to the corresponding executable file
 
 On Windows systems, the TRACE32 start-up script will automatically search for the right COM port attached to the Portenta H7 board.
 
-On Linux systems, you will need to edit the system-settings.cmm file to manually add the serial port to connect to the Portenta H7 board. This is a text file and can be opened with your favorite text editor. Edit the line that defines &GDBPORT to refer to the serial port, for example: `&GDBPORT="/dev/ttyACM0"`. This must be done **before** you start the TRACE32 software. After changing the port you can start the TRACE32 debugger or re-start it in case it was open while you made the changes.
+On Linux systems, you will need to edit the system-settings.cmm file to manually add the serial port to connect to the Portenta H7 board. This is a text file and can be opened with your favourite text editor. Edit the line that defines &GDBPORT to refer to the serial port, for example: `&GDBPORT="/dev/ttyACM0"`. This must be done **before** you start the TRACE32 software. After changing the port you can start the TRACE32 debugger or re-start it in case it was open while you made the changes.
 
 ***The manual port setting is also useful for Windows systems where you have multiple Portenta H7 boards connected, and you want to select a specific board to be used by TRACE32 for debugging. The automatic port selection is disabled when a &GDBPORT definition is found in `system-settings.cmm`.***
 
@@ -101,7 +101,7 @@ In this dialog you can select which variant of the Arduino IDE you would like to
 
 The list to the right of the "Options" selection should then become populated with a number of available ELF files for downloading and debugging. Select the one you want with a double click. In this case select "T32ThreadDebug.ino.elf". This will also show file attributes such as date, time and size. To select an ELF file from a custom directory, click the "File" button underneath the "User's choice" field and browse for the desired ELF file. You can opt for changing the behaviour of this script the next time it is executed.
 
-If the application has already been programmed to flash, for instance via the Arduino IDE or a previous TRACE32 session, select "Load debug symbols (program is already in flash)" to prevent an unnecessary erase and write of the on-chip flash memory.
+If the application has already been programmed to flash, for instance via the Arduino IDE or a previous TRACE32 session, select "Load debug symbols (program is already in flash)" to prevent an unnecessary erase and write cycle of the on-chip flash memory.
 
 If the application has changed or does not match the contents of the flash, then select "Flash program and load debug symbols".
 
