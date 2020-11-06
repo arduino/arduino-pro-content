@@ -1,8 +1,8 @@
 # Lauterbach TRACE32 GDB Front-End Debugger for Portenta H7
-This tutorial will show you how to use the Lauterbach TRACE32 GDB front-end debugger to debug your Portenta H7 application via GDB on a serial interface. It also explains how to obtain a free one-year licence of a fully functional version of TRACE32 using your Portenta's serial number.
+This tutorial will show you how to use the Lauterbach TRACE32 GDB front-end debugger to debug your Portenta H7 application via GDB on a serial interface. It also explains how to obtain a free licence of a fully functional version of TRACE32 using your Portenta's serial number.
 
 ## What You Will Learn
--  How to get a free one-year license key for TRACE32 GDB Front End debugger for Portenta H7 - M7 core
+-  How to get a free license key for TRACE32 GDB Front End debugger for Portenta H7 - M7 core
 -  How to download and start the Lauterbach TRACE32 GDB Front End debugger
 -  How to flash and debug some ready-to-run demos
 
