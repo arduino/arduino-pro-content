@@ -1,0 +1,20 @@
+{
+   "id":"por-ard-iap-tdb",
+   "index": 8,
+   "title":"Using the Flash on Portenta H7 - Part 2 - KeyValue Store",
+   "slug":"por-ard-iap-tdb",
+   "authors":[
+      "Giampaolo Mancini"
+   ],
+   "coverImage":{
+      "src":"assets/por_ard_gs_cover.svg?sanitize=true"
+   },
+   "tags":[
+      "Storage",
+      "KeyValue Store",
+      "Flash"
+   ],
+   "abstract":"This tutorial will show you how to create a flash-optimized KeyValue Store using the flash memory of the microcontroller on the Portenta H7.",
+   "previousArticle":"por-ard-iap",
+   "nextArticle":"por-ard-qspif"
+}
