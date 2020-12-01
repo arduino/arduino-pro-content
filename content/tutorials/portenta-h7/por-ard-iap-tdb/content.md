@@ -14,7 +14,7 @@ The core software of Portenta H7 is based on the MbedOS operating systems, allow
 
 MbedOS has a rich API for managing storage on different mediums, ranging from the tiny internal flash memory of a microcontroller to large external SecureDigital cards.
 
-In this tutorial, we will rely on the [FlashIAPBlockDevice](https://os.mbed.com/docs/mbed-os/v6.4/apis/flashiapblockdevice.html) and the [TDBStore](https://os.mbed.com/docs/mbed-os/v6.4/apis/kvstore.html) APIs. We will use `FlashIAPBlockDevice` to create a block device on the free space of the flash and we will create a KeyValue Store on it using the `TDBStore` API.
+In this tutorial, we are going to save a value inside the flash memory, that allows to have that saved after a reset, and we will able to see some info from the Flash block, so we will rely on the [FlashIAPBlockDevice](https://os.mbed.com/docs/mbed-os/v6.4/apis/flashiapblockdevice.html) and the [TDBStore](https://os.mbed.com/docs/mbed-os/v6.4/apis/kvstore.html) APIs. We will use `FlashIAPBlockDevice` to create a block device on the free space of the flash and we will create a KeyValue Store on it using the `TDBStore` API.
 
 ***Important!*** The TBStore API will optimize the speed of access, reduce [wearing of the flash](https://en.wikipedia.org/wiki/Flash_memory#Memory_wear) and minimize storage overhead. TBStore is also resilient to power failures. If you want to use the flash memory of the microcontroller, *always prefer the TDBStore approach over a direct access to the FlashIAP block device* described on Part 1.
 
@@ -23,8 +23,70 @@ Begin by plugging in your Portenta board to the computer using a USB-C cable and
 
 ![The Portenta H7 can be connected to the computer using an appropriate USB-C cable](assets/por_ard_basic_setup.svg?sanitize=true)
 
-## 2. Create the FlashIAP KeyValue Sketch
-Let's program the Portenta with the following sketch. We will also need a few helper functions defined in a supporting header file. First, create a new sketch and add the following code to `.ino` file:
+## 2. Create the Flash driver (FlashIAP) KeyValue Sketch
+Let's program the Portenta with the following sketch. We will also need a few helper functions defined in a supporting header file. First, create a new sketch called `flashKeyValue.ino` and create a new tab called `FlashIAPLimits.h` to split the helper functions.
+
+First lets have the `FlashIAPLimits.h` header with the helper functions
+```cpp
+/**
+   Helper functions for calculating limits for the FlashIAP block device
+ **/
+
+#pragma once
+
+#include <Arduino.h>
+#include <FlashIAP.h>
+#include <FlashIAPBlockDevice.h>
+
+using namespace mbed;
+
+// An helper struct for FlashIAP limits
+struct FlashIAPLimits {
+  size_t flash_size;
+  uint32_t start_address;
+  uint32_t aval_size;
+};
+
+// Get the actual start address and available size for the FlashIAP Block Device
+// considering the space already occupied by the sketch.
+FlashIAPLimits getFlashIAPLimits()
+{
+  // Alignment lambdas
+  auto align_down = [](uint64_t val, uint64_t size) {
+    return (((val) / size)) * size;
+  };
+  auto align_up = [](uint32_t val, uint32_t size) {
+    return (((val - 1) / size) + 1) * size;
+  };
+
+  size_t flash_size;
+  uint32_t flash_start_address;
+  uint32_t start_address;
+  FlashIAP flash;
+
+  auto ret = flash.init();
+  if (ret != 0)
+    return { };
+
+  // Find the start of first sector after text area
+  int sector_size = flash.get_sector_size(FLASHIAP_APP_ROM_END_ADDR);
+  start_address = align_up(FLASHIAP_APP_ROM_END_ADDR, sector_size);
+  flash_start_address = flash.get_flash_start();
+  flash_size = flash.get_flash_size();
+
+  ret = flash.deinit();
+
+  int aval_size = flash_start_address + flash_size - start_address;
+  if (aval_size % (sector_size * 2)) {
+    aval_size = align_down(aval_size, sector_size * 2);
+  }
+
+  return { flash_size, start_address, aval_size };
+}
+```
+
+Then go back to `flashKeyValue.ino`
+start by declaring the libraries that we need from **MBED**, our header helper (`FlashIAPLimits.h`) 
 
 ```cpp
 #include <FlashIAPBlockDevice.h>
@@ -44,127 +106,165 @@ TDBStore store(&bd);
 
 // Dummy sketch stats for demonstration purposes
 struct SketchStats {
-    uint32_t startupTime;
-    uint32_t randomValue;
-    uint32_t runCount;
+  uint32_t startupTime;
+  uint32_t randomValue;
+  uint32_t runCount;
 };
+```
 
+In the `setup()` at the beginning we will wait to open the Serial port to run the program, and print some info from the FlashIAP block device (`bd`)
+
+```cpp
 void setup()
 {
-    Serial.begin(115200);
-    while (!Serial)
-        ;
+  Serial.begin(115200);
+  while (!Serial)
+    ;
 
-    //  Wait for terminal to come up
-    delay(1000);
+  //  Wait for terminal to come up
+  delay(1000);
 
-    Serial.println("FlashIAPBlockDevice + TDBStore Test");
+  Serial.println("FlashIAPBlockDevice + TDBStore Test");
 
-    // Feed the RNG for later content generation
-    srand(micros());
+  // Feed the RNG for later content generation
+  srand(micros());
 
-    // Initialize the flash IAP block device and print the memory layout
-    bd.init();
-    Serial.printf("FlashIAP block device size: %llu\r\n", bd.size());
-    Serial.printf("FlashIAP block device read size: %llu\r\n", bd.get_read_size());
-    Serial.printf("FlashIAP block device program size: %llu\r\n", bd.get_program_size());
-    Serial.printf("FlashIAP block device erase size: %llu\r\n", bd.get_erase_size());
-    // Deinitialize the device
-    bd.deinit();
+  // Initialize the flash IAP block device and print the memory layout
+  bd.init();
+  Serial.printf("FlashIAP block device size: %llu\r\n", bd.size());
+  Serial.printf("FlashIAP block device read size: %llu\r\n", bd.get_read_size());
+  Serial.printf("FlashIAP block device program size: %llu\r\n", bd.get_program_size());
+  Serial.printf("FlashIAP block device erase size: %llu\r\n", bd.get_erase_size());
+  // Deinitialize the device
+  bd.deinit();
 
-    // Initialize the key/value store
-    Serial.print("Initializing TDBStore: ");
-    auto ret = store.init();
-    Serial.println(ret == MBED_SUCCESS ? "OK" : "KO");
-    if (ret != MBED_SUCCESS)
-        while (true)
-            ;
+```
+After that, initialize TDBstore (our "space"), setting the tag for the store and the value that we will save `runCount` and the previous value (`prevStats`)
 
-    // An example key name for the stats on the store
-    const char statsKey[] { "stats" };
+```cpp
+  // Initialize the key/value store
+  Serial.print("Initializing TDBStore: ");
+  auto ret = store.init();
+  Serial.println(ret == MBED_SUCCESS ? "OK" : "KO");
+  if (ret != MBED_SUCCESS)
+    while (true);
 
-    // Keep track of the number of sketch executions
-    uint32_t runCount { 0 };
+  // An example key name for the stats on the store
+  const char statsKey[] { "stats" };
 
-    // Previous stats
-    SketchStats prevStats;
+  // Keep track of the number of sketch executions
+  uint32_t runCount { 0 };
+  
+  // Previous stats
+  SketchStats prevStats;
+```
 
-    // Get previous run stats from the key/value store
-    Serial.println("Retrieving Sketch Stats");
-    ret = getSketchStats(statsKey, &prevStats);
-    if (ret == MBED_SUCCESS) {
-        Serial.println("Previous Stats");
-        Serial.print("\tStartup Time: ");
-        Serial.println(prevStats.startupTime);
-        Serial.print("\tRandom Value: ");
-        Serial.println(prevStats.randomValue);
-        Serial.print("\tRun Count: ");
-        Serial.println(prevStats.runCount);
+Now that we have everything ready, lets Get the previous value from the store, and update the store with the new value 
 
-        runCount = prevStats.runCount;
+```cpp
+  // Get previous run stats from the key/value store
+  Serial.println("Retrieving Sketch Stats");
+  ret = getSketchStats(statsKey, &prevStats);
+  if (ret == MBED_SUCCESS) {
+    Serial.println("Previous Stats");
+    Serial.print("\tStartup Time: ");
+    Serial.println(prevStats.startupTime);
+    Serial.print("\tRandom Value: ");
+    Serial.println(prevStats.randomValue);
+    Serial.print("\tRun Count: ");
+    Serial.println(prevStats.runCount);
 
-    } else if (ret == MBED_ERROR_ITEM_NOT_FOUND) {
-        Serial.println("First execution");
-    } else {
-        Serial.println("Error reading from key/value store.");
-        while (true)
-            ;
-    }
+    runCount = prevStats.runCount;
 
-    // Update the stats...
-    SketchStats currStats { millis(), rand(), ++runCount };
-    // ... and on save them to the store
-    ret = setSketchStats(statsKey, currStats);
-    if (ret == MBED_SUCCESS) {
-        Serial.println("Sketch Stats updated");
-        Serial.println("Current Stats");
-        Serial.print("\tStartup Time: ");
-        Serial.println(currStats.startupTime);
-        Serial.print("\tRandom Value: ");
-        Serial.println(currStats.randomValue);
-        Serial.print("\tRun Count: ");
-        Serial.println(currStats.runCount);
-    } else {
-        Serial.println("Error storing to key/value store");
-        while (true)
-            ;
-    }
+  } else if (ret == MBED_ERROR_ITEM_NOT_FOUND) {
+    Serial.println("First execution");
+  } else {
+    Serial.println("Error reading from key/value store.");
+    while (true)
+      ;
+  }
+
+  // Update the stats...
+  SketchStats currStats { millis(), rand(), ++runCount };
+  // ... and on save them to the store
+  ret = setSketchStats(statsKey, currStats);
+  if (ret == MBED_SUCCESS) {
+    Serial.println("Sketch Stats updated");
+    Serial.println("Current Stats");
+    Serial.print("\tStartup Time: ");
+    Serial.println(currStats.startupTime);
+    Serial.print("\tRandom Value: ");
+    Serial.println(currStats.randomValue);
+    Serial.print("\tRun Count: ");
+    Serial.println(currStats.runCount);
+  } else {
+    Serial.println("Error storing to key/value store");
+    while (true)
+      ;
+  }
 }
+```
 
-void loop()
-{
-    // Do nothing
-}
+To finish the program, create `getSketchStats` and `setSketchStats` functions at the bottom of the sketch (after the `setup()` and `loop()`)
+```cpp
 
 // Retrieve a SketchStats from the k/v store
 int getSketchStats(const char* key, SketchStats* stats)
 {
-    // Retrieve key/value info
-    TDBStore::info_t info;
-    auto ret = store.get_info(key, &info);
-    if (ret == MBED_ERROR_ITEM_NOT_FOUND)
-        return ret;
-
-    // Allocate space for the value
-    uint8_t buf[info.size] {};
-    size_t actual_size;
-
-    // Get the value
-    ret = store.get(key, buf, sizeof(buf), &actual_size);
-    if (ret != MBED_SUCCESS)
-        return ret;
-
-    memcpy(stats, buf, sizeof(SketchStats));
+  // Retrieve key/value info
+  TDBStore::info_t info;
+  auto ret = store.get_info(key, &info);
+  if (ret == MBED_ERROR_ITEM_NOT_FOUND)
     return ret;
+
+  // Allocate space for the value
+  uint8_t buf[info.size] {};
+  size_t actual_size;
+
+  // Get the value
+  ret = store.get(key, buf, sizeof(buf), &actual_size);
+  if (ret != MBED_SUCCESS)
+    return ret;
+
+  memcpy(stats, buf, sizeof(SketchStats));
+  return ret;
 }
 
 // Store a SketchStats to the the k/v store
 int setSketchStats(const char* key, SketchStats stats)
 {
-    auto ret = store.set(key, reinterpret_cast<uint8_t*>(&stats), sizeof(SketchStats), 0);
-    return ret;
+  auto ret = store.set(key, reinterpret_cast<uint8_t*>(&stats), sizeof(SketchStats), 0);
+  return ret;
 }
 ```
+
+Upload the sketch and the output should be:
+```text
+FlashIAPBlockDevice + TDBStore Test
+FlashIAP block device size: 1572864
+FlashIAP block device read size: 1
+FlashIAP block device program size: 32
+FlashIAP block device erase size: 131072
+Initializing TDBStore: OK
+Retrieving Sketch Stats
+Previous Stats
+        Startup Time: 12727
+        Random Value: 1514801629
+        Run Count: 13
+Sketch Stats updated
+Current Stats
+        Startup Time: 4285
+        Random Value: 2133170025
+        Run Count: 14
+```
+
+**note that the flash memory will be __erased__ by a new sketch __upload__.**
+
+Push the reset button to restart the sketch. The values of the stats have been updated: `Previous Stats` – retrieved from the k/v store – now contains values from the previous execution.
+
+
+-- Previous --
+--------------
 
 Add a new file/tab to the sketch and name it `FlashIAPLimits.h`:
 
