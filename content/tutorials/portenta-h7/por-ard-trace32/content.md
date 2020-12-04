@@ -210,7 +210,7 @@ Alternatively you can run the TRACE32 executable with root permissions.
 Lauterbach also provides hardware-based debug & trace tools. To learn more about them please visit:
 
 - [https://www.lauterbach.com](https://www.lauterbach.com)
-- [https://www.lauterbach.com/microtrace.html](https://www.lauterbach.com/microtrace.html)
+- [https://www.lauterbach.com/microtrace_cortexm.html](https://www.lauterbach.com/microtrace_cortexm.html)
 
 **Authors:** Marco Ferrario, Lauterbach Italy, Sebastian Romero  
 **Reviewed by:** Maurizio Menegotto, Richard Copeman  
