@@ -88,7 +88,7 @@ FlashIAPLimits getFlashIAPLimits()
 }
 ```
 
-## 4. Make the Key Store program
+## 4. Make the Key Store Program
 Go to `FlashKeyValue.ino` and include the libraries that we need from **MBED** and our header helper (`FlashIAPLimits.h`) . The `getFlashIAPLimits()` function which is defined in the `FlashIAPLimits.h` header takes care of not overwriting data already stored on the flash and aligns the start and stop addresses with the size of the flash sector. We use those calculated limits to create a block device and a `TDBStore` on top of them.
 
 ```cpp
