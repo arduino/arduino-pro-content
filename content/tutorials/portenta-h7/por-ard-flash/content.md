@@ -64,7 +64,7 @@ Serial.println("FlashIAPBlockDevice Test");
 }
 ```
 
-## 2. Define the FlashIAPLimits.h 
+## 3. Define the FlashIAPLimits.h 
 
 let's now define the helper functions for calculating limits for the FlashIAP block device. These helper functions will be stored in the header file called FlashIAPLimits.h
 
@@ -126,7 +126,7 @@ FlashIAPLimits getFlashIAPLimits()
 }
 ```
 
-## 3. Add the Flash IAP Libaries 
+## 4. Add the Flash IAP Libaries 
 
 Get a few helpers from the supporting header file:
 
@@ -140,9 +140,7 @@ This header file defines the `getFlashIAPLimits` function that will take care of
 auto [flash_size, start_address, iap_size] = getFlashIAPLimits();
 ```
 
-
-
-## 4. Intialise the Block Device 
+## 5. Intialise the Block Device 
 
 Now lets Create the block device using the calculated limits. Initialize the block device before reading or write data.
 
@@ -254,6 +252,6 @@ void loop()
 }
 ```
 
-**Authors:** XX, YY
-**Reviewed by:** ZZ [18.03.2020]  
-**Last revision:** AA [27.3.2020]
+**Authors:** Giampaolo Mancini
+**Reviewed by:** Lenard [20.12.2020]  
+**Last revision:** -- []
