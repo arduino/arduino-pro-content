@@ -1,6 +1,6 @@
 # Using the Flash on Portenta H7 – MCU
 
-This tutorial shows you how to use the internal flash memory of the microcontroller of Portenta H7 and other MbedOS-based Arduino boards (Nano 33 BLEs, etc.). This is Part 1 of a series of projects on how to use the flash memories on the MbedOS-based Arduino boards.
+In this tutorial we will use the internal flash memory of the microcontroller of Portenta H7 and other MbedOS-based Arduino boards (Nano 33 BLE andNano 33 BLE Sense). This is Part 1 of a series of projects on how to use the flash memories on the MbedOS-based Arduino boards. 
 
 ## What You Will Learn
 -   To use the Flash In-Application Programming Interface 
@@ -13,17 +13,17 @@ This tutorial shows you how to use the internal flash memory of the microcontrol
 
 
 # Configuring the Development Environment
+
 The H7 comes with 2 Mbytes of Flash memory with read-while-write support + 1 Mbyte of RAM. To support the use of non-eraseble memory, a part of the flash memory can be programmed to behave as a block device that can behave as a place to store information. 
 
-To to access the internal flash of the MCU, you will have to use the Flash In-Application Programming Interface (FlashIAP). This API creates a block device on top of the space still available on the flash after flashing your sketch. Please**,** note that **the free space** available for the FlashIAP block device **depends on** the space occupied by **the complete sketch** on the flash and a few **block alignments calculations**.You can then use a raw access API to save and load data from the block device.
+To to access the internal flash of the MCU, you will have to use the [Flash In-Application Programming Interface (FlashIAP)](https://os.mbed.com/docs/mbed-os/v6.4/apis/flash-iap.html). This API creates a block device on top of the space still available on the flash after flashing your sketch. Keep in mind  that **the free space** available for the FlashIAP block device **depends on** the space occupied by **the complete sketch** on the flash plus a few **block alignments calculations**.
+Once the block device has been created, you can use a raw access API to save and load data on it. 
 
-https://os.mbed.com/docs/mbed-os/v6.4/apis/flash-iap.html
-
-Please, be aware of the **flash r/w limits** while using raw/direct access: flash memories have a limited amount of write cycles. Typical flash memories can perform about 10000 writes cycles to the same block before starting to "wear out" and begin to lose the ability to retain data. **You can actually render your board useless with improper use of this example and described APIs.**
+When saving and reading data from the flash memory, we need to be aware of the **flash r/w limits** while using raw/direct access: flash memories have a limited amount of write cycles. Typical flash memories can perform about 10000 writes cycles to the same block before starting to "wear out" and begin to lose the ability to retain data. **You can actually render your board useless with improper use of this example and described APIs.**
 
 [note]
 
-Note : Please, **limit** the usage of FlashIAP block devices to **once-in-a-time** read and write **operations**, for example, for managing `setup()`-time configuration parameters.
+**Note :** It is recommended to **limit** the usage of FlashIAP block devices to **once-in-a-time** read and write **operations**, for example, for managing `setup()`-time configuration parameters.
 
 [/note]
 
@@ -33,40 +33,9 @@ Begin by plugging in your Portenta board to the computer using a USB-C  cable an
 
 ![The Portenta H7 can be connected to the computer using an appropriate USB-C cable](assets/por_ard_usbh_basic_setup.svg)
 
-## 2. Create the FlashStorage_MbedOS.ino
+## 2. Define the FlashIAPLimits.h 
 
-Lets start by creating a sketch named `FlashStorage_MbedOS.ino` file 
-
-Add the FlashIAP support with the relevant library:
-
-```
-#include <FlashIAPBlockDevice.h>
-```
-
-Copy paste the following code inside `void setup()` 
-
-```cpp
-void setup()
-{
-
-Serial.begin(115200);
-  while (!Serial)
-    ;
-
-//  Wait for terminal to come up
-  delay(1000);
-
-Serial.println("FlashIAPBlockDevice Test");
-
-// Feed the RNG for later random content generation
-  srand(micros());
-
-}
-```
-
-## 3. Define the FlashIAPLimits.h 
-
-let's now define the helper functions for calculating limits for the FlashIAP block device. These helper functions will be stored in the header file called FlashIAPLimits.h
+Let's start by creating a sketch named `FlashStorage_MbedOS.ino` file . Then, let's define the helper functions for calculating limits for the FlashIAP block device. These helper functions will be stored in a header file called **FlashIAPLimits.h** that we will need to create by clicking on the down arrow just below the Serial Monitor icon in the IDE and selecting "New Tab". 
 
 ```cpp
 /**
@@ -126,15 +95,47 @@ FlashIAPLimits getFlashIAPLimits()
 }
 ```
 
-## 4. Add the Flash IAP Libaries 
 
-Get a few helpers from the supporting header file:
+
+## 3. Create the FlashStorage_MbedOS.ino
+
+Once we have created the header tab, let's modify the main ta of our sketch by adding the FlashIAP support with the relevant library as follows:
+
+```
+#include <FlashIAPBlockDevice.h>
+```
+
+Copy paste the following code inside `void setup()` 
+
+```cpp
+void setup()
+{
+Serial.begin(115200);
+  while (!Serial);
+
+//  Wait for terminal to come up
+  delay(1000);
+
+Serial.println("FlashIAPBlockDevice Test");
+
+// Feed the RNG for later random content generation
+  srand(micros());
+}
+```
+
+
+
+## 4. Adding the Flash IAP Libraries 
+
+Then, we need to complete the program with some specific statements that we will explain step by step below:
+
+First, we need to get a few helpers from the supporting header file:
 
 ```
 #include "FlashIAPLimits.h"
 ```
 
-This header file defines the `getFlashIAPLimits` function that will take care of calculating the starting point and the size of the flash storage available on the flash.
+Let's continue by editing the `void setup()`function with placing the next line of code just following the `srand(micros());`statement we added some steps above. This header file defines the `getFlashIAPLimits` function that will take care of calculating the starting point and the size of the flash storage available on the flash.
 
 ```
 auto [flash_size, start_address, iap_size] = getFlashIAPLimits();
@@ -142,14 +143,14 @@ auto [flash_size, start_address, iap_size] = getFlashIAPLimits();
 
 ## 5. Intialise the Block Device 
 
-Now lets Create the block device using the calculated limits. Initialize the block device before reading or write data.
+Now,  let's create the block device using the calculated limits. Initialize the block device before reading or write data.
 
 ```
 FlashIAPBlockDevice bd(start_address, iap_size);
 bd.init();
 ```
 
-Please, remember always to **allocate** a **flash-erase-size-wide** storage area to read and write data from the flash:
+Remember always to **allocate** a **flash-erase-size-wide** storage area to read and write data from the flash:
 
 ```
 const size_t size { bd.get_erase_size() };
@@ -170,10 +171,13 @@ De-init the block-device when done:
 bd.deinit(); 
 ```
 
-Please, remember that **the data stored** on the flash memory will be **erased** at every **sketch upload** and will only be **retained** only through successive sketch executions, e.g. after **power cycling** or **resetting** the board.
+With this line of code, we have finished our program, in which the ` void loop()`function will remain empty. 
 
-# Conclusion
-A minimal example to demonstrate the use of the MCU's internal flash memory for the Arduino boards based on MbedOS (Portenta H7, Nano 33 BLEs).
+[note]
+
+**Note :** **The data stored** on the flash memory will be **erased** at every **sketch upload** and will only be **retained** only through successive sketch executions, e.g. after **power cycling** or **resetting** the board.
+
+[/note]
 
 The complete sketch file  
 
@@ -200,8 +204,7 @@ using namespace mbed;
 void setup()
 {
   Serial.begin(115200);
-  while (!Serial)
-    ;
+  while (!Serial);
 
   //  Wait for terminal to come up
   delay(1000);
@@ -252,6 +255,19 @@ void loop()
 }
 ```
 
+
+
+## 6. Upload the Code
+
+Once you have uploaded the sketch to the board, open the Serial Monitor when the board starts it will display information about the flash memory.
+
+![flashInfo](assets/flashInfo.png)
+
+# Conclusion
+
+This tutorial shows a  minimal example to demonstrate the use of the MCU's internal flash memory for the Arduino boards based on MbedOS (Portenta H7, Nano 33 BLE and Nano BLE Sense).
+
 **Authors:** Giampaolo Mancini
 **Reviewed by:** Lenard [20.12.2020]  
-**Last revision:** -- []
+**Last revision:** Jose Garcia [18.01.2021]
+
