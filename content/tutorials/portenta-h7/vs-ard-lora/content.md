@@ -316,6 +316,9 @@ Find all the details here: [TTN Applications](https://www.thethingsnetwork.org/d
 
 # Troubleshooting
 
+The most common issue is that the device cannot connect to a TTN gateway. Again, it is a good idea to check if we have coverage in the area we are conducting this tutorial, by checking out [this map](https://www.thethingsnetwork.org/map).
+
+If we are within good range of a gateway, we should also try to move our device and antenna to a window, and even hold it out the window and move it around. This has proven successful on numerous accounts, as the signal can travel less obstructed. 
 
 **Authors:** Karl Söderby, Ignacio Herrera
 **Reviewed by:** ZZ [18.03.2020]  
