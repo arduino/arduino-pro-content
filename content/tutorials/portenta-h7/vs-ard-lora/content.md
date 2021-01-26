@@ -27,13 +27,13 @@ LoRaWAN™, stands for **Long Range Wide Area Network**, which is becoming incre
 - LoRa® which stands for Long Range
 - LP WAN which stands for Low Power Wide Area Network
 
-The LoRaWAN™ technology allows things to talk to the Internet without WiFi or 3G / 4G. This means that our Portenta H7 when attached to the Vision Shield (Lora Connectivity), is able to communicate with an online application without relying on a WIFI or mobile network. Instead, our devices connect to an available Lora Gateway to communicate with the internet. As you can see in the [map](https://www.thethingsnetwork.org/map), there are thousands of available gateways all over the world.
+The LoRaWAN™ technology allows things to talk to the Internet without WiFi or 3G / 4G. This means that our Portenta H7 when attached to the Vision Shield (Lora Connectivity), is able to communicate with an online application without relying on WIFI or mobile networks. Instead, our devices connect to an available Lora Gateway to communicate with the internet. As you can see in the [map](https://www.thethingsnetwork.org/map), there are thousands of available gateways all over the world.
 
 As we will see at the end of this guide, data rates may be a restriction, but now let’s have a look at some of the amazing features LoRa® technology comes with:
 
 - **Long range:** Up to 5km in an urban setting, 10km in suburban and up to 80km undisrupted.
 
-- **Power consumption:** Our latest addition, the MKR WAN 1310, can now have as low power consumption as 104uA, when configured properly.
+- **Power consumption:** Portenta H7 consumes as little as 2.95 μA in Standby mode when configured properly.
 
 - **Security:**  Portenta H7 board comes with a secure element ([NXP SE0502](https://content.arduino.cc/assets/Arduino-Portenta-H7_Datasheet_NXP-SE050.pdf)), which allows us to store data and credentials securely.
 
@@ -42,19 +42,19 @@ Now that we have introduced the communication channel (LoRaWAN™), a platform t
 # Configuring the Development Environment
 In this section, we will guide you through a step-by-step process of setting up your Portenta board and Vision Shield Lora to communicate with a TTN application.
 
-As stated before, in order to be able to follow this guide, you need to be under coverage of one of the TTN gateways. You can check for the coverage now if you have not done so yet. If you are not in rage you'll need to build up your own gateway (find help to do so here).
+As stated before, to be able to follow this guide, you need to be under coverage of one of the TTN gateways. You can check for the coverage now if you have not done so yet. If you are not in rage you'll need to build up your own gateway (find help to do so here).
 
 ## 1. Create an account and your first app on TTN
 Just point your browser to www.thethingsnetwork.org and use the Sign Up button to setup an account. Otherwise just sign in.
 
 Next, then fill all the required fields to complete a new registration (skip this step if you already have a TTN account):
 
-Once done, log to your [console](https://console.thethingsnetwork.org/)
+Once done, log to your [console](https://console.thethingsnetwork.org).
 
 In your console you will be able to:
 
-1. Register a new gateway or manage your own: here you can register and manage your own gateway - of course you can use for free one of the thousands of gateways around the world already running!
-2. Create or manage your applications: an application is the way to aggregate data from different devices, and then use these data with other online / offline tools - or in other terms, you can create an integration
+1. Register a new gateway or manage your own. Of course you can use for free one of the thousands of gateways around the world already running!
+2. Create or manage your applications: an application is the way to aggregate data from different devices, and then use these data with other online / offline tools.
 
 The setup and configuration of a gateway is not the aim of this guide, so let's proceed selecting APPLICATIONS
 
@@ -62,47 +62,45 @@ Here you'll have listed all your applications. Now create your first app by pres
 
 You have now to fill only the first two fields:
 
-* The first one is the ID of your app: this must be lowercase and without spaces.
-* The second one is a Description of your app, and there's no restrictions on formatting
+* The first one is the **ID** of your app: this must be lowercase and without spaces.
+* The second one is a **Description** of your app, and there's no restrictions on formatting
 
 After completing these two fields, press on the "Add application" button located at the bottom right corner of the page.
 
 After that, the loaded page will show you an overview of the newly created app. Let's see the sections:
 
-* Application Overview + Application EUIS: in order to use this app, you'll need the Application ID and its EUIs.
+* Application Overview and Application EUIS: in order to use this app, you'll need the Application ID and its EUIs.
 
-> Each EUI is a globally unique identifier for networks, gateways applications and devices. The EUIs are used to identify all of the parts of the LoRaWAN inside the backend server.
+> Each EUI is a globally unique identifier for networks, gateways applications and devices. The EUIs are used to identify all parts of the LoRaWAN inside the backend server.
 
-* Devices: here you can see and manage all the associated devices (e.g. your Portenta H7 with Vision Shield Lora, Arduino MKR WAN 1300 or MKR WAN 1310), or proceed with the registration of new one
+* Devices: here you can see and manage all the associated devices (e.g. your Portenta H7 with Vision Shield Lora, Arduino MKR WAN 1300 or MKR WAN 1310), or proceed with the registration of new one.
 
-* Collaborators: here you can see and manage all the app collaborators. Like other collaborative platforms, also here is possible to grant access with different rights to the app, to other TTN registered profiles.
+* Collaborators: here you can see and manage all the app collaborators. To integrate with other collaborative platforms or to manage access rights to the app with other TTN registered profiles.
 
 * Access keys: it's the most sensible information. It is basically the key to gain access to your app, so keep it safe. At the right, there's a little button that allows you to copy the Access Key.
 
 ## 2. First registration on TTN
-It's now time to connect your Arduino Portenta H7 and Lora Vision Shield to TTN. You'll need to upload code to the board, and here the options are two:
+It's now time to connect your Arduino Portenta H7 and Lora Vision Shield to TTN. You'll need to upload code to the board, so as you porbably already know, there are two options:
 
 * Use the [Arduino Web Editor](https://create.arduino.cc/editor) (this is the option this guide will follow)
-* Use the [Arduino IDE](https://www.arduino.cc/en/software), that is quite similar to the previous one, with the difference that you have to download and install it on your pc
+* Use the [Arduino IDE](https://www.arduino.cc/en/software), this way requires manual installation or updating the Arduino core and libraries.
 
 After connecting your Arduino to the usb port, be sure to have selected the right board "Arduino Portenta H7 (M7 core)" and the right port.
 
-The first code you need to upload and run is from an external library - named MKRWAN, and it's the FirstConfiguration sketch
+The first code you need to upload and run is from the **MKRWAN** library , and its name is _FirstConfiguration_.
 
-The only row you may need to update in the example code, is the one about the frequency:
+The only line you may need to change before uploading the code is the one that sets the frequency:
 
 ```
 ... // change this to your regional band (eg. US915, AS923, ...)
  if (!modem.begin(EU868)) {    ...
 ```
 
-You have to change the frequency according to your country.
+Update the frequency code according to your country. You can find more information about frequency by country at [this TTN link](https://www.thethingsnetwork.org/docs/lorawan/frequency-plans.html).
 
 Please, consider that in Australia the boards connect correctly to TTN gateways on AS923 frequencies; AU915 frequencies requires the selection of sub band 2, not yet implemented in the firmware.
 
-You can find more information about frequency by country at [this TTN link](https://www.thethingsnetwork.org/docs/lorawan/frequency-plans.html).
-
-After you've upload the sketch, open the Serial Monitor. The very first rows will be like these:
+Once the sketch completes upload, open the Serial Monitor. The following details will show:
 
 ```
 Your module version is: ARD-078 1.1.9
@@ -123,7 +121,7 @@ After pressing the Register button, it will show the Device Overview page. You c
 Let's come back to the Serial Monitor and proceed: it will ask for:
 
 * activation mode (that in this case is OTAA),
-* the Application EUI and
+* the Application EUI
 * the App Key.
 
 You can copy these information by clicking on the small icon at the end of the relative rows in the TTN device page.
@@ -171,7 +169,7 @@ Enter a message to send to network
 (make sure that end-of-line 'NL' is enabled)
 ```
 
-It' now time to do a little bit deeper on uplink and downlink
+It's now time to do a little bit deeper on uplink and downlink
 
 >The communication from the device to TTN is called uplink, viceversa the communication starting from TTN to the device, is called downlink
 
