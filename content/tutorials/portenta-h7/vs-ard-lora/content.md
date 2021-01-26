@@ -340,7 +340,9 @@ err = modem.endPacket(false);
 
 # Conclusion
 
-Congratulations! You have configured Portenta H7 and the Lora Vision Shield on the TTN. Now you have the tools and knowledge to take the next steps and develop your own IOT applications.
+Congratulations! You have configured Portenta H7 and the Lora Vision Shield on the TTN. We have retrieved the device EUI, used it to register the device in the TTN console, and programmed the board using the data provided by TTN.
+
+As long as we are in range of a TTN gateway, we can now send data over the LoRa® network which can be viewed from anywhere in the world (as long as we have an Internet connection). Now you have the tools and knowledge to take the next steps and develop your own IOT applications.
 
 # Next Steps
 
@@ -350,9 +352,8 @@ Congratulations! You have configured Portenta H7 and the Lora Vision Shield on t
 Find all the details here: [TTN Applications](https://www.thethingsnetwork.org/docs/applications/)
 
 # Troubleshooting
-## Sketch Upload Troubleshooting
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
 
-**Authors:** XX, YY
+
+**Authors:** Karl Söderby, Ignacio Herrera
 **Reviewed by:** ZZ [18.03.2020]  
 **Last revision:** AA [27.3.2020]
