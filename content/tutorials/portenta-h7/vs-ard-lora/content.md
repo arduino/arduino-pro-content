@@ -177,9 +177,7 @@ You can click on that row and expand it, looking at more detailed information.
 
 **Sending an Uplink Message**
 
-From the Serial Monitor, digit one or two words (i.e. "Hello TTN!") and hit the Send button
-
-the output in the Serial Monitor will be:
+From the Serial Monitor, digit one or two words (i.e. "Hello TTN!") and hit the Send button. The output in the Serial Monitor will show:
 
 ```
 Sending: Hello TTN! - 48 65 6C 6C 6F 20 54 54 4E 21
@@ -189,19 +187,18 @@ Enter a message to send to network
 (make sure that end-of-line 'NL' is enabled)
 ```
 
-We can see the message in a few seconds in the APPLICATION DATA page on TTN
+We will be able to see the message in a few seconds in the APPLICATION DATA page on TTN.
 
-You see for each uplink, 2 rows:
+For each uplink we will see two sections:
 
-the first (the lower one) is the uplink itself; you can recognize that is an uplink also thanks to the arrow up icon; the content is labelled "payload"
-the second is a downlink (arrow down icon) that confirms the uplink reception. This downlink is not necessary - unless you need it, of course.
+* the first (the lower one) is the uplink itself; you can recognize that is an uplink also thanks to the arrow up icon; the content is labelled "payload"
+* the second is a downlink (arrow down icon) that confirms the uplink reception. This downlink is not necessary - unless you need it, of course.
+
 You can click on each row to see message details.
 
 Notice that you've sent the string "Hello TTN!" and it was received a sequence of bytes in hexadecimal notation.
 
-The content is of course the same. Let's use this online tool:
-
-[ASCII to Hex...and other free text conversion tools](https://www.asciitohex.com/)
+The content is of course the same. We can use this online tool to convert the data: [ASCII to Hex...and other free text conversion tools](https://www.asciitohex.com/)
 
 and try to copy the sequence of bytes into the "Hexadecimal" area, and then press the Convert button
 
@@ -273,7 +270,7 @@ Hi again MKR WAN!
 
 ### Payload decoding on TTN
 
-You can of course decode the message on TTN as well! There's indeed a section aimed to format the payload.
+As the payload comes in a HEX format, it needs to be decoded so a human can interpret the information. This can be done by using an Hex code translator, such as [this one](https://www.qbit.it/lab/hextext.php). We can also automate it directly in the TTN console, by navigating to our application overview, and to the **"Payload Formats"** tab.
 
 You can find this section in the Application page, and the section is called "Payload Format"
 
@@ -308,7 +305,6 @@ There are policy -not only for technical reason, also for government rules- on h
 
 * [Limitations of LoRaWAN](https://www.thethingsnetwork.org/docs/lorawan/limitations.html)
 * [Duty cycle for LoRaWAN devices](https://www.thethingsnetwork.org/docs/lorawan/duty-cycle.html)
-
 
 As explained earlier, we are using the public community network of TTN. This implies some rules and regulations on Fair Access Policy. The limitations are:
 
