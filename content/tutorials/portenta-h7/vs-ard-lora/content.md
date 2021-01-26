@@ -194,15 +194,13 @@ Notice that a string "Hello TTN!" was sent but it was received as a sequence of 
 
 **Sending a Downlink Message**
 
-Come back to the Device Overview page, and scroll to the Downlink section.
+Downlink messages can be sent from the Device Overview page, just scroll down to the Downlink section.
 
 You can use the same ASCII to Hex tool to convert a string into a sequence of bytes; i.e. convert
 
-"Hi MKR WAN!"
+"Hi Portenta!"
 
-from Text to Hexadecimal: the result will be
-
-"48 69 20 4d 4b 52 20 57 41 4e 21"
+from Text to Hexadecimal the result is:
 
 Copy the result into the Payload field and set:
 
@@ -211,11 +209,9 @@ Copy the result into the Payload field and set:
 * Fport: 1
 * Confirmed: yes
 
-and press the Send button
+and press the Send button.
 
-The downlink is queued waiting for the next uplink: only in that "window" the downlink will sent back to your board.
-
-You'll see it in the Application Data page:
+The downlink is queued waiting for the next uplink: only in that "window" the downlink will sent back to your board. So we need to send an uplink from our board again in order to see it in the Application Data page.
 
 Now try to send something else from your board, and you'll receive the downlink as response:
 
@@ -227,18 +223,7 @@ Received: 48 69 20 4D 4B 52 20 57 41 4E 21
 
 You'll see as well in the Application Data window the flow (bottom-up) of the queued message, the uplink and the next downlink of the queued message.
 
-As already know, you can click on every rows to expand it and see message details.
-
 TIP if you want to see the received message on your board in plain text, you need to add these 3 rows of code as last, in the loop:
-
-```
-for (unsigned int j = 0; j < i; j++) {
-   Serial.print(rcv[j]);
- }
- Serial.println();
-```
-
-they will output the content in a readable format, i.e.
 
 ```
 for (unsigned int j = 0; j < i; j++) {
