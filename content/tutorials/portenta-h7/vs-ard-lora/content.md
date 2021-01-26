@@ -158,9 +158,7 @@ Before uploading, we must fill in the following details in the _Secret_ tab of t
 * the **SECRET_APP_EUI**: Application EUI field from the TTN device overview page
 * the **SECRET_APP_KEY**: the App Key field from the same page.
 
-After that, you can upload the sketch to your board.
-
-The output in the SerialMonitor will be like this:
+Now you can upload the sketch to the board. The Serial Monitor output will look like this:
 
 ```
 Your module version is: ARD-078 1.1.9
@@ -169,17 +167,15 @@ Enter a message to send to network
 (make sure that end-of-line 'NL' is enabled)
 ```
 
-It's now time to do a little bit deeper on uplink and downlink
-
 >The communication from the device to TTN is called uplink, viceversa the communication starting from TTN to the device, is called downlink
 
-Open the Data section on the Device page: here you'll see every kind of messages between your device and TTN
+Now open the Data section of the Device page. Every message between your device and TTN will be displayed here.
 
 The _thundericon_ is used to identify an Activation: typically when you turn on your device or you reset it, it will generate a new activation.
 
 You can click on that row and expand it, looking at more detailed information.
 
-Try now to send an uplink from your board.
+**Sending an Uplink Message**
 
 From the Serial Monitor, digit one or two words (i.e. "Hello TTN!") and hit the Send button
 
@@ -211,7 +207,7 @@ and try to copy the sequence of bytes into the "Hexadecimal" area, and then pres
 
 you'll see in the "Text (ASCII / ANSI)" area the content will be converted back to a readable format.
 
-**Now let's try to send a Downlink**
+**Sending a Downlink Message**
 
 Come back to the Device Overview page, and scroll to the Downlink section.
 
