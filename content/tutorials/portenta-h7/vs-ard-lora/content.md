@@ -61,25 +61,7 @@ After that, the loaded page will show you an overview of the newly created app. 
 
 * Access keys: it's the most sensible information. It is basically the key to gain access to your app, so keep it safe. At the right, there's a little button that allows you to copy the Access Key.
 
-## 2. Device Registration on TTN
-First, open the "Register Device" page, by selecting the "register device" link on the header of the Devices section.
-
-The following page will be displayed: you have to fill only two fields.
-
-* The first one is the ID of your device: this must be lowercase and without spaces; the ID should be unique, so you can use i.e. the name of the board followed by the first and the last byte of the EUI
-* The second one is the EUI: this is exactly the device EUI appeared in the Serial Monitor! So copy that value into this
-
-After pressing the Register button, it will show the Device Overview page. You can now see all the information needed to complete the Arduino setup.
-
-Let's come back to the Serial Monitor and proceed: it will ask for:
-
-* activation mode (that in this case is OTAA),
-* the Application EUI and
-* the App Key.
-
-
-
-## 3. First registration on TTN
+## 2. First registration on TTN
 It's now time to connect your Arduino Portenta H7 and Lora Vision Shield to TTN. You'll need to upload code to the board, and here the options are two:
 
 * Use the [Arduino Web Editor](https://create.arduino.cc/editor) (this is the option this guide will follow)
@@ -110,12 +92,244 @@ Your device EUI is: a8xxxxxxxxxxxx0a
 Are you connecting via OTAA (1) or ABP (2)?
 ```
 
+### Device Registration on TTN
+Now we need to go back to our TTN dashboard and open the "Register Device" page, by selecting the "register device" link on the header of the Devices section.
+
+The following page will be displayed: you have to fill only two fields.
+
+* The first one is the ID of your device: this must be lowercase and without spaces; the ID should be unique, so you can use i.e. the name of the board followed by the first and the last byte of the EUI
+* The second one is the EUI: this is exactly the device EUI appeared in the Serial Monitor! So copy that value into this
+
+After pressing the Register button, it will show the Device Overview page. You can now see all the information needed to complete the Arduino setup.
+
+Let's come back to the Serial Monitor and proceed: it will ask for:
+
+* activation mode (that in this case is OTAA),
+* the Application EUI and
+* the App Key.
+
+You can copy these information by clicking on the small icon at the end of the relative rows in the TTN device page.
+
+```
+Your module version is: ARD-078 1.1.9
+Your device EUI is: a8xxxxxxxxxxxx0a
+Are you connecting via OTAA (1) or ABP (2)?
+Enter your APP EUI
+Enter your APP KEY
+```
+
+>You can go deep into OTA vs ABP activation mode at [this link](https://www.thethingsnetwork.org/docs/devices/registration.html)
+
+If everything has gone fine, you should see in the Serial Monitor this message:
+
+```
+Message sent correctly!
+```
+
+and the page of the Device on TTN should be changed into this:
+
+## 3. Use your Portenta H7 and Lora Vision Shield on TTN
+
+Now that you have tested App EUI and Key, and registered your device, it's time to upload a new sketch into your board.
+
+This new code will allow you to exchange (send and receive) data with TTN.
+
+You can find the new sketch in the previously used library - MKRWAN: it's the _LoraSendAndReceive_ sketch
+
+
+This code has to be filled in the Secret tab; basically you have to fill:
+
+* the SECRET_APP_EUI field with the Application EUI field from the TTN device overview page
+* the SECRET_APP_KEY field with the App Key field from the same page
+
+After that, you can upload the sketch to your board.
+
+The output in the SerialMonitor will be like this:
+
+```
+Your module version is: ARD-078 1.1.9
+Your device EUI is: a8xxxxxxxxxxxx0a
+Enter a message to send to network
+(make sure that end-of-line 'NL' is enabled)
+```
+
+It' now time to do a little bit deeper on uplink and downlink
+
+>The communication from the device to TTN is called uplink, viceversa the communication starting from TTN to the device, is called downlink
+
+Open the Data section on the Device page: here you'll see every kind of messages between your device and TTN
+
+The _thundericon_ is used to identify an Activation: typically when you turn on your device or you reset it, it will generate a new activation.
+
+You can click on that row and expand it, looking at more detailed information.
+
+Try now to send an uplink from your board.
+
+From the Serial Monitor, digit one or two words (i.e. "Hello TTN!") and hit the Send button
+
+the output in the Serial Monitor will be:
+
+```
+Sending: Hello TTN! - 48 65 6C 6C 6F 20 54 54 4E 21
+Message sent correctly!
+No downlink message received at this time.
+Enter a message to send to network
+(make sure that end-of-line 'NL' is enabled)
+```
+
+We can see the message in a few seconds in the APPLICATION DATA page on TTN
+
+You see for each uplink, 2 rows:
+
+the first (the lower one) is the uplink itself; you can recognize that is an uplink also thanks to the arrow up icon; the content is labelled "payload"
+the second is a downlink (arrow down icon) that confirms the uplink reception. This downlink is not necessary - unless you need it, of course.
+You can click on each row to see message details.
+
+Notice that you've sent the string "Hello TTN!" and it was received a sequence of bytes in hexadecimal notation.
+
+The content is of course the same. Let's use this online tool:
+
+[ASCII to Hex...and other free text conversion tools](https://www.asciitohex.com/)
+
+and try to copy the sequence of bytes into the "Hexadecimal" area, and then press the Convert button
+
+you'll see in the "Text (ASCII / ANSI)" area the content will be converted back to a readable format.
+
+**Now let's try to send a Downlink**
+
+Come back to the Device Overview page, and scroll to the Downlink section.
+
+You can use the same ASCII to Hex tool to convert a string into a sequence of bytes; i.e. convert
+
+"Hi MKR WAN!"
+
+from Text to Hexadecimal: the result will be
+
+"48 69 20 4d 4b 52 20 57 41 4e 21"
+
+Copy the result into the Payload field and set:
+
+* Scheduling: replace
+* Payload (type): bytes
+* Fport: 1
+* Confirmed: yes
+
+and press the Send button
+
+The downlink is queued waiting for the next uplink: only in that "window" the downlink will sent back to your board.
+
+You'll see it in the Application Data page:
+
+Now try to send something else from your board, and you'll receive the downlink as response:
+
+```
+Sending: Hello again! - 48 65 6C 6C 6F 20 61 67 61 69 6E 21
+Message sent correctly!
+Received: 48 69 20 4D 4B 52 20 57 41 4E 21
+```
+
+You'll see as well in the Application Data window the flow (bottom-up) of the queued message, the uplink and the next downlink of the queued message.
+
+As already know, you can click on every rows to expand it and see message details.
+
+TIP if you want to see the received message on your board in plain text, you need to add these 3 rows of code as last, in the loop:
+
+```
+for (unsigned int j = 0; j < i; j++) {
+   Serial.print(rcv[j]);
+ }
+ Serial.println();
+```
+
+they will output the content in a readable format, i.e.
+
+```
+for (unsigned int j = 0; j < i; j++) {
+   Serial.print(rcv[j]);
+ }
+ Serial.println();
+```
+
+they will output the content in a readable format, i.e.
+
+```
+Sending: Hello for the last time! - 48 65 6C 6C 6F 20 66 6F 72 20 74 68 65 20 6C 61 73 74 20 74 69 6D 65 21
+Message sent correctly!
+Received: 48 69 20 61 67 61 69 6E 20 4D 4B 52 20 57 41 4E 21
+Hi again MKR WAN!
+```
+
+### Payload decoding on TTN
+
+You can of course decode the message on TTN as well! There's indeed a section aimed to format the payload.
+
+You can find this section in the Application page, and the section is called "Payload Format"
+
+!
+
+In order to enable the decoding, update the Decoder function, replacing the one already there with the following one:
+
+```
+function Decoder(bytes, port) {
+ //source: https://flows.nodered.org/flow/845bb5b8cf788939dd261f472c289f77
+ var result = "";
+ for (var i = 0; i < bytes.length; i++) {
+   result += String.fromCharCode(parseInt(bytes[i]));
+ }
+ return { payload: result, };
+}
+```
+
+and then press the "save payload functions" button!
+
+!
+
+From now on, you'll see the uplink in plain beside the sequence of bytes! Let's see an example:
+
+!
+
+It will be easier in this way to integrate your TTN Application with other services or tools!
+
+### Improve bandwidth usage
+
+There are policy -not only for technical reason, also for government rules- on how much we can use the bandwidth in uplink and in downlink in LoRaWAN. You can read these TTN interesting guides on this topic:
+
+* [Limitations of LoRaWAN](https://www.thethingsnetwork.org/docs/lorawan/limitations.html)
+* [Duty cycle for LoRaWAN devices](https://www.thethingsnetwork.org/docs/lorawan/duty-cycle.html)
+
+
+As explained earlier, we are using the public community network of TTN. This implies some rules and regulations on Fair Access Policy. The limitations are:
+
+* The uplink airtime to 30 seconds per day (24 hours) per node and
+* The downlink messages to 10 messages per day (24 hours) per node.
+
+This is why it is important to minimize bandwidth usage. Below some suggestions:
+
+* Keep the payload (the message) as smaller as possible, and
+* Avoid not necessary messages
+
+Let's start from a small thing: removing the confirmation request for the uplink messages from your Arduino. You need to change only this line:
+
+```
+err = modem.endPacket(true);
+```
+
+to
+
+```
+err = modem.endPacket(false);
+```
+
 # Conclusion
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.  
+
+Congratulations! You have configured Portenta H7 and the Lora Vision Shield on the TTN. Now you have the tools and knowledge to take the next steps and develop your own IOT applications.
 
 # Next Steps
--   A
--   B
+
+-   Test the built in integrations
+-   Test the API and the available SDKs libraries
+
+Find all the details here: [TTN Applications](https://www.thethingsnetwork.org/docs/applications/)
 
 # Troubleshooting
 ## Sketch Upload Troubleshooting
