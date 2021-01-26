@@ -3,23 +3,41 @@ This tutorial explains how to connect your Portenta H7 to The Things Network (TT
 
 ## What You Will Learn
 -   What LoRaWAN® and TTN are
--   How to setup your Portenta H7 and Vision Shield Lora Connectivity with TTN
--   To develop an application that enables communication between Portenta H7 and an application in TTN
+-   To create a The Things Network (TTN) account.
+-   To obtain the device's EUI and App Key
+-   How to setup your Portenta H7 and Vision Shield Lora Connectivity to establish a connection with TTN.
+-   Send a payload from our device to the TTN.
+-   Decode the payload from hexcode to text.
+-   To improve the bandwidth usage
 
 ## Required Hardware and Software
--   Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
+-   [Portenta H7 board](https://store.arduino.cc/portenta-h7)
 -   Vision Shield (Lora Connectivity)
--   Dipole antenna
+-   1x antenna ([link to store](https://store.arduino.cc/antenna)).
+-   Arduino IDE ([online](https://create.arduino.cc/) or [offline](https://www.arduino.cc/en/main/software))
 -   An account on [The Things Network (TTN)](https://www.thethingsnetwork.org/)
 -   To be within range (10 Km) from an available Lora Gateway. Check availability on [The Things Network map](https://www.thethingsnetwork.org/map)
--   Arduino IDE 1.8.13+ or Arduino Online Editor
+-   [MKRWAN](https://www.arduino.cc/en/Reference/MKRWAN) library installed.
+-   1x micro USB cable.
 
-# Portenta and The Things Network
-The LoRaWAN technology allows things to talk to the Internet without WiFi or 3G / 4G. This means that our Portenta H7 with the Vision Shield (Lora Connectivity) are able to exchange data with an online application without relying on a WIFI or mobile network. Instead, our devices connect to an available Lora Gateway to communicate with the internet.
+# LoraWAN and The Things Network
 
-The LoRaWAN® (Long Range Wide Area Network) specification is a protocol that connects a device (or 'thing') to the internet specifically designed for the Internet of Things (IoT). Besides long range this protocol also features low battery usage and low bandwidth. All these aspects combined make LoRa the perfect solution for the IoT!
+LoRaWAN™, stands for **Long Range Wide Area Network**, which is becoming increasingly popular in the Internet of Things-sphere, due to its capability of sending data over larger distances using minimal battery power and ensuring that data and credentials remain secure. There are also other acronyms that are associated with LoRaWAN™ such as:
 
-Now that we have the communication channel (LoraWAN), a platform that interconnects the devices, gateways and online applications is required. For this, The Things Network (TTN) is the most known global platform. TTN is a decentralized and collaborative network that provides thousands of gateways (connection points) around the world. So, we will be using TTN to connect our Portenta H7 and Vision Shield Lora to the internet.
+- LoRa® which stands for Long Range
+- LP WAN which stands for Low Power Wide Area Network
+
+The LoRaWAN™ technology allows things to talk to the Internet without WiFi or 3G / 4G. This means that our Portenta H7 when attached to the Vision Shield (Lora Connectivity), is able to communicate with an online application without relying on a WIFI or mobile network. Instead, our devices connect to an available Lora Gateway to communicate with the internet. As you can see in the [map](https://www.thethingsnetwork.org/map), there are thousands of available gateways all over the world.
+
+As we will see at the end of this guide, data rates may be a restriction, but now let’s have a look at some of the amazing features LoRa® technology comes with:
+
+- **Long range:** Up to 5km in an urban setting, 10km in suburban and up to 80km undisrupted.
+
+- **Power consumption:** Our latest addition, the MKR WAN 1310, can now have as low power consumption as 104uA, when configured properly.
+
+- **Security:**  Portenta H7 board comes with a secure element ([NXP SE0502](https://content.arduino.cc/assets/Arduino-Portenta-H7_Datasheet_NXP-SE050.pdf)), which allows us to store data and credentials securely.
+
+Now that we have introduced the communication channel (LoRaWAN™), a platform that interconnects the devices, gateways and online applications is required. For this, The Things Network (TTN) is the most known global platform. TTN is a decentralized and collaborative network that provides thousands of gateways (connection points) around the world. So, we will be using TTN to connect our Portenta H7 and Vision Shield Lora to the internet.
 
 # Configuring the Development Environment
 In this section, we will guide you through a step-by-step process of setting up your Portenta board and Vision Shield Lora to communicate with a TTN application.
