@@ -147,7 +147,7 @@ Message sent correctly!
 and the Device status on TTN should update displaying last connection time.
 
 
-## 3. Use your Portenta H7 and Lora Vision Shield on TTN
+## 3. Communication between Portenta H7 and TTN
 
 Now that our device is registered correctly on TTN we can go ahead and upload a new sketch. This new code will allow you to exchange (send and receive) data with TTN.
 
@@ -169,11 +169,7 @@ Enter a message to send to network
 
 >The communication from the device to TTN is called uplink, viceversa the communication starting from TTN to the device, is called downlink
 
-Now open the Data section of the Device page. Every message between your device and TTN will be displayed here.
-
-The _thundericon_ is used to identify an Activation: typically when you turn on your device or you reset it, it will generate a new activation.
-
-You can click on that row and expand it, looking at more detailed information.
+Now open the Data section of the Device page. Every message between your device and TTN will be displayed here. The _thundericon_ is used to identify an Activation: typically when you turn on your device or you reset it, it will generate a new activation. Every raw can be expanded to see more detailed information.
 
 **Sending an Uplink Message**
 
@@ -191,18 +187,10 @@ We will be able to see the message in a few seconds in the APPLICATION DATA page
 
 For each uplink we will see two sections:
 
-* the first (the lower one) is the uplink itself; you can recognize that is an uplink also thanks to the arrow up icon; the content is labelled "payload"
-* the second is a downlink (arrow down icon) that confirms the uplink reception. This downlink is not necessary - unless you need it, of course.
+* the first (the lower one) is the uplink itself; the arrow up icon indicates it is an uplink and the content is labelled as "payload".
+* the second is a downlink (arrow down icon) and its purpose is to confirm uplink reception. This part is optional so it can be disabled to save up data.
 
-You can click on each row to see message details.
-
-Notice that you've sent the string "Hello TTN!" and it was received a sequence of bytes in hexadecimal notation.
-
-The content is of course the same. We can use this online tool to convert the data: [ASCII to Hex...and other free text conversion tools](https://www.asciitohex.com/)
-
-and try to copy the sequence of bytes into the "Hexadecimal" area, and then press the Convert button
-
-you'll see in the "Text (ASCII / ANSI)" area the content will be converted back to a readable format.
+Notice that a string "Hello TTN!" was sent but it was received as a sequence of bytes in hexadecimal notation. The content is of course the same, we can use this online tool to convert the data: [ASCII to Hex...and other free text conversion tools](https://www.asciitohex.com/).
 
 **Sending a Downlink Message**
 
