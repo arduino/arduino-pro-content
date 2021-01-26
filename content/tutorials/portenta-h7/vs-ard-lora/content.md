@@ -109,22 +109,22 @@ Are you connecting via OTAA (1) or ABP (2)?
 ```
 
 ### Device Registration on TTN
-Now we need to go back to our TTN dashboard and open the "Register Device" page, by selecting the "register device" link on the header of the Devices section.
+Now we need to go back to our TTN dashboard and open the "Register Device" page. Click on "register device" link at the top of the Devices section.
 
-The following page will be displayed: you have to fill only two fields.
+On the page that shows up we must fill in two fields:
 
 * The first one is the ID of your device: this must be lowercase and without spaces; the ID should be unique, so you can use i.e. the name of the board followed by the first and the last byte of the EUI
 * The second one is the EUI: this is exactly the device EUI appeared in the Serial Monitor! So copy that value into this
 
 After pressing the Register button, it will show the Device Overview page. You can now see all the information needed to complete the Arduino setup.
 
-Let's come back to the Serial Monitor and proceed: it will ask for:
+Let's come back to the Serial Monitor and proceed. It will ask for:
 
 * activation mode (that in this case is OTAA),
 * the Application EUI
 * the App Key.
 
-You can copy these information by clicking on the small icon at the end of the relative rows in the TTN device page.
+You can copy these details by clicking on the small icon at the end of the relative rows in the TTN device page.
 
 ```
 Your module version is: ARD-078 1.1.9
@@ -134,29 +134,29 @@ Enter your APP EUI
 Enter your APP KEY
 ```
 
+We will connect via OTAA so, to complete the first question we enter "1" in the serial monitor input box and press ENTER.
+
 >You can go deep into OTA vs ABP activation mode at [this link](https://www.thethingsnetwork.org/docs/devices/registration.html)
 
-If everything has gone fine, you should see in the Serial Monitor this message:
+Then we introduce the **APP EUI** and the **APP KEY**. If everything has gone fine, you will see this message:
 
 ```
 Message sent correctly!
 ```
 
-and the page of the Device on TTN should be changed into this:
+and the Device status on TTN should update displaying last connection time.
+
 
 ## 3. Use your Portenta H7 and Lora Vision Shield on TTN
 
-Now that you have tested App EUI and Key, and registered your device, it's time to upload a new sketch into your board.
+Now that our device is registered correctly on TTN we can go ahead and upload a new sketch. This new code will allow you to exchange (send and receive) data with TTN.
 
-This new code will allow you to exchange (send and receive) data with TTN.
+As before, the sketch can be found in the **MKRWAN** library. This time we choose: _LoraSendAndReceive_ sketch.
 
-You can find the new sketch in the previously used library - MKRWAN: it's the _LoraSendAndReceive_ sketch
+Before uploading, we must fill in the following details in the _Secret_ tab of the sketch:
 
-
-This code has to be filled in the Secret tab; basically you have to fill:
-
-* the SECRET_APP_EUI field with the Application EUI field from the TTN device overview page
-* the SECRET_APP_KEY field with the App Key field from the same page
+* the **SECRET_APP_EUI**: Application EUI field from the TTN device overview page
+* the **SECRET_APP_KEY**: the App Key field from the same page.
 
 After that, you can upload the sketch to your board.
 
