@@ -1,57 +1,48 @@
-# Vision Shield Lora Connectivity for Portenta H7
-This tutorial explains how to connect your Portenta H7 to The Things Network (TTN) through the Vision Shield Lora Connectivity. A data communication channel will be enabled between Portenta H7 and a TTN application that will be configured in your TTN console.
+# Connecting the Vision Shield to The Things Network
+This tutorial explains how to connect your Portenta H7 to The Things Network (TTN) using the the Vision Shield's Lora Connectivity feature. A data communication channel will be enabled between the H7 and a TTN application that will be configured on your TTN console.
 
-## What You Will Learn
--   What LoRaWAN® and TTN are
--   To create a The Things Network (TTN) account.
--   To obtain the device's EUI and App Key
--   How to setup your Portenta H7 and Vision Shield Lora Connectivity to establish a connection with TTN.
--   Send a payload from our device to the TTN.
--   Decode the payload from hexcode to text.
--   To improve the bandwidth usage
+[note]
+
+**Note :** Ensure that you are within range (10 Km) from an available Lora Gateway before you try this tutorial. Check availability on [The Things Network map](https://www.thethingsnetwork.org/map).
+
+[/note]
+
+## You Will Learn
+-   About LoRaWAN® and The Things Network,
+-   About creating a TTN application,
+-   How to establish a connection between the H7 and the TTN,
+-   How to send a payload from the H7 to the TTN.
 
 ## Required Hardware and Software
 -   [Portenta H7 board](https://store.arduino.cc/portenta-h7)
--   Vision Shield (Lora Connectivity)
--   1x antenna ([link to store](https://store.arduino.cc/antenna)).
+-   [Vision Shield LoRa](https://store.arduino.cc/portenta-vision-shield-lora)
+-   [1x Dipole Pentaband antenna](https://store.arduino.cc/antenna) or a UFL Antenna 
 -   Arduino IDE ([online](https://create.arduino.cc/) or [offline](https://www.arduino.cc/en/main/software))
--   An account on [The Things Network (TTN)](https://www.thethingsnetwork.org/)
--   To be within range (10 Km) from an available Lora Gateway. Check availability on [The Things Network map](https://www.thethingsnetwork.org/map)
--   [MKRWAN](https://www.arduino.cc/en/Reference/MKRWAN) library installed.
--   1x micro USB cable.
-
-# LoraWAN and The Things Network
-
-LoRaWAN™, stands for **Long Range Wide Area Network**, which is becoming increasingly popular in the Internet of Things-sphere, due to its capability of sending data over larger distances using minimal battery power and ensuring that data and credentials remain secure. There are also other acronyms that are associated with LoRaWAN™ such as:
-
-- LoRa® which stands for Long Range
-- LP WAN which stands for Low Power Wide Area Network
-
-The LoRaWAN™ technology allows things to talk to the Internet without WiFi or 3G / 4G. This means that our Portenta H7 when attached to the Vision Shield (Lora Connectivity), is able to communicate with an online application without relying on WIFI or mobile networks. Instead, our devices connect to an available Lora Gateway to communicate with the internet. As you can see in the [map](https://www.thethingsnetwork.org/map), there are thousands of available gateways all over the world.
-
-As we will see at the end of this guide, data rates may be a restriction, but now let’s have a look at some of the amazing features LoRa® technology comes with:
-
-- **Long range:** Up to 5km in an urban setting, 10km in suburban and up to 80km undisrupted.
-
-- **Power consumption:** Portenta H7 consumes as little as 2.95 μA in Standby mode when configured properly.
-
-- **Security:**  Portenta H7 board comes with a secure element ([NXP SE0502](https://content.arduino.cc/assets/Arduino-Portenta-H7_Datasheet_NXP-SE050.pdf)), which allows us to store data and credentials securely.
-
-Now that we have introduced the communication channel (LoRaWAN™), a platform that interconnects the devices, gateways and online applications is required. For this, The Things Network (TTN) is the most known global platform. TTN is a decentralized and collaborative network that provides thousands of gateways (connection points) around the world. So, we will be using TTN to connect our Portenta H7 and Vision Shield Lora to the internet.
+-   USB C cable (either USB A to USB C or USB C to USB C)
+-   An [account](https://account.thethingsnetwork.org/users/login) with The Things Network
 
 # Configuring the Development Environment
-In this section, we will guide you through a step-by-step process of setting up your Portenta board and Vision Shield Lora to communicate with a TTN application.
+The Vision Shield LoRa can be used for developing edge- computing applications that need to be low power and ensure data privacy. Using the vision the data can be extracted  As the LoRa relies on its own network it consumes less power as compared to Wifi and bluetooth and is more secure. The Vision sheild's LoRa module is the same as the ones found on MKRWan
+
+## 1.  Setting up the Development Environment 
+
+In this section, we will guide you through a step-by-step process of setting up your Portenta board and Vision Shield Lora to communicate with a TTN application. This tutorial will  will first setup a TTN account and create 
 
 As stated before, to be able to follow this guide, you need to be under coverage of one of the TTN gateways. You can check for the coverage now if you have not done so yet. If you are not in rage you'll need to build up your own gateway (find help to do so here).
 
-## 1. Create an account and your first app on TTN
 Just point your browser to www.thethingsnetwork.org and use the Sign Up button to setup an account. Otherwise just sign in.
+
+![vs_ard_things_nw]()
 
 Next, then fill all the required fields to complete a new registration (skip this step if you already have a TTN account):
 
-Once done, log to your [console](https://console.thethingsnetwork.org).
+![vs_ard_things_nw]()
 
-In your console you will be able to:
+
+
+## 2.  Create an app on TTN
+
+Once you have created an account with TTN, go to your [console](https://console.thethingsnetwork.org) you will be able to:
 
 1. Register a new gateway or manage your own. Of course you can use for free one of the thousands of gateways around the world already running!
 2. Create or manage your applications: an application is the way to aggregate data from different devices, and then use these data with other online / offline tools.
