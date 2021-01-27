@@ -42,7 +42,7 @@ Next, select *Portenta* in the **Tools -> Board** menu before installing [lvgl](
 
 Let's start by including the libraries that we are going to use.
 
-```c++
+```cpp
 #include "Portenta_LittleVGL.h"
 #include "USBHost.h"
 ```
@@ -56,7 +56,7 @@ static lv_obj_t *myCustomLabel;
 
 Then inside the `setup()` configure the type, style and the position of the button.
 
-```c++
+```cpp
 void setup() {
   // put your setup code here, to run once:
   Serial1.begin(115200);
@@ -76,7 +76,7 @@ void setup() {
 
 To finish, in the loop, it calls to the `lv_task_handler()` which will update the output to the external monitor. 
 
-```c++
+```cpp
 void loop() {
   // put your main code here, to run repeatedly:
   lv_task_handler();
@@ -146,7 +146,7 @@ Finally, as the last line inside the `setup()` function, we create the task that
 
 This is the complete sketch of the tutorial that updates the button text with a counter. Upload the sketch to your Portenta H7 and connect it to an external monitor as described in Step 4. 
 
-```c++
+```cpp
 #include "Portenta_LittleVGL.h"
 #include "USBHost.h"
 
@@ -203,6 +203,6 @@ Now that you know how to build a simple UI for a screen, you can try to add more
 * Unplug and plug back the HDMI cable.
 * Reset the Portenta once it's connected to the USB-hub.
 
-**Authors:** Pablo Marquínez & Lenard George
-**Reviewed by:** Jose Garcia, Manuel Zomer
+**Authors:** Pablo Marquínez & Lenard George  
+**Reviewed by:** Jose Garcia, Manuel Zomer  
 **Last revision:** Manuel Zomer  [27.01.2021]
