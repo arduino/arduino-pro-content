@@ -86,7 +86,7 @@ using namespace mbed;
 struct FlashIAPLimits {
   size_t flash_size;
   uint32_t start_address;
-  uint32_t aval_size;
+  uint32_t available_size;
 };
 
 // Get the actual start address and available size for the FlashIAP Block Device
@@ -106,8 +106,8 @@ FlashIAPLimits getFlashIAPLimits()
   uint32_t start_address;
   FlashIAP flash;
 
-  auto ret = flash.init();
-  if (ret != 0)
+  auto result = flash.init();
+  if (result != 0)
     return { };
 
   // Find the start of first sector after text area
@@ -116,14 +116,14 @@ FlashIAPLimits getFlashIAPLimits()
   flash_start_address = flash.get_flash_start();
   flash_size = flash.get_flash_size();
 
-  ret = flash.deinit();
+  result = flash.deinit();
 
-  int aval_size = flash_start_address + flash_size - start_address;
-  if (aval_size % (sector_size * 2)) {
-    aval_size = align_down(aval_size, sector_size * 2);
+  int available_size = flash_start_address + flash_size - start_address;
+  if (available_size % (sector_size * 2)) {
+    available_size = align_down(available_size, sector_size * 2);
   }
 
-  return { flash_size, start_address, aval_size };
+  return { flash_size, start_address, available_size };
 }
 ```
 
@@ -146,29 +146,29 @@ auto [flash_size, start_address, iap_size] = getFlashIAPLimits();
 Let's create the block device using the calculated limits. Initialize the block device before reading or write data.
 
 ```
-FlashIAPBlockDevice bd(start_address, iap_size);
-bd.init();
+FlashIAPBlockDevice blockDevice(start_address, iap_size);
+blockDevice.init();
 ```
 
 Remember to always **allocate** a **flash-erase-size-wide** storage area to read and write data from the flash:
 
 ```
-const size_t size { bd.get_erase_size() };
+const size_t size { blockDevice.get_erase_size() };
 char buffer[size] {}; 
-bd.read(buffer, 0, size);
+blockDevice.read(buffer, 0, size);
 ```
 
 Don't forget to **erase** the flash block **before** being able to **program** it with your data, i.e. to write data on it (that's the way flash memories work):
 
 ```
- bd.erase(0, size);
- bd.program(buffer, 0, size);
+ blockDevice.erase(0, size);
+ blockDevice.program(buffer, 0, size);
 ```
 
 *De-init* the block-device when done:
 
 ```
-bd.deinit(); 
+blockDevice.deinit(); 
 ```
 
 Please, remember that **the data stored** on the flash memory will be **erased** at every **sketch upload** and will only be **retained** through successive sketch executions, e.g. after **power cycling** or **resetting** the board.
@@ -209,11 +209,11 @@ void setup()
 
   Serial.println("FlashIAPBlockDevice Test");
 
-  // Feed the RNG for later random content generation
+  // Feed the random number generator for later content generation
   srand(micros());
 
   // Get limits of the the internal flash of the microcontroller
-   auto [flash_size, start_address, iap_size] = getFlashIAPLimits();
+  auto [flash_size, start_address, iap_size] = getFlashIAPLimits();
 
   Serial.print("Flash Size: ");
   Serial.println(flash_size);
@@ -223,34 +223,32 @@ void setup()
   Serial.println(iap_size);
 
   // Create a block device on the available space of the flash
-  FlashIAPBlockDevice bd(start_address, iap_size);
+  FlashIAPBlockDevice blockDevice(start_address, iap_size);
 
   // Initialize the Flash IAP block device and print the memory layout
-  bd.init();
-  Serial.printf("Flash block device size: %llu\n", bd.size());
-  Serial.printf("Flash block device read size: %llu\n", bd.get_read_size());
-  Serial.printf("Flash block device program size: %llu\n", bd.get_program_size());
-  Serial.printf("Flash block device erase size: %llu\n", bd.get_erase_size());
+  blockDevice.init();
+  Serial.printf("Flash block device size: %llu\n", blockDevice.size());
+  Serial.printf("Flash block device read size: %llu\n", blockDevice.get_read_size());
+  Serial.printf("Flash block device program size: %llu\n", blockDevice.get_program_size());
+  Serial.printf("Flash block device erase size: %llu\n", blockDevice.get_erase_size());
 
-  const size_t size { bd.get_erase_size() };
+  const size_t size { blockDevice.get_erase_size() };
   char buffer[size] {};
 
   // Read back what was stored at previous execution
-  bd.read(buffer, 0, size);
+  blockDevice.read(buffer, 0, size);
   Serial.printf("%s\n", buffer);
 
   // Write an updated message to the first block
   sprintf(buffer, "Hello World @ %d!\n", rand());
-  bd.erase(0, size);
-  bd.program(buffer, 0, size);
+  blockDevice.erase(0, size);
+  blockDevice.program(buffer, 0, size);
 
   // Deinitialize the device
-  bd.deinit();
+  blockDevice.deinit();
 }
 
-void loop()
-{
-}
+void loop(){}
 ```
 
 **Authors:** Giampaolo Mancini
