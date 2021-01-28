@@ -2,9 +2,9 @@
 
 This tutorial shows you how to use the internal flash memory of the microcontroller of Portenta H7 and other MbedOS-based Arduino boards (Nano 33 BLEs, etc.). This is Part 1 of a series of projects on how to use the flash memories on the MbedOS-based Arduino boards.
 
-## (What) You Will Learn
--   (How) to use the Flash In-Application Programming Interface 
--   (How) to calculate the size of the flash memory 
+## What You Will Learn
+-   How to use the Flash In-Application Programming Interface 
+-   How to calculate the size of the flash memory 
 
 ## Required Hardware and Software
 -   Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
@@ -15,9 +15,7 @@ This tutorial shows you how to use the internal flash memory of the microcontrol
 # Configuring the Development Environment
 The H7 comes with 2 Mbytes of Flash memory with read-while-write support + 1 Mbyte of RAM. To support the use of non-erasable memory, a part of the flash memory can be programmed to behave as a block device, that can operate as a place to store information. 
 
-To access the internal flash of the MCU, you will have to use the Flash In-Application Programming Interface (FlashIAP). This API creates a block device on top of the space still available on the flash after flashing your sketch. Please**,** note that **the free space** available for the FlashIAP block device **depends on** the space occupied by **the complete sketch** on the flash and a few **block alignments calculations**. You can then use a raw access API to save and load data from the block device.
-
-https://os.mbed.com/docs/mbed-os/v6.4/apis/flash-iap.html
+To access the internal flash of the MCU, you will have to use the Flash In-Application Programming Interface (FlashIAP). This API creates a block device on top of the space still available on the flash after flashing your sketch. Please**,** note that **the free space** available for the FlashIAP block device **depends on** the space occupied by **the complete sketch** on the flash and a few **block alignments calculations**. You can then use a [raw access API](https://os.mbed.com/docs/mbed-os/v6.4/apis/flash-iap.html) to save and load data from the block device.
 
 Please, be aware of the **flash r/w limits** while using raw/direct access: flash memories have a limited amount of write cycles. Typical flash memories can perform about 10000 writes cycles to the same block before starting to "wear out" and begin to lose the ability to retain data. **You can actually render your board useless with improper use of this example and described APIs.**
 
@@ -174,8 +172,6 @@ blockDevice.deinit();
 Please, remember that **the data stored** on the flash memory will be **erased** at every **sketch upload** and will only be **retained** through successive sketch executions, e.g. after **power cycling** or **resetting** the board.
 
 # Conclusion
-This tutorial have been demonstrating the use of the MCU's internal flash memory for the Arduino boards based on MbedOS (Portenta H7, Nano 33 BLEs).
-
 The complete sketch file  
 
 ``` cpp
@@ -251,6 +247,6 @@ void setup()
 void loop(){}
 ```
 
-**Authors:** Giampaolo Mancini
+**Authors:** Giampaolo Mancini  
 **Reviewed by:** Lenard [20.12.2020]  
-**Last revision:** -- []
+**Last revision:** Jose Garcia [28.01.2021]
