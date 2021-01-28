@@ -19,12 +19,7 @@ To access the internal flash of the MCU, you will have to use the Flash In-Appli
 
 Please, be aware of the **flash r/w limits** while using raw/direct access: flash memories have a limited amount of write cycles. Typical flash memories can perform about 10000 writes cycles to the same block before starting to "wear out" and begin to lose the ability to retain data. **You can actually render your board useless with improper use of this example and described APIs.**
 
-[note]
-
-Note: **Limit** the usage of FlashIAP block devices to **once-in-a-time** read and write **operations**, for example, for managing `setup()`-time configuration parameters.
-**Please clarify. How do I do that? Lead with action. ** 
-
-[/note]
+Note: **Limit** the usage of FlashIAP block devices to **once-in-a-time** read and write **operations**. For example you could read user settings for your device in the `setup()` function when the device starts and update them whenever they are changed by the user. Contrary to that, it's not advisable to constantly write e.g. the latest value of a sensor into the flash.
 
 ## 1. The Basic Setup
 
