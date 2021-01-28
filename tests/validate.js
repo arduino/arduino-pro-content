@@ -1,3 +1,4 @@
+const parser = require('node-html-parser');
 const path = require('path');
 const fs = require('fs');
 const marked = require('marked');
@@ -107,6 +108,24 @@ metaDataFiles.forEach(path => {
     }
 });
 
+
+/**
+ * Verify that SVG images don't contain embedded images
+ */
+
+ let svgFiles = findAllFiles('../content/', '.svg');
+ svgFiles.forEach(path => {     
+    const rawData = fs.readFileSync(path);
+    if(rawData.includes("<image ")){
+        const htmlDoc = parser.parse(rawData);
+        let image = htmlDoc.querySelector("image")
+        // Detect if there are embedded images that are actually rendered
+        if(image.attributes.width || image.attributes.height){
+            console.log("❌ " + path + " containes embedded binary images");
+            errorOccurred = true;
+        }
+    }
+ });
 
 /**
  * Verify that the content files contain the necessary data
