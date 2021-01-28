@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "jsonschema": "^1.2.6",
-    "marked": "^1.1.1"
+    "marked": "^1.2.8",
+    "node-html-parser": "^2.0.2"
   }
 }
