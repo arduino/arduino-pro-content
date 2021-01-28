@@ -241,66 +241,6 @@ Received: 48 69 20 61 67 61 69 6E 20 4D 4B 52 20 57 41 4E 21
 Hi again MKR WAN!
 ```
 
-### Payload decoding on TTN
-
-As the payload comes in a HEX format, it needs to be decoded so a human can interpret the information. This can be done by using an Hex code translator, such as [this one](https://www.qbit.it/lab/hextext.php). We can also automate it directly in the TTN console, by navigating to our application overview, and to the **"Payload Formats"** tab.
-
-You can find this section in the Application page, and the section is called "Payload Format"
-
-!
-
-In order to enable the decoding, update the Decoder function, replacing the one already there with the following one:
-
-```
-function Decoder(bytes, port) {
- //source: https://flows.nodered.org/flow/845bb5b8cf788939dd261f472c289f77
- var result = "";
- for (var i = 0; i < bytes.length; i++) {
-   result += String.fromCharCode(parseInt(bytes[i]));
- }
- return { payload: result, };
-}
-```
-
-and then press the "save payload functions" button!
-
-!
-
-From now on, you'll see the uplink in plain beside the sequence of bytes! Let's see an example:
-
-!
-
-It will be easier in this way to integrate your TTN Application with other services or tools!
-
-### Improve bandwidth usage
-
-There are policy -not only for technical reason, also for government rules- on how much we can use the bandwidth in uplink and in downlink in LoRaWAN. You can read these TTN interesting guides on this topic:
-
-* [Limitations of LoRaWAN](https://www.thethingsnetwork.org/docs/lorawan/limitations.html)
-* [Duty cycle for LoRaWAN devices](https://www.thethingsnetwork.org/docs/lorawan/duty-cycle.html)
-
-As explained earlier, we are using the public community network of TTN. This implies some rules and regulations on Fair Access Policy. The limitations are:
-
-* The uplink airtime to 30 seconds per day (24 hours) per node and
-* The downlink messages to 10 messages per day (24 hours) per node.
-
-This is why it is important to minimize bandwidth usage. Below some suggestions:
-
-* Keep the payload (the message) as smaller as possible, and
-* Avoid not necessary messages
-
-Let's start from a small thing: removing the confirmation request for the uplink messages from your Arduino. You need to change only this line:
-
-```
-err = modem.endPacket(true);
-```
-
-to
-
-```
-err = modem.endPacket(false);
-```
-
 # Conclusion
 
 Congratulations! You have configured Portenta H7 and the Lora Vision Shield on the TTN. We have retrieved the device EUI, used it to register the device in the TTN console, and programmed the board using the data provided by TTN.
@@ -318,7 +258,7 @@ Find all the details here: [TTN Applications](https://www.thethingsnetwork.org/d
 
 The most common issue is that the device cannot connect to a TTN gateway. Again, it is a good idea to check if we have coverage in the area we are conducting this tutorial, by checking out [this map](https://www.thethingsnetwork.org/map).
 
-If we are within good range of a gateway, we should also try to move our device and antenna to a window, and even hold it out the window and move it around. This has proven successful on numerous accounts, as the signal can travel less obstructed. 
+If we are within good range of a gateway, we should also try to move our device and antenna to a window, and even hold it out the window and move it around. This has proven successful on numerous accounts, as the signal can travel less obstructed.
 
 **Authors:** Karl Söderby, Ignacio Herrera
 **Reviewed by:** ZZ [18.03.2020]  
