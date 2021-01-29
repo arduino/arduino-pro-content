@@ -51,13 +51,45 @@ function findAllFiles(startPath, searchPattern, excludePatterns = [], matchingFi
         var stat = fs.lstatSync(filename);
         if (stat.isDirectory()) {
             findAllFiles(filename, searchPattern, excludePatterns, matchingFiles);
-        } else if (!matchAny(filename, excludePatterns) && filename.indexOf(searchPattern) >= 0) {
-            // console.log('-- found: ', filename);
-            matchingFiles.push(filename);
+        } else if (!matchAny(filename, excludePatterns)) {
+            if(!searchPattern) {
+                matchingFiles.push(filename);
+                continue;
+            }
+            let patterns = Array.isArray(searchPattern) ? searchPattern : [searchPattern];            
+            patterns.forEach(pattern => {
+                if(filename.indexOf(searchPattern) >= 0){
+                    // console.log('-- found: ', filename);
+                    matchingFiles.push(filename);
+                }
+            });
         };
     };
 
     return matchingFiles;
 };
 
-module.exports = { findAllFiles, matchAll, matchAny };
+function getSubdirectories(path, excludePatterns = []){
+    if (!fs.existsSync(path)) {
+        console.log("❌ Directory doesn't exist ", path);
+        return;
+    }
+
+    var files = fs.readdirSync(path);
+    let directories = [];
+    files.forEach(file => {
+        var fullPath = path + file;
+
+        if (matchAny(fullPath, excludePatterns)) {            
+            return;
+        }
+
+        var stat = fs.lstatSync(fullPath);
+        if (stat.isDirectory()) {
+            directories.push(fullPath);
+        }
+    })
+    return directories;    
+}
+
+module.exports = { findAllFiles, matchAll, matchAny, getSubdirectories};
