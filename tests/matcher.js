@@ -69,7 +69,7 @@ function findAllFiles(startPath, searchPattern, excludePatterns = [], matchingFi
     return matchingFiles;
 };
 
-function getSubdirectories(path){
+function getSubdirectories(path, excludePatterns = []){
     if (!fs.existsSync(path)) {
         console.log("❌ Directory doesn't exist ", path);
         return;
@@ -79,6 +79,11 @@ function getSubdirectories(path){
     let directories = [];
     files.forEach(file => {
         var fullPath = path + file;
+
+        if (matchAny(fullPath, excludePatterns)) {            
+            return;
+        }
+
         var stat = fs.lstatSync(fullPath);
         if (stat.isDirectory()) {
             directories.push(fullPath);

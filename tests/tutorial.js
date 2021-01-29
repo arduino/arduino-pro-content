@@ -25,8 +25,27 @@ var Tutorial = class Tutorial {
         return parser.parse(this.rawHTML);
     }
 
+    get images(){
+        return this.html.querySelectorAll("img"); 
+    }
+
+    get coverImagePath() {
+        return this.metadata.coverImage.src.split("?")[0];
+    }
+
+    get imagePaths(){
+        let images = this.html.querySelectorAll("img");
+        return images.map(image => image.attributes.src.split("?")[0]);
+    }
+
+    get linkPaths(){
+        let links = this.html.querySelectorAll("a");
+        return links.map(link => link.attributes.href);
+    }
+
     get assets(){
-        return matcher.findAllFiles(this.basePath + "/assets/", null, [".DS_Store"])
+        let files = matcher.findAllFiles(this.basePath + "/assets/", null, [".DS_Store"]);
+        return files.map(file => file.split("?")[0]);
     }
 
     get metadata(){

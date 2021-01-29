@@ -9,10 +9,10 @@ const Tutorial = require('./tutorial').Tutorial;
 let requiredContents = require('./required-contents');
 let unsupportedContents = require('./unsupported-contents');
 
-const excludePatterns = [".git", "/portenta-h7/metadata.json", "/template/"];
+const excludePatterns = [".git", "/template"];
 let errorOccurred = false;
 
-let tutorialPaths = matcher.getSubdirectories('../content/tutorials/portenta-h7/');
+let tutorialPaths = matcher.getSubdirectories('../content/tutorials/portenta-h7/', excludePatterns);
 let tutorials = tutorialPaths.map(tutorialPath => new Tutorial(tutorialPath) );
 
 /**
@@ -66,17 +66,18 @@ tutorials.forEach(tutorial => {
  /**
   * Verify that all files in the assets folder are referenced
   */
-tutorials.forEach(tutorial => {
-    
+tutorials.forEach(tutorial => {    
+    let imageNames = tutorial.imagePaths.map(imagePath => path.basename(imagePath));    
+    let assetNames = tutorial.assets.map(asset => path.basename(asset));    
+    let linkNames = tutorial.linkPaths.map(link => path.basename(link));
+    let coverImageName = path.basename(tutorial.coverImagePath);        
 
-    let content = tutorial.markdown;
-    //console.log(content);
-    let assets = tutorial.assets;    
-
-
-    assets.forEach(asset => {
-        const filename = path.basename(asset);
-        //console.log(filename);
+    assetNames.forEach(asset => {        
+        if(coverImageName == asset) return;
+        if(!imageNames.includes(asset) && !linkNames.includes(asset)){        
+            console.log("❌ " + asset + " is not used in tutorial " + tutorial.path);
+            errorOccurred = true;        
+        }
     });
 });
 
@@ -101,17 +102,18 @@ tutorials.forEach(tutorial => {
             errorOccurred = true;
         }
         
-        const htmlDoc = tutorial.html;
-        let images = htmlDoc.querySelectorAll("img");        
-        images.forEach(image => {
-            const imagePath = image.attributes.src;
+        tutorial.imagePaths.forEach(imagePath => {
             if(imagePath.startsWith("/") || imagePath.startsWith("~")){
                 console.log("❌ Image uses an absolute path: " + imagePath + " in " + tutorial.path);
                 errorOccurred = true;
-            }             
+            }
+        });
+
+        let images = tutorial.images;        
+        images.forEach(image => {            
             const imageDescription = image.attributes.alt;
             if(imageDescription.split(" ").length <= 1){
-                console.log("❌ Image doesn't have a description: " + imagePath + " in " + tutorial.path);
+                console.log("❌ Image doesn't have a description: " + image.attributes.src + " in " + tutorial.path);
                 errorOccurred = true;
             }
         });
