@@ -1,8 +1,15 @@
-# Using the Flash on Portenta H7 – MCU
+# Reading and Writing data on the Flash Memory 
 
-This tutorial shows you how to use the internal flash memory of the microcontroller of Portenta H7 and other MbedOS-based Arduino boards (Nano 33 BLEs, etc.). This is Part 1 of a series of projects on how to use the flash memories on the MbedOS-based Arduino boards.
+This tutorial shows you how to use the internal flash memory of the Portenta H7's MCU to read and write data using the Flash In-Application Programming Interface. This and other MbedOS-based Arduino boards (Nano 33 BLEs, etc.). 
+
+[note]
+
+Note :- This tutorial is also applicable for other MbedOS-based Arduino board like the Nano 33 BLEs 
+
+[/note]
 
 ## What You Will Learn
+
 -   How to use the Flash In-Application Programming Interface 
 -   How to calculate the size of the flash memory 
 
@@ -60,7 +67,7 @@ Serial.println("FlashIAPBlockDevice Test");
 
 ## 3. Define the FlashIAPLimits.h 
 
-These helper functions will help you calculating limits for the FlashIAP block device. You will find them in the header file called FlashIAPLimits.h
+let's now define the helper functions for calculating limits for the FlashIAP block device. These helper functions will be stored in the header file called FlashIAPLimits.h
 
 ```cpp
 /**
@@ -144,14 +151,12 @@ blockDevice.init();
 ```
 
 Remember to always **allocate** a **flash-erase-size-wide** storage area to read and write data from the flash:
-
-```
+```cpp
 const size_t size { blockDevice.get_erase_size() };
 char buffer[size] {}; 
 blockDevice.read(buffer, 0, size);
 ```
-
-Don't forget to **erase** the flash block **before** being able to **program** it with your data, i.e. to write data on it (that's the way flash memories work):
+Don't forget to **erase** the flash block **before** being able to **program** it with your data, i.e. to write data on it (that's the way flash memories work) 
 
 ```
  blockDevice.erase(0, size);
@@ -167,6 +172,7 @@ blockDevice.deinit();
 Please, remember that **the data stored** on the flash memory will be **erased** at every **sketch upload** and will only be **retained** through successive sketch executions, e.g. after **power cycling** or **resetting** the board.
 
 # Conclusion
+
 The complete sketch file  
 
 ``` cpp
