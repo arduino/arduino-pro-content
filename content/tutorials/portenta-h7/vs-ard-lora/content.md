@@ -138,10 +138,8 @@ Congratulations! You have configured Portenta H7 and the Lora Vision Shield on t
 # Next Steps
 
 -   Try sending uplink and downlink messages between Portenta and your TTN application with _LoraSendAndReceive_ sketch from the MKRWAN library.
--   Experiment your Vision Shield's capabilities with OpenMV and the examples its library provides. You can start with [this tutorial](https://www.arduino.cc/pro/tutorials/portenta-h7/por-openmv-bt) from the Arduino Pro site.
+-   Experiment your Vision Shield's capabilities with OpenMV and the examples from the dedicated library for Arduino. You can continue with [this tutorial](https://www.arduino.cc/pro/tutorials/portenta-h7/por-openmv-bt) from the Arduino Pro site.
 -   Combine LoRaWAN protocol with an OpenMV example to develop your own IoT application. Take advantage of the Vision Shield's camera to detect, filter, classify images, read QR codes or more.     
-
-Find all the details here: [TTN Applications](https://www.thethingsnetwork.org/docs/applications/)
 
 # Troubleshooting
 
