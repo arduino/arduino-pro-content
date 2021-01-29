@@ -7,12 +7,14 @@ This tutorial explains how to connect your Portenta H7 to The Things Network (TT
 
 [/note]
 
-## You Will Learn
+### You Will Learn
+
 -   About LoRaWAN® and The Things Network,
 -   About creating a TTN application,
 -   How to establish a connection between the H7 and the TTN,
 
-## Required Hardware and Software
+### Required Hardware and Software
+
 -   [Portenta H7 board](https://store.arduino.cc/portenta-h7)
 -   [Vision Shield LoRa](https://store.arduino.cc/portenta-vision-shield-lora)
 -   [1x Dipole Pentaband antenna](https://store.arduino.cc/antenna) or a UFL Antenna
@@ -131,17 +133,15 @@ Next, introduce the **APP EUI** and the **APP KEY** in the Serial Monitor in a s
 Message sent correctly!
 ```
 
-# Conclusion
+If you have sent the message successfuly you have configured Portenta H7 and the Lora Vision Shield on the TTN. We have retrieved the device EUI, used it to register the device in the TTN console, and programmed the board using the data provided by TTN. We can now send data over the LoRa® network which can be viewed from anywhere in the world (as long as we have an Internet connection and our device is in range from a TTN gateway).
 
-Congratulations! You have configured Portenta H7 and the Lora Vision Shield on the TTN. We have retrieved the device EUI, used it to register the device in the TTN console, and programmed the board using the data provided by TTN. We can now send data over the LoRa® network which can be viewed from anywhere in the world (as long as we have an Internet connection and our device is in range from a TTN gateway).
-
-# Next Steps
+## Next Steps
 
 -   Try sending uplink and downlink messages between Portenta and your TTN application with _LoraSendAndReceive_ sketch from the MKRWAN library.
 -   Experiment your Vision Shield's capabilities with OpenMV and the examples from the dedicated library for Arduino. You can continue with [this tutorial](https://www.arduino.cc/pro/tutorials/portenta-h7/por-openmv-bt) from the Arduino Pro site.
 -   Combine LoRaWAN protocol with an OpenMV example to develop your own IoT application. Take advantage of the Vision Shield's camera to detect, filter, classify images, read QR codes or more.     
 
-# Troubleshooting
+## Troubleshooting
 
 The most common issue is that the device cannot connect to a TTN gateway. Again, it is a good idea to check if we have coverage in the area we are conducting this tutorial, by checking out [this map](https://www.thethingsnetwork.org/map).
 
