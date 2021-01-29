@@ -105,7 +105,12 @@ If you would like to use a USB hub to connect other devices to the Portenta make
 If you're having troubles getting your Portenta to work on Ubuntu you can try the following:
 
 - Make sure **modemmanager** is not installed. Otherwise remove it with `sudo apt-get remove modemmanager`
-- Add the following rule to you udev rules `SUBSYSTEMS=="usb", ATTR{idVendor}=="2341", MODE:="0666"`
+- Add the following rules to you udev rules 
+```
+SUBSYSTEM=="usb", ATTRS{idVendor}=="2341", MODE="0666"
+SUBSYSTEM=="usb", ATTRS{idVendor}=="1fc9", MODE="0666"
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0525", MODE="0666"
+```
 - Reboot your PC
 - You may use the following commands to create a new udev rule from scratch:
 `echo 'SUBSYSTEMS=="usb", ATTR{idVendor}=="2341", MODE:="0666"' > 20-portenta.rules` 
