@@ -1,9 +1,9 @@
 const parser = require('node-html-parser');
 const matcher = require('./matcher');
 const fs = require('fs');
-const marked = require('marked');
 const validate = require('jsonschema').validate;
 const path = require('path');
+const tc = require('title-case');
 const Tutorial = require('./tutorial').Tutorial;
 
 let requiredContents = require('./required-contents');
@@ -20,7 +20,11 @@ let tutorials = tutorialPaths.map(tutorialPath => new Tutorial(tutorialPath) );
  */
 tutorials.forEach(tutorial => {
     let jsonData = tutorial.metadata
-    
+    if(!jsonData) {
+        console.log("❌ No metadata file found for tutorial " + tutorial.path);
+        errorOccurred = true;
+    }
+
     try {        
         if(!jsonData.coverImage){
             console.log("❌ No cover image found for " + path);
@@ -41,6 +45,19 @@ tutorials.forEach(tutorial => {
         errorOccurred = true;        
     }
 });
+
+/**
+ * Verifies that there's title case being used
+ */
+
+ tutorials.forEach(tutorial => {
+    tutorial.headings.forEach(heading => {        
+        if(tc.titleCase(heading) != heading){
+            console.log("❌ '" + heading + "' is not title case in tutorial " + tutorial.path);
+            errorOccurred = true;
+        }
+    });
+ });
 
 
 /**
@@ -109,7 +126,7 @@ tutorials.forEach(tutorial => {
             }
         });
 
-        let images = tutorial.images;        
+        let images = tutorial.imageNodes;        
         images.forEach(image => {            
             const imageDescription = image.attributes.alt;
             if(imageDescription.split(" ").length <= 1){
