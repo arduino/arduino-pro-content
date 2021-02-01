@@ -1,24 +1,24 @@
 [
     {
-        "regex" : "^\\*\\*Authors:\\*\\* (.*)  \\n",
+        "regex" : "^\\*\\*Authors:\\*\\* .*  \\n",
         "shouldMatch" : true,
         "format" : "markdown",
         "errorMessage" : "The authors' format is incorrect."
     },
     {
-        "regex" : "^#### (.*)\\n",
+        "regex" : "^#### .*\\n",
         "shouldMatch" : false,
         "format" : "markdown",
         "errorMessage" : "H4 headings are not supported."
-    },
+    },    
     {
-        "regex" : "^\\*\\*Reviewed by:\\*\\* (.*) \\[\\d\\d\\d?\\d\\-\\d?\\d\\-\\d\\d\\]  \\n",
+        "regex" : "^\\*\\*Reviewed by:\\*\\* .* \\[\\d\\d\\d?\\d\\-\\d?\\d\\-\\d\\d\\]  \\n",
         "shouldMatch" : true,
         "format" : "markdown",
         "errorMessage" : "The reviewer's format is incorrect. Review date added?"
     },
     {
-        "regex" : "^\\*\\*Last revision:\\*\\* (.*) \\[\\d\\d\\d?\\d\\-\\d?\\d\\-\\d\\d\\]",
+        "regex" : "^\\*\\*Last revision:\\*\\* .* \\[\\d\\d\\d?\\d\\-\\d?\\d\\-\\d\\d\\]",
         "shouldMatch" : true,
         "format" : "markdown",
         "errorMessage" : "The revisor's format is incorrect. Revision date correct YYYY-MM-DD?"
