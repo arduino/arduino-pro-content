@@ -1,0 +1,5 @@
+{
+    "headingMaxLength" : 50,
+    "excludePatterns" : [".git", "/template"],
+    "tutorialsPath" : "../content/tutorials/portenta-h7/"
+}

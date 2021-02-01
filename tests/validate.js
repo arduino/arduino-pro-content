@@ -5,14 +5,11 @@ const validate = require('jsonschema').validate;
 const path = require('path');
 const tc = require('title-case');
 const Tutorial = require('./tutorial').Tutorial;
-const requiredContents = require('./required-contents');
+const config = require('./config');
 const rules = require('./rules');
 
-const HEADING_MAX_LENGTH = 50;
-const EXCLUDE_PATTERNS = [".git", "/template"];
-
 let errorOccurred = false;
-const tutorialPaths = matcher.getSubdirectories('../content/tutorials/portenta-h7/', EXCLUDE_PATTERNS);
+const tutorialPaths = matcher.getSubdirectories(config.tutorialsPath, config.excludePatterns);
 const tutorials = tutorialPaths.map(tutorialPath => new Tutorial(tutorialPath) );
 
 /**
@@ -56,8 +53,8 @@ tutorials.forEach(tutorial => {
             console.log("❌ '" + heading + "' is not title case in tutorial " + tutorial.path);
             errorOccurred = true;
         }
-        if(heading.length > HEADING_MAX_LENGTH){
-            console.log("❌ '" + heading + "' (" + heading.length + ") exceeds the max length (" + HEADING_MAX_LENGTH + ") in tutorial " + tutorial.path);
+        if(heading.length > config.headingMaxLength){
+            console.log("❌ '" + heading + "' (" + heading.length + ") exceeds the max length (" + config.headingMaxLength + ") in tutorial " + tutorial.path);
             errorOccurred = true;
         }
     });
@@ -146,26 +143,6 @@ tutorials.forEach(tutorial => {
         }     
     });
 
-});
-
-
-/**
- * Verify that the content files contain the necessary data
- */
- tutorials.forEach(tutorial => {
-    try {                
-        let markdown = tutorial.markdown;
-
-        if(!matcher.matchAll(markdown, requiredContents, (match)=> {
-            console.log("❌ " + path + " doesn't contain the required content : " + match);
-        })){
-            errorOccurred = true;
-        }
-        
-    } catch (error) {   
-        console.log(error);     
-        errorOccurred = true;
-    }
 });
 
 /**
