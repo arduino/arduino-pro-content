@@ -125,6 +125,19 @@ tutorials.forEach(tutorial => {
     });
  });
 
+
+ /**
+  * Verify that only allowed syntax specifiers are used
+  */
+ tutorials.forEach(tutorial => {     
+     console.log(tutorial.codeNodes);
+    //  console.log(tutorial.rawHTML);
+     tutorial.codeNodes.forEach(codeNode => {
+        let syntax = codeNode;
+        // console.log(codeNode.classNames);
+     });
+ });
+
 /**
  * Verifies that the content rules are met
  */
