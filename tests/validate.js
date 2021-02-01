@@ -46,7 +46,6 @@ tutorials.forEach(tutorial => {
 /**
  * Verifies that the titles are in the correct format
  */
-
  tutorials.forEach(tutorial => {
     tutorial.headings.forEach(heading => {        
         if(tc.titleCase(heading) != heading){
@@ -81,9 +80,9 @@ tutorials.forEach(tutorial => {
 });
 
 
- /**
-  * Verify that all files in the assets folder are referenced
-  */
+/**
+ * Verify that all files in the assets folder are referenced
+ */
 tutorials.forEach(tutorial => {    
     let imageNames = tutorial.imagePaths.map(imagePath => path.basename(imagePath));    
     let assetNames = tutorial.assets.map(asset => path.basename(asset));    
