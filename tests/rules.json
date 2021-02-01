@@ -1,0 +1,14 @@
+[
+    {
+        "regex" : "^\\*\\*Authors:\\*\\* (.*)  \\n",
+        "shouldMatch" : true,
+        "format" : "markdown",
+        "errorMessage" : "The authors' format is incorrect."
+    },
+    {
+        "regex" : "^### (.*)\\n",
+        "shouldMatch" : false,
+        "format" : "markdown",
+        "errorMessage" : "H4 headings are not supported."
+    }
+]

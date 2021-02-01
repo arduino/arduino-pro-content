@@ -6,7 +6,7 @@ const path = require('path');
 const tc = require('title-case');
 const Tutorial = require('./tutorial').Tutorial;
 const requiredContents = require('./required-contents');
-const unsupportedContents = require('./unsupported-contents');
+const rules = require('./rules');
 
 const HEADING_MAX_LENGTH = 50;
 const EXCLUDE_PATTERNS = [".git", "/template"];
@@ -134,6 +134,17 @@ tutorials.forEach(tutorial => {
  */
 tutorials.forEach(tutorial => {
     let htmlContent = tutorial.rawHTML;
+    let markdownContent = tutorial.markdown;
+
+    rules.forEach(rule => {
+        const content = rule.format == "html" ? htmlContent :markdownContent;
+        const regex = new RegExp(rule.regex, 'gm');
+        const match = content.match(regex);
+        if((match === null && rule.shouldMatch) || (match !== null && !rule.shouldMatch)) {
+            console.log("❌ " + rule.errorMessage + " in " + tutorial.path);
+            errorOccurred = true;
+        }     
+    });
 
 });
 
@@ -147,13 +158,6 @@ tutorials.forEach(tutorial => {
 
         if(!matcher.matchAll(markdown, requiredContents, (match)=> {
             console.log("❌ " + path + " doesn't contain the required content : " + match);
-        })){
-            errorOccurred = true;
-        }
-
-        let htmlContent = tutorial.rawHTML;        
-        if(matcher.matchAny(htmlContent,unsupportedContents, (match) => {
-            console.log("❌ " + tutorial.path + " contains unsupported content : " + match);
         })){
             errorOccurred = true;
         }
