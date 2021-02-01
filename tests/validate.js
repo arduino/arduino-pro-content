@@ -5,15 +5,15 @@ const validate = require('jsonschema').validate;
 const path = require('path');
 const tc = require('title-case');
 const Tutorial = require('./tutorial').Tutorial;
+const requiredContents = require('./required-contents');
+const unsupportedContents = require('./unsupported-contents');
 
-let requiredContents = require('./required-contents');
-let unsupportedContents = require('./unsupported-contents');
+const HEADING_MAX_LENGTH = 50;
+const EXCLUDE_PATTERNS = [".git", "/template"];
 
-const excludePatterns = [".git", "/template"];
 let errorOccurred = false;
-
-let tutorialPaths = matcher.getSubdirectories('../content/tutorials/portenta-h7/', excludePatterns);
-let tutorials = tutorialPaths.map(tutorialPath => new Tutorial(tutorialPath) );
+const tutorialPaths = matcher.getSubdirectories('../content/tutorials/portenta-h7/', EXCLUDE_PATTERNS);
+const tutorials = tutorialPaths.map(tutorialPath => new Tutorial(tutorialPath) );
 
 /**
  * Verify that all meta data files are valid JSON and contain the correct attributes
@@ -47,13 +47,17 @@ tutorials.forEach(tutorial => {
 });
 
 /**
- * Verifies that there's title case being used
+ * Verifies that the titles are in the correct format
  */
 
  tutorials.forEach(tutorial => {
     tutorial.headings.forEach(heading => {        
         if(tc.titleCase(heading) != heading){
             console.log("❌ '" + heading + "' is not title case in tutorial " + tutorial.path);
+            errorOccurred = true;
+        }
+        if(heading.length > HEADING_MAX_LENGTH){
+            console.log("❌ '" + heading + "' (" + heading.length + ") exceeds the max length (" + HEADING_MAX_LENGTH + ") in tutorial " + tutorial.path);
             errorOccurred = true;
         }
     });
@@ -98,10 +102,45 @@ tutorials.forEach(tutorial => {
     });
 });
 
+
+/**
+ * Verify that the images don't have an absolute path
+ */
+tutorials.forEach(tutorial => {
+    tutorial.imagePaths.forEach(imagePath => {
+        if(imagePath.startsWith("/") || imagePath.startsWith("~")){
+            console.log("❌ Image uses an absolute path: " + imagePath + " in " + tutorial.path);
+            errorOccurred = true;
+        }
+    });
+});
+
+
+/**
+ * Verify that the images contain a description
+ */
+ tutorials.forEach(tutorial => {
+    tutorial.imageNodes.forEach(image => {            
+        const imageDescription = image.attributes.alt;
+        if(imageDescription.split(" ").length <= 1){
+            console.log("❌ Image doesn't have a description: " + image.attributes.src + " in " + tutorial.path);
+            errorOccurred = true;
+        }
+    });
+ });
+
+/**
+ * Verifies that the content rules are met
+ */
+tutorials.forEach(tutorial => {
+    let htmlContent = tutorial.rawHTML;
+
+});
+
+
 /**
  * Verify that the content files contain the necessary data
  */
-
  tutorials.forEach(tutorial => {
     try {                
         let markdown = tutorial.markdown;
@@ -119,28 +158,15 @@ tutorials.forEach(tutorial => {
             errorOccurred = true;
         }
         
-        tutorial.imagePaths.forEach(imagePath => {
-            if(imagePath.startsWith("/") || imagePath.startsWith("~")){
-                console.log("❌ Image uses an absolute path: " + imagePath + " in " + tutorial.path);
-                errorOccurred = true;
-            }
-        });
-
-        let images = tutorial.imageNodes;        
-        images.forEach(image => {            
-            const imageDescription = image.attributes.alt;
-            if(imageDescription.split(" ").length <= 1){
-                console.log("❌ Image doesn't have a description: " + image.attributes.src + " in " + tutorial.path);
-                errorOccurred = true;
-            }
-        });
-        
     } catch (error) {   
         console.log(error);     
         errorOccurred = true;
     }
 });
 
+/**
+ * Check if an error occurred and exit with the corresponding status code
+ */
 if(errorOccurred) {    
     process.exit(2);
 } else {
