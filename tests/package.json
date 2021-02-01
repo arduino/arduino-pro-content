@@ -9,9 +9,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "html-entities": "^2.1.0",
     "jsonschema": "^1.2.6",
     "marked": "^1.2.8",
     "node-html-parser": "^2.0.2",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "title-case": "^3.0.3"
   }
 }
