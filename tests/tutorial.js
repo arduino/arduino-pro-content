@@ -2,6 +2,7 @@ const matcher = require('./matcher');
 const fs = require('fs');
 const marked = require('marked');
 const parser = require('node-html-parser');
+const htmlEntities = require('html-entities');
 
 var Tutorial = class Tutorial {
     constructor(basePath){
@@ -25,8 +26,17 @@ var Tutorial = class Tutorial {
         return parser.parse(this.rawHTML);
     }
 
-    get images(){
+    get imageNodes(){
         return this.html.querySelectorAll("img"); 
+    }
+
+    get headings(){
+        let headings = [];
+        for(let i = 1; i < 4; ++i) {
+            let currentHeadings = this.html.querySelectorAll("h" + i);            
+            headings = headings.concat(currentHeadings.map(heading => htmlEntities.decode(heading.innerText)));            
+        }        
+        return headings;
     }
 
     get coverImagePath() {
@@ -48,11 +58,7 @@ var Tutorial = class Tutorial {
         return files.map(file => file.split("?")[0]);
     }
 
-    get metadata(){
-        // if(metaDataFiles.length == 0) {
-        //     console.log("❌ No metadata files found.");
-        //     errorOccurred = true;
-        // }
+    get metadata(){    
         try {
             const metadataPath = this.basePath + "/metadata.json";
             let rawData = fs.readFileSync(metadataPath);    
