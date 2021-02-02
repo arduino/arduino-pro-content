@@ -11,6 +11,7 @@ const rules = require('./rules');
 let errorOccurred = false;
 const tutorialPaths = matcher.getSubdirectories(config.tutorialsPath, config.excludePatterns);
 const tutorials = tutorialPaths.map(tutorialPath => new Tutorial(tutorialPath) );
+const PARSER_SYNTAX_PREFIX = "language-";
 
 /**
  * Verify that all meta data files are valid JSON and contain the correct attributes
@@ -129,12 +130,14 @@ tutorials.forEach(tutorial => {
  /**
   * Verify that only allowed syntax specifiers are used
   */
- tutorials.forEach(tutorial => {     
-     console.log(tutorial.codeNodes);
-    //  console.log(tutorial.rawHTML);
+ tutorials.forEach(tutorial => {         
      tutorial.codeNodes.forEach(codeNode => {
-        let syntax = codeNode;
-        // console.log(codeNode.classNames);
+        let syntax = codeNode.classNames[0];
+        if(syntax) syntax = syntax.replace(PARSER_SYNTAX_PREFIX, '');
+        if(!config.allowedSyntaxSpecifiers.includes(syntax)){
+            console.log("❌ Code block uses unsupported syntax: " + syntax + " in " + tutorial.path);
+            errorOccurred = true;
+        }
      });
  });
 

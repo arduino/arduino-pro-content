@@ -4,6 +4,8 @@ const marked = require('marked');
 const parser = require('node-html-parser');
 const htmlEntities = require('html-entities');
 
+const HEADING_MAX_LEVEL = 4;
+
 var Tutorial = class Tutorial {
     constructor(basePath){
         this.basePath = basePath;
@@ -23,19 +25,30 @@ var Tutorial = class Tutorial {
     }
 
     get html(){
-        return parser.parse(this.rawHTML);
+        return parser.parse(this.rawHTML, {
+			blockTextElements: {
+				script: true,
+				noscript: true,
+				style: true,                
+                code: false
+            }
+        });
     }
 
     get imageNodes(){
         return this.html.querySelectorAll("img"); 
     }
 
+    get codeNodes(){
+        return this.html.querySelectorAll("pre code");
+    }
+
     get headings(){
         let headings = [];
-        for(let i = 1; i < 4; ++i) {
-            let currentHeadings = this.html.querySelectorAll("h" + i);            
+        for(let i = 1; i <= HEADING_MAX_LEVEL; ++i) {
+            let currentHeadings = this.html.querySelectorAll("h" + i);
             headings = headings.concat(currentHeadings.map(heading => htmlEntities.decode(heading.innerText)));            
-        }        
+        }
         return headings;
     }
 
