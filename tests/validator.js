@@ -15,12 +15,12 @@ var Validator = class Validator {
     }
 
     validate(){
-        let errorOccurred = false;
+        let errorsOccurred = 0;
         this.validatonCallbacks.forEach(validation => {
-            if(!validation(this.tutorials)) errorOccurred = true;
+            errorsOccurred += validation(this.tutorials);
         });
 
-        return !errorOccurred;
+        return errorsOccurred;
     }
 }
 
