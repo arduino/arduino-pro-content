@@ -104,7 +104,8 @@ Before your Portenta H7 can start communicating with the TTN you need to [regist
 
 ![vs_ard_ttn_click_register](assets/vs_ard_ttn_click_register.png)
 
-On the registration page that shows up we must fill in two fields. The first one is the **Device ID** which this must be lowercase and without spaces. Since the ID should be unique, so you can use  the name of the board followed by the first and the last byte of the EUI. The second one is the **EUI** which is exactly the device EUI that appeared in the Serial Monitor. Copy paste the EUI from the Serial Monitor into the EUI field
+On the registration page, fill in **Device ID** and **EUI**. 
+**Note**:  The Device ID must be lowercase and without spaces. The **EUI** should be copied from the Serial Monitor.```
 
 ![vs_ard_ttn_register_device](assets/vs_ard_ttn_register_device.png)
 
