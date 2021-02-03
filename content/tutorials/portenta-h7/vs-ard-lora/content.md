@@ -116,7 +116,7 @@ After pressing the Register button, your board will show up on the **Device Over
 
 Once your board has been registered you can send information to TTN. Let's come back to the Serial Monitor and proceed. It will ask for:
 
-* activation mode (that in this case is OTAA),
+* activation mode (that, in this case, is OTAA as you can see in the screenshot above),
 * the Application EUI
 * the App Key.
 
