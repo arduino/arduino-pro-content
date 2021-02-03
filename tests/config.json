@@ -3,5 +3,6 @@
     "excludePatterns" : [".git", "/template"],
     "basePath" : "content/tutorials/portenta-h7/",
     "allowedSyntaxSpecifiers" : ["cpp", "py", "text"],
-    "allowNestedLists" : false
+    "allowNestedLists" : false,
+    "metadataSchema" : "tests/metadata-schema.json"
 }

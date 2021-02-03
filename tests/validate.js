@@ -41,14 +41,17 @@ validator.addValidation((tutorials) => {
                 ++errorsOccurred;
             }
             
-            let jsonSchema = JSON.parse(fs.readFileSync("./metadata-schema.json"));        
+            let jsonSchema = JSON.parse(fs.readFileSync(config.metadataSchema));        
             let validationResult = validate(jsonData, jsonSchema);
             if(validationResult.errors.length != 0){
+                console.log("❌ An error occurred while validating the metadata of " + tutorial.path);
                 console.log(validationResult);
                 ++errorsOccurred;
             }        
     
-        } catch (error) {        
+        } catch (error) {
+            console.log("❌ An error occurred while parsing the metadata of " + tutorial.path);        
+            console.log(error);
             ++errorsOccurred;        
         }
     });
