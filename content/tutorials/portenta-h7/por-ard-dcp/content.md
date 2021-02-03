@@ -61,7 +61,7 @@ Let's write another sketch that makes the RGB LED on the board blink green. Open
 ```cpp
 // the setup function runs once when you press reset or power the board
 void setup() {
-    // initialize digital pin LED_BUILTIN as an output.
+    // initialize digital pin LEDG as an output.
     pinMode(LEDG, OUTPUT);
 }
 

@@ -1,6 +1,8 @@
 {
     "headingMaxLength" : 50,
     "excludePatterns" : [".git", "/template"],
-    "tutorialsPath" : "../content/tutorials/portenta-h7/",
-    "allowedSyntaxSpecifiers" : ["cpp", "py", "text"]
+    "basePath" : "content/tutorials/portenta-h7/",
+    "allowedSyntaxSpecifiers" : ["cpp", "py", "text"],
+    "allowNestedLists" : false,
+    "metadataSchema" : "tests/metadata-schema.json"
 }
