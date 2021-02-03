@@ -69,7 +69,7 @@ It's now time to connect your Portenta H7 and Lora Vision Shield to TTN. You'll 
 * Use the [Arduino Web Editor](https://create.arduino.cc/editor) (this is the option this guide will follow)
 * Use the [Arduino IDE](https://www.arduino.cc/en/software), this way requires manual update of Arduino core and libraries.
 
-Plug the Vision Shield to the Portenta H7 and them to your PC through the usb port. Be sure to have selected the right board "Arduino Portenta H7 (M7 core)" and the right port.
+Plug the Portenta Vision Shield - LoRa to the Portenta H7 and them to your PC through the USB port. Be sure to have selected the right board "Arduino Portenta H7 (M7 core)" and the right port.
 
 ![vs-ard-select-port](assets/vs_ard_select_port.png)
 
