@@ -22,21 +22,21 @@ Graphical User interfaces are necessary for visualising information and interact
 
 This tutorial will guide you to build a basic user interface using LVGL and the USBhost Library that you will have download using the Arduino Library Manager. The setup for this tutorial requires you to first to upload the finished sketch file to the Portenta board where it converts the board into a USB host Device. You will then connect the board to a USB-hub to in order to connect it to an external monitor. Once the hub is powered externally, a graphical user interface with a button and a text-field will be displayed on the screen.
 
-![por_ard_lvgl_tutorial_steps](assets/por_ard_lvgl_tutorial_steps.svg)
+![Overview of how to connect the Portenta to the peripherals.](assets/por_ard_lvgl_tutorial_steps.svg)
 
 ## 1. The Basic Setup
 
 Begin by plugging your Portenta board into the computer using a USB-C cable and open the Arduino IDE or the Arduino Pro IDE. If this is your first time running Arduino sketch files on the board, we suggest you check out how to [set up the Portenta H7 for Arduino](https://github.com/bcmi-labs/arduino-pro-content/blob/master/content/tutorials/portenta-h7/por-ard-usb/por-ard-gs) before you proceed.
 
-![por_ard_usbh_basic_setup](assets/por_ard_usbh_basic_setup.svg)
+![The Portenta H7 can be connected to the computer using an appropriate USB-C cable](assets/por_ard_lvgl_basic_setup.svg)
 
 ## 2. Download the lvgl library
 
 Next, select *Portenta* in the **Tools -> Board** menu before installing [lvgl](https://github.com/lvgl/lvgl) from the Library Manager. To do so, go to **Sketch** **->** **Include Libraries** **-> Manage Libraries** and search for *LVGL*. Download **lvgl by [kisvegabor](https://github.com/kisvegabor)**.  
 
-![por_ard_lvgl_download_library](assets/por_ard_lvgl_select_library.svg)
+![Library Manager showing the installed lvgl library.](assets/por_ard_lvgl_select_library.png)
 
-   ***Make sure you have selected the right board inside Tools -> Board, otherwise you won't see the library or you may install a library that is not compatible with Portenta .***
+   ***Make sure you have selected the right board inside Tools -> Board, otherwise you won't see the library in the examples menu .***
 
 ## 3. Add the button widget  
 
@@ -47,34 +47,40 @@ Let's start by including the libraries that we are going to use.
 #include "USBHost.h"
 ```
 
-Create a custom button widget using the `lv_btn` object. This object allows for an inner label, which text can easily be configured. The following lines of code initialise the button variable and its label, you can add them at the beginning of your sketch.
+Create a custom button widget using the `button` object. This object allows for an inner label, which text can easily be configured. The following lines of code initialise the button variable and its label, you can add them at the beginning of your sketch.
 
 ```cpp
-static lv_obj_t *lv_btn;
-static lv_obj_t *myCustomLabel;
+static lv_obj_t *button;
+static lv_obj_t *label;
 ```
 
 Then inside the `setup()` configure the type, style and the position of the button.
 
 ```cpp
 void setup() {
-  // put your setup code here, to run once:
-  Serial1.begin(115200);
-
+  Serial.begin(9600);
+  
+  // Initialize Portenta's video interface
   portenta_init_video();
 
   // Setting up the Button
-  lv_btn = lv_btn_create(lv_scr_act(), NULL);
-  lv_obj_align(lv_btn, NULL, LV_ALIGN_CENTER, 0, -40);          // We move it to the center of the screen and align it centered
-  //lv_obj_set_event_cb(lv_btn, event_handler);                 // If you want to handle the button’s callback create an event_handler function
+  button = lv_btn_create(lv_scr_act(), NULL);
 
-  // Setting up inner Label
-  myCustomLabel = lv_label_create(lv_btn, NULL);                // We make the object be a label widget, lv_btn child     
-  lv_label_set_text(myCustomLabel , "Button");                  // We set the default text
+  // We move it to the center of the screen and align it centered
+  lv_obj_align(button, NULL, LV_ALIGN_CENTER, 0, -40);
+
+  // If you want to handle the button’s click event register an event_handler callback function
+  //lv_obj_set_event_cb(button, event_handler);
+
+  // Setting up the label making it a child of the button
+  label = lv_label_create(button, NULL);
+
+  // Set the label's text
+  lv_label_set_text(label , "Click Here");
 }
 ```
 
-To finish, in the loop, it calls to the `lv_task_handler()` which will update the output to the external monitor. 
+To finish, in the loop function add `lv_task_handler()` which will execute any pending tasks. This will update the user interface. 
 
 ```cpp
 void loop() {
@@ -83,13 +89,13 @@ void loop() {
 }
 ```
 
-This sketch creates a button that will be displayed in the monitor. The `lv_btn` object represents our button and the `myCustomLabel` object is used to set the inner text.
+This sketch creates a button that will be displayed in the monitor. The `button` object represents our button and the `label` object is used to add a text to the button.
 
 ## 4. Connect an external monitor
 
-Compile and upload the sketch to your Portenta H7. At this point your board becomes the host. Unplug the board from your computer and connect it to the USB-hub along with a monitor that is connected to the HDMI port. Power up your hub by connecting it to an external power source and the monitor will display a button with the inner text `Button`. 
+Compile and upload the sketch to your Portenta H7. At this point your board becomes the host. Unplug the board from your computer and connect it to the USB-hub along with a monitor that is connected to the HDMI port. Power up your hub by connecting it to an external power source and the monitor will display a button with the label `Click Here`. 
 
-   ![por_ard_lvgl_connect_monitor](assets/por_ard_lvgl_connect_monitor.svg)
+   ![Connecting the USB peripherals and the display to Portenta.](assets/por_ard_lvgl_connect_monitor.svg)
 
    ***If you aren't familiar how the USB host works, we recommend you to have a look at the [USB Host tutorial](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-usb )***
 
@@ -99,47 +105,32 @@ Our button object currently has LVGL's default style. If you want to customise t
 
 Once you know that it is working, let's create a counter that increases each second and update it in the screen. To do so, we will create a label that is going to be updated periodically and then change its value in the screen, this is possible using the LVGL feature called 'Task'. 
 
-First we create a new task declaration and the counter variable at the beginning of the program (before the `setup()` function).
+First we create a counter variable at the beginning of the program (before the `setup()` function).
 
 ```cpp
-static lv_obj_t * lv_btn;
-static lv_obj_t * myCustomLabel;
-
-static void label_Task(lv_task_t * myTask);
-uint32_t count = 0;
+uint32_t counter = 0;
 ```
 
-Then we create the function that is going to update the value of the counter and its label (after and outside the `loop()` function).
+Then we create the function that is going to update the value of the counter and its label. Add it to the sketch just before the `setup()` function.
 
 ```cpp
-static void label_Task(lv_task_t * myTask) {
-   //printf("count: %d\n", count);                        // We can see the count in the Serial monitor
-   lv_label_set_text_fmt(myCustomLabel, "%d" , count);    // Update the text of the label
-   count++;                                               // Increase the count number
+static void updateCounterTask(lv_task_t *task) {
+  // Print the count to the Serial monitor
+  Serial.println(counter);
+
+  // Update the text of the label
+  lv_label_set_text_fmt(label, "%d" , counter);    
+  
+  // Increase the count number
+  counter++;                                               
 }
 ```
 
-Finally, as the last line inside the `setup()` function, we create the task that calls our `label_Task()` function every second.
+Finally, as the last line inside the `setup()` function, we create the task that calls our `updateCounterTask()` function every second.
 
 ```cpp
- void setup() {
-  // put your setup code here, to run once:
-  Serial1.begin(115200);
-
-  portenta_init_video();
-
-  // Setting up the Button
-  lv_btn = lv_btn_create(lv_scr_act(), NULL);
-  lv_obj_align(lv_btn, NULL, LV_ALIGN_CENTER, -40, -40);
-  //lv_obj_set_event_cb(lv_btn, event_handler);        // If you want to handle the button's callback create an event_handler function
-
-  // Setting up inner Label
-  myCustomLabel = lv_label_create(lv_btn, NULL);       // We make the object be a label widget, lv_btn child
-  lv_label_set_text(myCustomLabel , "Button");         // We set the default text
-
-  // Create a task
-  lv_task_create(label_Task, 1000, LV_TASK_PRIO_MID, NULL);
-}
+ // Create a task to update the counter
+lv_task_create(updateCounterTask, 1000, LV_TASK_PRIO_MID, NULL);
 ```
 
 ## 6. Upload the Sketch
@@ -150,38 +141,50 @@ This is the complete sketch of the tutorial that updates the button text with a 
 #include "Portenta_LittleVGL.h"
 #include "USBHost.h"
 
-static lv_obj_t * lv_btn;
-static lv_obj_t * myCustomLabel;
-static void label_Task(lv_task_t * myTask);
-uint32_t count = 0;
+static lv_obj_t *button;
+static lv_obj_t *label;
 
-// put your setup code here, to run once:
+uint32_t counter = 0;
+
+static void updateCounterTask(lv_task_t *task) {
+  // Print the count to the Serial monitor
+  Serial.println(counter);
+
+  // Update the text of the label
+  lv_label_set_text_fmt(label, "%d" , counter);    
+  
+  // Increase the count number
+  counter++;                                               
+}
+
 void setup() {  
-  Serial1.begin(115200);
+  Serial.begin(9600);
+  
+  // Initialize Portenta's video interface
   portenta_init_video();
 
   // Setting up the Button
-  lv_btn = lv_btn_create(lv_scr_act(), NULL);
-  lv_obj_align(lv_btn, NULL, LV_ALIGN_CENTER, -40, -40);
-  //lv_obj_set_event_cb(lv_btn, event_handler);        // If you want to handle the button's callback create an event_handler function
+  button = lv_btn_create(lv_scr_act(), NULL);
 
-  // Setting up inner Label
-  myCustomLabel = lv_label_create(lv_btn, NULL);       // We make the object be label widget, lv_btn child
-  lv_label_set_text(myCustomLabel , "Button");         // We set the default text
-  
-  // Create a task
-  lv_task_create(label_Task, 1000, LV_TASK_PRIO_MID, NULL);
+  // We move it to the center of the screen and align it centered
+  lv_obj_align(button, NULL, LV_ALIGN_CENTER, 0, -40);
+
+  // If you want to handle the button’s click event register an event_handler callback function
+  //lv_obj_set_event_cb(button, event_handler);
+
+  // Setting up the label making it a child of the button
+  label = lv_label_create(button, NULL);
+
+  // Set the label's text
+  lv_label_set_text(label , "Click Here");
+
+  // Create a task to update the counter
+  lv_task_create(updateCounterTask, 1000, LV_TASK_PRIO_MID, NULL);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
   lv_task_handler();
-}
-
-static void label_Task(lv_task_t * myTask) {
-  //printf("count: %d\n", count);                      // We can see the count in the Serial monitor
-  lv_label_set_text_fmt(myCustomLabel, "%d" , count);  // Update the text from the label
-  count++;                                             // Increase the count number
 }
 ```
 
@@ -206,5 +209,5 @@ Now that you know how to build a simple UI for a screen, you can try to add more
 * Reset the Portenta once it's connected to the USB-hub.
 
 **Authors:** Pablo Marquínez & Lenard George  
-**Reviewed by:** Jose Garcia, Manuel Zomer  
-**Last revision:** Manuel Zomer  [27.01.2021]
+**Reviewed by:** Jose Garcia, Manuel Zomer [2021-01-27]  
+**Last revision:** Sebastian Romero  [2021-02-03]
