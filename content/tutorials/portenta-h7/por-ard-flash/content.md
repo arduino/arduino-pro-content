@@ -1,6 +1,8 @@
 # Reading and Writing data on the Flash Memory 
 
-This tutorial shows you how to use the internal flash memory of the Portenta H7's MCU to read and write data using the Flash In-Application Programming Interface. This and other MbedOS-based Arduino boards (Nano 33 BLEs, etc.). 
+## Overview 
+
+This tutorial shows you how to use the internal flash memory of the Portenta H7's MCU to read and write data using the Flash In-Application Programming Interface provide by MBED OS. 
 
 [note]
 
@@ -8,170 +10,120 @@ Note :- This tutorial is also applicable for other MbedOS-based Arduino board li
 
 [/note]
 
-## You Will Learn
+### You Will Learn
 
 -   How to use the Flash In-Application Programming Interface 
+-   How to calculate the size of the flash memory 
+-   How to use the Flash In-Application Programming Interface 
 -   To calulate the size of the flash memory 
-## Required Hardware and Software
+### Required Hardware and Software
+
 -   Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
 -   USB C cable (either USB A to USB C or USB C to USB C)
 -   Arduino IDE 1.8.10+  or Arduino Pro IDE 0.0.4+ 
 
-
-# Configuring the Development Environment
-The H7 comes with 2 Mbytes of Flash memory with read-while-write support + 1 Mbyte of RAM. To support the use of non-erasable memory, a part of the flash memory can be programmed to behave as a block device, that can operate as a place to store information. 
-
-To access the internal flash of the MCU, you will have to use the Flash In-Application Programming Interface (FlashIAP). This API creates a block device on top of the space still available on the flash after flashing your sketch. Please**,** note that **the free space** available for the FlashIAP block device **depends on** the space occupied by **the complete sketch** on the flash and a few **block alignments calculations**. You can then use a [raw access API](https://os.mbed.com/docs/mbed-os/v6.4/apis/flash-iap.html) to save and load data from the block device.
+## Instructions 
 
 Please, be aware of the **flash r/w limits** while using raw/direct access: flash memories have a limited amount of write cycles. Typical flash memories can perform about 10000 writes cycles to the same block before starting to "wear out" and begin to lose the ability to retain data. **You can actually render your board useless with improper use of this example and described APIs.**
 
-Note: **Limit** the usage of FlashIAP block devices to **once-in-a-time** read and write **operations**. For example you could read user settings for your device in the `setup()` function when the device starts and update them whenever they are changed by the user. Contrary to that, it's not advisable to constantly write e.g. the latest value of a sensor into the flash.
-## 1. The Basic Setup
+For this tutorial we will be using the Block device example thats and building on top of that. 
+The sketch contains a basic working example of Creating a block device and writing datat 
+
+[note]
+
+Note: **Limit** the usage of FlashIAP block devices to **once-in-a-time** read and write **operations**. For example you could read user settings for your device in the setup() function when the device starts and update them whenever they are changed by the user. Contrary to that, it's not advisable to constantly write e.g. the latest value of a sensor into the flash.
+
+[/note]
+
+### 1. The Basic Setup
 
 Begin by plugging in your Portenta board to the computer using a USB-C  cable and open the Arduino IDE or the Arduino Pro IDE. If this is your first time running Arduino sketch files on the board, we suggest you  check out how to [set up the Portenta H7 for Arduino](por-ard-gs) before you proceed.
 
 ![The Portenta H7 can be connected to the computer using an appropriate USB-C cable](assets/por_ard_usbh_basic_setup.svg)
 
-## 2. Create the FlashStorage_MbedOS.ino
+### 2. Overview of the BlockDevice Example
 
-Lets start by creating a sketch named `FlashStorage_MbedOS.ino` file 
+Go to File > Examples > Block Storage and open the `FlashStorage_MbedOS.ino` sketch. This sketch has three important areas that you need to have an understanding of. 
 
-Add the FlashIAP support with the relevant library:
+In this sketch a block device is created using the calculated limits. A block device is a storage device that supports reading and writing data in fixed blocks.
 
-```
-#include <FlashIAPBlockDevice.h>
-```
-
-Copy and paste the following code inside `void setup()` 
-```cpp
-void setup()
-{
-
-Serial.begin(115200);
-  while (!Serial)
-    ;
-
-//  Wait for terminal to come up
-  delay(1000);
-
-Serial.println("FlashIAPBlockDevice Test");
-
-// Feed the RNG for later random content generation
-  srand(micros());
-
-}
+```cpp 
+FlashIAPBlockDevice blockDevice(iapLimits.start_address, iapLimits.available_size);
 ```
 
-## 3. Define the FlashIAPLimits.h 
+Initialize the block device before reading or write data. Remember to always **allocate** a **flash-erase-size-wide** storage area to read and write data from the flash: Don't forget to **erase** the flash block **before** being able to **program** it with your data, i.e. to write data on it (that's the way flash memories work) 
 
-let's now define the helper functions for calculating limits for the FlashIAP block device. These helper functions will be stored in the header file called FlashIAPLimits.h
-
-```cpp
-/**
-   Helper functions for calculating limits for the FlashIAP block device
- * */
-
-#pragma once
-
-#include <Arduino.h>
-#include <FlashIAP.h>
-#include <FlashIAPBlockDevice.h>
-
-using namespace mbed;
-
-// An helper struct for FlashIAP limits
-struct FlashIAPLimits {
-  size_t flash_size;
-  uint32_t start_address;
-  uint32_t available_size;
-};
-
-// Get the actual start address and available size for the FlashIAP Block Device
-// considering the space already occupied by the sketch.
-FlashIAPLimits getFlashIAPLimits()
-{
-
-  auto align_down = [](uint64_t val, uint64_t size) {
-    return (((val) / size)) * size;
-  };
-  auto align_up = [](uint32_t val, uint32_t size) {
-    return (((val - 1) / size) + 1) * size;
-  };
-
-  size_t flash_size;
-  uint32_t flash_start_address;
-  uint32_t start_address;
-  FlashIAP flash;
-
-  auto result = flash.init();
-  if (result != 0)
-    return { };
-
-  // Find the start of first sector after text area
-  int sector_size = flash.get_sector_size(FLASHIAP_APP_ROM_END_ADDR);
-  start_address = align_up(FLASHIAP_APP_ROM_END_ADDR, sector_size);
-  flash_start_address = flash.get_flash_start();
-  flash_size = flash.get_flash_size();
-
-  result = flash.deinit();
-
-  int available_size = flash_start_address + flash_size - start_address;
-  if (available_size % (sector_size * 2)) {
-    available_size = align_down(available_size, sector_size * 2);
-  }
-
-  return { flash_size, start_address, available_size };
-}
-```
-
-## 4. Add the Flash IAP Libaries 
-
-Get a few helpers from the supporting header file:
-
-```
-#include "FlashIAPLimits.h"
-```
-
-This header file defines the `getFlashIAPLimits` function that will calculate the starting point and the size of the flash storage that is available on the flash.
-```
-auto [flash_size, start_address, iap_size] = getFlashIAPLimits();
-```
-
-## 5. Intialise the Block Device 
-
-Let's create the block device using the calculated limits. Initialize the block device before reading or write data.
-
-```
-FlashIAPBlockDevice blockDevice(start_address, iap_size);
-blockDevice.init();
-```
-
-Remember to always **allocate** a **flash-erase-size-wide** storage area to read and write data from the flash:
 ```c++
-const size_t size { blockDevice.get_erase_size() };
-char buffer[size] {}; 
-blockDevice.read(buffer, 0, size);
-```
-Don't forget to **erase** the flash block **before** being able to **program** it with your data, i.e. to write data on it (that's the way flash memories work) 
-
-```
- blockDevice.erase(0, size);
- blockDevice.program(buffer, 0, size);
-```
-
-*De-init* the block-device when done:
-
-```
-blockDevice.deinit(); 
+   // Initialize the flash IAP block device and print the memory layout
+    blockDevice.init();
+    Serial.printf("FlashIAP block device size: %llu\r\n", blockDevice.size());
+    Serial.printf("FlashIAP block device read size: %llu\r\n", blockDevice.get_read_size());
+    Serial.printf("FlashIAP block device program size: %llu\r\n", blockDevice.get_program_size());
+    Serial.printf("FlashIAP block device erase size: %llu\r\n", blockDevice.get_erase_size());
+    // Deinitialize the device
+    blockDevice.deinit();
 ```
 
-Please, remember that **the data stored** on the flash memory will be **erased** at every **sketch upload** and will only be **retained** through successive sketch executions, e.g. after **power cycling** or **resetting** the board.
+[note]
 
-# Conclusion
+Note : Please, remember that **the data stored** on the flash memory will be **erased** at every **sketch upload** and will only be **retained** through successive sketch executions, e.g. after **power cycling** or **resetting** the board.
 
-The complete sketch file  
+[/note]
 
-``` cpp
+The key value ![TDBstore]()is used to create a key-value store over the block device. The value is created by first initialising the store were it will check for data integrity on initialising and prints if its good to go. We will use this key-value store to hold the information we will be reading and writing 
+
+```cpp
+    // Initialize the key/value store
+    Serial.print("Initializing TDBStore: ");
+    auto result = store.init();
+    Serial.println(result == MBED_SUCCESS ? "OK" : "KO");
+    if (result != MBED_SUCCESS)
+        while (true);
+```
+
+Reading the key value store
+
+```cpp
+// Retrieve a SketchStats from the k/v store
+int getSketchStats(const char* key, SketchStats* stats)
+{
+    // Retrieve key/value info
+    TDBStore::info_t info;
+    auto result = store.get_info(key, &info);
+    if (result == MBED_ERROR_ITEM_NOT_FOUND)
+        return result;
+
+    // Allocate space for the value
+    uint8_t buffer[info.size] {};
+    size_t actual_size;
+
+    // Get the value
+    result = store.get(key, buffer, sizeof(buffer), &actual_size);
+    if (result != MBED_SUCCESS)
+        return result;
+
+    memcpy(stats, buffer, sizeof(SketchStats));
+    return result;
+}
+```
+
+Writing the updated value 
+
+```cpp
+int setSketchStats(const char* key, SketchStats stats)
+{
+    auto result = store.set(key, reinterpret_cast<uint8_t*>(&stats), sizeof(SketchStats), 0);
+    return result;
+}
+```
+
+### 3. Add another Key Value Store  
+
+
+
+Heres the complete sketch of the tutorial after 
+
+```c++
 /**
  * A minimal example to demonstrate the use of the MCU's internal flash memory for
  * the Arduino boards based on MbedOS (Portenta H7, Nano 33 BLEs).
@@ -243,7 +195,12 @@ void setup()
 
 void loop(){}
 
+
 ```
+
+### 4. Upload the Sketch 
+
+## Conclusion
 
 **Authors:** Giampaolo Mancini  
 **Reviewed by:** Lenard [20.12.2020]  
