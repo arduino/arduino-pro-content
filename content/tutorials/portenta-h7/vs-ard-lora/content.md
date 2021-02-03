@@ -138,7 +138,8 @@ Message sent correctly!
 
 ## Conclusion
 
-If you have sent the message successfuly you have configured Portenta H7 and the Lora Vision Shield on the TTN. We have retrieved the device EUI, used it to register the device in the TTN console, and programmed the board using the data provided by TTN. We can now send data over the LoRa® network which can be viewed from anywhere in the world (as long as we have an Internet connection and our device is in range from a TTN gateway).
+If you recieve this message, you have managed to configure the Portenta H7 and the Lora Vision Shield on the TTN.
+ We have retrieved the device EUI, used it to register the device in the TTN console, and programmed the board using the data provided by TTN. Now, we can send data over the LoRa® network which can be viewed from anywhere in the world (as long as we have an Internet connection and our device is in range from a TTN gateway).
 
 ### Next Steps
 
