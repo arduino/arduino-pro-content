@@ -130,7 +130,7 @@ Enter your APP EUI
 Enter your APP KEY
 ```
 
-Next, introduce the **APP EUI** and the **APP KEY** in the Serial Monitor in a similar manner. If everything has gone fine, you will see this message:
+Next, introduce the **APP EUI** and the **APP KEY** in the Serial Monitor. If this process is done successfully, you will see this message:
 
 ```
 Message sent correctly!
