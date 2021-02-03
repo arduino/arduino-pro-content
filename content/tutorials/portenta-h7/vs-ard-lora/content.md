@@ -30,7 +30,7 @@ The Vision Shield LoRa can be connected to the TTN and can transmit data to othe
 
 ### 1.  Setting up the Environment
 
-Start by pointing your browser to www.thethingsnetwork.org and use the Sign Up button to setup an account. Next, then fill all the required fields to complete a new registration (skip this step and sign in directly if you already have a TTN account).
+Start by pointing your browser to www.thethingsnetwork.org and use the Sign Up button to setup an account. Next, then fill all the required fields to complete a new registration (if you already have a TTN account, skip this step and continue by signing in).
 
 ![vs_ard_things_nw](assets/vs_ard_ttn_home.png)
 
