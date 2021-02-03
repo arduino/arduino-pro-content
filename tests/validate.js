@@ -1,4 +1,5 @@
 const parser = require('node-html-parser');
+const matcher = require('./matcher');
 const fs = require('fs');
 const validate = require('jsonschema').validate;
 const path = require('path');
@@ -7,63 +8,74 @@ const config = require('./config');
 const rules = require('./rules');
 const Validator = require('./validator').Validator;
 
-const PARSER_SYNTAX_PREFIX = "language-";
-const validator = new Validator(config);
+const PARSER_SYNTAX_PREFIX = "language-"; // Prepended by marked
+const basePathFromCommandline = process.argv[2];
+let tutorialPaths;
+
+if(basePathFromCommandline) {
+    tutorialPaths = [basePathFromCommandline];
+} else {
+    tutorialPaths = matcher.getSubdirectories(config.basePath, config.excludePatterns);
+}
+const validator = new Validator(tutorialPaths);
 
 
 /**
  * Verify that all meta data files are valid JSON and contain the correct attributes
  */
 validator.addValidation((tutorials) => {
-    let errorOccurred = false;
+    let errorsOccurred = 0;
     tutorials.forEach(tutorial => {
         let jsonData = tutorial.metadata
         if(!jsonData) {
             console.log("❌ No metadata file found for tutorial " + tutorial.path);
-            errorOccurred = true;
+            ++errorsOccurred;
         }
     
         try {        
             if(!jsonData.coverImage){
                 console.log("❌ No cover image found for " + path);
-                errorOccurred = true;            
+                ++errorsOccurred;            
             } else if (jsonData.coverImage.src.indexOf(".svg") == -1) {
                 console.log("❌ Cover image of " + path + "is not in SVG format.");
-                errorOccurred = true;
+                ++errorsOccurred;
             }
             
-            let jsonSchema = JSON.parse(fs.readFileSync("./metadata-schema.json"));        
+            let jsonSchema = JSON.parse(fs.readFileSync(config.metadataSchema));        
             let validationResult = validate(jsonData, jsonSchema);
             if(validationResult.errors.length != 0){
+                console.log("❌ An error occurred while validating the metadata of " + tutorial.path);
                 console.log(validationResult);
-                errorOccurred = true;
+                ++errorsOccurred;
             }        
     
-        } catch (error) {        
-            errorOccurred = true;        
+        } catch (error) {
+            console.log("❌ An error occurred while parsing the metadata of " + tutorial.path);        
+            console.log(error);
+            ++errorsOccurred;        
         }
     });
-    return errorOccurred;
+    return errorsOccurred;
 });
 
 /**
  * Verifies that the titles are in the correct format
  */
 validator.addValidation((tutorials) => {
-    let errorOccurred = false;
+    let errorsOccurred = 0;
     tutorials.forEach(tutorial => {
        tutorial.headings.forEach(heading => {        
            if(tc.titleCase(heading) != heading){
                console.log("❌ '" + heading + "' is not title case in tutorial " + tutorial.path);
-               errorOccurred = true;
+               ++errorsOccurred;
            }
            if(heading.length > config.headingMaxLength){
                console.log("❌ '" + heading + "' (" + heading.length + ") exceeds the max length (" + config.headingMaxLength + ") in tutorial " + tutorial.path);
-               errorOccurred = true;
+               ++errorsOccurred;
            }
        });
     });
-    return errorOccurred;
+    return errorsOccurred;
 });
 
 
@@ -71,7 +83,7 @@ validator.addValidation((tutorials) => {
  * Verify that SVG images don't contain embedded images
  */
 validator.addValidation((tutorials) => {
-    let errorOccurred = false;
+    let errorsOccurred = 0;
     tutorials.forEach(tutorial => {
         let svgFiles = tutorial.svgAssets;
         svgFiles.forEach(path => {     
@@ -82,12 +94,12 @@ validator.addValidation((tutorials) => {
                // Detect if there are embedded images that are actually rendered
                if(image.attributes.width || image.attributes.height){
                    console.log("❌ " + path + " containes embedded binary images");
-                   errorOccurred = true;
+                   ++errorsOccurred;
                }
            }
         });
     });
-    return errorOccurred;
+    return errorsOccurred;
 });
 
 
@@ -95,7 +107,7 @@ validator.addValidation((tutorials) => {
  * Verify that all files in the assets folder are referenced
  */
 validator.addValidation((tutorials) => {
-    let errorOccurred = false;
+    let errorsOccurred = 0;
     tutorials.forEach(tutorial => {    
         let imageNames = tutorial.imagePaths.map(imagePath => path.basename(imagePath));    
         let assetNames = tutorial.assets.map(asset => path.basename(asset));    
@@ -106,11 +118,11 @@ validator.addValidation((tutorials) => {
             if(coverImageName == asset) return;
             if(!imageNames.includes(asset) && !linkNames.includes(asset)){        
                 console.log("❌ " + asset + " is not used in tutorial " + tutorial.path);
-                errorOccurred = true;        
+                ++errorsOccurred;        
             }
         });
     });
-    return errorOccurred;
+    return errorsOccurred;
 });
 
 
@@ -118,16 +130,33 @@ validator.addValidation((tutorials) => {
  * Verify that the images don't have an absolute path
  */
 validator.addValidation((tutorials) => {
-    let errorOccurred = false;
+    let errorsOccurred = 0;
     tutorials.forEach(tutorial => {
         tutorial.imagePaths.forEach(imagePath => {
             if(imagePath.startsWith("/") || imagePath.startsWith("~")){
                 console.log("❌ Image uses an absolute path: " + imagePath + " in " + tutorial.path);
-                errorOccurred = true;
+                ++errorsOccurred;
             }
         });
     });
-    return errorOccurred;
+    return errorsOccurred;
+});
+
+
+/**
+ * Ensures no nested lists are used
+ */
+validator.addValidation((tutorials) => {
+    if(config.allowNestedLists) return;
+    let errorsOccurred = 0;
+    tutorials.forEach(tutorial => {
+        let nodes = tutorial.html.querySelectorAll("li ul");        
+        if(nodes && nodes.length > 0){
+            ++errorsOccurred;
+            console.log("❌ Content uses nested lists in " + tutorial.path);
+        }
+    });
+    return errorsOccurred;
 });
 
 
@@ -135,17 +164,17 @@ validator.addValidation((tutorials) => {
  * Verify that the images contain a description
  */
 validator.addValidation((tutorials) => {
-    let errorOccurred = false;
+    let errorsOccurred = 0;
     tutorials.forEach(tutorial => {
        tutorial.imageNodes.forEach(image => {            
            const imageDescription = image.attributes.alt;
            if(imageDescription.split(" ").length <= 1){
                console.log("❌ Image doesn't have a description: " + image.attributes.src + " in " + tutorial.path);
-               errorOccurred = true;
+               ++errorsOccurred;
            }
        });
     });
-    return errorOccurred;
+    return errorsOccurred;
 });
 
 
@@ -153,25 +182,25 @@ validator.addValidation((tutorials) => {
   * Verify that only allowed syntax specifiers are used
   */
  validator.addValidation((tutorials) => {
-    let errorOccurred = false;
+    let errorsOccurred = 0;
     tutorials.forEach(tutorial => {         
         tutorial.codeNodes.forEach(codeNode => {
            let syntax = codeNode.classNames[0];
            if(syntax) syntax = syntax.replace(PARSER_SYNTAX_PREFIX, '');
            if(!config.allowedSyntaxSpecifiers.includes(syntax)){
                console.log("❌ Code block uses unsupported syntax: " + syntax + " in " + tutorial.path);
-               errorOccurred = true;
+               ++errorsOccurred;
            }
         });
     });
-    return errorOccurred;
+    return errorsOccurred;
 });
 
 /**
  * Verifies that the content rules are met
  */
 validator.addValidation((tutorials) => {
-    let errorOccurred = false;
+    let errorsOccurred = 0;
     tutorials.forEach(tutorial => {
         let htmlContent = tutorial.rawHTML;
         let markdownContent = tutorial.markdown;
@@ -182,20 +211,22 @@ validator.addValidation((tutorials) => {
             const match = content.match(regex);
             if((match === null && rule.shouldMatch) || (match !== null && !rule.shouldMatch)) {
                 console.log("❌ " + rule.errorMessage + " in " + tutorial.path);
-                errorOccurred = true;
+                ++errorsOccurred;
             }     
         });
     
     });
-    return errorOccurred;
+    return errorsOccurred;
 });
 
 /**
  * Check if an error occurred and exit with the corresponding status code
  */
-if(validator.validate()){
+const errorsFound = validator.validate()
+if(errorsFound == 0){
     console.log("✅ No errors found.")
     process.exit(0);
 } else {
+    console.log("🚫 " + errorsFound + " errors found.")
     process.exit(2);
 }

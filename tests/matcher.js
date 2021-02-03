@@ -70,8 +70,8 @@ function findAllFiles(startPath, searchPattern, excludePatterns = [], matchingFi
 };
 
 function getSubdirectories(path, excludePatterns = []){
-    if (!fs.existsSync(path)) {
-        console.log("❌ Directory doesn't exist ", path);
+    if (!fs.existsSync(path)) {        
+        console.log("❌ Directory doesn't exist:", path);
         return;
     }
 
