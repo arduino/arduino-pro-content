@@ -132,6 +132,23 @@ validator.addValidation((tutorials) => {
 
 
 /**
+ * Ensures no nested lists are used
+ */
+validator.addValidation((tutorials) => {
+    if(config.allowNestedLists) return;
+    let errorsOccurred = 0;
+    tutorials.forEach(tutorial => {
+        let nodes = tutorial.html.querySelectorAll("li ul");        
+        if(nodes && nodes.length > 0){
+            ++errorsOccurred;
+            console.log("❌ Content uses nested lists in " + tutorial.path);
+        }
+    });
+    return errorsOccurred;
+});
+
+
+/**
  * Verify that the images contain a description
  */
 validator.addValidation((tutorials) => {
