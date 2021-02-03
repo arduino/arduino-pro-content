@@ -1,12 +1,9 @@
-const matcher = require('./matcher');
 const Tutorial = require('./tutorial').Tutorial;
 
 var Validator = class Validator {
     validatonCallbacks = [];
 
-    constructor(config){
-        this.config = config;
-        const tutorialPaths = matcher.getSubdirectories(config.tutorialsPath, config.excludePatterns);
+    constructor(tutorialPaths){                   
         this.tutorials = tutorialPaths.map(tutorialPath => new Tutorial(tutorialPath) );
     }
 

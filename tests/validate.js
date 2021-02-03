@@ -1,4 +1,5 @@
 const parser = require('node-html-parser');
+const matcher = require('./matcher');
 const fs = require('fs');
 const validate = require('jsonschema').validate;
 const path = require('path');
@@ -7,8 +8,16 @@ const config = require('./config');
 const rules = require('./rules');
 const Validator = require('./validator').Validator;
 
-const PARSER_SYNTAX_PREFIX = "language-";
-const validator = new Validator(config);
+const PARSER_SYNTAX_PREFIX = "language-"; // Prepended by marked
+const basePathFromCommandline = process.argv[2];
+let tutorialPaths;
+
+if(basePathFromCommandline) {
+    tutorialPaths = [basePathFromCommandline];
+} else {
+    tutorialPaths = matcher.getSubdirectories(config.basePath, config.excludePatterns);
+}
+const validator = new Validator(tutorialPaths);
 
 
 /**
