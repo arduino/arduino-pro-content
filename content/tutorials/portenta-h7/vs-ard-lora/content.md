@@ -36,7 +36,7 @@ Start by pointing your browser to www.thethingsnetwork.org and use the Sign Up b
 
 ### 2.  Creating an app on TTN
 
-Once you have created an account with TTN, you need to create a TTN [application](https://www.thethingsnetwork.org/docs/applications/). An application provides a way to aggregate data from different devices, and then use these data with other online / offline tools. Go to your [console](https://console.thethingsnetwork.org), and click on **Applications**
+Once you have created an account with TTN, you need to create a TTN [application](https://www.thethingsnetwork.org/docs/applications/). This(?) application provides a way to aggregate data from different devices, and then use these data with other online / offline tools. Go to your [console](https://console.thethingsnetwork.org), and click on **Applications**
 
 ![vs_ard_ttn_app](assets/vs_ard_ttn_app.png)
 
@@ -73,7 +73,7 @@ Plug the Portenta Vision Shield - LoRa to the Portenta H7 and them to your PC th
 
 ![vs-ard-select-port](assets/vs_ard_select_port.png)
 
-The LoRa module on the Vision Shield can be accessed by using the [MKRWAN library](https://github.com/arduino-libraries/MKRWAN). This library provides all the APIS to communicate with LoRa and LoRaWAN networks and can be Installed from the library Manager. The first code you need to upload and run is from the **MKRWAN** library, and its name is _FirstConfiguration_.
+The LoRa module on the Vision Shield can be accessed by using the [MKRWAN library](https://github.com/arduino-libraries/MKRWAN)( if you can't find it in your examples list, you can go to **tools > library manager** and type "MKRWAN library" to install it). This library provides all the APIS to communicate with LoRa and LoRaWAN networks and can be Installed from the library Manager. The first code you need to upload and run is from the **MKRWAN** library, and its name is _FirstConfiguration_.
 
 ![vs-ard-upload-code](assets/vs_ard_select_example.png)
 
@@ -86,18 +86,20 @@ The only line you may need to change before uploading the code is the one that s
 
 [note]
 
-Please, consider that in Australia the boards connect correctly to TTN gateways on AS923 frequencies; AU915 frequencies requires the selection of sub band 2, not yet implemented in the firmware.
+**Note:** Consider that in Australia the boards connect correctly to TTN gateways on AS923 frequencies; AU915 frequencies requires the selection of sub band 2, not yet implemented in the firmware.
 
 [/note]
 
-Once the sketch completes upload, open the Serial Monitor. The following details will show:
+Once you have added to the sketch the frequency according to your country, you can upload it to the board. Then, once the upload is completed open the Serial Monitor. The following details will show:
 
 ```
-Your module version is: ARD-078 1.1.9
-Your device EUI is: a8xxxxxxxxxxxx0a
+Your module version is: ARD-078 1.2.1
+Your device EUI is: a8xxxxxxxxxxxxxx
 Are you connecting via OTAA (1) or ABP (2)?
 ```
-
+[note]
+**Note:** In order to select the way in which the board is going to connect with TTN  (OTAA or ABP) we need to configure it on the TTN portal. We will see which option we should select in the following steps.
+[/note]
 ### 4. Registring the Portenta on TTN
 
 Before your Portenta H7 can start communicating with the TTN you need to [register](https://www.thethingsnetwork.org/docs/devices/registration.html) the board with an application. Go back to the TTN portal and scroll to **Devices** section on your Application dashboard, then click **Register Device**.
