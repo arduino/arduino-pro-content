@@ -18,7 +18,7 @@ This tutorial explains how to connect your Portenta H7 to The Things Network (TT
 ### Required Hardware and Software
 
 -   [Portenta H7 board](https://store.arduino.cc/portenta-h7)
--   [Vision Shield LoRa](https://store.arduino.cc/portenta-vision-shield-lora)
+-   [Portenta Vision Shield - LoRa](https://store.arduino.cc/portenta-vision-shield-lora)
 -   [1x Dipole Pentaband antenna](https://store.arduino.cc/antenna) or a UFL Antenna
 -   Arduino IDE ([online](https://create.arduino.cc/) or [offline](https://www.arduino.cc/en/main/software))
 -   USB C cable (either USB A to USB C or USB C to USB C)
