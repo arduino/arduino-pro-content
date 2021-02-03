@@ -100,7 +100,7 @@ Are you connecting via OTAA (1) or ABP (2)?
 
 ### 4. Registring the Portenta on TTN
 
-Before your Portenta H7 can start communicating with the TTN you need to [register](https://www.thethingsnetwork.org/docs/devices/registration.html) it with an application. Go back to the TTN portal and scroll to the **Devices** section on your Application dashboard, then click on  **Register Device** button.
+Before your Portenta H7 can start communicating with the TTN you need to [register](https://www.thethingsnetwork.org/docs/devices/registration.html) the board with an application. Go back to the TTN portal and scroll to **Devices** section on your Application dashboard, then click **Register Device**.
 
 ![vs_ard_ttn_click_register](assets/vs_ard_ttn_click_register.png)
 
