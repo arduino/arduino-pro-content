@@ -5,7 +5,7 @@ This tutorial explains how to connect your Portenta H7 to The Things Network (TT
 
 [note]
 
-**Note :** Ensure that you are within range (10 Km) from an available Lora Gateway before you try this tutorial. Check availability on [The Things Network map](https://www.thethingsnetwork.org/map).
+**Note:** In order to connect your Portenta to the TTN you need to ensure that you are within range (10 Km) from an available Lora Gateway. It is recommended that you check Lora Gateway availability on [The Things Network map](https://www.thethingsnetwork.org/map) before you try this tutorial.
 
 [/note]
 
