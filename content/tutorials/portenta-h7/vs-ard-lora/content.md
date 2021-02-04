@@ -79,7 +79,7 @@ The LoRa module on the Vision Shield can be accessed by using the [MKRWAN librar
 
 The only line you may need to change before uploading the code is the one that sets the frequency. Set the frequency code according to your country if needed. You can find more information about frequency by country at [this TTN link](https://www.thethingsnetwork.org/docs/lorawan/frequency-plans.html).
 
-```
+```c++
 ... // change this to your regional band (eg. US915, AS923, ...)
  if (!modem.begin(EU868)) {    ...
 ```
@@ -92,7 +92,7 @@ The only line you may need to change before uploading the code is the one that s
 
 Once you have added to the sketch the frequency according to your country, you can upload it to the board. Then, once the upload is completed open the Serial Monitor. The following details will show:
 
-```
+```c++
 Your module version is: ARD-078 1.2.1
 Your device EUI is: a8xxxxxxxxxxxxxx
 Are you connecting via OTAA (1) or ABP (2)?
@@ -124,7 +124,7 @@ Once your board has been registered you can send information to TTN. Let's come 
 
 Lets start by making a connection through the OTAA. Enter "1" in the Serial Monitor input box and press ENTER. Then, find the EUI and the App key from TTN **Device Overview** page. You can read more into OTA vs ABP activation mode at [this link](https://www.thethingsnetwork.org/docs/devices/registration.html)
 
-```
+```c++
 Your module version is: ARD-078 1.1.9
 Your device EUI is: a8xxxxxxxxxxxx0a
 Are you connecting via OTAA (1) or ABP (2)?
@@ -134,7 +134,7 @@ Enter your APP KEY
 
 Next, introduce the **APP EUI** and the **APP KEY** in the Serial Monitor. If this process is done successfully, you will see this message:
 
-```
+```c++
 Message sent correctly!
 ```
 
@@ -155,6 +155,7 @@ The most common issue is that the device cannot connect to a TTN gateway. Again,
 
 If we are within good range of a gateway, we should also try to move our device and antenna to a window, and even hold it out the window and move it around. This has proven successful on numerous accounts, as the signal can travel less obstructed.
 
-**Authors:** Karl Söderby, Ignacio Herrera
-**Reviewed by:** Jose Garcia [02.02.2021]
-**Last revision:** AA [27.3.2020]
+**Authors:** Lenard George, Ignacio Herrera
+**Reviewed by:** Jose Garcia, Linnea Åkerberg [02.02.2021]
+**Last revision:** Lenard  [27.3.2020]
+
