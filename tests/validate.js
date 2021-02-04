@@ -1,6 +1,8 @@
 const parser = require('node-html-parser');
 const fileHelper = require('./file-helper');
 const fs = require('fs');
+const http = require('http');
+const https = require('https');
 const validate = require('jsonschema').validate;
 const path = require('path');
 const tc = require('title-case');
@@ -99,6 +101,35 @@ validator.addValidation((tutorials) => {
                    ++errorsOccurred;
                }
            }
+        });
+    });
+    return errorsOccurred;
+});
+
+
+function getStatusCode(url) {
+    const requestLibrary = url.startsWith("https://") ? https : http;   
+    return new Promise((resolve, reject) => {
+        requestLibrary.request(url, { method: 'HEAD' }, (res) => {
+            console.log(res.statusCode);
+        }).on('error', (err) => {
+            console.error(err);
+        }).end(()=> {
+            resolve(res.statusCode);
+        });
+    });
+}
+
+/**
+ * Verify that there are no broken links
+ */
+validator.addValidation((tutorials) => {
+    if(!config.checkForBrokenLinks) return;
+    let errorsOccurred = 0;
+    tutorials.forEach(tutorial => {            
+        tutorial.linkPaths.forEach(link => {
+            const status = getStatusCode(link);
+            console.log(status);
         });
     });
     return errorsOccurred;
