@@ -32,28 +32,28 @@ The Portenta Vision Shield - LoRa can be connected to the TTN and can transmit d
 
 Start by pointing your browser to www.thethingsnetwork.org and use the Sign Up button to setup an account. Next, then fill all the required fields to complete a new registration (if you already have a TTN account, skip this step and continue by signing in).
 
-![things network](assets/vs_ard_ttn_home.png)
+![The Things Network homepage](assets/vs_ard_ttn_home.png)
 
 ### 2.  Creating an app on TTN
 
 Once you have created an account with TTN, you need to create a TTN [application](https://www.thethingsnetwork.org/docs/applications/). This(?) application provides a way to aggregate data from different devices, and then use these data with other online / offline tools. Go to your [console](https://console.thethingsnetwork.org), and click on **Applications**
 
-![ttn application](assets/vs_ard_ttn_app.png)
+![Select Applications on the Console](assets/vs_ard_ttn_app.png)
 
 Here you'll have a list of all your applications. Now create your first app by pressing the **add application** button.
 
-![ttn add application](assets/vs_ard_ttn_new_app.png)
+![Finding the add application button](assets/vs_ard_ttn_new_app.png)
 
 You have now to fill only the first two fields:
 
 * The first one is the **ID** of your app: this must be lowercase and without spaces.
 * The second one is a **Description** of your app, and there's no restrictions on formatting
 
-![ttn add app](assets/vs_ard_ttn_app_param.png)
+![Adding a application](assets/vs_ard_ttn_app_param.png)
 
 After completing these two fields, press on the "Add application" button located at the bottom right corner of the page. The dashboard will then show you an overview of the newly created app.
 
-![ttn app params](assets/vs_ard_ttn_add_app.png)
+![Adding the App Parameters](assets/vs_ard_ttn_add_app.png)
 
 Let's take a closer look at these sections:
 
@@ -103,16 +103,16 @@ In order to select the way in which the board is going to connect with TTN  (OTA
 
 Before your Portenta H7 can start communicating with the TTN you need to [register](https://www.thethingsnetwork.org/docs/devices/registration.html) the board with an application. Go back to the TTN portal and scroll to **Devices** section on your Application dashboard, then click **Register Device**.
 
-![ttn click register](assets/vs_ard_ttn_click_register.png)
+![Registering a Device](assets/vs_ard_ttn_click_register.png)
 
 On the registration page, fill in **Device ID** and **EUI**. 
 **Note**:  The Device ID must be lowercase and without spaces. The **EUI** should be copied from the Serial Monitor.```
 
-![ttn register device](assets/vs_ard_ttn_register_device.png)
+![Entering the device EUI](assets/vs_ard_ttn_register_device.png)
 
 After pressing the Register button, your board will show up on the **Device Overview** page. You can now see all the information needed to complete the Arduino setup.
 
-![ttn device overview](assets/vs_ard_ttn_device_overview.png)
+![The Things Network Device Overview](assets/vs_ard_ttn_device_overview.png)
 
 ### 5. Connecting to TTN
 
