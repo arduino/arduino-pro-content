@@ -157,5 +157,5 @@ If we are within good range of a gateway, we should also try to move our device 
 
 **Authors:** Lenard George, Ignacio Herrera
 **Reviewed by:** Jose Garcia, Linnea Åkerberg [02.02.2021]
-**Last revision:** Lenard  [27.3.2020]
+**Last revision:** Lenard George [27.3.2020]
 
