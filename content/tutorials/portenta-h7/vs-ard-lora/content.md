@@ -19,7 +19,7 @@ This tutorial explains how to connect your Portenta H7 to The Things Network (TT
 
 -   [Portenta H7 board](https://store.arduino.cc/portenta-h7)
 -   [Portenta Vision Shield - LoRa](https://store.arduino.cc/portenta-vision-shield-lora)
--   [1x Dipole Pentaband antenna](https://store.arduino.cc/antenna) or a UFL Antenna
+-   [1x Dipole Pentaband antenna](https://store.arduino.cc/antenna) or a UFL Antenna of the H7 
 -   Arduino [offline](https://www.arduino.cc/en/main/software) IDE or Arduino ([Web Editor](https://create.arduino.cc/)
 -   USB C cable (either USB A to USB C or USB C to USB C)
 -   An [account](https://account.thethingsnetwork.org/users/login) with The Things Network
@@ -66,8 +66,8 @@ Let's take a closer look at these sections:
 
 It's now time to connect your Portenta H7 and Lora Vision Shield to TTN. You'll need to upload code to the board, so as you probably already know, there are two options:
 
-* Use the [Arduino Web Editor](https://create.arduino.cc/editor) (this is the option this guide will follow)
-* Use the [Arduino IDE](https://www.arduino.cc/en/software), this way requires manual update of Arduino core and libraries.
+* Use the [Arduino Web Editor](https://create.arduino.cc/editor) 
+* Use the [Arduino IDE](https://www.arduino.cc/en/software), (this is the option this guide will follow)
 
 Plug the Portenta Vision Shield - LoRa to the Portenta H7 and them to your PC through the USB port. Be sure to have selected the right board "Arduino Portenta H7 (M7 core)" and the right port.
 
@@ -97,9 +97,8 @@ Your module version is: ARD-078 1.2.1
 Your device EUI is: a8xxxxxxxxxxxxxx
 Are you connecting via OTAA (1) or ABP (2)?
 ```
-[note]
-**Note:** In order to select the way in which the board is going to connect with TTN  (OTAA or ABP) we need to configure it on the TTN portal. We will see which option we should select in the following steps.
-[/note]
+In order to select the way in which the board is going to connect with TTN  (OTAA or ABP) we need to configure it on the TTN portal. We will see which option we should select in the following steps.
+
 ### 4. Registring the Portenta on TTN
 
 Before your Portenta H7 can start communicating with the TTN you need to [register](https://www.thethingsnetwork.org/docs/devices/registration.html) the board with an application. Go back to the TTN portal and scroll to **Devices** section on your Application dashboard, then click **Register Device**.
