@@ -16,6 +16,6 @@
      "por-openmv-fd",
      "por-ard-trace32",
      "por-ard-kvs",     
-     "vs-ard-lora"
+     "vs-ard-ttn"
     ]
  }
