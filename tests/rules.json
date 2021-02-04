@@ -24,19 +24,19 @@
         "errorMessage" : "The revisor's format is incorrect. Revision date correct YYYY-MM-DD?"
     },
     {
-        "regex" : "^# Conclusion\\n",
+        "regex" : "^## Conclusion\\n",
         "shouldMatch" : true,
         "format" : "markdown",
         "errorMessage" : "Missing conclusion section."
     },
     {
-        "regex" : "^## What You Will Learn\\n",
+        "regex" : "^### You Will Learn\\n",
         "shouldMatch" : true,
         "format" : "markdown",
         "errorMessage" : "Missing 'What You Will Learn' section."
     },
     {
-        "regex" : "^## Required Hardware and Software\\n",
+        "regex" : "^### Required Hardware and Software\\n",
         "shouldMatch" : true,
         "format" : "markdown",
         "errorMessage" : "Missing 'Required Hardware and Software' section."
