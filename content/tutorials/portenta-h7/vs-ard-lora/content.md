@@ -32,28 +32,28 @@ The Portenta Vision Shield - LoRa can be connected to the TTN and can transmit d
 
 Start by pointing your browser to www.thethingsnetwork.org and use the Sign Up button to setup an account. Next, then fill all the required fields to complete a new registration (if you already have a TTN account, skip this step and continue by signing in).
 
-![vs_ard_things_nw](assets/vs_ard_ttn_home.png)
+![things network](assets/vs_ard_ttn_home.png)
 
 ### 2.  Creating an app on TTN
 
 Once you have created an account with TTN, you need to create a TTN [application](https://www.thethingsnetwork.org/docs/applications/). This(?) application provides a way to aggregate data from different devices, and then use these data with other online / offline tools. Go to your [console](https://console.thethingsnetwork.org), and click on **Applications**
 
-![vs_ard_ttn_app](assets/vs_ard_ttn_app.png)
+![ttn application](assets/vs_ard_ttn_app.png)
 
 Here you'll have a list of all your applications. Now create your first app by pressing the **add application** button.
 
-![vs_ard_ttn_new_app](assets/vs_ard_ttn_new_app.png)
+![ttn add application](assets/vs_ard_ttn_new_app.png)
 
 You have now to fill only the first two fields:
 
 * The first one is the **ID** of your app: this must be lowercase and without spaces.
 * The second one is a **Description** of your app, and there's no restrictions on formatting
 
-![vs_ard_ttn_add_app](assets/vs_ard_ttn_app_param.png)
+![ttn add app](assets/vs_ard_ttn_app_param.png)
 
 After completing these two fields, press on the "Add application" button located at the bottom right corner of the page. The dashboard will then show you an overview of the newly created app.
 
-![vs_ard_ttn_app_params](assets/vs_ard_ttn_add_app.png)
+![ttn app params](assets/vs_ard_ttn_add_app.png)
 
 Let's take a closer look at these sections:
 
@@ -71,15 +71,15 @@ It's now time to connect your Portenta H7 and Lora Vision Shield to TTN. You'll 
 
 Plug the Portenta Vision Shield - LoRa to the Portenta H7 and them to your PC through the USB port. Be sure to have selected the right board "Arduino Portenta H7 (M7 core)" and the right port.
 
-![vs-ard-select-port](assets/vs_ard_select_port.png)
+![Select port M7 Core](assets/vs_ard_select_port.png)
 
 The LoRa module on the Vision Shield can be accessed by using the [MKRWAN library](https://github.com/arduino-libraries/MKRWAN)( if you can't find it in your examples list, you can go to **tools > library manager** and type "MKRWAN library" to install it). This library provides all the APIS to communicate with LoRa and LoRaWAN networks and can be Installed from the library Manager. The first code you need to upload and run is from the **MKRWAN** library, and its name is _FirstConfiguration_.
 
-![vs-ard-upload-code](assets/vs_ard_select_example.png)
+![Upload code to IDE](assets/vs_ard_select_example.png)
 
 The only line you may need to change before uploading the code is the one that sets the frequency. Set the frequency code according to your country if needed. You can find more information about frequency by country at [this TTN link](https://www.thethingsnetwork.org/docs/lorawan/frequency-plans.html).
 
-```c++
+```cpp
 ... // change this to your regional band (eg. US915, AS923, ...)
  if (!modem.begin(EU868)) {    ...
 ```
@@ -92,7 +92,7 @@ The only line you may need to change before uploading the code is the one that s
 
 Once you have added to the sketch the frequency according to your country, you can upload it to the board. Then, once the upload is completed open the Serial Monitor. The following details will show:
 
-```c++
+```cpp
 Your module version is: ARD-078 1.2.1
 Your device EUI is: a8xxxxxxxxxxxxxx
 Are you connecting via OTAA (1) or ABP (2)?
@@ -103,16 +103,16 @@ In order to select the way in which the board is going to connect with TTN  (OTA
 
 Before your Portenta H7 can start communicating with the TTN you need to [register](https://www.thethingsnetwork.org/docs/devices/registration.html) the board with an application. Go back to the TTN portal and scroll to **Devices** section on your Application dashboard, then click **Register Device**.
 
-![vs_ard_ttn_click_register](assets/vs_ard_ttn_click_register.png)
+![ttn click register](assets/vs_ard_ttn_click_register.png)
 
 On the registration page, fill in **Device ID** and **EUI**. 
 **Note**:  The Device ID must be lowercase and without spaces. The **EUI** should be copied from the Serial Monitor.```
 
-![vs_ard_ttn_register_device](assets/vs_ard_ttn_register_device.png)
+![ttn register device](assets/vs_ard_ttn_register_device.png)
 
 After pressing the Register button, your board will show up on the **Device Overview** page. You can now see all the information needed to complete the Arduino setup.
 
-![vs_ard_ttn_device_overview](assets/vs_ard_ttn_device_overview.png)
+![ttn device overview](assets/vs_ard_ttn_device_overview.png)
 
 ### 5. Connecting to TTN
 
@@ -124,7 +124,7 @@ Once your board has been registered you can send information to TTN. Let's come 
 
 Lets start by making a connection through the OTAA. Enter "1" in the Serial Monitor input box and press ENTER. Then, find the EUI and the App key from TTN **Device Overview** page. You can read more into OTA vs ABP activation mode at [this link](https://www.thethingsnetwork.org/docs/devices/registration.html)
 
-```c++
+```cpp
 Your module version is: ARD-078 1.1.9
 Your device EUI is: a8xxxxxxxxxxxx0a
 Are you connecting via OTAA (1) or ABP (2)?
@@ -134,7 +134,7 @@ Enter your APP KEY
 
 Next, introduce the **APP EUI** and the **APP KEY** in the Serial Monitor. If this process is done successfully, you will see this message:
 
-```c++
+```cpp
 Message sent correctly!
 ```
 
