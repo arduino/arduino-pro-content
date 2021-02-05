@@ -85,7 +85,9 @@ Now it's time to upload the sketch and see if the LED will start to blink. Make 
 
 ![Selecting the Arduino Portenta H7 (M7 core)](assets/por_gs_board_selection_pro_ide.png)
 
-# Conclusion
+**Optional:** We collect all the sketches from the tutorials in a library wrapper, you can find it at: *Tools -> Library Manager -> Arduino_Pro_Tutorials* or [download them from the repository](https://github.com/arduino-libraries/Arduino_Pro_Tutorials/releases).
+
+# Conclusion 
 You have now configured your Portenta board to run Arduino sketches. Along with that you gained an understanding of how the Arduino Core runs on top of Mbed OS.  
 
 # Next Steps
