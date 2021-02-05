@@ -39,7 +39,7 @@ You will need to install the ArduinoBLE library in the Arduino IDE you are using
 
 ## 3. Create the BLE Sketch
 
-Let's program the Portenta with the following example sketch. If the BLE module can be initialized correctly, you will see the blue LED lighting up for one second after uploading the sketch. If it fails you will see the red LED lighting up instead. Copy and paste the following code into a new sketch in your IDE. 
+Let's program the Portenta with the following example sketch. If the BLE module can be initialized correctly, you will see the blue LED lighting up for one second after uploading the sketch. If it fails you will see the red LED lighting up instead. Copy and paste the following code into a new sketch in your IDE or by open it from: *Examples -> Arduino_Pro_Examples -> BLE Connectivity on Portenta H7 -> portentaBLE*
 
 ```cpp
 #include <ArduinoBLE.h>
