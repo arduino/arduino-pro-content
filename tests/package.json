@@ -11,7 +11,7 @@
   "dependencies": {
     "html-entities": "^2.1.0",
     "jsonschema": "^1.2.6",
-    "marked": "^1.2.8",
+    "marked": "^2.0.0",
     "node-html-parser": "^2.1.0",
     "path": "^0.12.7",
     "title-case": "^3.0.3"
