@@ -1,12 +1,14 @@
 # Creating GUIs With LVGL  
+
+## Overview
 In this tutorial you will learn to use [LVGL](https://lvgl.io/) to create a simple graphical user interface that consists of a text label that updates itself.
 
-## What You Will Learn
+### What You Will Learn
 -   Understanding the structure to build LVGL interfaces.
 -   Building a simple UI with a text label. 
 -   Configuring the setup to display the User-Interface. 
 
-## Required Hardware and Software
+### Required Hardware and Software
 -   Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
 -   USB-C cable (either USB-A to USB-C or USB-C to USB-C)
 -   Arduino IDE 1.8.10+  or Arduino Pro IDE 0.0.4+ 
@@ -14,29 +16,31 @@ In this tutorial you will learn to use [LVGL](https://lvgl.io/) to create a simp
 -   External monitor 
 -   HDMI cable 
 
-# The Light and Versatile Graphics Library
+## The Light and Versatile Graphics Library
 
 Graphical User interfaces are necessary for visualising information and interacting with certain aspects of an application. The Light and Versatile Graphics Library, also known as [LVGL](https://lvgl.io/), is an open-sourced library used to create graphical user-interfaces for microcontrollers and high-end processors. The light weight embedded library provides all the necessary widgets and user interface elements that will allow you to easily create user interfaces for displays and touch screens.
 
-# Building a Simple GUI 
+## Instructions
+
+### Building a Simple GUI 
 
 This tutorial will guide you through building a basic user interface using the LVGL Library which you can download using the Arduino Library Manager. The setup for this tutorial requires you to first to upload the finished sketch file to the Portenta board. You will then connect the board to a USB-hub in order to connect it to an external monitor. Once the hub is powered externally, a graphical user interface with a label will be displayed on the screen.
 
 ![Overview of how to connect the Portenta to the peripherals.](assets/por_ard_lvgl_tutorial_steps.svg)
 
-## 1. The Basic Setup
+### 1. The Basic Setup
 
 Begin by plugging your Portenta board into the computer using a USB-C cable and open the Arduino IDE or the Arduino Pro IDE. If this is your first time running Arduino sketch files on the board, we suggest you check out how to [set up the Portenta H7 for Arduino](https://github.com/bcmi-labs/arduino-pro-content/blob/master/content/tutorials/portenta-h7/por-ard-usb/por-ard-gs) before you proceed.
 
 ![The Portenta H7 can be connected to the computer using an appropriate USB-C cable](assets/por_ard_lvgl_basic_setup.svg)
 
-## 2. Download the LVGL Library
+### 2. Download the LVGL Library
 
 Next, select *Portenta* in the **Tools -> Board** menu before installing [lvgl](https://github.com/lvgl/lvgl) from the Library Manager. Then go to **Sketch** **->** **Include Libraries** **-> Manage Libraries** and search for *LVGL*. Download **lvgl ** by [kisvegabor](https://github.com/kisvegabor).  
 
 ![Library Manager showing the installed lvgl library.](assets/por_ard_lvgl_select_library.png)
 
-## 3. Adding a Label Widget  
+### 3. Adding a Label Widget  
 
 Let's start by including the library that we are going to use.
 
@@ -72,7 +76,7 @@ void setup() {
 
 This sketch creates a label that will be displayed in the center of the connected monitor. 
 
-## 4. Connect an External Monitor
+### 4. Connect an External Monitor
 
 Compile and upload the sketch to your Portenta H7. At this point your board becomes the host. Unplug the board from your computer and connect it to the USB-hub along with a monitor that is connected to the HDMI port. Power up your hub by connecting it to an external power source and the monitor will display a label saying `Counter`. 
 
@@ -82,7 +86,7 @@ Compile and upload the sketch to your Portenta H7. At this point your board beco
 
 Our label object currently has LVGL's default style. If you want to customise the style you can have a look at LVGL's [documentation](https://docs.lvgl.io/latest/en/html/widgets/label.html).
 
-## 5. Creating a Simple Counter
+### 5. Creating a Simple Counter
 
 Let's create a counter that increases each second and update the label on the screen. To do so, we will create a label and an updating task that is going to updated the label periodically and change its value. This is possible using an LVGL concept called 'Task'. 
 
@@ -125,7 +129,7 @@ void loop() {
 
 
 
-## 6. Upload the Sketch
+### 6. Upload the Sketch
 
 Below is the complete sketch of the tutorial that updates the label's text with an incrementing counter value. Upload the sketch to your Portenta H7 and connect it to an external monitor as described in Step 4. 
 
@@ -172,20 +176,20 @@ void loop() {
 
 ```
 
-# Conclusion
+## Conclusion
 
 This tutorial shows how to build a simple user interface with your Portenta. Starting with a static view in the monitor and then converting it into a simple dynamic application that features an updating variable on the screen. The tutorial also shows how to  use the "task" feature of LVGL to run instructions recurrently.
 
-# Next Steps
+### Next Steps
 Now that you know how to build a simple UI for a screen, you can try to add more labels to the screen to show various information or try out different LVGL widgets.
 
-# Troubleshooting
-## Counter Label Doesn't Update
+## Troubleshooting
+### Counter Label Doesn't Update
 * Make sure that the label and task are declared on top of the sketch, outside the `setup()` and `loop()` like a normal variable.
 * Check if the task has the same structure in the first declaration and the function creation.
 * Look inside the `loop()` and see if `lv_task_handler()` is there.
 
-## Sketch Upload Troubleshooting
+### Sketch Upload Troubleshooting
 * If you have troubles uploading the sketch, try to first set the board in bootloader mode, by clicking the reset button twice, then you should see the built-in LED pulsating.
 * If you uploaded the sketch and you don't have any output in the display, make sure you have `portenta_init_video()` in the `setup()`.
 * Unplug and plug the HDMI cable in again.

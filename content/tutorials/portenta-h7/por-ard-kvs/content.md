@@ -1,15 +1,20 @@
 # Creating a Flash-Optimised Key-Value Store
+
+## Overview
+
 This tutorial explains how to create a flash-optimised key-value store using the flash memory of the Portenta H7. It builds on top of the *Flash In-Application Programming* tutorial.
 
-## What You Will Learn
+### What You Will Learn
 In this tutorial you will learn how to use the Mbed OS [TDBStore API](https://os.mbed.com/docs/mbed-os/v6.4/apis/kvstore.html) to create a [Key value store](https://en.wikipedia.org/wiki/Key%E2%80%93value_database) in the free space of the microcontroller's internal flash.
 
-## Required Hardware and Software
+### Required Hardware and Software
 -   Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
 -   USB C cable (either USB A to USB C or USB C to USB C)
 -   Arduino IDE 1.8.10+ or Arduino Pro IDE 0.0.4+ or Arduino CLI 0.13.0+
 
-# MbedOS APIs for Flash Storage
+## Instructions
+
+### MbedOS APIs for Flash Storage
 The core software of Portenta H7 is based on the Mbed OS operating system, allowing developers to integrate the Arduino API with the APIs exposed by Mbed OS.
 
 Mbed OS has a rich API for managing storage on different mediums, ranging from the small internal flash memory of a microcontroller to external SecureDigital cards with large data storage space.
@@ -18,15 +23,15 @@ In this tutorial, we are going to save a value persistently inside the flash mem
 
 ***Important: The TBStore API optimises for access speed, reduce [wearing of the flash](https://en.wikipedia.org/wiki/Flash_memory#Memory_wear) and minimise storage overhead. TBStore is also resilient to power failures. If you want to use the flash memory of the microcontroller, _always prefer the TDBStore approach over a direct access to the FlashIAP block device_.***
 
-## 1. The Basic Setup
+### 1. The Basic Setup
 Begin by plugging in your Portenta board to the computer using a USB-C cable and open the Arduino IDE or the Arduino Pro IDE. If this is your first time running Arduino sketch files on the board, we suggest you check out how to [set up the Portenta H7 for Arduino](https://github.com/bcmi-labs/arduino-pro-content/blob/master/content/tutorials/portenta-h7/por-ard-usb/por-ard-gs) before you proceed.
 
-## 2. Create the Structure of the Program
+### 2. Create the Structure of the Program
 Let's program the Portenta with a sketch. We will also define a few helper functions in a supporting header file.
 * Create a new sketch named `FlashKeyValue.ino` 
 * Create a new file named `FlashIAPLimits.h` to store the helper functions in a reusable file.
 
-## 3. Populate the Helper Functions
+### 3. Populate the Helper Functions
 First let's add the helper functions to the `FlashIAPLimits.h` header. This will determine the available Flash limits to allocate the custom data.
 
 ```cpp
@@ -88,7 +93,7 @@ FlashIAPLimits getFlashIAPLimits()
 }
 ```
 
-## 4. Make the Key Store Program
+### 4. Make the Key Store Program
 Go to `FlashKeyValue.ino` and include the libraries that we need from **MBED** and our header helper (`FlashIAPLimits.h`) . The `getFlashIAPLimits()` function which is defined in the `FlashIAPLimits.h` header takes care of not overwriting data already stored on the flash and aligns the start and stop addresses with the size of the flash sector. We use those calculated limits to create a block device and a `TDBStore` on top of them.
 
 ```cpp
@@ -244,7 +249,7 @@ int setSketchStats(const char* key, SketchStats stats)
 }
 ```
 
-## 5. Results
+### 5. Results
 
 Upload the sketch and the output should be similar to the following:
 ```text
@@ -270,11 +275,11 @@ Current Stats
 
 Push the reset button to restart the sketch. The values of the stats have been updated. `Previous Stats` which is retrieved from the key-value store now contains values from the previous execution.
 
-# Conclusion and Caveats
+## Conclusion and Caveats
 We have learned how to use the available space in the flash memory of the microcontroller to create a key-value store and use it to retrieve and store data.
 It's not recommended to use the flash of the microcontroller as the primary storage for data-intensive applications. It is best suited for read/write operations that are performed only once in a while such as storing and retrieving application configurations or persistent parameters.
 
-# Next Steps
+### Next Steps
 - Learn how to retrieve a collection of keys using TDBStore iterators via [`iterator_open`](https://os.mbed.com/docs/mbed-os/v6.4/mbed-os-api-doxy/classmbed_1_1_k_v_store.html#a77661adec54b9909816e7492a2c61a91) and [`iterator_next`](https://os.mbed.com/docs/mbed-os/v6.4/mbed-os-api-doxy/classmbed_1_1_k_v_store.html#a5116b40a3480462b88dc3f1bb8583ad4)
 - Learn how to create an incremental TDBStore set sequence via [`set_start`](https://os.mbed.com/docs/mbed-os/v6.4/mbed-os-api-doxy/classmbed_1_1_k_v_store.html#a6e882a0d4e0cbadf6269142ac3c4e693), [`set_add_data`](https://os.mbed.com/docs/mbed-os/v6.4/mbed-os-api-doxy/classmbed_1_1_k_v_store.html#adbe636bf8c05834fe68b281fc638c348) and [`set_finalize`](https://os.mbed.com/docs/mbed-os/v6.4/mbed-os-api-doxy/classmbed_1_1_k_v_store.html#a346da66252added46d3b93902066b548)
 - Learn how to use the 16MB QSPI Flash on the Portenta H7
