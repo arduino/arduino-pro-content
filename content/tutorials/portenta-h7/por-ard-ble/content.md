@@ -1,7 +1,6 @@
 # BLE Connectivity on Portenta H7
 
 ## Overview
-
 In this tutorial we will enable low energy bluetooth (BLE) on the Portenta H7 to allow an external bluetooth device to control the built-in LED either by turning it on or off.
 
 ### What You Will Learn

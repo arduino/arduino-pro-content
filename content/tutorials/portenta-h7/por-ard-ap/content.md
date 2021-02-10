@@ -1,8 +1,6 @@
-
 # Portenta H7 as a WiFi Access Point
 
 ## Overview
-
 Portenta H7 comes with an on-board WiFi and a bluetooth Module that allows to develop IoT applications that require wireless connectivity and Internet access. Turning the board into an access point allows it to create a WiFi network on its own and allows other devices to connect to it. In  this tutorial you will learn to set up your board as an access point web server and remotely control the red, green and blue LEDs on the built-in RGB LED by accessing an HTML page on your mobile device’s browser. 
 
 ### What You Will Learn

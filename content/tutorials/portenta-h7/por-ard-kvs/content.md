@@ -1,7 +1,6 @@
 # Creating a Flash-Optimised Key-Value Store
 
 ## Overview
-
 This tutorial explains how to create a flash-optimised key-value store using the flash memory of the Portenta H7. It builds on top of the *Flash In-Application Programming* tutorial.
 
 ### What You Will Learn

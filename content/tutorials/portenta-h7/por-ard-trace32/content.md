@@ -14,7 +14,6 @@ This tutorial will show you how to use the Lauterbach TRACE32 GDB front-end debu
 -  Arduino IDE 1.8.13+ or Arduino Pro IDE 0.1.0+
 -  Lauterbach TRACE32 (https://www.lauterbach.com/download_demo.html)
 
-
 ## Instructions
 
 ### TRACE32 GDB Front End Debugger

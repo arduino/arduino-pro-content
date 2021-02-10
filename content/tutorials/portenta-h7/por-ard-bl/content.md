@@ -1,7 +1,6 @@
 # Updating the Portenta Bootloader
 
 ## Overview
-
 This tutorial will explain what a bootloader is, why you should consider keeping it updated and how you can update it. The Portenta H7 also features a second ST ROM bootloader which is a separate mechanism that we don't cover in this tutorial. For the remainder of this tutorial, when we reference a bootloader, the custom bootloader provided by Arduino is meant.
 
 ### What You Will Learn
