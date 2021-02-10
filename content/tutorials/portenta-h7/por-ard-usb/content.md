@@ -67,6 +67,9 @@ Then, open: File>Examples>USBHOST>KeyboardController
 
 The **USBHost** library that is used in this example is a revamp of the classic Arduino **USBHost** library. This new version, among adapting the protocol to the newer USB version, allows to connect devices through USB Hubs (USB adapters). For a better understanding about how the USBHost library works, it could be helpful for you to take a look at the Arduino [USBHost](https://www.arduino.cc/en/Reference/USBHost) library.
 
+**Note:** You can find the finished sketch in the examples of the Arduino_Pro_Tutorials library:  
+**Examples -> Arduino_Pro_Tutorials -> Portenta H7 as a USB Host -> LEDKeyboardController**
+
 ## 3. Detecting the Keys From the Keyboard
 
 The example you opened describes how the board will handle the connection with a keyboard, addressing the functionality of each one of the keys of it. In order to detect which one of the keys from the keyboard is pressed, you will need to modify and add some lines of code to the example.
