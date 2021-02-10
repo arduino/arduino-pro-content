@@ -33,7 +33,7 @@ Begin by plugging in your Portenta board to your computer using a USB-C cable an
 ![The Portenta H7 can be connected to the computer using an appropriate USB-C cable](assets/por_tut1_im1.png)
 
 ## 2. Create the Web Server Sketch
-Next we need to create a web server sketch that will handle the HTTP GET requests and provide the client devices with the HTML web page. The [Wifi.h](https://www.arduino.cc/en/Reference/WiFi) library provides all necessary methods that allows Arduino boards to use their WiFi features provided by the on-board WiFi module. To set up the web server copy the following code, paste it into a new sketch file and name it **simpleWebServer.ino**. 
+Next we need to create a web server sketch that will handle the HTTP GET requests and provide the client devices with the HTML web page. The [Wifi.h](https://www.arduino.cc/en/Reference/WiFi) library provides all necessary methods that allows Arduino boards to use their WiFi features provided by the on-board WiFi module. To set up the web server copy the following code, paste it into a new sketch file and name it **SimpleWebServer.ino**. 
 
 **Note:** You can access the final sketch inside the library: **Examples -> Arduino_Pro_Tutorials -> Portenta H7 as a WiFi Access Point -> SimpleWebServer**
 
