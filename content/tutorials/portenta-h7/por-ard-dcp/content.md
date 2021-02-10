@@ -18,7 +18,7 @@ Processor cores are individual processing units within the board's main processi
 ![The Architectures of Cortex® M7 and M4 cores.](assets/por_ard_dcp_m4_m7_architectures.svg?sanitize=true)
 
 # Accessing the M7 and M4 Core
-To best illustrate the idea of dual core processing, you will be running two separate sketch files. One on each of the cores which blinks the RGB LED in a different colour. The **blink_RedLed_m7.ino** sketch will set the built-in RGB LED on the board to red and blink it with a delay of 500 ms. The **blink_GreenLed_M4.ino** sketch will access the green LED in the RGB led and blink it with a delay of 200 ms.  Both the cores will be executing the corresponding sketch file simultaneously and as a result both the green and red LED blink, however, at different intervals.
+To best illustrate the idea of dual core processing, you will be running two separate sketch files. One on each of the cores which blinks the RGB LED in a different colour. The **BlinkRedLed_M7.ino** sketch will set the built-in RGB LED on the board to red and blink it with a delay of 500 ms. The **BlinkGreenLed_M4.ino** sketch will access the green LED in the RGB led and blink it with a delay of 200 ms.  Both the cores will be executing the corresponding sketch file simultaneously and as a result both the green and red LED blink, however, at different intervals.
 
 ![Running two different sketch files on the different cores.](assets/por_ard_dcp_tutorial_overview.svg?sanitize=true)
 
@@ -27,12 +27,14 @@ Begin by plugging-in your Portenta board to your computer using an appropriate U
 
 ![A Basic setup of the board attached to your computer](../por-ard-gs/assets/por_ard_gs_basic_setup.svg?sanitize=true)
 
+**Note:** You can access the examples from the tutorials library once it's installed: **Examples -> Arduino_Pro_Tutorials -> Dual Core Processing**
+
 ## 2. Setting the LED Color 
 In the previous tutorial you learned how to access the built-in RGB LED through the macro definition LED_BUILTIN. You can also control the distinct Red, Green and Blue LED separately through the LEDR, LEDG and LEDB  macro definition respectively. 
 
 Please note that, opposed to other Arduino boards, on the Portenta H7 the built-in RGB led pins need to be pulled to ground to make the LED light up. This means that a voltage level of LOW will turn the LED on, a voltage level of HIGH will turn it off.
 
-The following sketch blinks the red LED at an interval of 200ms controlled by the M7 core.Save your sketch as **blink_RedLed_m7** and compile your sketch file.
+The following sketch blinks the red LED at an interval of 200ms controlled by the M7 core.Save your sketch as **BlinkRedLed_M7** and compile your sketch file.
 
 ```cpp
 // the setup function runs once when you press reset or power the board
@@ -51,12 +53,12 @@ void loop() {
 ```
 
 ## 3. Upload the Sketch to the M7 Core 
-Select the **Arduino Portenta H7 (M7 core)** from the **Board** menu and the port the Portenta is connected to (e.g. /dev/cu.usbmodem141101). Upload the **blink_RedLed_m7.ino** sketch. Doing so will automatically compile the sketch beforehand. When the sketch is uploaded  the RGB LED on the board will start blinking red.
+Select the **Arduino Portenta H7 (M7 core)** from the **Board** menu and the port the Portenta is connected to (e.g. /dev/cu.usbmodem141101). Upload the **BlinkRedLed_M7.ino** sketch. Doing so will automatically compile the sketch beforehand. When the sketch is uploaded  the RGB LED on the board will start blinking red.
 
-![Uploading the blink_RedLed_m7 sketch to the M7 core](assets/por_ard_dcp_upload_code_m7.png)
+![Uploading the BlinkRedLed_M7 sketch to the M7 core](assets/por_ard_dcp_upload_code_m7.png)
 
 ## 4. Making the LED Blink Green
-Let's write another sketch that makes the RGB LED on the board blink green. Open a new sketch file and call it **blink_GreenLed_M4.ino**. Copy and paste the following program that blinks the LED green, denoted by the variable `LEDG`,  with a delay of 500ms. This time the blinking is controlled by the M4 core.
+Let's write another sketch that makes the RGB LED on the board blink green. Open a new sketch file and call it **BlinkGreenLed_M4.ino**. Copy and paste the following program that blinks the LED green, denoted by the variable `LEDG`,  with a delay of 500ms. This time the blinking is controlled by the M4 core.
 
 ```cpp
 // the setup function runs once when you press reset or power the board
@@ -81,7 +83,7 @@ The bootloader of the H7 boards is configured in such a way that only M7 gets bo
 
 ![The M7 and the M4 cores share the flash memory where the sketches are stored.](assets/por_ard_dcp_m4_m7_flash_memory.svg?sanitize=true)
 
-Before you can upload the code for the M4 core to the flash memory you need to add the `bootM4()` command in the **blink_RedLed_m7.ino** sketch file that is uploaded and run by the M7 core. Copy and paste the following command `bootM4()` inside the `setup()` function of the **blink_RedLed_m7.ino**  sketch and upload the sketch to M7 once again.
+Before you can upload the code for the M4 core to the flash memory you need to add the `bootM4()` command in the **BlinkRedLed_M7.ino** sketch file that is uploaded and run by the M7 core. Copy and paste the following command `bootM4()` inside the `setup()` function of the **BlinkRedLed_M7.ino**  sketch and upload the sketch to M7 once again.
 
 ```cpp
 // the setup function runs once when you press reset or power the board
@@ -103,9 +105,9 @@ void loop() {
 Once this sketch runs on the M7 core, it boots the M4 core and allows it to run its corresponding sketch.
 
 ## 6. Uploading to the M4 Core
-The final step is to upload the sketch that we prepared for the M4. Now open **Tools> Boards** from the IDE menu and select **Arduino Portenta H7 (M4 core)** from the boards. Upload the **blink_GreenLed_M4.ino** to the board. Note that there is no separate serial port listed for the M4 in the port menu as the M7 takes care of the serial communication. The RGB LED blinking in RED currently, starts blinking in green simultaneously at an interval of 500 ms. When the blinking overlaps the mix of red and green light is perceived as yellow.
+The final step is to upload the sketch that we prepared for the M4. Now open **Tools> Boards** from the IDE menu and select **Arduino Portenta H7 (M4 core)** from the boards. Upload the **BlinkGreenLed_M4.ino** to the board. Note that there is no separate serial port listed for the M4 in the port menu as the M7 takes care of the serial communication. The RGB LED blinking in RED currently, starts blinking in green simultaneously at an interval of 500 ms. When the blinking overlaps the mix of red and green light is perceived as yellow.
 
-![Uploading the blink_GreenLed_M4 to the M4 core](assets/por_ard_dcp_upload_code_m4.png)
+![Uploading the BlinkGreenLed_M4 to the M4 core](assets/por_ard_dcp_upload_code_m4.png)
 
 # Programming both Cores with just one sketch
 So far, we used separate sketch files to program the different cores. We can also combine these two sketch files into one by taking advantage the preprocessor directives '#ifdef'. This way you can program different behaviors for both cores by using the same program. 
@@ -115,7 +117,7 @@ So far, we used separate sketch files to program the different cores. We can als
 Let's now to create a new sketch to  blink both of LEDs with random sequences, this will allow you to clearly see different behaviors for both of the LEDs using a very simple program.
 
 ## 1. Programming the M7 Core Set-up
-Let's start by opening a new sketch and naming it **blink_2cores.ino**. Then let's add the following lines of code. 
+Let's start by opening a new sketch and naming it **BlinkBothCores.ino**. Then let's add the following lines of code. 
 
 ```cpp
 int myLED;
