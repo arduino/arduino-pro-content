@@ -1,6 +1,6 @@
 {
    "id":"por-ard-kvs",
-   "index": 8,
+   "index": 9,
    "title":"Creating a Flash-Optimised Key-Value Store",
    "slug":"por-ard-kvs",
    "authors":[
@@ -15,6 +15,6 @@
       "Flash"
    ],
    "abstract":"This tutorial explains how to create a flash-optimised key-value store using the flash memory of the Portenta H7.",
-   "previousArticle":"por-ard-trace32",
+   "previousArticle":"por-ard-flash",
    "nextArticle":"por-ard-lvgl"
 }

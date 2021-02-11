@@ -1,22 +1,20 @@
 {
-   "id":"por-ard-gs",
-   "index": 1,
-   "title":"Setting Up Portenta H7 For Arduino",
-   "slug":"por-ard-gs",
+   "id":"por-ard-flash",
+   "index": 8,
+   "title":"Reading and Writing Data on the Flash Memory",
+   "slug":"por-ard-flash",
    "authors":[
-      "Lenard George",
-      "Sebastian Hunkeler"
+      "Giampaolo Mancini"
    ],
    "coverImage":{
-      "src":"assets/por_ard_gs_cover.svg?sanitize=true"
+      "src":"assets/por_ard_block_device_cover.svg?sanitize=true"
    },
    "tags":[
-      "Getting Started",
-      "IDE",
-      "Setup",
-      "Blink"
+      "Storage",
+      "Flash",
+      "Block Device"
    ],
-   "abstract":"This tutorial teaches you how to set up the board, how to configure your computer and how to run the classic Arduino blink example  to verify if the configuration was successful.",
-   "previousArticle":null,
-   "nextArticle":"por-ard-dcp"
+   "abstract":"This tutorial shows you how to use the internal flash memory of the Portenta H7's MCU to read and write data using the Flash In-Application Programming Interface (Flash IAP) provided by Mbed OS.",
+   "previousArticle":"por-ard-trace32",
+   "nextArticle":"por-ard-kvs"
 }
