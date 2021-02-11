@@ -107,7 +107,7 @@ Going back to the `FlashStorage.ino` file some more libraries need to be include
 using namespace mbed;
 ```
 
-The `Setup()` function will first wait until a serial connection is established and then feed the random number generator, which is used later in this tutorial to write a random number in the flash memory every time the device boots up.
+The `setup()` function will first wait until a serial connection is established and then feed the random number generator, which is used later in this tutorial to write a random number in the flash memory every time the device boots up.
 
 ```cpp
 void setup()
@@ -308,7 +308,7 @@ After uploading the sketch open the serial monitor to start the flash reading an
 We have learned how to use the available space in the flash memory of the microcontroller to read and save additional data. It's not recommended to use the flash of the microcontroller as the primary storage for data-intensive applications. It is best suited for read/write operations that are performed only once in a while such as storing and retrieving application configurations or persistent parameters.
 
 # Next Steps
-Now that you know how to use block device to perform reading and writing on a flash memory you can look into the [next tutorial](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-kvs) on how to use the [TDBStore API](https://os.mbed.com/docs/mbed-os/v6.4/apis/kvstore.html) to create a [Key value store](https://en.wikipedia.org/wiki/Key%E2%80%93value_database) to create a key-value store on the flash memory.
+Now that you know how to use block device to perform reading and writing on a flash memory you can look into the [next tutorial](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-kvs) on how to use the [TDBStore API](https://os.mbed.com/docs/mbed-os/v6.4/apis/kvstore.html) to create a [key value store](https://en.wikipedia.org/wiki/Key%E2%80%93value_database) to create a key-value store on the flash memory.
 
 
 
