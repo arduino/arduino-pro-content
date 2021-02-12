@@ -23,4 +23,7 @@ jobs:
     
     - name: Validate      
       run: |
-        echo 0
+        cd tests
+        npm install
+        cd ..
+        node tests/validate.js
