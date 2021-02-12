@@ -159,7 +159,7 @@ void setup() {
   lv_label_set_text(label , "Counter");
 
   // We move it to the center of the screen and align it centered
-  lv_obj_align(label, NULL, LV_ALIGN_CENTER, 0, -40);
+  lv_obj_align(label, NULL, LV_ALIGN_CENTER, 0, 0);
 
   // Create a task to update the counter
   lv_task_create(updateCounterTask, 1000, LV_TASK_PRIO_MID, NULL);
