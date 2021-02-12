@@ -179,7 +179,7 @@ Finally the `loop()` function of this sketch will be left empty, considering tha
 ## 5. Upload the Sketch 
 Below is the complete sketch of this tutorial consisting of the main sketch and the `FlashIAPLimits.h` helper file, upload both of them to your Portenta H7 to try it out.
 
-### FlashStorage.ino
+### FlashIAPLimits.h
 ```cpp
 /**
 Helper functions for calculating FlashIAP block device limits
@@ -239,7 +239,7 @@ FlashIAPLimits getFlashIAPLimits()
 }
 ```
 
-### FlashIAPLimits.h
+### FlashStorage.ino
 ```cpp
 #include <FlashIAPBlockDevice.h>
 #include "FlashIAPLimits.h"
