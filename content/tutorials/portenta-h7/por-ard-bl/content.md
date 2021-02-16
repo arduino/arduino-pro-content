@@ -3,7 +3,7 @@
 ## Overview
 This tutorial will explain what a bootloader is, why you should consider keeping it updated and how you can update it. The Portenta H7 also features a second ST ROM bootloader which is a separate mechanism that we don't cover in this tutorial. For the remainder of this tutorial, when we reference a bootloader, the custom bootloader provided by Arduino is meant.
 
-### What You Will Learn
+### You Will Learn
 -   The concept of a bootloader
 -   How to use the Arduino IDE board manager to update the Portenta core
 -   How to use the Arduino IDE to update the Portenta bootloader to the lastest version
@@ -13,13 +13,13 @@ This tutorial will explain what a bootloader is, why you should consider keeping
 -   USB C cable (either USB A to USB C or USB C to USB C)
 -   Arduino IDE 1.8.10+  or Arduino Pro IDE 0.0.4+ 
 
-##  What is a Firmware?
+## What Is a Firmware?
 
 In order to understand how a bootloader works we first need to understand what a firmware is in the world of Arduino. A firmware consists of your sketch (.ino file) plus a couple of files and libraries that give you access to the hardware functions. Those files and libraries together make a bundle that is called a **core**. If you ever wondered what exactly `digitalWrite(pin, HIGH)` does under the hood, the core is the place where you need to look. That also explains why the different hardware architectures on the different Arduino boards need a separate core. Because the hardware level implementation of a function like `digitalWrite` is hardware specific.
 
 ![The firmware consists of your sketch plus the core for the chosen micro controller board](assets/por_ard_bl_firmware.svg)
 
-## What is a Bootloader?
+## What Is a Bootloader?
 
 A bootloader is a small application that gets started when an Arduino board gets powered. When you order an official Arduino board it comes pre-flashed with a bootloader.
 
@@ -77,7 +77,7 @@ Having an updated bootloader is important to benefit from improved performance a
 
 There are times when your code compiles perfectly but is unable to upload. If you encounter the following error message, it means that the IDE has encountered issues communicating with the USB interface of your board.
 
-```
+```cpp
 dfu-util: error get_status: LIBUSB_ERROR_IO
 Opening DFU capable USB device... 
 ```
@@ -85,5 +85,5 @@ Opening DFU capable USB device...
 Unplug and plug in the board to re-initiate the USB interface and you should be able to upload the code without issues.
 
 **Authors:** Sebastian Romero, Lenard George  
-**Reviewed by:** Lenard George [7.10.2020]  
-**Last revision:** Sebastian Romero [8.10.2020]
+**Reviewed by:** Lenard George [2020-10-07]  
+**Last revision:** Sebastian Romero [2020-10-08]

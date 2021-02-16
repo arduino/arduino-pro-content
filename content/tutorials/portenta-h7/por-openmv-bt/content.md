@@ -3,7 +3,7 @@
 ## Overview
 In this tutorial you will use the vision carrier board for Portenta to detect the presence and the position of objects in a camera image. For that you will use a technique that is often referred to as blob detection. For this task you will write a MicroPython script and run it on the Portenta with the help of the OpenMV IDE.
 
-### What You Will Learn
+### You Will Learn
 - How to use the OpenMV IDE to run MicroPython on Portenta
 - How to use the built-in blob detection algorithm of OpenMV
 - How to use MicroPython to toggle the built-in LEDs
@@ -229,5 +229,5 @@ In this tutorial you learned how to use the OpenMV IDE to develop MicroPython sc
 - If you see a "OSError: Reset Failed" message, reset the board by pressing the reset button. Wait until you see the blue LED flashing, connect the board to the OpenMV IDE and try running the script again.
 
 **Authors:** Sebastian Romero  
-**Reviewed by:** Lenard George [6.10.2020]  
-**Last revision:** Sebastian Romero [7.10.2020]
+**Reviewed by:** Lenard George [2020-10-06]  
+**Last revision:** Sebastian Romero [2020-10-07]

@@ -3,7 +3,7 @@
 ## Overview
 In this tutorial you will build a MicroPython application with OpenMV that uses the Portenta Vision Shield to detect faces and overlay them with a custom bitmap image. Think of it as building your own camera filter that puts a smile on every face it detects. This tutorial is based on the face detection example that comes with the OpenMV IDE.
 
-### What You Will Learn
+### You Will Learn
 - How to use the OpenMV IDE to run MicroPython on Portenta
 - How to use the built-in face detection algorithm of OpenMV
 - Copying files to the internal flash of the Portenta
@@ -179,10 +179,10 @@ face_cascade = image.HaarCascade("eye", stages=25)
 
 - If OpenMV can't detect your face try moving the camera further away or position yourself in front of a wall or another plain background.
 
-### Bitmap loading issues
+### Bitmap Loading Issues
 
 - If you have troubles loading a custom bitmap image, try with the pbm format and try scaling it down to a smaller size such as 128x128 pixels.
 
 **Authors:** Sebastian Romero, Lenard George  
-**Reviewed by:** Lenard George [15.10.2020]  
-**Last revision:** Sebastian Romero [16.10.2020]
+**Reviewed by:** Lenard George [2020-10-15]  
+**Last revision:** Sebastian Romero [2020-10-16]

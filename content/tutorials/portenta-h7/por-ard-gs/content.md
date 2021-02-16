@@ -9,7 +9,7 @@ At the moment of writing the tutorial, there is an Arduino core and a MicroPytho
 
 This tutorial focuses on the Arduino core which allows you to benefit from the thousands of existing Arduino libraries and code examples written in C and C++ which are compatible with the Arduino core. A tutorial about setting the Portenta H7 up for development with the MicroPython core will be released soon.
 
-### What You Will Learn
+### You Will Learn
 -   About the Arduino and Mbed operating system (Mbed OS) stack
 -   Installing the Mbed library  
 -   Controlling the built in LED on the Portenta board
@@ -36,7 +36,7 @@ Let's begin by Plug-in your Portenta to your computer using the appropriate USB 
 
 ![The Portenta H7 can be connected to the computer using an appropriate USB-C cable](assets/por_ard_gs_basic_setup.svg?sanitize=true)
 
-### 2. Adding the Portenta to the list of available boards
+### 2. Adding the Portenta to the List of Available Boards
 This step is the same for both the classic IDE and the Pro IDE. Open the board manager and search for "portenta".  Find the Arduino mbed-enabled Boards library and click on "Install" to install the latest version of the mbed core (1.2.3 at the time of writing this tutorial).
 
 **Note:** If you have previously installed the Nano 33 BLE core  it will be updated by following this step.
@@ -45,12 +45,12 @@ This step is the same for both the classic IDE and the Pro IDE. Open the board m
 
 ![Also in the Pro IDE, a search for "portenta" reveals the core that needs to be installed to support Portenta H7.](assets/por_ard_gs_bm_core_pro_ide.png)
 
-### 3. Verify the USB connection  (Windows only)
+### 3. Verify the USB Connection  (Windows Only)
 In this step you will check if Windows is able to detect the Portenta H7. To do so open the Windows Device manager and if everything is set up correctly you will be able to see your device listed under USB devices. Otherwise, try unplugging it and plugging it back in.
 
 ![If the Portenta H7 is detected correctly, it will be listed in the device manager under USB devices.](assets/por_ard_gs_usb_driver_win.png)
 
-### 4. Uploading the classic blink sketch
+### 4. Uploading the Classic Blink Sketch
 Let's program the Portenta with the classic blink example to check if the connection to the board works:
 
 -   In the classic Arduino IDE open the blink example by clicking the menu entry File->Examples->01.Basics->Blink.
@@ -79,7 +79,7 @@ For Portenta H7  LED_BUILTIN  represents the built-in RGB LED on the board in gr
 
 **Note:** The individual colours of the built-in RGB LED can be accessed and controlled separately. In the tutorial "Dual Core Processing"  you will learn how to control the LED to light it in different colors
 
-### 5. Upload the blink sketch 
+### 5. Upload the Blink Sketch 
 Now it's time to upload the sketch and see if the LED will start to blink. Make sure you select Arduino Portenta H7 (M7 core) as the board and the port to which the Portenta H7 is connected. If the Portenta H7 doesn't show up in the list of ports, go back to step 5 and make sure that the drivers are installed correctly. Once selected click Upload. Once uploaded the built-in LED should start blinking with an interval of 1 second.
 
 **Note:** The Portenta H7 has an M7 and an M4 processor which run separate cores. That's why you need to select the one to which you want to upload your sketch to (check out the tutorial "Dual Core Processing" to learn more about Portenta's processors).
@@ -109,7 +109,7 @@ If you're having troubles getting your Portenta to work on Ubuntu you can try th
 
 - Make sure **modemmanager** is not installed. Otherwise remove it with `sudo apt-get remove modemmanager`
 - Add the following rules to you udev rules 
-```
+```cpp
 SUBSYSTEM=="usb", ATTRS{idVendor}=="2341", MODE="0666"
 SUBSYSTEM=="usb", ATTRS{idVendor}=="1fc9", MODE="0666"
 SUBSYSTEM=="usb", ATTRS{idVendor}=="0525", MODE="0666"
@@ -121,5 +121,5 @@ SUBSYSTEM=="usb", ATTRS{idVendor}=="0525", MODE="0666"
 
 
 **Authors:** Lenard George, Sebastian Hunkeler  
-**Reviewed by:** Jose Garcia [18.03.2020]  
-**Last revision:** Sebastian Romero [15.09.2020]
+**Reviewed by:** Jose Garcia [2020-03-18]  
+**Last revision:** Sebastian Romero [2020-09-15]

@@ -3,7 +3,7 @@
 ## Overview
 The Portenta H7 is equipped with a processor that has two processing units called cores. Dual core processing is the ability of a processor to read and execute instructions in two different cores simultaneously. In other words, a dual core processor can execute two applications, in this case two Arduino sketches, at the same time. In this tutorial you will run two classic Arduino blink programs simultaneously on different cores of the Portenta board that blinks the RGB LED in two different colours.
 
-### What You Will Learn
+### You Will Learn
 -   How to upload and run applications on Portenta's M7 and M4 cores.
 -   About the characteristics of the M7 and the M4 cores.
 -   How to force boot the M4 core through the M7 core and why that is necessary.
@@ -80,7 +80,7 @@ void loop() {
 
 If you would upload the sketch to the M4 at this point nothing would change. The reason is that the M4 core doesn't start up by itself. There is one more step required to make the M4 core blink the LED green: Force booting the M4.
 
-### 5. Force Booting the M4 core
+### 5. Force Booting the M4 Core
 The bootloader of the H7 boards is configured in such a way that only M7 gets booted automatically. The reason is that for simple use cases the M4 may not be needed and hence be unprogrammed and doesn't need to get powered. One such instance is when the M7 doesn't have the appropriate firmware that automatically handles the initialization of the M4. As a result you need to force boot the M4 so that it can run a sketch. You can do so through the M7 using a special command, `bootM4()`  that boots the M4 when the board is powered.
 
 ![The M7 and the M4 cores share the flash memory where the sketches are stored.](assets/por_ard_dcp_m4_m7_flash_memory.svg?sanitize=true)
@@ -111,14 +111,14 @@ The final step is to upload the sketch that we prepared for the M4. Now open **T
 
 ![Uploading the blink_GreenLed_M4 to the M4 core](assets/por_ard_dcp_upload_code_m4.png)
 
-### Programming both Cores with just one sketch
+### Programming Both Cores With Just One Sketch
 So far, we used separate sketch files to program the different cores. We can also combine these two sketch files into one by taking advantage the preprocessor directives '#ifdef'. This way you can program different behaviors for both cores by using the same program. 
 
 ***Programming bigger applications by using this method may increase the difficulty of the program you will need to create.*** 
 
 Let's now to create a new sketch to  blink both of LEDs with random sequences, this will allow you to clearly see different behaviors for both of the LEDs using a very simple program.
 
-### 1. Programming the M7 Core Set-up
+### 1. Programming the M7 Core Setup
 Let's start by opening a new sketch and naming it **blink_2cores.ino**. Then let's add the following lines of code. 
 
 ```cpp
@@ -136,7 +136,7 @@ void setup() {
 
 The code between `#ifdef CORE_CM7` and `#endif` will only apply for the M7 Core to boot the M4 core allowing it to run its corresponding sketch, that portion of code will also allow the M7 core control the blue LED of the board.
 
-### 2. Programming the M4 Core Set-up
+### 2. Programming the M4 Core Setup
 Then, as well inside the `setup()` function, you will need to include the following lines to configure properly the green LED in the M4 core.
 
 ```cpp
@@ -145,7 +145,7 @@ Then, as well inside the `setup()` function, you will need to include the follow
   #endif   
 ```
 
-### 3. Finishing the setup() function and programming the loop()
+### 3. Finishing the Setup() Function and Programming the Loop()
 To finish with the `setup()` you will need to initialise the LEDs as outputs. 
 
 Then in the `loop()` function you will need to include the sequence that blink the LEDs. to do so, add  the following portion of code right after the `#endif`. 
@@ -167,9 +167,9 @@ Now can upload the sketch to both the cores of the Portenta H7 individually. Wit
 ## Conclusion
 This tutorial introduces the idea of dual core processing and illustrates the concept by using the M7 and M4 cores to control the different colors of the built-in RGB LED. This simple example only describes how to access the M7 and M4 cores. In the upcoming tutorials you will learn to create applications that leverage the potential of dual core processing to perform more complex tasks. 
 
-### Next steps
+### Next Steps
 - Proceed with the next tutorial "Setting Up a WiFi Access Point" to learn how to make use of the built-in WiFi module and configure your Portena H7 as a WiFi access point.
 
 **Authors:** Lenard George, Sebastian Hunkeler  
-**Reviewed by:** José Garcia [20.03.2020]  
-**Last revision:** 23.4.2020
+**Reviewed by:** José Garcia [2020-03-20]  
+**Last revision:** Sebastian Romero [2021-02-03]

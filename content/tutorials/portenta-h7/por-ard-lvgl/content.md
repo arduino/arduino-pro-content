@@ -3,7 +3,7 @@
 ## Overview
 In this tutorial you will learn to use [LVGL](https://lvgl.io/) to create a simple graphical user interface that consists of a text label that updates itself.
 
-### What You Will Learn
+### You Will Learn
 -   Understanding the structure to build LVGL interfaces.
 -   Building a simple UI with a text label. 
 -   Configuring the setup to display the User-Interface. 

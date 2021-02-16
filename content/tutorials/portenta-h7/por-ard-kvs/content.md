@@ -3,7 +3,7 @@
 ## Overview
 This tutorial explains how to create a flash-optimised key-value store using the flash memory of the Portenta H7. It builds on top of the *Flash In-Application Programming* tutorial.
 
-### What You Will Learn
+### You Will Learn
 In this tutorial you will learn how to use the Mbed OS [TDBStore API](https://os.mbed.com/docs/mbed-os/v6.4/apis/kvstore.html) to create a [Key value store](https://en.wikipedia.org/wiki/Key%E2%80%93value_database) in the free space of the microcontroller's internal flash.
 
 ### Required Hardware and Software
@@ -286,5 +286,5 @@ It's not recommended to use the flash of the microcontroller as the primary stor
 
 
 **Authors:** Giampaolo Mancini  
-**Reviewed by:** Pablo Marquínez [2.12.2020]  
-**Last revision:** Sebastian Romero [11.1.2021]
+**Reviewed by:** Pablo Marquínez [2020-12-02]  
+**Last revision:** Sebastian Romero [2021-01-11]

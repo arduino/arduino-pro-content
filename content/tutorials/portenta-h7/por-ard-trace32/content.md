@@ -3,7 +3,7 @@
 ## Overview
 This tutorial will show you how to use the Lauterbach TRACE32 GDB front-end debugger to debug your Portenta H7 application via GDB on a serial interface. It also explains how to obtain a free licence of a fully functional version of TRACE32 using your Portenta's serial number.
 
-### What You Will Learn
+### You Will Learn
 -  How to get a free license key for TRACE32 GDB Front End debugger for Portenta H7 - M7 core
 -  How to download and start the Lauterbach TRACE32 GDB Front End debugger
 -  How to flash and debug some ready-to-run demos
@@ -137,7 +137,7 @@ When you're done with flashing your application to the board you can switch back
 
 You may also create a custom startup script for your own application. A minimal startup script is shown below. Copy it into a text file and save it with a file extension ".cmm". To execute it call the menu command "File-->Run Script..." from the TRACE32 GUI.
 
-```
+```cpp
 SYStem.Down
 SYStem.CPU PortentaH7-CM7
 SYStem.PORT <serial_port>  ; e.g. COM8 (Windows) or /dev/ttyUSB0 (Linux)
@@ -178,7 +178,7 @@ Lauterbach also provides hardware-based debug & trace tools. To learn more about
 - Update **Arduino mbed-enabled Boards** core from Arduino IDE menu: *Tools > Board > Boards Manager*
 - Update the Portenta's bootloader using the instructions found [here](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-bl).
 
-### Error Message in AREA View: 'No more arguments expected' 
+### Error Message in AREA View: 'No More Arguments Expected' 
 
 - This may be caused by unsupported characters in your Windows user name. Make sure your user name neither contains any spaces nor special characters.
 
@@ -220,5 +220,5 @@ Alternatively you can run the TRACE32 executable with root permissions.
 
 
 **Authors:** Marco Ferrario, Lauterbach Italy, Sebastian Romero  
-**Reviewed by:** Maurizio Menegotto, Richard Copeman  
-**Last revision:** Sebastian Romero [29.10.2020]
+**Reviewed by:** Maurizio Menegotto, Richard Copeman [2020-11-06]
+**Last revision:** Sebastian Romero [2020-12-04]

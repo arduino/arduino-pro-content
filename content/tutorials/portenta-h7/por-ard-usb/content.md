@@ -3,7 +3,7 @@
 ## Overview
 It is possible to configure the Portenta H7 to act as a USB host in a way that allows to connect peripherals such as a keyboard or mouse to interact with the board. This way you could connect a keyboard to your Portenta and type numbers or characters to trigger actions from your sketch.
 
-### What You Will Learn
+### You Will Learn
 
 -   How to configure the Portenta H7 as a USB host
 -   How to use the *KeyboardController* library to establish a USB connection with the Portenta H7
@@ -37,7 +37,7 @@ Furthermore, the Portenta H7 can also be set to be a mouse or keyboard itself. W
 
 ## Instructions
 
-### Setting Up the USB host
+### Setting Up the USB Host
 
 In this tutorial you are going to configure your Portenta H7 as a USB Host. This will allow you to toggle the RGB built-in LEDs of the board by pressing the corresponding keys (r, g, b) on a USB keyboard that will be plugged into a USB hub.
 Throughout the tutorial, you will learn how to establish a serial communication between the board and the keyboard and also, how to program the board so it acts as a USB Host device.
@@ -157,7 +157,7 @@ In the image above you can see that:
 + The USB Hub (USB-C adapter) needs to be powered externaly with a power supply. This is required to provide power to Portenta.
 + You should connect the keyboard to the USB Hub (USB-C adapter) in the same way you would connect it to your PC.
 
-### Alternative Configuration (No USB hub required)
+### Alternative Configuration (No USB Hub Required)
 
 If you don't have a USB-C type hub you may complete this tutorial with a USB-C type keyboard or with a USB A type keyboard and a USB A to C adapter. To do so proceed as follows:
 
@@ -196,13 +196,13 @@ This troubleshooting guide will help you to find out why the LEDs of your Porten
 
 To detect what the problem is, we are going to send all the information about the USB peripheral (in this case the keyboard) through serial communication from Portenta to the Arduino MKR WiFi 1010 board. Once this info arrives to the Arduino MKR WiFi 1010 board, we will print it out through the Serial Monitor, which will allow us to debug what can be happening.
 
-### 1. Connect the  Portenta to the Arduino MKR WiFi 1010
+### 1. Connect the Portenta to the Arduino MKR WiFi 1010
 
 To connect thePortenta to the Arduino MKR WiFi 1010 board you will need connect the pins with Serial1 functionality (13RX and 14TX on both boards) between them as shown in the image below. Don't forget to connect as well the ground pins (GND) of the boards.
 
 ![Serial connection Portenta - Arduino MKR WiFi 1010](assets/por_ard_usbh_portenta_to_mkr.svg)
 
-### 2. Program the Arduino MKR WiFi 1010 board
+### 2. Program the Arduino MKR WiFi 1010 Board
 
 To set up Arduino MKR WiFi 1010 board copy the following code, paste it into a new sketch file and name it **mkr1010_serial.ino**. Then upload it to the Arduino Arduino MKR WiFi 1010 board. Make sure you select **Arduino MKR WiFi 1010** as the board and the port to which the Arduino MKR WiFi 1010 is connected.
 
@@ -234,7 +234,7 @@ After programming your Arduino MKR WiFi 1010 board and connecting the Portenta b
 
 
 
-### 3. Open the Serial Monitor of the Arduino MKR WiFi 1010 Board
+### 4. Open the Serial Monitor of the Arduino MKR WiFi 1010
 
 Once you have everything connected, open the Serial Monitor and reset the Portenta. After resetting the Portenta board, your Serial Monitor should display something similar to the following:
 
@@ -250,5 +250,5 @@ If in the messages received on the MKR WiFi 1010 board you see any "Disabled" me
 If, after repeating this process several times, the connection still isn't working, the USB Hub you are using may not be compatible with the Portenta board and you will need a different USB Hub to complete this tutorial.
 
 **Authors:** Jose Garcia  
-**Reviewed by:** Sebastian Hunkeler  
+**Reviewed by:** Sebastian Hunkeler [2020-05-28]
 **Last revision:** Sebastian Hunkeler [2020-06-18]

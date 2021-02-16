@@ -3,7 +3,7 @@
 ## Overview
 In this tutorial we will enable low energy bluetooth (BLE) on the Portenta H7 to allow an external bluetooth device to control the built-in LED either by turning it on or off.
 
-### What You Will Learn
+### You Will Learn
 
 -   Enabling BLE connectivity on the Portenta H7.
 -   Connecting the Portenta to an external BLE Mobile Application (In this case [nRF Connect](https://www.nordicsemi.com/Software-and-tools/Development-Tools/nRF-Connect-for-mobile) by Nordic Semiconductor).
@@ -179,6 +179,6 @@ Now that you learnt how to configure the Portenta as a BLE endpoint you can try 
 If you try to upload a sketch and receive an error message, saying that the upload has failed you can try to upload the sketch while the Portenta H7 is in bootloader mode. To do so you need to double click the reset button. The green LED will start fading in and out. Try to upload the sketch again. The green LED will stop fading when the upload completes.
 
 **Authors:** Jeremy Ellis, Lenard George, Sebastian Romero  
-**Reviewed by:** Lenard George, Sebastian Romero, José Garcia [02.09.2020]  
-**Last revision:** Sebastian Romero [16.09.2020]
+**Reviewed by:** Lenard George, Sebastian Romero, José Garcia [2020-09-02]  
+**Last revision:** Sebastian Romero [2020-09-16]
 
