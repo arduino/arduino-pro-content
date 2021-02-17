@@ -5,7 +5,8 @@
    "slug":"por-ard-lvgl",
    "authors":[
       "Pablo Marquínez",
-      "Lenard George"
+      "Lenard George",
+      "Sebastian Romero"
    ],
    "coverImage":{
       "src":"assets/por_ard_lvgl_cover.svg?sanitize=true"
@@ -13,7 +14,8 @@
    "tags":[
       "USB Host",
       "LVGL",
-      "GUI"
+      "GUI",
+      "HDMI"
    ],
    "abstract":"In this tutorial you will learn to use LVGL (Light and Versatile Graphics Library) to create a simple graphical user interface that consists of a label that updates itself.",
    "previousArticle":"por-ard-kvs",
