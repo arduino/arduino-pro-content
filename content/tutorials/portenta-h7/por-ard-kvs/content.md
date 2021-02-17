@@ -277,7 +277,7 @@ Current Stats
 
 Push the reset button to restart the sketch. The values of the stats have been updated. `Previous Stats` which is retrieved from the key-value store now contains values from the previous execution.
 
-## Conclusion and Caveats
+## Conclusion
 We have learned how to use the available space in the flash memory of the microcontroller to create a key-value store and use it to retrieve and store data.
 It's not recommended to use the flash of the microcontroller as the primary storage for data-intensive applications. It is best suited for read/write operations that are performed only once in a while such as storing and retrieving application configurations or persistent parameters.
 

@@ -253,5 +253,5 @@ If in the messages received on the MKR WiFi 1010 board you see any "Disabled" me
 If, after repeating this process several times, the connection still isn't working, the USB Hub you are using may not be compatible with the Portenta board and you will need a different USB Hub to complete this tutorial.
 
 **Authors:** Jose Garcia  
-**Reviewed by:** Sebastian Hunkeler [2020-05-28]
+**Reviewed by:** Sebastian Hunkeler [2020-05-28]  
 **Last revision:** Sebastian Hunkeler [2020-06-18]

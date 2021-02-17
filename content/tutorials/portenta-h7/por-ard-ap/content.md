@@ -299,6 +299,6 @@ This tutorial shows one of the several capabilities of the on-board WiFi+Bluetoo
 
 Now that you've learnt how to set up a board as an access point and understand the client-server model, start experimenting with the **simpleWebServer.ino** sketch. This sketch can be tweaked in a variety of ways based on your needs. For example, you can add a slider to the HTML page that changes the blink rate of the built-in RGB LED from your mobile device.
 
-**Authors:** Lenard George
+**Authors:** Lenard George  
 **Reviewed by:** Jose Garcia [2020-04-23]  
 **Last revision:** Sebastian Hunkeler [2020-05-07]

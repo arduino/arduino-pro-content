@@ -120,7 +120,7 @@ So far, we used separate sketch files to program the different cores. We can als
 
 Let's now to create a new sketch to  blink both of LEDs with random sequences, this will allow you to clearly see different behaviors for both of the LEDs using a very simple program.
 
-### 1. Programming the M7 Core Set-up
+### 1. Programming the M7 Core Set-Up
 Let's start by opening a new sketch and naming it **BlinkBothCores.ino**. Then let's add the following lines of code. 
 
 ```cpp

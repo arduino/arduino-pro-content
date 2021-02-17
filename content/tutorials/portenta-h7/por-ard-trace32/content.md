@@ -220,5 +220,5 @@ Alternatively you can run the TRACE32 executable with root permissions.
 
 
 **Authors:** Marco Ferrario, Lauterbach Italy, Sebastian Romero  
-**Reviewed by:** Maurizio Menegotto, Richard Copeman [2020-11-06]
+**Reviewed by:** Maurizio Menegotto, Richard Copeman [2020-11-06]  
 **Last revision:** Sebastian Romero [2020-12-04]
