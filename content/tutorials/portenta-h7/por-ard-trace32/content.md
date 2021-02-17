@@ -1,30 +1,34 @@
 # Lauterbach TRACE32 GDB Front-End Debugger for Portenta H7
+
+## Overview
 This tutorial will show you how to use the Lauterbach TRACE32 GDB front-end debugger to debug your Portenta H7 application via GDB on a serial interface. It also explains how to obtain a free licence of a fully functional version of TRACE32 using your Portenta's serial number.
 
-## What You Will Learn
+### You Will Learn
 -  How to get a free license key for TRACE32 GDB Front End debugger for Portenta H7 - M7 core
 -  How to download and start the Lauterbach TRACE32 GDB Front End debugger
 -  How to flash and debug some ready-to-run demos
 
-## Required Hardware and Software
+### Required Hardware and Software
 -  Portenta H7 board (https://store.arduino.cc/portenta-h7)
 -  USB C cable (either USB A to USB C or USB C to USB C)
 -  Arduino IDE 1.8.13+ or Arduino Pro IDE 0.1.0+
 -  Lauterbach TRACE32 (https://www.lauterbach.com/download_demo.html)
 
-# TRACE32 GDB Front End Debugger
+## Instructions
+
+### TRACE32 GDB Front End Debugger
 
 In this tutorial you will load an application on the Portenta H7 board which includes the Monitor for Remote Inspection (MRI). This is a GDB compatible serial monitor which is included in the ThreadDebug sketch in the Arduino IDE Examples for Portenta H7 (M7 core) and in all examples in the TRACE32 demo directory of the TRACE32 installation. Throughout this document the **double-tilde (~~)** is used as a place holder for the directory where you unzipped the TRACE32 software.
 
 ***This tutorial assumes that you have already installed the Arduino IDE or Arduino Pro IDE and configured it to support the Portenta H7 board. Please refer to [Setting Up Portenta H7 For Arduino](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-gs) before you proceed.***
 
-## 1. Downloading the TRACE32 Debugger
+### 1. Downloading the TRACE32 Debugger
 
 In order download the TRACE32 debugger open the [Lauterbach download page](https://www.lauterbach.com/download_demo.html) in your browser. Download the zip file named **Debugger for GDB target (Arduino Pro)**  which contains TRACE32 for Portenta-H7 and demo applications.
 
 Extract the zip file to a directory of your choice. On Windows systems, please avoid C:\T32, because this is the default installation directory for the full TRACE32 distribution.
 
-## 2. Registration and License Key
+### 2. Registration and License Key
 
 Without a valid license, the TRACE32 debugger only works for few minutes in demo mode. Lauterbach can generate a **free license** based on the serial number of your Portenta H7 board. The license will be valid for one year and can easily be renewed for free after this period using the same procedure. In order to obtain a license, please register here:
 
@@ -57,7 +61,7 @@ When you receive the email containing your license key, follow the instructions 
 - Restart TRACE32 after adding the license key.
 
 
-## 3. Starting the TRACE32 Debugger
+### 3. Starting the TRACE32 Debugger
 
 To use the debugger launch the appropriate executable for your host operating system. The executables can be found in the corresponding sub-directory for your operating system:
 
@@ -83,7 +87,7 @@ On Linux systems, you will need to edit the system-settings.cmm file to manually
 
 ***The manual port setting is also useful for Windows systems where you have multiple Portenta H7 boards connected, and you want to select a specific board to be used by TRACE32 for debugging. The automatic port selection is disabled when a &GDBPORT definition is found in `system-settings.cmm`.***
 
-## 4. Running Your First Demo
+### 4. Running Your First Demo
 
 A number of pre-built demo programs are available.They can be accessed from the "Portenta H7 Demos" menu. The following instructions relate to the T32ThreadDebug example. However, the other examples follow a similar pattern.
 
@@ -119,7 +123,7 @@ In case of errors, please check the physical connection to the board, check if y
 
 Take a look at the readme.txt file inside the demo directory for further information about the demo.
 
-## Compile and Debug Other Projects
+### Compile and Debug Other Projects
 
 The provided demos or another project of your choice can be edited, compiled and flashed with the Arduino IDE. You can open for example the T32ThreadDebug.ino file with Arduino IDE, build and flash it. Flashing is also possible with TRACE32.
 
@@ -133,7 +137,7 @@ When you're done with flashing your application to the board you can switch back
 
 You may also create a custom startup script for your own application. A minimal startup script is shown below. Copy it into a text file and save it with a file extension ".cmm". To execute it call the menu command "File-->Run Script..." from the TRACE32 GUI.
 
-```
+```cpp
 SYStem.Down
 SYStem.CPU PortentaH7-CM7
 SYStem.PORT <serial_port>  ; e.g. COM8 (Windows) or /dev/ttyUSB0 (Linux)
@@ -155,38 +159,45 @@ You can also copy the script start.cmm from the T32ThreadDebug demo directory to
 
 For each demo the corresponding start.cmm script comes with a predefined window layout. For your own layout, manually open and arrange the windows as you prefer, then save this window layout using the "Store Windows..." command in the Window menu. Save the file as win.cmm. It will be automatically found and used the next time you start a debugging session.
 
-# Conclusion
+## Conclusion
 
 In this tutorial you learned how to acquire a free version of the TRACE32 GDB Front End debugger, fully licensed for Portenta H7 for one year. You learned how to start the debugger and debug some ready-to-run demos. Furthermore you learned how to debug an application compiled with the classic Arduino IDE or the Arduino Pro IDE.
 
-# Troubleshooting
+### Next Steps
+Lauterbach also provides hardware-based debug & trace tools. To learn more about them please visit:
 
-## Portenta’s Serial Number Is Not 24 Digits Long
+- [https://www.lauterbach.com](https://www.lauterbach.com)
+- [https://www.lauterbach.com/microtrace_cortexm.html](https://www.lauterbach.com/microtrace_cortexm.html)
+
+
+## Troubleshooting
+
+### Portenta’s Serial Number Is Not 24 Digits Long
 
 - Update Arduino IDE to the latest version available
 - Update **Arduino mbed-enabled Boards** core from Arduino IDE menu: *Tools > Board > Boards Manager*
 - Update the Portenta's bootloader using the instructions found [here](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-bl).
 
-## Error Message in AREA View: 'No more arguments expected' 
+### Error Message in AREA View: 'No More Arguments Expected' 
 
 - This may be caused by unsupported characters in your Windows user name. Make sure your user name neither contains any spaces nor special characters.
 
-## Debugger Connection Issues
+### Debugger Connection Issues
 
 In case the debugger encounters any issues while connecting to the Portenta, try the following:
 
 - Reset the Portenta H7 board before running the startup script.
 - If the errors persist, please check the physical connection. Check if your host PC has detected the board's serial port and if this is the port configured in TRACE32 (check also the configuration in the startup file). Reset the board and retry.
 
-## Flashing Issues
+### Flashing Issues
 
 - Before flashing the Portenta H7 board from the Arduino IDE, please disconnect the TRACE32 debugger by typing the command: “SYStem.Down” on the command line interface. Alternatively open the menu: “CPU-> System Settings…” and press the radio button “Down” in the “Mode” section.
 
-## Debugger Hanging Issues
+### Debugger Hanging Issues
 
 - The TRACE32 GDB front-end debugger is a run-mode debugger: At a breakpoint only the user threads are stopped. The kernel and all other system threads continue to run. It may happen that the debugger hangs if a breakpoint is set in critical system areas. In this case reset the board, remove all breakpoints and attach again to the target (SYStem.Mode Attach command).
 
-## Issues While Starting TRACE32 on Linux
+### Issues While Starting TRACE32 on Linux
 
 - The TRACE32 executable for Linux requires the Qt libraries. Please verify that  one of the following versions of Qt is installed:
 - Qt4 >= 4.6.2	(Linux 32 bit or 64 bit)
@@ -194,7 +205,7 @@ In case the debugger encounters any issues while connecting to the Portenta, try
 
 On Ubuntu Linux for example you can install the Qt5 libraries using apt-get: `sudo apt-get install qt5-default`
 
-## Issues With the GDB Serial Port on Host Linux
+### Issues With the GDB Serial Port on Host Linux
 
 The user running the TRACE32 executable on Linux must have the permission to access serial devices. For example in Ubuntu a temporary permission can be set as follows:
 
@@ -206,12 +217,8 @@ You can also set a permanent permission adding the user to the "dialout" group. 
 
 Alternatively you can run the TRACE32 executable with root permissions.
 
-# Next Steps
-Lauterbach also provides hardware-based debug & trace tools. To learn more about them please visit:
 
-- [https://www.lauterbach.com](https://www.lauterbach.com)
-- [https://www.lauterbach.com/microtrace_cortexm.html](https://www.lauterbach.com/microtrace_cortexm.html)
 
 **Authors:** Marco Ferrario, Lauterbach Italy, Sebastian Romero  
-**Reviewed by:** Maurizio Menegotto, Richard Copeman  
-**Last revision:** Sebastian Romero [29.10.2020]
+**Reviewed by:** Maurizio Menegotto, Richard Copeman [2020-11-06]  
+**Last revision:** Sebastian Romero [2020-12-04]

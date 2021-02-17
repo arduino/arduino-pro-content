@@ -1,5 +1,5 @@
 {
-    "headingMaxLength" : 50,
+    "headingMaxLength" : 60,
     "excludePatterns" : [".git", "/template"],
     "basePath" : "content/tutorials/portenta-h7/",
     "allowedSyntaxSpecifiers" : ["cpp", "py", "text"],
