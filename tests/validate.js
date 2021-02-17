@@ -207,7 +207,7 @@ validator.addValidation((tutorials) => {
     
         rules.forEach(rule => {
             const content = rule.format == "html" ? htmlContent :markdownContent;
-            const regex = new RegExp(rule.regex, 'gm');
+            const regex = new RegExp(rule.regex, 'g');
             const match = content.match(regex);
             if((match === null && rule.shouldMatch) || (match !== null && !rule.shouldMatch)) {
                 console.log("❌ " + rule.errorMessage + " in " + tutorial.path);
