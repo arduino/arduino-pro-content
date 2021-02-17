@@ -1,12 +1,14 @@
 # Blob Detection with Portenta and OpenMV
+
+## Overview
 In this tutorial you will use the vision carrier board for Portenta to detect the presence and the position of objects in a camera image. For that you will use a technique that is often referred to as blob detection. For this task you will write a MicroPython script and run it on the Portenta with the help of the OpenMV IDE.
 
-## What You Will Learn
+### You Will Learn
 - How to use the OpenMV IDE to run MicroPython on Portenta
 - How to use the built-in blob detection algorithm of OpenMV
 - How to use MicroPython to toggle the built-in LEDs
 
-## Required Hardware and Software
+### Required Hardware and Software
 - Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
 - Arduino Portenta Vision Shield (https://store.arduino.cc/portenta-vision-shield)
 - USB C cable (either USB A to USB C or USB C to USB C)
@@ -14,7 +16,7 @@ In this tutorial you will use the vision carrier board for Portenta to detect th
 - Portenta Bootloader Version 20+
 - OpenMV IDE 2.6.4+
 
-# Portenta and the OpenMV IDE
+## Portenta and the OpenMV IDE
 The OpenMV IDE was built for Machine Vision applications. It is meant to provide an Arduino like experience for simple computer vision tasks using a camera sensor. OpenMV comes with its own fimware that is built on MicroPython. Among other hardware it supports the Portenta board. A statement from the creators of OpenMV on why they built it:
 
 >Currently, doing anything serious involving computer vision requires a computer running an operating system running may layers of software and requiring much setup before you can get computer vision code working. This is all well and fine if you need to do many other things than just processing images, like connecting to the internet, running many different applications concurrently, etc.
@@ -23,13 +25,14 @@ The OpenMV IDE was built for Machine Vision applications. It is meant to provide
 
 This is where OpenMV comes in. [Here](https://openmv.io/) you can read more about the OpenMV IDE.
 
+## Instructions
 
-# Configuring the Development Environment
+### Configuring the Development Environment
 Before you can start programming OpenMV scripts for the Portenta you need to download and install the OpenMV IDE.
 
 ***IMPORTANT: Before you connect the Portenta to the OpenMV IDE make sure you update the bootloader as explained in the "Flashing the OpenMV Firmware" section!***
 
-## 1. Downloading the OpenMV IDE
+### 1. Downloading the OpenMV IDE
 Open the [OpenMV download](https://openmv.io/pages/download) page in your browser and download the version that you need for your operating system. Alternatively you may use the following direct download links of the OpenMV IDE 2.6.5:
 
 - [For Windows Xp, Vista, 7, 8, 10 or Later](https://github.com/openmv/openmv-ide/releases/download/v2.6.5/openmv-ide-windows-2.6.5.exe)
@@ -41,7 +44,7 @@ Open the [OpenMV download](https://openmv.io/pages/download) page in your browse
 
 Follow the instructions of the installer.
 
-## 2. Flashing the OpenMV Firmware
+### 2. Flashing the OpenMV Firmware
 
 Connect the Portenta to your computer via the USB-C cable if you haven't done so yet. Make sure you first update the bootloader to the latest version using the *PortentaH7_updateBootloader* sketch in the examples menu in the Arduino IDE. 
 Instructions on how to update the bootloader can be found in the ["Updating the Portenta Bootloader" tutorial](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-bl).
@@ -69,14 +72,13 @@ The Portenta will start flashing its blue LED when it's ready to be connected. A
 ![When the Portenta is successfully connected to the OpenMV IDE a green play button appears in the lower left](assets/por_openmv_board_connected.png)
 
 
-
-# Blob Detection
+## Blob Detection
 
 In this section you will learn how to use the built-in blob detection algorithm to detect the location of objects in an image. That algorithm allows to detect areas in a digital image that differ in properties such as brightness or color compared to surrounding areas. These areas are called blobs.
 
 To do so you need to feed an image from the camera to the algorithm. It will then analyse it and output the coordinates of the found blobs. You will visualize these coordinates directly on the image and indicate whether a blob was found by using the red and green LED.
 
-## 1. Prepare the Script
+### 1. Prepare the Script
 
 Create a new script by clicking the "New File" button in the toolbar on the left side. Import the required modules:
 
@@ -89,7 +91,7 @@ import time # Import module for tracking elapsed time
 
 A module in Python is a confined bundle of functionality. By importing it into the script it gets made available.
 
-## 2. Preparing the Sensor
+### 2. Preparing the Sensor
 
 In order to take a snapshot with the camera it has to be configured in the script.
 
@@ -104,7 +106,7 @@ The most relevant functions in this snipped are `set_pixformat` and `set_framesi
 
 The resolution of the camera needs to be set to a supported format both by the sensor and the algorithm. Algorithms which use a neural network are usually trained on a specific image resolution. This makes them sensistive to the provided image snapshot resolution. The vision carrier supports `QVGA` which you will use in this tutorial.
 
-## 3. Detecting Blobs
+### 3. Detecting Blobs
 
 In order to feed the blob detection algorithm with an image you have to take a snapshot from the camera or load the image from memory (e.g. SD card or internal flash). In this case you will take a snapshot using the `snapshot()` function. The resulting image needs then to be fed to the algorithm using the `find_blobs` function. You will notice that a list of tuples gets passed to the algorithm. In this list you can specify the grey scale values (brightness) that are mostly contained in the object that you would like to track. If you were for example to detect white objects on a black background the resulting range of brightness would be very narrow (e.g. from 200 - 255). Remember that 255 denotes the maximum brightness / white and 0 corresponds to the minimum brightness / black. If we're interested in a wider range of grey scale values to detect various objects we can set the threshold range for example to (100, 255).
 
@@ -130,7 +132,7 @@ for blob in blobs:
 
 The result of that will be visible in the Frame Buffer preview panel on the right side of the OpenMV IDE.
 
-## 4. Toggling LEDs
+### 4. Toggling LEDs
 
 What if you want some visual feedback from the blob detection without any computer connected to your Portenta? You could use for example the built-in LEDs to indicate whether or not a blob was found in the camera image. Let's initialise the red and the green LEDs with the following code:
 
@@ -154,7 +156,7 @@ else:
 
 In this example the green LED will light up when there is at least one blob found in the image. The red LED will light up if no blob could be found.
 
-## 5. Uploading the Script
+### 5. Uploading the Script
 Let's program the Portenta with the complete script and test if the algorithm works. Copy the following script and paste it into the new script file that you created.
 
 ```py
@@ -210,16 +212,16 @@ Click on the "Play" button at the bottom of the left toolbar. Place some objects
 
 ![An example of a blob detection running in the OpenMV IDE](assets/por_openmv_blob_detected.png)
 
-# Conclusion
+## Conclusion
 
 In this tutorial you learned how to use the OpenMV IDE to develop MicroPython scripts that then run on the Portenta board. You also learned how to configure the camera of the Vision Carrier board to be used for machine vision applications in OpenMV. Last but not least you learned how to interact with the built-in LEDs in MicroPython on the OpenMV firmware.  
 
-# Next Steps
+### Next Steps
 -   Familiarize yourself with the OpenMV IDE. There are many other features that didn't get mentioned in this tutorial (e.g. the Serial Terminal).
 -   Try out other machine vision examples that come with the OpenMV IDE (e.g. Face Detection). You can find them in the "Examples" menu.
 
-# Troubleshooting
-## OpenMV Firmware Flashing Issues
+## Troubleshooting
+### OpenMV Firmware Flashing Issues
 - If the upload of the OpenMV firmware fails during the download, put the board back in boot loader mode and try again. Give it a few tries until the firmware gets successfully uploaded.
 - If the upload of the OpenMV firmware fails without even starting, try uploading the latest firmware using the "Load Specific Firmware File" option. You can find the latest firmware on the [OpenMV Github repository](https://github.com/openmv/openmv/releases). Look for a file called *firmware.bin* in the PORTENTA folder.
 - If you experience issues putting the board in bootloader mode, make sure you first update the bootloader to the latest version using the *PortentaH7_updateBootloader* sketch from the examples menu in the Arduino IDE.
@@ -227,5 +229,5 @@ In this tutorial you learned how to use the OpenMV IDE to develop MicroPython sc
 - If you see a "OSError: Reset Failed" message, reset the board by pressing the reset button. Wait until you see the blue LED flashing, connect the board to the OpenMV IDE and try running the script again.
 
 **Authors:** Sebastian Romero  
-**Reviewed by:** Lenard George [6.10.2020]  
-**Last revision:** Sebastian Romero [7.10.2020]
+**Reviewed by:** Lenard George [2020-10-06]  
+**Last revision:** Sebastian Romero [2020-10-07]
