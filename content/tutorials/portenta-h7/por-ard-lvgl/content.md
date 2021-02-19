@@ -36,7 +36,7 @@ Begin by plugging your Portenta board into the computer using a USB-C cable and 
 
 ### 2. Download the LVGL Library
 
-Next, select *Portenta* in the **Tools -> Board** menu before installing [lvgl](https://github.com/lvgl/lvgl) from the Library Manager. Then go to **Sketch** **->** **Include Libraries** **-> Manage Libraries** and search for *LVGL*. Download **lvgl ** by [kisvegabor](https://github.com/kisvegabor).  
+Next, select 'Portenta' in the **Tools -> Board** menu before installing [lvgl](https://github.com/lvgl/lvgl) from the Library Manager. Then go to **Sketch** **->** **Include Libraries** **-> Manage Libraries** and search for LVGL. Download **lvgl ** by [kisvegabor](https://github.com/kisvegabor).  
 
 ![Library Manager showing the installed lvgl library.](assets/por_ard_lvgl_select_library.png)
 
@@ -185,15 +185,15 @@ Now that you know how to build a simple UI for a screen, you can try to add more
 
 ## Troubleshooting
 ### Counter Label Doesn't Update
-* Make sure that the label and task are declared on top of the sketch, outside the `setup()` and `loop()` like a normal variable.
-* Check if the task has the same structure in the first declaration and the function creation.
-* Look inside the `loop()` and see if `lv_task_handler()` is there.
+- Make sure that the label and task are declared on top of the sketch, outside the `setup()` and `loop()` like a normal variable.
+- Check if the task has the same structure in the first declaration and the function creation.
+- Look inside the `loop()` and see if `lv_task_handler()` is there.
 
 ### Sketch Upload Troubleshooting
-* If you have troubles uploading the sketch, try to first set the board in bootloader mode, by clicking the reset button twice, then you should see the built-in LED pulsating.
-* If you uploaded the sketch and you don't have any output in the display, make sure you have `portenta_init_video()` in the `setup()`.
-* Unplug and plug the HDMI cable in again.
-* Reset the Portenta once it's connected to the USB-hub.
+- If you have troubles uploading the sketch, try to first set the board in bootloader mode, by clicking the reset button twice, then you should see the built-in LED pulsating.
+- If you uploaded the sketch and you don't have any output in the display, make sure you have `portenta_init_video()` in the `setup()`.
+- Unplug and plug the HDMI cable in again.
+- Reset the Portenta once it's connected to the USB-hub.
 
 **Authors:** Pablo Marquínez, Lenard George, Sebastian Romero  
 **Reviewed by:** Jose Garcia, Manuel Zomer [2021-01-27]  

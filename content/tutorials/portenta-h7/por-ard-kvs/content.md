@@ -1,7 +1,7 @@
 # Creating a Flash-Optimised Key-Value Store
 
 ## Overview
-This tutorial explains how to create a flash-optimised key-value store using the flash memory of the Portenta H7. It builds on top of the *Flash In-Application Programming* tutorial.
+This tutorial explains how to create a flash-optimised key-value store using the flash memory of the Portenta H7. It builds on top of the **Flash In-Application Programming** tutorial.
 
 ### You Will Learn
 In this tutorial you will learn how to use the Mbed OS [TDBStore API](https://os.mbed.com/docs/mbed-os/v6.4/apis/kvstore.html) to create a [Key value store](https://en.wikipedia.org/wiki/Key%E2%80%93value_database) in the free space of the microcontroller's internal flash.
@@ -20,7 +20,7 @@ Mbed OS has a rich API for managing storage on different mediums, ranging from t
 
 In this tutorial, we are going to save a value persistently inside the flash memory. That allows to access that value even after a reset of the microcontroller. We will retrieve some information from a flash block by using the [FlashIAPBlockDevice](https://os.mbed.com/docs/mbed-os/v6.4/apis/flashiapblockdevice.html) and the [TDBStore](https://os.mbed.com/docs/mbed-os/v6.4/apis/kvstore.html) APIs. We will use the `FlashIAPBlockDevice` class to create a block device on the free space of the flash and we will create a Key-Value Store in it using the `TDBStore` API.
 
-***Important: The TBStore API optimises for access speed, reduce [wearing of the flash](https://en.wikipedia.org/wiki/Flash_memory#Memory_wear) and minimise storage overhead. TBStore is also resilient to power failures. If you want to use the flash memory of the microcontroller, _always prefer the TDBStore approach over a direct access to the FlashIAP block device_.***
+***Important: The TBStore API optimises for access speed, reduce [wearing of the flash](https://en.wikipedia.org/wiki/Flash_memory#Memory_wear) and minimise storage overhead. TBStore is also resilient to power failures. If you want to use the flash memory of the microcontroller, always prefer the TDBStore approach over a direct access to the FlashIAP block device.***
 
 ### 1. The Basic Setup
 Begin by plugging in your Portenta board to the computer using a USB-C cable and open the Arduino IDE or the Arduino Pro IDE. If this is your first time running Arduino sketch files on the board, we suggest you check out how to [set up the Portenta H7 for Arduino](https://github.com/bcmi-labs/arduino-pro-content/blob/master/content/tutorials/portenta-h7/por-ard-usb/por-ard-gs) before you proceed.

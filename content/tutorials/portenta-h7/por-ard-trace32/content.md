@@ -175,7 +175,7 @@ Lauterbach also provides hardware-based debug & trace tools. To learn more about
 ### Portenta’s Serial Number Is Not 24 Digits Long
 
 - Update Arduino IDE to the latest version available
-- Update **Arduino mbed-enabled Boards** core from Arduino IDE menu: *Tools > Board > Boards Manager*
+- Update **Arduino mbed-enabled Boards** core from Arduino IDE menu: **Tools > Board > Boards Manager**
 - Update the Portenta's bootloader using the instructions found [here](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-bl).
 
 ### Error Message in AREA View: 'No More Arguments Expected' 
