@@ -31,6 +31,7 @@ validator.addValidation((tutorials) => {
         if(!jsonData) {
             console.log("❌ No metadata file found for tutorial " + tutorial.path);
             ++errorsOccurred;
+            return;
         }
     
         try {        
