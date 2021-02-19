@@ -7,6 +7,7 @@ const tc = require('title-case');
 const config = require('./config');
 const rules = require('./rules');
 const Validator = require('./validator').Validator;
+const { ValidationError } = require('./validation-error');
 
 const PARSER_SYNTAX_PREFIX = "language-"; // Prepended by marked
 const basePathFromCommandline = process.argv[2];
@@ -207,10 +208,18 @@ validator.addValidation((tutorials) => {
     
         rules.forEach(rule => {
             const content = rule.format == "html" ? htmlContent :markdownContent;
-            const regex = new RegExp(rule.regex, 'g');
+            const regex = new RegExp(rule.regex);
             const match = content.match(regex);
+            let lineNumber = null;
+
+            if(match){
+                const index = match.index;
+                lineNumber = fileHelper.getLineNumberFromIndex(index,content);                
+            }
             if((match === null && rule.shouldMatch) || (match !== null && !rule.shouldMatch)) {
-                console.log("❌ " + rule.errorMessage + " in " + tutorial.path);
+                const errorMessage = "❌ " + rule.errorMessage + " in " + tutorial.path + ":" + lineNumber;
+                const error = new ValidationError(errorMessage,tutorial.path, lineNumber);
+                console.log(error.message);
                 ++errorsOccurred;
             }     
         });

@@ -70,4 +70,10 @@ function findAllFiles(startPath, searchPattern, excludePatterns = [], matchingFi
     return matchingFiles;
 };
 
-module.exports = { findAllFiles, getSubdirectories};
+function getLineNumberFromIndex(index, haystack){
+    const tempString = haystack.substring(0, index);
+    const lineNumber = tempString.split('\n').length;
+    return lineNumber;
+}
+
+module.exports = { findAllFiles, getSubdirectories, getLineNumberFromIndex};
