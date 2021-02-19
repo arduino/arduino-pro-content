@@ -1,5 +1,5 @@
 const parser = require('node-html-parser');
-const matcher = require('./matcher');
+const fileHelper = require('./file-helper');
 const fs = require('fs');
 const validate = require('jsonschema').validate;
 const path = require('path');
@@ -15,7 +15,7 @@ let tutorialPaths;
 if(basePathFromCommandline) {
     tutorialPaths = [basePathFromCommandline];
 } else {
-    tutorialPaths = matcher.getSubdirectories(config.basePath, config.excludePatterns);
+    tutorialPaths = fileHelper.getSubdirectories(config.basePath, config.excludePatterns);
 }
 const validator = new Validator(tutorialPaths);
 
