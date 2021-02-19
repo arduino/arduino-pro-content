@@ -1,13 +1,5 @@
-{
-   "id":"por-ard-lvgl",
-   "index": 9,
-   "title":"Creating GUIs with LVGL",
-   "slug":"por-ard-lvgl",
-   "authors":[
-      "Pablo Marquínez",
-      "Lenard George",
-      "Sebastian Romero"
-   ],
+{   
+   "title":"Creating GUIs with LVGL",    
    "coverImage":{
       "src":"assets/por_ard_lvgl_cover.svg?sanitize=true"
    },

@@ -1,12 +1,5 @@
 {
-   "id":"vs-ard-ttn",
-   "index": 6,
-   "title":"Connecting the Vision Shield to TTN using LoRa",
-   "slug":"vs-ard-ttn",
-   "authors":[
-      "Ignacio Herrera",
-      "Lenard George"
-   ],
+   "title":"Connecting the Vision Shield to TTN using LoRa",   
    "coverImage":{
       "src":"assets/vs_ard_things_nw.svg?sanitize=true"
    },
