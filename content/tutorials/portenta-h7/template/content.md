@@ -1,29 +1,25 @@
 # Setting Up Portenta H7 For Arduino
+## Overview
 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
 
-## What You Will Learn
+### You Will Learn
 -   A
 -   B
 -   C
 
-## Required Hardware and Software
+### Required Hardware and Software
 -   Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
 -   USB C cable (either USB A to USB C or USB C to USB C)
 -   Arduino IDE 1.8.10+  or Arduino Pro IDE 0.0.4+ 
 
-# Portenta and The ...
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. [Here](https://www.ni.com/en-us/innovations/white-papers/07/what-is-a-real-time-operating-system--rtos--.html) you can read more about real time operating systems.
+## Instructions
 
-![The Arduino core is built on top of the Mbed stack](assets/Arduino-Logo.svg?sanitize=true)
-
-
-# Configuring the Development Environment
 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
 
-## 1. The Basic Setup
+### 1. The Basic Setup
 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
 
-## 2. Uploading the classic blink sketch
+### 2. Uploading the classic blink sketch
 Let's program the Portenta with the classic blink example to check if the connection to the board works:
 
 -   In the classic Arduino IDE open the blink example by clicking the menu entry File->Examples->01.Basics->Blink. 
@@ -45,15 +41,16 @@ void loop() {
 }
 ```
 
-# Conclusion
+## Conclusion
 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.  
 
-# Next Steps
+### Next Steps
 -   A
 -   B
 
-# Troubleshooting
-## Sketch Upload Troubleshooting
+## Troubleshooting
+
+### Sketch Upload Troubleshooting
 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
 
 **Authors:** XX, YY
