@@ -8,7 +8,5 @@
       "Key-Value store",
       "Flash"
    ],
-   "abstract":"This tutorial explains how to create a flash-optimised key-value store using the flash memory of the Portenta H7.",
-   "previousArticle":"por-ard-trace32",
-   "nextArticle":"por-ard-lvgl"
+   "abstract":"This tutorial explains how to create a flash-optimised key-value store using the flash memory of the Portenta H7."   
 }

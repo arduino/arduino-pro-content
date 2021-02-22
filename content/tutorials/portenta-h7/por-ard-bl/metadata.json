@@ -8,7 +8,5 @@
       "Firmware",
       "Core"            
    ],
-   "abstract":"This tutorial will explain what a bootloader is, why you should consider keeping it updated and how you can update it.",
-   "previousArticle":"por-openmv-bt",
-   "nextArticle":"por-openmv-fd"
+   "abstract":"This tutorial will explain what a bootloader is, why you should consider keeping it updated and how you can update it."
 }

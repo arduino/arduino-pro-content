@@ -16,7 +16,5 @@
       "Setup",
       "Blink"
    ],
-   "abstract":"This tutorial teaches you how to set up the board, how to configure your computer and how to run the classic Arduino blink example  to verify if the configuration was successful.",
-   "previousArticle":null,
-   "nextArticle":"por-ard-dcp"
+   "abstract":"This tutorial teaches you how to set up the board, how to configure your computer and how to run the classic Arduino blink example  to verify if the configuration was successful."
 }

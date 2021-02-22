@@ -35,21 +35,13 @@
       },
       "abstract": {
         "type": "string"
-      },
-      "previousArticle": {
-        "type": ["string", "null"]
-    },
-    "nextArticle": {
-        "type": ["string", "null"]
-      }
+      }        
     },
     "required": [      
       "title",      
       "coverImage",
       "tags",
-      "abstract",
-      "previousArticle",
-      "nextArticle"
+      "abstract"      
     ]
   }
   
