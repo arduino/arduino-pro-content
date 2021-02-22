@@ -1,11 +1,5 @@
-{
-   "id":"por-ard-kvs",
-   "index": 8,
-   "title":"Creating a Flash-Optimised Key-Value Store",
-   "slug":"por-ard-kvs",
-   "authors":[
-      "Giampaolo Mancini"
-   ],
+{   
+   "title":"Creating a Flash-Optimised Key-Value Store",    
    "coverImage":{
       "src":"assets/por_ard_block_device_cover.svg?sanitize=true"
    },

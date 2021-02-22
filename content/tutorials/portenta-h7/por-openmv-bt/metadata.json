@@ -1,11 +1,5 @@
-{
-   "id":"por-openmv-bt",
-   "index": 5,
-   "title":"Blob Detection with Portenta and OpenMV",
-   "slug":"por-openmv-bt",
-   "authors":[      
-      "Sebastian Romero"
-   ],
+{      
+   "title":"Blob Detection with Portenta and OpenMV",      
    "coverImage":{
       "src":"assets/por_openmv_bt_cover.svg?sanitize=true"
    },

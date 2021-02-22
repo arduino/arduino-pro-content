@@ -1,12 +1,5 @@
-{
-   "id":"por-ard-dcp",
-   "index": 2,
-   "title":"Dual Core Processing",
-   "slug":"por-ard-dcp",
-   "authors":[
-      "Lenard George",
-      "Sebastian Hunkeler"
-   ],
+{   
+   "title":"Dual Core Processing",   
    "coverImage":{
       "src":"assets/por_ard_dcp_cover.svg?sanitize=true"
    },

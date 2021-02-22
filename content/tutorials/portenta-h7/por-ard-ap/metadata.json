@@ -1,11 +1,5 @@
-{
-   "id":"por-ard-ap",
-   "index": 3,
-   "title":"Portenta H7 as a WiFi Access Point",
-   "slug":"por-ard-ap",
-   "authors":[
-      "Lenard George"
-   ],
+{   
+   "title":"Portenta H7 as a WiFi Access Point",    
    "coverImage":{
       "src":"assets/por_ard_ap_cover.svg?sanitize=true"
    },
