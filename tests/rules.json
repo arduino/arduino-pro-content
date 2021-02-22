@@ -40,5 +40,11 @@
         "shouldMatch" : true,
         "format" : "markdown",
         "errorMessage" : "Missing 'Required Hardware and Software' section."
+    },
+    {
+        "regex" : "\\d\\s?[Mm]ega\\s[Bb]yte|\\d\\s?Mega\\s?[Bb]yte|\\d\\s?mb[\\s\\.]|[Mm][Bb]ytes",
+        "shouldMatch" : false,
+        "format" : "markdown",
+        "errorMessage" : "Megabytes should be either written as 'megabytes' or abbreviated as 'MB'"
     }
 ]
