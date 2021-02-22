@@ -16,12 +16,17 @@ var Tutorial = class Tutorial {
     }
 
     get markdown(){
+        if(!fs.existsSync(this.path)){
+            console.log("❌ File doens't exist " + this.path);
+            return null;
+        }
         let rawData = fs.readFileSync(this.path);
         return rawData.toString();
     }
 
     get rawHTML(){
-        return marked(this.markdown);
+        const markdown = this.markdown
+        return markdown ? marked(markdown) : null;
     }
 
     get html(){
@@ -72,8 +77,12 @@ var Tutorial = class Tutorial {
     }
 
     get metadata(){    
+        const metadataPath = this.basePath + "/metadata.json";        
         try {
-            const metadataPath = this.basePath + "/metadata.json";
+            if(!fs.existsSync(metadataPath)){
+                console.log("❌ Metadata file doens't exist " + metadataPath);
+                return null;
+            }
             let rawData = fs.readFileSync(metadataPath);    
             return JSON.parse(rawData);
         } catch(error){
