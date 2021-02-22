@@ -20,7 +20,6 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula 
 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
 
 ### 2. Uploading the classic blink sketch
-
 Let's program the Portenta with the classic blink example to check if the connection to the board works:
 
 -   In the classic Arduino IDE open the blink example by clicking the menu entry File->Examples->01.Basics->Blink. 
