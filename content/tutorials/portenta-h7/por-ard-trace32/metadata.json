@@ -1,13 +1,6 @@
-{
-   "id":"por-ard-trace32",
-   "index": 7,
+{   
    "title":"Lauterbach TRACE32 GDB Front-End Debugger for Portenta H7",
-   "slug":"por-ard-trace32",
-   "authors":[
-      "Marco Ferrario", 
-      "Lauterbach Italy", 
-      "Sebastian Romero"
-   ],
+   "slug":"por-ard-trace32", 
    "coverImage":{
       "src":"assets/por_ard_trace32_cover.svg?sanitize=true"
    },

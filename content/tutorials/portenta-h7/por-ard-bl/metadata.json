@@ -1,12 +1,5 @@
 {
-   "id":"por-ard-bl",
-   "index": 6,
-   "title":"Updating the Portenta Bootloader",
-   "slug":"por-ard-bl",
-   "authors":[
-      "Sebastian Hunkeler",
-      "Lenard George"
-   ],
+   "title":"Updating the Portenta Bootloader",  
    "coverImage":{
       "src":"assets/por_ard_bl_cover.svg?sanitize=true"
    },
