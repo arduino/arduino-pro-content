@@ -8,7 +8,5 @@
       "LoRa",
       "Vision Shield"
    ],
-   "abstract":"This tutorial explains how to connect your Portenta H7 to The Things Network (TTN) using the the Vision Shield's Lora Connectivity feature.",
-   "previousArticle":"",
-   "nextArticle":""
+   "abstract":"This tutorial explains how to connect your Portenta H7 to The Things Network (TTN) using the the Vision Shield's Lora Connectivity feature."   
 }
