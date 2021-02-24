@@ -16,7 +16,7 @@ This tutorial shows you how to capture frames from the Vision Shield Camera modu
 
 ## Instructions
 
-Accessing the vision shield is done through help of both Arduino and Processing tools. The Arduino sketch handles the capture of image data by the onboard camera while the java applet created on Processing helps us visualise this info. With the help of serial communication. you can create a channel that reroutes the frames from the Camera to the java applet. The following steps will run you through how to capturing, package the data through the serial and visualise 
+Accessing the vision shield is done through help of both Arduino and Processing tools. The Arduino sketch handles the capture of image data by the onboard camera while the java applet created on Processing helps us visualise this info. With the help of serial communication. you can create a channel that reroutes the frames from the Camera to the java applet. The following steps will run you through how to capture, package the data through the serial port and visualise the output in Processing. 
 
 ### 1. The Basic Setup
 Connect the Vision Shield to your Portenta H7 as shown and plugin the H7 to your computer. 
@@ -130,14 +130,21 @@ void draw()
 
 ### 4. Visualing the Frames  
 
-For visualising the camptured dramesRead the raw bytes, [`readBytes()`](https://processing.org/reference/libraries/serial/Serial_readBytes_.html) returns an integer value for the number of bytes read. 
+For this step, you will need the help of the `serialEvent()` api to update the `myImage`as an when a new frame arrives on the serial port.
+
+```java
+void serialEvent(Serial myPort) {
+}
+```
+
+The first thing you need to inside this method is to read the  bytes from the `frameBuffer` array which you can do with the help of the  [`readBytes()`](https://processing.org/reference/libraries/serial/Serial_readBytes_.html) method that returns an integer value for the number of bytes read. 
 
 ```java
 // Read the raw bytes
 int bytesRead = myPort.readBytes(frameBuffer);
 ```
 
-next we parse the frame buffer to get the different pixel values ; draw the image based on the pixelPosition and [`color()`](https://processing.org/reference/color_.html) and [`Byte.toUnsignedInt()`](https://docs.oracle.com/javase/8/docs/api/java/lang/Byte.html). We then update the size of the array 
+Next we parse the frame buffer to get the different pixel values ; draw the image based on the pixelPosition and [`color()`](https://processing.org/reference/color_.html) and [`Byte.toUnsignedInt()`](https://docs.oracle.com/javase/8/docs/api/java/lang/Byte.html). We then update the size of the array 
 
 ```java
 // Reading the buffer and plotting the pixels  
@@ -160,7 +167,7 @@ if(pixelPosition == cameraPixelCount){
   } 
 ```
 
-heres the complete sketch for the 
+heres the complete sketch for the `serialEvent()` function 
 
 ```java
 void serialEvent(Serial myPort) {
