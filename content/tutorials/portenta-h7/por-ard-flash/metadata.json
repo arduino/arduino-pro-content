@@ -1,11 +1,5 @@
 {
-   "id":"por-ard-flash",
-   "index": 8,
-   "title":"Reading and Writing Data on the Flash Memory",
-   "slug":"por-ard-flash",
-   "authors":[
-      "Giampaolo Mancini"
-   ],
+   "title":"Reading and Writing Data the Flash Storage",
    "coverImage":{
       "src":"assets/por_ard_block_device_cover.svg?sanitize=true"
    },
@@ -14,7 +8,5 @@
       "Flash",
       "Block Device"
    ],
-   "abstract":"This tutorial shows you how to use the internal flash memory of the Portenta H7's MCU to read and write data using the Flash In-Application Programming Interface (Flash IAP) provided by Mbed OS.",
-   "previousArticle":"por-ard-trace32",
-   "nextArticle":"por-ard-kvs"
+   "abstract":"This tutorial shows you how to use the internal flash memory of the Portenta H7's MCU to read and write data using the Flash In-Application Programming Interface (Flash IAP) provided by Mbed OS."   
 }
