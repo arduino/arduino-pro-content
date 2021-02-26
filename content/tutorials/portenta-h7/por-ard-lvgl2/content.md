@@ -50,11 +50,13 @@ Lets start by creating the files:
    * Add a new tab called "inputs.h" and "widgets.h"
    * Create one more file called "sharedVariables.h" and add the next code:
       ```cpp
+         #include "Portenta_LittleVGL.h"
+       
          extern int16_t touchpad_x;
          extern int16_t touchpad_y;
          extern uint8_t button;
       ```
-      This file is the one wich is going to "share" the mouse values and make them available between the different files
+      This file is the one wich is going to "share" the mouse values and make them available between the different files, and including the LVGL library.
       
 ## 3. Add the USB inputs
 
@@ -92,6 +94,21 @@ Then set the functions that are going to receive the RPC callbacks and the initi
       ```
 
 ## 4. Interface
+
+Inside ´widgets.h´ start by including the LVGL library and ´sharedVariables.h´
+
+´´´cpp
+   #include "sharedVariables.h"
+´´´
+**Note**: its not needed to include the LVGL library, as it has been done inside ´sharedVariables.h´
+
+Now we start creating our Widgets:
+* textArea: the object will be called ´ta´
+* submit button: called ´submit_btn´
+* virtual keyboard: callled ´kb´ wich will be launched by the button `launch_btn`
+
+```cpp
+```
 
 ```cpp
 #include "Portenta_LittleVGL.h"
