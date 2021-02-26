@@ -1,0 +1,22 @@
+{
+   "id":"por-ard-gs",
+   "index": 1,
+   "title":"Getting started with OpenMV and MicroPython",
+   "slug":"por-ard-gs",
+   "authors":[
+      "Sebastian Hunkeler",
+      "Benjamin Dannegård"
+   ],
+   "coverImage":{
+      "src":"assets/por_ard_gs_cover.svg?sanitize=true"
+   },
+   "tags":[
+      "Getting Started",
+      "IDE",
+      "Setup",
+      "Blink"
+   ],
+   "abstract":"This tutorial teaches you how to set up the board, how to configure your computer and how to run the classic Arduino blink example  to verify if the configuration was successful.",
+   "previousArticle":null,
+   "nextArticle":"por-ard-dcp"
+}
