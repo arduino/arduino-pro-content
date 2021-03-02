@@ -46,5 +46,11 @@
         "shouldMatch" : false,
         "format" : "markdown",
         "errorMessage" : "Megabytes should be either written as 'megabytes' or abbreviated as 'MB'"
-    }
+    },
+    {
+        "regex" : "\\s[\\*|_][^*_](.*?)[\\*|_]",
+        "shouldMatch" : false,
+        "format" : "markdown",
+        "errorMessage" : "The use of italic emphasis is discouraged."
+    } 
 ]
