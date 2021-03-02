@@ -1,19 +1,19 @@
-# Reading and Writing Data on the Flash Memory 
-This tutorial shows you how to use the internal flash memory of the Portenta H7's MCU to read and write data using the Flash In-Application Programming Interface (Flash IAP) provided by Mbed OS. 
+# Using the Flash Storage To Read and Write Data
+## Overview 
+This tutorial demonstrates how to use the on-board flash memory of the Portenta H7 to read and write data using the BlockDevice API provided by Mbed OS. As the internal memory is limited in size we will also take a look at saving data to the QSPI flash memory.
 
-***This tutorial is also applicable for other Mbed OS based Arduino boards like the Nano 33 BLEs***
+### You Will Learn
+- Accessing the Portenta's flash memory using Mbed's Flash In-Application Programming Interface 
+- Accessing the Portenta's flash memory using Mbed's Flash In-Application Programming Interface 
+- Reading and writing data from and to the flash memory
+- Calculating the memory's free storage space
 
-## What You Will Learn
--   Accessing the Portenta's flash memory using Mbed's Flash In-Application Programming Interface 
--   Reading and writing data from and to the flash memory
--   Calculating the memory's free storage space
+### Required Hardware and Software
+- Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
+- USB C cable (either USB A to USB C or USB C to USB C)
+- Arduino IDE 1.8.10+ or Arduino Pro IDE 0.0.4+ or Arduino CLI 0.13.0+
 
-## Required Hardware and Software
--   Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
--   USB C cable (either USB A to USB C or USB C to USB C)
--   Arduino IDE 1.8.10+ or Arduino Pro IDE 0.0.4+ or Arduino CLI 0.13.0+
-
-# Mbed OS APIs for Flash Storage
+## Mbed OS APIs for Flash Storage
 Portenta's core is based upon the Mbed operating system, allowing for Arduino APIs to be integrated using APIs exposed directly by Mbed OS. 
 
 Mbed OS has a rich API for managing storage on different mediums, ranging from the small internal flash memory of a microcontroller to external SecureDigital cards with large data storage space.
@@ -22,15 +22,14 @@ In this tutorial, we are going to save a value persistently inside the flash mem
 
 ***Important: Be aware of the flash r/w limits while using raw/direct access: flash memories have a limited amount of write cycles. Typical flash memories can perform about 10000 writes cycles to the same block before starting to "wear out" and begin to lose the ability to retain data. You can actually render your board useless with improper use of this example and described APIs.***
 
-## 1. The Basic Setup
-Begin by plugging in your Portenta board to the computer using a USB-C cable and open the Arduino IDE or the Arduino Pro IDE. If this is your first time running Arduino sketch files on the board, we suggest you check out how to [set up the Portenta H7 for Arduino](https://github.com/bcmi-labs/arduino-pro-content/blob/master/content/tutorials/portenta-h7/por-ard-usb/por-ard-gs) before you proceed.
+## Programming the Flash
 
-## 2. Create the Structure of the Program
+### 1. Create the Structure of the Program
 Before we start it's important to keep above mentioned **flash r/w limits** in mind! Therefore this method should only be used for **once-in-a-time** read and write **operations** such as reading a user setting in the `setup()`. It is not a good idea to use it for constantly updated values such as e.g. sensor data.
 
 Having this in mind, it's time to create a sketch to program the Portenta. After creating new sketch and giving it a fitting name (in our case `FlashStorage.ino`) we need to create one more file within the sketch, called `FlashIAPLimits.h`, that we will use to define some helper functions. This allows us to resuse the helper file later for other sketches.
 
-## 3. The Helper Functions
+### 2. The Helper Functions
 Within the `FlashIAPLimits.h` file we start by including necessary libraries and defining the namespace. 
 
 ```cpp
@@ -97,7 +96,7 @@ FlashIAPLimits getFlashIAPLimits()
 }
 ```
 
-## 4. Reading & Writing Flash Memory
+## 4. Reading & Writing Data
 Going back to the `FlashStorage.ino` file some more libraries need to be included in order to implement reading add writing to the flash. The `FlashIAPBlockDevice.h` library will be used to create a block device on the empty part of the memory. Additionally we include the helper file `FlashIAPLimits.h` to have access to the address and size calculation function that we just created and set the namespace to `mbed`.
 
 ```cpp
@@ -176,10 +175,10 @@ blockDevice.deinit();
 
 Finally the `loop()` function of this sketch will be left empty, considering that the flash reading and writing process should only be carried out once.
 
-## 5. Upload the Sketch 
+### 4. Upload the Sketch 
 Below is the complete sketch of this tutorial consisting of the main sketch and the `FlashIAPLimits.h` helper file, upload both of them to your Portenta H7 to try it out.
 
-### FlashIAPLimits.h
+**FlashIAPLimits.h**
 ```cpp
 /**
 Helper functions for calculating FlashIAP block device limits
@@ -239,7 +238,7 @@ FlashIAPLimits getFlashIAPLimits()
 }
 ```
 
-### FlashStorage.ino
+**FlashStorage.ino**
 ```cpp
 #include <FlashIAPBlockDevice.h>
 #include "FlashIAPLimits.h"
@@ -299,19 +298,18 @@ void setup()
 void loop() {}
 ```
 
-## 5. Results
+### 4. Results
 After uploading the sketch open the serial monitor to start the flash reading and writing process. The first time you start the script the block device will be filled randomly. Now try to reset or disconnect the Portenta and reconnect it again. You should see *Hello World* string with the random number written to the flash storage on the previous execution.
 
 ***Note that the value written to the flash storage will persist if the board is reseted or disconnected, however the entire flash storage will be reprogrammed once a new sketch is uploaded to the Portenta.***
 
-# Conclusion and Caveats
+## Conclusion
 We have learned how to use the available space in the flash memory of the microcontroller to read and save additional data. It's not recommended to use the flash of the microcontroller as the primary storage for data-intensive applications. It is best suited for read/write operations that are performed only once in a while such as storing and retrieving application configurations or persistent parameters.
 
-# Next Steps
+## Next Steps
 Now that you know how to use block device to perform reading and writing on a flash memory you can look into the [next tutorial](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-kvs) on how to use the [TDBStore API](https://os.mbed.com/docs/mbed-os/v6.4/apis/kvstore.html) to create a [key value store](https://en.wikipedia.org/wiki/Key%E2%80%93value_database) to create a key-value store on the flash memory.
 
 
-
-**Authors:** Giampaolo Mancini  
+**Authors:** Giampaolo Mancini, Sebastian Romero  
 **Reviewed by:** Lenard George, Jose Garcia [28.01.2021]  
-**Last revision:** Manuel Zomer [11.02.2021]
+**Last revision:** Sebastian Romero [25.02.2021]
