@@ -1,5 +1,5 @@
 const parser = require('node-html-parser');
-const matcher = require('./matcher');
+const fileHelper = require('./file-helper');
 const fs = require('fs');
 const validate = require('jsonschema').validate;
 const path = require('path');
@@ -7,6 +7,7 @@ const tc = require('title-case');
 const config = require('./config');
 const rules = require('./rules');
 const Validator = require('./validator').Validator;
+const { ValidationError } = require('./validation-error');
 
 const PARSER_SYNTAX_PREFIX = "language-"; // Prepended by marked
 const basePathFromCommandline = process.argv[2];
@@ -15,7 +16,7 @@ let tutorialPaths;
 if(basePathFromCommandline) {
     tutorialPaths = [basePathFromCommandline];
 } else {
-    tutorialPaths = matcher.getSubdirectories(config.basePath, config.excludePatterns);
+    tutorialPaths = fileHelper.getSubdirectories(config.basePath, config.excludePatterns);
 }
 const validator = new Validator(tutorialPaths);
 
@@ -30,6 +31,7 @@ validator.addValidation((tutorials) => {
         if(!jsonData) {
             console.log("❌ No metadata file found for tutorial " + tutorial.path);
             ++errorsOccurred;
+            return;
         }
     
         try {        
@@ -207,10 +209,18 @@ validator.addValidation((tutorials) => {
     
         rules.forEach(rule => {
             const content = rule.format == "html" ? htmlContent :markdownContent;
-            const regex = new RegExp(rule.regex, 'g');
+            const regex = new RegExp(rule.regex);
             const match = content.match(regex);
+            let lineNumber = null;
+
+            if(match){
+                const index = match.index;
+                lineNumber = fileHelper.getLineNumberFromIndex(index,content);                
+            }
             if((match === null && rule.shouldMatch) || (match !== null && !rule.shouldMatch)) {
-                console.log("❌ " + rule.errorMessage + " in " + tutorial.path);
+                const errorMessage = "❌ " + rule.errorMessage + " in " + tutorial.path + ":" + lineNumber;
+                const error = new ValidationError(errorMessage,tutorial.path, lineNumber);
+                console.log(error.message);
                 ++errorsOccurred;
             }     
         });
