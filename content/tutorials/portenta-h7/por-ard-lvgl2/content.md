@@ -41,23 +41,54 @@ Portenta
         * lvgl_interaction.ino - call the widgets.h and inputs.h custom made functions to configure, and display the LVGL output
         * inputs.h  - RPC callbacks from the M4 and to configure the LVGL's inputs
         * widgets.h - all the LVGL widgets and events/callbacks
-        * sharedVariables - store the values of the mouse
+        * sharedVariables - store somoe variables that are being used from ´inputs.h´ and ´widgets.h´
 
 ## 2. Create the structure
 
 Lets start by creating the files:
    * Create a new file called "lvgl_interaction.ino"
-   * Add a new tab called "inputs.h" and "widgets.h"
-   * Create one more file called "sharedVariables.h" and add the next code:
+   * Add a new tab called "inputs.h"
+   * Add one more tab called "widgets.h"
+   * Add the last file called "sharedVariables.h" and add the next code:
+     
+### sharedVariables.h file
+This file is the one wich is going to "share" the mouse values and make them available between the different files, the text area widget, and a bool to allow the keyboard to input inside the txt area and including the LVGL library.
       ```cpp
-         #include "Portenta_LittleVGL.h"
-       
+        #include "Portenta_LittleVGL.h"
+
          extern int16_t touchpad_x;
          extern int16_t touchpad_y;
          extern uint8_t button;
+         
+         extern bool textArea_focused;   // Allow the keyboard to input inside the text area
+         extern lv_obj_t * ta;           // Text Area
       ```
-      This file is the one wich is going to "share" the mouse values and make them available between the different files, and including the LVGL library.
-      
+
+### widgets.h file
+This part contains the functions, LVGL widgets, configuration, events and callbacks:
+* Draw the widgets on screen 
+  * createWidgets() : This will instantiate all the widgets 
+* Text Area (text input to fill)
+  * object: `lv_obj_t * ta`
+  * event callback: `event_handler_textArea(lv_obj_t * ta, lv_event_t ta_event)`
+* Submit button
+  * object: `lv_obj_t * submit_btn`
+  * event callback: `submit_event_cb(lv_obj_t * submit_btn, lv_event_t submit_event)`
+* Virtual Keyboard (from LVGL)
+  * object: `lv_obj_t * keyboard`
+  * event callback: `keyboard_event_cb(lv_obj_t * keyboard, lv_event_t keyboard_event)`
+  * draw it on screen: `keyboard_create()`
+* Submit button
+  * object: `lv_obj_t * submit_btn`
+  * event callback: `submit_event_cb(lv_obj_t * submit_btn, lv_event_t submit_event)`
+* Mouse pointer
+  * driver: `lv_indev_drv_t indev_drv_mouse`
+  * mouse pointer: `lv_obj_t * cursor_obj`
+  * read the mouse input: `my_input_read(lv_indev_drv_t * drv, lv_indev_data_t*data)`
+* Popup the message box
+  * `popupMessage(const char* innerText)` 
+
+
 ## 3. Add the USB inputs
 
  First of all lets include the needed libraries
