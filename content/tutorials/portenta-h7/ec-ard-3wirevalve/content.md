@@ -5,9 +5,9 @@ This tutorial we are going to learn how to connect and control a motorized ball 
 
 ### You Will Learn
 
--   How to connect a motorized valve to the edge control board
--   How to connect an external power 
--   About the `Arduino_EdgeControl.h` library
+-   How to connect a motorized valve to the edge control board,
+-   How to power the board with an external power supply,
+-   To use the `Arduino_EdgeControl.h` library and its APIs 
 
 ### Required Hardware and Software
 
@@ -15,26 +15,33 @@ This tutorial we are going to learn how to connect and control a motorized ball 
 -   External power source (12V battery or power supply) - LiPo / SLA 
 -   Micro USB cable
 -   Arduino IDE 1.8.10+ or Arduino Pro IDE 0.0.4+
--   Phonix connectors 1844646
+-   Phoenix connectors 1844646
+-   Jumper cables 
 
 ## Instructions 
 
-A ball valve is a form of quarter-turn [valve](https://en.wikipedia.org/wiki/Valve) which uses a hollow, perforated and pivoting ball to control flow of liquids and gasses through it. There are both manual and motorized versions of these types of valves and in this example we will use a motorized version along with our Edge control board. You will be using some of the apis basic operations related to the control of the valve provided byt  `Arduino_EdgeControl.h` library.  
+A ball valve is a form of quarter-turn [valve](https://en.wikipedia.org/wiki/Valve) which uses a hollow, perforated and pivoting ball to control flow of liquids and gasses through it. There are both manual and motorized versions of these types of valves and in this example we will use a motorized version along with the Edge control board. With the help of the `Arduino_EdgeControl.h` library you will be  will be using some of the apis to  perform some basic operations such as opening and closing the valves. We used a (*specify the model*) lipo battery to power the valves as its easier to get hold of one. 
 
 ### 1. The Basic Setup
 
-The Edge Control board comes with the core that needs to be installed from the board manager. (Release core on the board manager). 
+The Edge control board is controlled by the mmodule that requires you to use the  `Edge Control` core that needs to be installed from the board manager. (Release core on the board manager). 
+
+![Download the Core]()
+
+Add the header file `Arduino_EdgeControl.h` to your sketch 
+
+```c++
+#include <Arduino_EdgeControl.h>
+```
 
 Let's program the Portenta with the classic blink example to check if the connection to the board works:
 
 -   In the classic Arduino IDE open the blink example by clicking the menu entry File->Examples->01.Basics->Blink. 
 -   In the Arduino Pro IDE Copy and paste the following code into a new sketch in your IDE. 
 
-Open ports and connect the board to the board manager. 
+Open ports and connect the board to the board manager. And upload the blink example you find inside the example folder. This sketch si to test if the board is recognised by the IDE and if you have installed the right core. Upload the code and open the serial monitor 
 
-Get the Library called the arduino edge control 
-
-### 2. Wiring the Motor
+### 2. Connecting the valve
 
 The motorized valve comes with three wires primarily marked as blue green and red. The blue and green are for the signal and the yellow is for the ground. 
 
@@ -42,9 +49,9 @@ The motorized valve comes with three wires primarily marked as blue green and re
 
 Before plugging in the wires ensure the phoenix connectors are in place. Plugg in the wires to into the pins 
 
-### 3. Uploading the classic blink sketch
+### 3. Opening and Closing the valves 
 
-Edge Control. Begin ( Start the edge control board  , Power.begin )
+Let's create the sketch for the Edge Control. Begin ( Start the edge control board  , Power.begin )
 
 Latching.begin ( pulse, direction ; Strobe ; Output )
 
@@ -65,8 +72,6 @@ void setup()
 }
 
 ```
-
-### 4. Controlling the Valve 
 
 The valves are operated through the onboard latches. Latches allow you to store the state of the pins based on the previous output. As the valve doesnt come with internal drivers to store the state of the motor, the Latching Out are latching ports/pins with drivers that are able to drive latch-kind devices without any external component. The connection to the Latching circuits can be found on the board marked as `LATCHING OUT`.
 
@@ -105,11 +110,21 @@ void loop()
 }
 ```
 
-### 5. Connecting to a Power Source 
+### 4. Connecting to a Power Source 
 
-Lipo more effiecitn, current discharge is higher and higher battery life 
+The Valves require a power supply of 9 - 12 V and you can either use a power supply or lipo batteries to provide the required voltage. Power sources can be connected to the onboard relay ports of the edge control board. 
 
+![The power pins of the Edge Control]()
 
+Connect two jumper wires to the relay pins GND and  
+
+[note]
+
+we recommend using Lipo batteries. In this tutorial we have a Lipo more effiecitn, current discharge is higher and higher battery life. 
+
+[/note]
+
+### 5. Uploading the Sketch 
 
 ## Conclusion 
 
@@ -121,6 +136,8 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula 
 -   Remote activation 
 
 ### Complete Sketch
+
+ 
 
 ## Troubleshooting
 
