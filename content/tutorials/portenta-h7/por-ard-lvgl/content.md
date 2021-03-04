@@ -12,7 +12,7 @@ In this tutorial you will learn to use [LVGL](https://lvgl.io/) to create a simp
 -   Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
 -   USB-C cable (either USB-A to USB-C or USB-C to USB-C)
 -   Arduino IDE 1.8.10+  or Arduino Pro IDE 0.0.4+ 
--   USB-C hub with HDMI ([The one we used](https://www.dustinhome.se/product/5011166993/travel-port-usb-c-total))
+-   USB-C hub with HDMI
 -   External monitor 
 -   HDMI cable 
 
@@ -30,7 +30,7 @@ This tutorial will guide you through building a basic user interface using the L
 
 ### 1. The Basic Setup
 
-Begin by plugging your Portenta board into the computer using a USB-C cable and open the Arduino IDE or the Arduino Pro IDE. If this is your first time running Arduino sketch files on the board, we suggest you check out how to [set up the Portenta H7 for Arduino](https://github.com/bcmi-labs/arduino-pro-content/blob/master/content/tutorials/portenta-h7/por-ard-usb/por-ard-gs) before you proceed.
+Begin by plugging your Portenta board into the computer using a USB-C cable and open the Arduino IDE or the Arduino Pro IDE. If this is your first time running Arduino sketch files on the board, we suggest you check out how to [set up the Portenta H7 for Arduino](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-gs) before you proceed.
 
 ![The Portenta H7 can be connected to the computer using an appropriate USB-C cable](assets/por_ard_lvgl_basic_setup.svg)
 
