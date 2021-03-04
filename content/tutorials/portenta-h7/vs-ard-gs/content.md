@@ -1,21 +1,20 @@
 # Getting Started With The Vision Shield Camera 
 ## Overview
-This tutorial shows you how to capture frames from the Vision Shield Camera module and visualise the video output through a Processing sketch. 
+This tutorial shows you how to capture frames from the Vision Shield Camera module and visualise the video output through a Processing sketch.
 
 ### You Will Learn
--   Capturing the frames from the camera.
--   Sending the frames through Serial communication. 
--   Visualising the frames on Processing. 
+- Capturing the frames from the camera.
+- Sending the frames through Serial communication. 
+- Visualising the frames on Processing. 
 
 ### Required Hardware and Software
--   Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
--   Portenta Vision Shield ( [LoRa](https://store.arduino.cc/portenta-vision-shield-lora) or [Ethernet](https://store.arduino.cc/portenta-vision-shield) )
--   USB C cable (either USB A to USB C or USB C to USB C)
--   Arduino IDE 1.8.10+  or Arduino Pro IDE 0.0.4+ 
--   Processing 3.5.4
+- Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
+- Portenta Vision Shield ( [LoRa](https://store.arduino.cc/portenta-vision-shield-lora) or [Ethernet](https://store.arduino.cc/portenta-vision-shield) )
+- USB C cable (either USB A to USB C or USB C to USB C)
+- Arduino IDE 1.8.10+  or Arduino Pro IDE 0.0.4+ 
+- Processing 3.5.4
 
 ## Instructions
-
 Accessing the vision shield is done through help of both Arduino and Processing tools. The Arduino sketch handles the capture of image data by the onboard camera while the java applet created on Processing helps us visualise this info. With the help of serial communication. you can create a channel that reroutes the frames from the Camera to the java applet. The following steps will run you through how to capture, package the data through the serial port and visualise the output in Processing. 
 
 ### 1. The Basic Setup
@@ -28,7 +27,6 @@ Open the board manager on the Arduino IDE and install the latest version of the 
 ![](assets/vs_ard_gs_core.svg)
 
 ### 2. Capturing the Frames
-
 To capture the frames you will need to use the `camera.h` thats included in the Mbed core. This library contains all apis related to frame capture,motion detection and pattern recognition. Include the header file in your sketch. 
 
 ```c++
@@ -68,14 +66,13 @@ void loop() {
 ```
 
 ### 3. Create the Processing Sketch 
-
 Open a new processing sketch file and name it `CameraCapture.pde`. 
 
 ![Create a processing sketch]()
 
 Lets start by iniitialising the libraries and variables you will need to process the captured  To process the data sent by the Vision Shield you will need to import the following libraries :  
 
--  `processing.serial.*` : a [Serial Library](https://processing.org/reference/libraries/serial/index.html)  that is used to read and write data to external devices over the serial line. 
+- `processing.serial.*` : a [Serial Library](https://processing.org/reference/libraries/serial/index.html)  that is used to read and write data to external devices over the serial line. 
 - `java.nio.ByteBuffer`  : a java class that provides access to operations on byte buffers
 
 ```java
@@ -128,8 +125,7 @@ void draw()
 }
 ```
 
-### 4. Visualing the Frames  
-
+### 4. Visualing the Frames
 For this step, you will need the help of the `serialEvent()` api to update the `myImage`as an when a new frame arrives on the serial port.
 
 ```java
@@ -193,7 +189,6 @@ void serialEvent(Serial myPort) {
 ```
 
 ### 5. Upload the sketch
-
 Select the right serial port on your IDE and upload the Arduino sketch to your H7 and after a successful upload, run the `CameraViewer.pde`  sketch. You should be able to see the rendered camera output on the processing canvas.
 
 ![Camera output on Processing]()
@@ -201,11 +196,10 @@ Select the right serial port on your IDE and upload the Arduino sketch to your H
 ## Conclusion
 
 ### Next Steps
--   A
--   B
+- A
+- B
 
 ### Complete Sketch
-
 The `CaptureRawBytes.ino` Sketch. 
 
 ```c++
@@ -306,13 +300,10 @@ void serialEvent(Serial myPort) {
 }
 ```
 
-
-
 ## Troubleshooting
-
 ### Sketch Upload Troubleshooting
 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
 
-**Authors:** Lenard George, YY
+**Authors:** Lenard George, YY  
 **Reviewed by:** ZZ [18.03.2020]  
 **Last revision:** AA [27.3.2020]
