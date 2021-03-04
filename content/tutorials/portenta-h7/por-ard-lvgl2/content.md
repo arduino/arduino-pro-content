@@ -205,7 +205,7 @@ Then declare the widgets and events from the list below.
 
      // Mouse pointer
      mouseCursor = lv_label_create(lv_scr_act(), NULL);
-     lv_label_set_text(mouseCursor, "o");
+     lv_label_set_text(mouseCursor, LV_SYMBOL_GPS);
      lv_indev_set_cursor(my_indev_mouse, mouseCursor); // connect the object to the driver
 
      //Submit button
@@ -221,7 +221,7 @@ Then declare the widgets and events from the list below.
      lv_obj_set_event_cb(launchButton, launchButtonEventHandler);
      lv_obj_align(launchButton, NULL, LV_ALIGN_CENTER, 185, -100);
      lv_obj_t * launchButtonText = lv_label_create(launchButton, NULL);
-     lv_label_set_text(launchButtonText , "Keyboard");
+     lv_label_set_text(launchButtonText , LV_SYMBOL_KEYBOARD);
 
      //Text Area
      textArea = lv_textarea_create(lv_scr_act(), NULL);
