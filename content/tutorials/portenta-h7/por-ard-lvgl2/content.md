@@ -110,7 +110,7 @@ void myButtonEventHandler(lv_obj_t * myButton, lv_event_t myWidgetEvent);
   }
 
   void myButtonEventHandler(lv_obj_t * myButton, lv_event_t myWidgetEvent){
-     switch(event) {
+     switch(myWidgetEvent) {
           case LV_EVENT_PRESSED:
               // Button got pressed
               // Do work
