@@ -8,6 +8,8 @@ const config = require('./config');
 const rules = require('./rules');
 const Validator = require('./validator').Validator;
 const { ValidationError } = require('./validation-error');
+const markdownLinkCheck = require('markdown-link-check');
+
 
 const PARSER_SYNTAX_PREFIX = "language-"; // Prepended by marked
 const basePathFromCommandline = process.argv[2];
@@ -102,6 +104,45 @@ validator.addValidation((tutorials) => {
         });
     });
     return errorsOccurred;
+});
+
+
+/**
+ * Verify that there are no broken links
+ */
+validator.addValidation(async (tutorials) => {
+    if(!config.checkForBrokenLinks) return 0;
+    
+    let promises = tutorials.map(tutorial => {
+        return new Promise(function(resolve){
+            const markdownContent = tutorial.markdown;
+            if(!markdownContent) return;
+            const ignorePatterns = config.brokenLinkExcludePatterns.map((ignorePattern) => {
+                return {pattern : new RegExp(ignorePattern)}
+            });
+            const options = { ignorePatterns: ignorePatterns};
+            markdownLinkCheck(markdownContent, options, function (err, results) {                
+                if (err) {
+                    console.error('Error', err);
+                    return;
+                }
+                let errorsOccurred = 0;
+                results.forEach(function (result) {    
+                    if(result.status == "alive"){
+                        console.log('✅ %s is alive', result.link);
+                    } else if(result.status == "dead"){
+                        ++errorsOccurred;
+                        console.log('❌ %s is dead 💀 HTTP %s in %s', result.link, result.statusCode, tutorial.path);
+                    }
+                });
+                resolve(errorsOccurred);
+            });
+        });
+    });
+
+    return Promise.all(promises).then((results) => {
+        return results.reduce((a, b) => a + b, 0);
+    });
 });
 
 
@@ -232,11 +273,13 @@ validator.addValidation((tutorials) => {
 /**
  * Check if an error occurred and exit with the corresponding status code
  */
-const errorsFound = validator.validate()
-if(errorsFound == 0){
-    console.log("✅ No errors found.")
-    process.exit(0);
-} else {
-    console.log("🚫 " + errorsFound + " errors found.")
-    process.exit(2);
-}
+(async function main() {
+    const errorsFound = await validator.validate()
+    if(errorsFound == 0){
+        console.log("✅ No errors found.")
+        process.exit(0);
+    } else {
+        console.log("🚫 " + errorsFound + " errors found.")
+        process.exit(2);
+    }  
+})()
