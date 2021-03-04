@@ -5,5 +5,6 @@
     "allowedSyntaxSpecifiers" : ["cpp", "py", "text"],
     "allowNestedLists" : false,
     "metadataSchema" : "tests/metadata-schema.json",
-    "checkForBrokenLinks" : true
+    "checkForBrokenLinks" : true,
+    "brokenLinkExcludePatterns" : ["assets\/"]
 }

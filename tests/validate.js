@@ -117,8 +117,10 @@ validator.addValidation(async (tutorials) => {
         return new Promise(function(resolve){
             const markdownContent = tutorial.markdown;
             if(!markdownContent) return;
-            
-            const options = { ignorePatterns: [{ pattern: /assets\// }]};
+            const ignorePatterns = config.brokenLinkExcludePatterns.map((ignorePattern) => {
+                return {pattern : new RegExp(ignorePattern)}
+            });
+            const options = { ignorePatterns: ignorePatterns};
             markdownLinkCheck(markdownContent, options, function (err, results) {                
                 if (err) {
                     console.error('Error', err);
