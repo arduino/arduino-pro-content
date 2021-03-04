@@ -11,7 +11,7 @@ var Validator = class Validator {
         this.validatonCallbacks.push(func);
     }
 
-    validate(){
+    async validate(){
         let errorsOccurred = 0;
         this.validatonCallbacks.forEach(validation => {
             errorsOccurred += validation(this.tutorials);

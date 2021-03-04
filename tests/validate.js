@@ -263,11 +263,13 @@ validator.addValidation((tutorials) => {
 /**
  * Check if an error occurred and exit with the corresponding status code
  */
-const errorsFound = validator.validate()
-if(errorsFound == 0){
-    console.log("✅ No errors found.")
-    process.exit(0);
-} else {
-    console.log("🚫 " + errorsFound + " errors found.")
-    process.exit(2);
-}
+(async function main() {
+    const errorsFound = await validator.validate()
+    if(errorsFound == 0){
+        console.log("✅ No errors found.")
+        process.exit(0);
+    } else {
+        console.log("🚫 " + errorsFound + " errors found.")
+        process.exit(2);
+    }  
+})()
