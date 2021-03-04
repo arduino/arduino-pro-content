@@ -132,7 +132,7 @@ void setup() {
 
 The draw function checks if the connection is still alive and if there is any new data that can be drawn as an image. In that case the original image gets copied into a new image object so that it can be scaled up.
 
-```cpp
+```java
 void draw() {
   // Time out after 1.5 seconds and ask for new data
   if(millis() - lastUpdate > 1500) {
@@ -154,66 +154,81 @@ void draw() {
 For this step, you will use the `serialEvent()` callback function to update the `myImage` when a new data is received on the serial port.
 
 ```java
-void serialEvent(Serial myPort){}
-```
-
-The first thing you need inside this method is to read the bytes from the `frameBuffer` array which you can do with the help of the  [`readBytes()`](https://processing.org/reference/libraries/serial/Serial_readBytes_.html) method that returns the number of bytes read. 
-
-```java
-// Read the raw bytes
-int bytesRead = myPort.readBytes(frameBuffer);
-```
-
-Next we parse the frame buffer to get the different pixel values ; draw the image based on the pixelPosition and [`color()`](https://processing.org/reference/color_.html) and [`Byte.toUnsignedInt()`](https://docs.oracle.com/javase/8/docs/api/java/lang/Byte.html). We then update the size of the array 
-
-```java
-// Reading the buffer and plotting the pixels  
-for(int i=0; i < bytesRead; ++i){      
-    byte pixelValue = frameBuffer[i];      
-    myImage.pixels[pixelPosition] = color(Byte.toUnsignedInt(pixelValue));
-    ++pixelPosition;
-  }  
-```
-
-Once all the pixels have been rendered, you need to send an acknowledgement back to the arduino sketch to send the pixels for the next frame. We will update the image through `updatePixels()`, reset the `pixelPosition` to `0`and write `1` to the serial port  
-
-```  cpp
-// Let the Arduino sketch know we received all pixels
-// and are ready for the next frame
-if(pixelPosition == cameraPixelCount){
-    myImage.updatePixels();
-    pixelPosition = 0;
-    myPort.write(1);    
-  } 
-```
-
-heres the complete sketch for the `serialEvent()` function 
-
-```java
 void serialEvent(Serial myPort) {
+  lastUpdate = millis();
   
-  // read the raw bytes 
-  int bytesRead = myPort.readBytes(frameBuffer);    
+  // read the received bytes
+  myPort.readBytes(frameBuffer);
+
+  // Access raw bytes via byte buffer  
+  ByteBuffer bb = ByteBuffer.wrap(frameBuffer);
+
+  int i = 0;
+
+  while (bb.hasRemaining()) {
+    // read 8-bit pixel
+    byte pixelValue = bb.get();
+
+    // set pixel color
+    myImage.pixels[i++] = color(Byte.toUnsignedInt(pixelValue));    
+  }
   
-  for(int i=0; i < bytesRead; ++i){      
-    byte pixelValue = frameBuffer[i];      
-    myImage.pixels[pixelPosition] = color(Byte.toUnsignedInt(pixelValue));
-    ++pixelPosition;
-  }    
+  myImage.updatePixels();
+  
+  // Ensures that the new image data is drawn in the next draw loop
+  shouldRedraw = true;
   
   // Let the Arduino sketch know we received all pixels
   // and are ready for the next frame
-  if(pixelPosition == cameraPixelCount){
-    myImage.updatePixels();
-    pixelPosition = 0;
-    myPort.write(1);    
-  }      
-  
+  myPort.write(1);
 }
 ```
 
+The first thing we do inside this method is to update the timestamp for when the last data was read. This is to detect and recover from a connection timeout. Then read the bytes from the `frameBuffer` array which you can do with the help of the [`readBytes()`](https://processing.org/reference/libraries/serial/Serial_readBytes_.html) method that returns the number of bytes read.
+
+```java
+lastUpdate = millis();
+  
+// read the received bytes
+myPort.readBytes(frameBuffer);
+```
+
+Then the frame buffer is translated into a ByteBuffer that allows for easy and safe access to the underlying bytes without having to worry about the array indices.
+
+```cpp
+// Access raw bytes via byte buffer  
+ByteBuffer bb = ByteBuffer.wrap(frameBuffer);
+```
+
+Next we read the frame buffer and convert the bytes into pixel color values. The image gets constructed by sequentially filling the pixels array of the image. The conversion of the raw data is done wih [`color()`](https://processing.org/reference/color_.html) and [`Byte.toUnsignedInt()`](https://docs.oracle.com/javase/8/docs/api/java/lang/Byte.html).
+
+```java
+int i = 0;
+
+while (bb.hasRemaining()) {
+  // read 8-bit pixel
+  byte pixelValue = bb.get();
+
+  // set pixel color
+  myImage.pixels[i++] = color(Byte.toUnsignedInt(pixelValue));    
+} 
+```
+
+Once all the pixels have been updated, you need to tell the sketch to redraw the image. Additionally we send an acknowledgement back to the arduino sketch to ask it to send the pixels for the next frame. We update the image with `updatePixels()` and write `1` to the serial port for the acknowledgement.
+
+```  cpp
+myImage.updatePixels();
+
+// Ensures that the new image data is drawn in the next draw loop
+shouldRedraw = true;
+
+// Let the Arduino sketch know we received all pixels
+// and are ready for the next frame
+myPort.write(1);
+```
+
 ### 5. Upload the sketch
-Select the right serial port on your IDE and upload the Arduino sketch to your H7 and after a successful upload, run the `CameraViewer.pde`  sketch. You should be able to see the rendered camera output on the processing canvas.
+Select the right serial port on your IDE and upload the Arduino sketch to your H7. After a successful upload, run the `CameraViewer.pde` sketch in Processing. You should be able to see the rendered camera output on the Processing canvas.
 
 ![Camera output on Processing]()
 
@@ -233,8 +248,7 @@ CameraClass cam;
 uint8_t fb[320*240];
 
 void setup() {
-
-  Serial.begin(921600);
+  Serial.begin(921600);  
 
   // Init the cam QVGA, 30FPS
   cam.begin(CAMERA_R320x240, 30);
@@ -242,13 +256,16 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  if (Serial) {
-    // Grab frame and write to serial
-    if (cam.grab(fb) == 0) {
-       Serial.write(fb, 320*240);       
-    }
-    while(Serial.read() != 1){};
+  
+  // Wait until the receiver acknowledges
+  // that they are ready to receive new data
+  while(Serial.read() != 1){};
+  
+  // Grab frame and write to serial
+  if (cam.grab(fb) == 0) {
+     Serial.write(fb, 320*240);       
   }
+  
 }
 ```
 
@@ -274,53 +291,83 @@ final int cameraWidth = 320;
 final int cameraHeight = 240;
 final int cameraBytesPerPixel = 1;
 final int cameraPixelCount = cameraWidth * cameraHeight;
-final int bytesPerFrame = cameraWidth * cameraHeight * cameraBytesPerPixel;
+final int bytesPerFrame = cameraPixelCount * cameraBytesPerPixel;
 
 PImage myImage;
 byte[] frameBuffer = new byte[bytesPerFrame];
-int pixelPosition = 0; 
+int lastUpdate = 0;
+boolean shouldRedraw = false;
 
-void setup()
-{
-  //initialise the canvas 
-  size(320, 240);
+void setup() {
+  size(640, 480);
 
   // if you have only ONE serial port active
-  //myPort = new Serial(this, Serial.list()[0], 9600);          // if you have only ONE serial port active
+  //myPort = new Serial(this, Serial.list()[0], 921600);          // if you have only ONE serial port active
 
   // if you know the serial port name
-  //myPort = new Serial(this, "COM5", 9600);                    // Windows
+  //myPort = new Serial(this, "COM5", 921600);                    // Windows
   //myPort = new Serial(this, "/dev/ttyACM0", 921600);            // Linux
-  myPort = new Serial(this, "/dev/cu.usbmodem14101", 9600);     // Mac
+  myPort = new Serial(this, "/dev/cu.usbmodem14401", 921600);     // Mac
 
   // wait for full frame of bytes
   myPort.buffer(bytesPerFrame);  
+
   myImage = createImage(cameraWidth, cameraHeight, ALPHA);
+  
+  // Let the Arduino sketch know we're ready to receive data
+  myPort.write(1);
 }
 
-void draw()
-{
-  image(myImage, 0, 0);
+void draw() {
+  // Time out after 1.5 seconds and ask for new data
+  if(millis() - lastUpdate > 1500) {
+    println("Connection timed out.");
+    myPort.clear();
+    myPort.write(1);
+  }
+  
+  if(shouldRedraw){    
+    PImage img = myImage.copy();
+    img.resize(640, 480);
+    image(img, 0, 0);
+    shouldRedraw = false;
+  }
 }
 
 void serialEvent(Serial myPort) {
+  lastUpdate = millis();
   
- // read the raw bytes 
-  int bytesRead = myPort.readBytes(frameBuffer);    
+  // read the received bytes
+  myPort.readBytes(frameBuffer);
+
+  // Access raw bytes via byte buffer  
+  ByteBuffer bb = ByteBuffer.wrap(frameBuffer);
   
-  for(int i=0; i < bytesRead; ++i){      
-    byte pixelValue = frameBuffer[i];      
-    myImage.pixels[pixelPosition] = color(Byte.toUnsignedInt(pixelValue));
-    ++pixelPosition;
-  }    
+  /* 
+    Ensure proper endianness of the data for > 8 bit values.
+    When using > 8bit values uncomment the following line and
+    adjust the translation to the pixel color. 
+  */     
+  //bb.order(ByteOrder.BIG_ENDIAN);
+
+  int i = 0;
+
+  while (bb.hasRemaining()) {
+    // read 8-bit pixel
+    byte pixelValue = bb.get();
+
+    // set pixel color
+    myImage.pixels[i++] = color(Byte.toUnsignedInt(pixelValue));    
+  }
+  
+  myImage.updatePixels();
+  
+  // Ensures that the new image data is drawn in the next draw loop
+  shouldRedraw = true;
   
   // Let the Arduino sketch know we received all pixels
   // and are ready for the next frame
-  if(pixelPosition == cameraPixelCount){
-    myImage.updatePixels();
-    pixelPosition = 0;
-    myPort.write(1);    
-  }      
+  myPort.write(1);
 }
 ```
 
@@ -328,6 +375,6 @@ void serialEvent(Serial myPort) {
 ### Sketch Upload Troubleshooting
 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
 
-**Authors:** Lenard George, YY  
-**Reviewed by:** ZZ [18.03.2020]  
+**Authors:** Lenard George, Sebastian Romero  
+**Reviewed by:** Sebastian Romero [2021-03-04]  
 **Last revision:** AA [27.3.2020]
