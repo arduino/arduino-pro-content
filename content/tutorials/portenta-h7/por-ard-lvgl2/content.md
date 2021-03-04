@@ -241,7 +241,7 @@ Event handler `keyboardEventHandler` gets if the cancel (Cross) button or the ac
 ```cpp
    // LVGL's keyboard widget callback, its not needed to configure each KEY, just we add the feature to exit and submit from the keyboard, with the cross and tick buttons (cancel button, and confirm button)
    static void keyboardEventHandler(lv_obj_t * keyboard, lv_event_t keyboardEvent) {
-     //lv_keyboard_def_event_cb(keyboard, keyboardEventHandler);
+     lv_keyboard_def_event_cb(keyboard, keyboardEvent);
      if (keyboardEvent == LV_EVENT_CANCEL) {
        lv_keyboard_set_textarea(keyboard, NULL);
        lv_obj_del(keyboard);
