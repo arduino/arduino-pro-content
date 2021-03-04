@@ -1,4 +1,4 @@
-# Visualising the Vision Shield's Camera feed 
+# Getting Started With The Vision Shield Camera 
 ## Overview
 This tutorial shows you how to capture frames from the Vision Shield Camera module and visualise the video output through a Processing sketch. 
 
