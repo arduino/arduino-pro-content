@@ -112,27 +112,37 @@ validator.addValidation((tutorials) => {
 /**
  * Verify that there are no broken links
  */
-validator.addValidation((tutorials) => {
-    if(!config.checkForBrokenLinks) return;
-    let errorsOccurred = 0;
-    tutorials.forEach(tutorial => {       
-        const markdownContent = tutorial.markdown;
-        if(!markdownContent) return;
-
-        const options = { ignorePatterns: [{ pattern: /assets\// }]};       
-        console.log("Checking URLs...");
-        markdownLinkCheck(markdownContent, options, function (err, results) {
-            console.log("CHECKED");
-            if (err) {
-                console.error('Error', err);
-                return;
-            }
-            results.forEach(function (result) {
-                console.log('%s is %s', result.link, result.status);
+validator.addValidation(async (tutorials) => {
+    if(!config.checkForBrokenLinks) return 0;
+    
+    let promises = tutorials.map(tutorial => {
+        return new Promise(function(resolve){
+            const markdownContent = tutorial.markdown;
+            if(!markdownContent) return;
+            
+            const options = { ignorePatterns: [{ pattern: /assets\// }]};
+            markdownLinkCheck(markdownContent, options, function (err, results) {                
+                if (err) {
+                    console.error('Error', err);
+                    return;
+                }
+                let errorsOccurred = 0;
+                results.forEach(function (result) {    
+                    if(result.status == "alive"){
+                        console.log('✅ %s is alive', result.link);
+                    } else if(result.status == "dead"){
+                        ++errorsOccurred;
+                        console.log('❌ %s is dead 💀 HTTP %s in %s', result.link, result.statusCode, tutorial.path);
+                    }
+                });
+                resolve(errorsOccurred);
             });
         });
     });
-    return errorsOccurred;
+
+    return Promise.all(promises).then((results) => {
+        return results.reduce((a, b) => a + b, 0);
+    });
 });
 
 
