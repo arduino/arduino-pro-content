@@ -25,7 +25,7 @@ Connect the Vision Shield to your Portenta H7 as shown and plugin the H7 to your
 
 Open the board manager on the Arduino IDE and install the latest version of the MBED Core (1.3.2)
 
-![](/Users/lenardgeorge/Documents/Arduino/03_Pro/arduino-pro-content/content/tutorials/portenta-h7/vs-ard-gs/assets/vs_ard_gs_core.svg)
+![](assets/vs_ard_gs_core.svg)
 
 ### 2. Capturing the Frames
 
