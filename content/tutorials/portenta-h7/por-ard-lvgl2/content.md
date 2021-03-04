@@ -82,7 +82,48 @@ Then the `loop()` will be focusing on the LVLG's task handler to update the scre
 
 The screen will show a text field that the user can input text in it, and two buttons, one that says submit that will trhow a popup box with the text from the previous text field, and the other button that launches a virtual keyboard from LVGL so the user only needs a mouse to fully interact with the interface wich will show on-screen an "o" where the pointer of the mouse is pointing to.
 
+### LVGL widget's events
 To understand the logic behind the interface LVGL works with **callbacks** also called **event handlers**, wich are functions that are called when for example a widget is being touched. The widgets can be attached to custom callbacks by using the command `lv_obj_set_event_cb( WIDGET, CALLBACK() )`
+
+**Note:** Sometimes depending on the widget, it needs to be defined the *event* inside the *event callback* (Look inside `keyboardEventHandler`, it has `lv_keyboard_def_event_cb` to attach the *EVENT* to the current callback)
+
+When we attach a callback using `lv_obj_set_event_cb( WIDGET, EVENT_HANDLER )` , we are letting LVGL know that the widget object `lv_obj_t * WIDGET` has a function that is going to receive the events happening  wich is called `EVENT_HANDLER` , this function needs to have inside its parameters the pointer to the widget and a definition to the **event** `void EVENT_HANDLER(lv_obj_t WIDGET, lv_event_t EVENT)` so inside the brackets we will be able to know the event by looking the `EVENT` variable and comparing that with the LVGL events, some of them are:
+  * LV_EVENT_PRESSED : when its being pressed
+  * LV_EVENT_RELEASED : triggerd when the widget stops being pressed
+
+### Syntax example of an Event Handler
+```cpp
+lv_obj_t * myButton;
+void myButtonEventHandler(lv_obj_t * myButton, lv_event_t myWidgetEvent);
+
+...
+
+  setup(){
+  
+    ...
+    
+    myButton = lv_btn_create(lv_scr_act(), NULL);
+    lv_obj_set_event_cb(myButton, myButtonEventHandler);
+    
+    ...
+    
+  }
+
+  void myButtonEventHandler(lv_obj_t * myButton, lv_event_t myWidgetEvent){
+     switch(event) {
+          case LV_EVENT_PRESSED:
+              // Button got pressed
+              // Do work
+              break;
+
+          case LV_EVENT_RELEASED:
+              // Button got released
+              // Do work
+              break;
+      }
+  }
+  ```
+**Note:** Remember to add inside the `loop()` function  `lv_task_handler();` to update LVGL's screen and task manager
 
 [image, with the interface labeled with the names]()
 
