@@ -10,6 +10,8 @@ const config = require('./config');
 const rules = require('./rules');
 const Validator = require('./validator').Validator;
 const { ValidationError } = require('./validation-error');
+const markdownLinkCheck = require('markdown-link-check');
+
 
 const PARSER_SYNTAX_PREFIX = "language-"; // Prepended by marked
 const basePathFromCommandline = process.argv[2];
@@ -107,29 +109,27 @@ validator.addValidation((tutorials) => {
 });
 
 
-function getStatusCode(url) {
-    const requestLibrary = url.startsWith("https://") ? https : http;   
-    return new Promise((resolve, reject) => {
-        requestLibrary.request(url, { method: 'HEAD' }, (res) => {
-            console.log(res.statusCode);
-        }).on('error', (err) => {
-            console.error(err);
-        }).end(()=> {
-            resolve(res.statusCode);
-        });
-    });
-}
-
 /**
  * Verify that there are no broken links
  */
 validator.addValidation((tutorials) => {
     if(!config.checkForBrokenLinks) return;
     let errorsOccurred = 0;
-    tutorials.forEach(tutorial => {            
-        tutorial.linkPaths.forEach(link => {
-            const status = getStatusCode(link);
-            console.log(status);
+    tutorials.forEach(tutorial => {       
+        const markdownContent = tutorial.markdown;
+        if(!markdownContent) return;
+
+        const options = { ignorePatterns: [{ pattern: /assets\// }]};       
+        console.log("Checking URLs...");
+        markdownLinkCheck(markdownContent, options, function (err, results) {
+            console.log("CHECKED");
+            if (err) {
+                console.error('Error', err);
+                return;
+            }
+            results.forEach(function (result) {
+                console.log('%s is %s', result.link, result.status);
+            });
         });
     });
     return errorsOccurred;
