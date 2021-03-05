@@ -23,11 +23,7 @@ This tutorial gets you started with the Edge control board and goes over the bas
 
 A ball valve is a form of quarter-turn [valve](https://en.wikipedia.org/wiki/Valve) which uses a hollow, perforated and pivoting ball to control flow of liquids and gasses through it. With the Edge control control you can can control and automate the basic operation such as the opening and closing of the valves. You will first install the required core and the libraries required to use the Edge Control board and upload a blink sketch to check if everything is connected right. You will then connect the Valve and then write the sketch that opens and closes it at a certain interval. Finally, you will connect the board to an external power source and upload the sketch. 
 
-[note]
-
 **Note :** Ensure that the Phoenix connectors are in place before plugging in the wires to the respective pins 
-
-[\note]
 
 ### 1. The Basic Setup
 
