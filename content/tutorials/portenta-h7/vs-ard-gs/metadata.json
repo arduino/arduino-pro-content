@@ -1,20 +1,13 @@
-{
-   "id":"por-ard-gs",
-   "index": 1,
-   "title":"Setting Up Portenta H7 For Arduino",
-   "slug":"por-ard-gs",
-   "authors":[
-      "Lenard George",
-      "Sebastian Hunkeler"
-   ],
+{   
+   "title":"Getting Started With The Vision Shield Camera",    
    "coverImage":{
-      "src":"assets/por_ard_gs_cover.svg?sanitize=true"
+      "src":"assets/vs_ard_gs_core.svg?sanitize=true"
    },
    "tags":[
       "Getting Started",
-      "IDE",
-      "Setup",
-      "Blink"
+      "Camera",
+      "Processing",
+      "Serial"
    ],
-   "abstract":"This tutorial teaches you how to set up the board, how to configure your computer and how to run the classic Arduino blink example  to verify if the configuration was successful."
+   "abstract":"This tutorial shows you how to capture frames from the Vision Shield Camera module and visualise the video output through a Processing sketch."
 }
