@@ -1,5 +1,6 @@
 const path = require('path');
 const fs = require('fs');
+const matcher = require("./matcher")
 
 /**
  * 
@@ -9,7 +10,7 @@ const fs = require('fs');
  * @param {The matching files as recursion parameter} matchingFiles 
  */
 function findAllFiles(startPath, searchPattern, excludePatterns = [], matchingFiles = []) {    
-    if(matchAny(startPath, excludePatterns)){
+    if(matcher.matchAny(startPath, excludePatterns)){
         // console.log("Excluding directory " + startPath);
         return matchingFiles;
     }
@@ -27,7 +28,7 @@ function findAllFiles(startPath, searchPattern, excludePatterns = [], matchingFi
         var stat = fs.lstatSync(filename);
         if (stat.isDirectory()) {
             findAllFiles(filename, searchPattern, excludePatterns, matchingFiles);
-        } else if (!matchAny(filename, excludePatterns)) {
+        } else if (!matcher.matchAny(filename, excludePatterns)) {
             if(!searchPattern) {
                 matchingFiles.push(filename);
                 continue;
