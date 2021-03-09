@@ -357,7 +357,7 @@ Once we have added these functions, our interface will be created. Then, we need
 
 To finish the sketch we need to define the RPC calls from the M4, to do so, in the `lvgl_interaction.ino` tab, after the `loop()` function, we need to add:
 
-The **USB keyboard** callback `onKe` that will check if the Text area is focused, if so it will add the character from the key that has been pressed
+The **USB keyboard** callback `onKey` that will check if the Text area is focused, if so it will add the character from the key that has been pressed
 ```cpp
    //Keyboard callback, in case the Text area is focused (mouse clicked in it) it can bypass the input to it 
    void onKey(char ch) {
