@@ -27,8 +27,9 @@ By adding the most common used interfaces, the Mouse and the Keyboard we are doi
 
 This tutorial will guide you to build a basic user interface using the LVGL, the USBhost and the RPC Libraries that you will have to download using the Arduino Library Manager. The setup for this tutorial requires you to:
 
-1. Upload a sketch file to the Portenta board where it converts the board into a usb host Device. 
-2. Connect the board to a USB-HUB and connect an external monitor. 
+1. Upload a sketch file to the Portenta board where it gets the data from the USB inputs trough the USB hub on the **M4 processor**.
+2. Upload a sketch file to the Portenta board to draw the interface, and get the data of the USB inputs from the M4 processor trough RPC on the **M7 processor**.
+3. Connect the board to a USB-HUB and connect an external monitor. 
 
 Once the USB-HUB is powered externally, a graphical user interface with a button and a text-area will be displayed on the screen, then you will be able to interact with those items (widgets) by connecting a mouse and/or a Keyboard to the Portenta through he USB-HUB.
 
