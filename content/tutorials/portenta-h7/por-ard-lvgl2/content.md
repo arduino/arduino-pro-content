@@ -61,7 +61,7 @@ Lets start by creating the files. First, lets create a new file called "lvgl_int
 Then, in the `setup()` we need to initialize some needed features (Video driver, LVGL, Inputs)
 ```cpp
    void setup() {
-     // put your setup code here, to run nce:
+     // put your setup code here, to run once:
      Serial1.begin(115200);
      portenta_init_video();
      initInputs();
