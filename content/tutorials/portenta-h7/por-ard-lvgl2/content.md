@@ -58,7 +58,7 @@ Lets start by creating the files. First, lets create a new file called "lvgl_int
    #include "widgets.h"
 ```
 
-Then, in the `setup()` we need to initialise the some needed features (Video driver, LVGL, Inputs)
+Then, in the `setup()` we need to initialize some needed features (Video driver, LVGL, Inputs)
 ```cpp
    void setup() {
      // put your setup code here, to run nce:
