@@ -89,7 +89,7 @@ Then the `loop()` will be focusing on the LVLG's task handler to update the scre
 We will create the screen interface in a new tab called "widgets.h". This interface will show on the screen a text field - where users can visualize the text inputs from the keyboard- and two buttons, the "submit" button that will throw a popup box with the text visualized on the text field, and the other that will launch a virtual keyboard from LVGL allowing the user to fully interact with the interface by using just a mouse.
 
 ### LVGL widget's events
-To understand the logic behind the LVGL interface, we need to know that it works with **callbacks**, also called **event handlers**, which are functions that are triggered when a specific event happen, e.g. the `myButtonEventHandler` function will be called when a there have happened a mouse click over a widget on the screen. 
+To understand the logic behind the LVGL interface, we need to know that it works with **callbacks**, also called **event handlers**, which are functions that are triggered when a specific event happens, e.g. the `myButtonEventHandler` function will be called when there has happened a mouse click over a widget on the screen. 
 
 The widgets can be attached to custom callbacks by using the command `lv_obj_set_event_cb( WIDGET, CALLBACK() )`
 
