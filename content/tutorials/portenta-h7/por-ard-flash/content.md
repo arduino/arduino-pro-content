@@ -3,26 +3,31 @@
 This tutorial demonstrates how to use the on-board flash memory of the Portenta H7 to read and write data using the BlockDevice API provided by Mbed OS. As the internal memory is limited in size we will also take a look at saving data to the QSPI flash memory.
 
 ### You Will Learn
-- Accessing the Portenta's flash memory using Mbed's Flash In-Application Programming Interface 
-- Accessing the Portenta's flash memory using Mbed's Flash In-Application Programming Interface 
-- Reading and writing data from and to the flash memory
-- Calculating the memory's free storage space
+- Accessing the Portenta's internal flash memory using Mbed's Flash In-Application Programming Interface 
+- Accessing the Portenta's QSPI flash memory using Mbed's Flash In-Application Programming Interface 
+- Reading the memory's characteristics
 
 ### Required Hardware and Software
 - Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
-- USB C cable (either USB A to USB C or USB C to USB C)
+- USB-C cable (either USB-A to USB-C or USB-C to USB-C)
 - Arduino IDE 1.8.10+ or Arduino Pro IDE 0.0.4+ or Arduino CLI 0.13.0+
 
 ## Mbed OS APIs for Flash Storage
-Portenta's core is based upon the Mbed operating system, allowing for Arduino APIs to be integrated using APIs exposed directly by Mbed OS. 
+Portenta's core is based on the Mbed operating system, allowing for Arduino APIs to be integrated using APIs exposed directly by Mbed OS. 
 
 Mbed OS has a rich API for managing storage on different mediums, ranging from the small internal flash memory of a microcontroller to external SecureDigital cards with large data storage space.
 
-In this tutorial, we are going to save a value persistently inside the flash memory. That allows to access that value even after resetting or rebooting the board. We will retrieve some information from a flash block by using the [FlashIAPBlockDevice](https://os.mbed.com/docs/mbed-os/v6.4/apis/flashiapblockdevice.html) API and create a block device object within the awailable space of the memory (the memory space which is left after uploading a sketch to the Portenta).
+In this tutorial, we are going to save a value persistently inside the flash memory. That allows to access that value even after rebooting the board. We will retrieve some information from a flash block by using the [FlashIAPBlockDevice](https://os.mbed.com/docs/mbed-os/v6.4/apis/flashiapblockdevice.html) API and create a block device object within the available space of the memory. In case of the internal memory it's the space which is left after uploading a sketch to the board.
 
-***Important: Be aware of the flash r/w limits while using raw/direct access: flash memories have a limited amount of write cycles. Typical flash memories can perform about 10000 writes cycles to the same block before starting to "wear out" and begin to lose the ability to retain data. You can actually render your board useless with improper use of this example and described APIs.***
+***Be aware of the flash r/w limits: flash memories have a limited amount of read/write cycles. Typical flash memories can perform about 10000 writes cycles to the same block before starting to "wear out" and begin to lose the ability to retain data. You can render your board useless with improper use of this example and described APIs.***
 
-## Programming the Flash
+## Block Device Blocks
+
+Blocks of flash memory can be accessed through the block device APIs. They are byte addressable but operate in units of blocks. There are three types of blocks for the different block device operations: read blocks, erase blocks and program blocks. The recommended procedure for programming data is to first erase a block and then programming in units of the program block size. The sizes of the erase, program and read blocks may not be the same but they must be multiples of each another. Keep in mind that the state of an erased block is undefined until you program it with data.
+
+![Conceptual view of how the block sizes relate to one another](assets/por_ar_flash_memory.svg)
+
+## Programming the Internal Flash
 
 ### 1. Create the Structure of the Program
 Before we start it's important to keep above mentioned **flash r/w limits** in mind! Therefore this method should only be used for **once-in-a-time** read and write **operations** such as reading a user setting in the `setup()`. It is not a good idea to use it for constantly updated values such as e.g. sensor data.
