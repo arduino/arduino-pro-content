@@ -1,11 +1,12 @@
 # Getting started with OpenMV
 
 ## Overview
-In this tutorial, you will learn about how the vision carrier board for Portenta works with OpenMV and MicroPython. This tutorial will go through some features in OpenMV that are good to know about when using this hardware and software. You will then write a simple script in MicroPython that will make use of these OpenMV features with your Portenta board.
+In this tutorial, you will learn how the Portenta works with OpenMV and MicroPython. This tutorial will go through some features in OpenMV and MicroPython. You will then write a simple script in MicroPython that will use the I/O pins and PWM on the Portenta.
 
 ### What You Will Learn
 - How to use the OpenMV IDE
 - How to use the OpenMV IDE to run MicroPython on Portenta
+- How to use PWM and I/O pins on the Portenta
 
 ### Required Hardware and Software
 - Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
@@ -24,12 +25,6 @@ The OpenMV IDE was built for Machine Vision applications. It is meant to provide
 
 This is where OpenMV comes in. [Here](https://openmv.io/) you can read more about the OpenMV IDE.
 
-## MicroPython
-
-With OpenMV and the Portenta board, it is possible to use MicroPython in sketches. 
-
-[Here](http://docs.MicroPython.org/en/latest/) you can read more about MicroPython.
-
 ## OpenMV features
 
 ### Histogram
@@ -44,12 +39,6 @@ By default, the histogram shows information about the whole image. However, if y
 
 Finally, the image resolution and ROI (x, y, w, h) of the bounding box you select on the image are displayed above the histogram graphs.
 
-### Serial terminal
-
-All debug text from your OpenMV Cam created by print will be displayed in the Serial Terminal.
-
-[Screenshot focused on the Serial terminal area in OpenMV]()
-
 ### Frame buffer
 
 The OpenMV IDE has an integrated frame buffer viewer. Making it easy for you to see what the OpenMV Cam is looking at while working on your code. 
@@ -58,13 +47,33 @@ The frame buffer viewer displays whatever was in your OpenMV Cam's frame buffer 
 
 [Screenshot focused on the frame buffer area in OpenMV]()
 
-The `Reocord` button in the frame buffer area of OpenMV IDE records whatever is in the frame buffer. It can be used to quickly make videos of what your OpenMV Cam sees. Recording works by recording whatever is in OpenMV IDE's frame buffer at 30 FPS. However, the frame buffer may be updating faster or slower than this depending on the application. 
+The `Record` button in the frame buffer area of OpenMV IDE records whatever is in the frame buffer. It can be used to quickly make videos of what your OpenMV Cam sees. Recording works by recording whatever is in OpenMV IDE's frame buffer at 30 FPS. However, the frame buffer may be updating faster or slower than this depending on the application. 
 
 The `Disable` button in the frame buffer area of OpenMV IDE controls whether or not your OpenMV Cam will send images to OpenMV IDE. Your OpenMV Cam has to JPEG compress images constantly to stream them to OpenMV IDE. This reduces performance. If you want to see how fast your script will run without your OpenMV Cam being connected to your computer just click the `Disable` button. While the frame buffer is disabLED you won't be able to see what your OpenMV Cam is looking at anymore.
 
-You can right click on the image you see in the frame buffer viewer to save that image. If you select an area in the frame buffer by clicking and dragging you can save just that area instead. You should stop the script before trying to save the frame buffer. Otherwise, you may not get the exact frame you want.
+You can right-click on the image you see in the frame buffer viewer to save that image. If you select an area in the frame buffer by clicking and dragging you can save just that area instead. You should stop the script before trying to save the frame buffer. Otherwise, you may not get the exact frame you want.
 
 > To de-select an area in the frame buffer, click anywhere without dragging to remove the selection.
+
+## MicroPython
+
+With OpenMV and the Portenta board, it is possible to use MicroPython in sketches. MicroPython includes a lot of classes and libraries that makes it easier for us to use the Portenta to its full potential.
+
+[Here](http://docs.MicroPython.org/en/latest/) you can read more about MicroPython.
+
+### Pulse Width Modulation
+
+Pulse width modulation (PWM) is a way to get an artificial analog output on a digital pin. By rapidly toggling the pin from low to high. There are two parameters associated with this: the frequency of the toggling, and the duty cycle. The duty cycle is defined to be how long the pin is high compared with the length of a single period. Maximum duty cycle is when the pin is high all the time, and minimum is when it is low all the time.
+
+>On the Portenta the pins PA8, PC6, PC7, PG7, PJ11, PK1, and PH15 support PWM.
+
+[Portenta pinout?]()
+
+### I/O pins
+
+I/O pins are pins that can be set as input or output in the sketch. Using Micropython, there are methods to set the mode of the pin (input or output) and methods to get and set the digital logic level. We can also determine the behavior of the pull up or down resistor with the help of Micropython.
+
+
 
 ## Instructions
 
@@ -111,85 +120,115 @@ The Portenta will start flashing its blue LED when it's ready to be connected. A
 
 ![When the Portenta is successfully connected to the OpenMV IDE a green play button appears in the lower left](assets/por_openmv_board_connected.png)
 
-### 3. Preparing the MicroPython Sketch
+### 3. Wiring the LED to the Portenta
+
+To be able to change the LED's intensity with PWM we need to first wire the Portenta to the LED. If you want to use other pins than the ones shown here, take a look at the pinout diagram.
+
+![Portenta pinout](assets/Pinout-PortentaH7_latest.png)
+
+Here you can also see what functionality each pin has. In this tutorial wire the pin PC6 via a resistor to the positive leg of the LED, and wire the boards GND to the negative leg of the LED. As shown in the illustration.
+
+[Illustration of a LEDs positive leg on a breadboard wired to the PC6 pin on the Portenta, and the negative end going to the GND pin on the Portenta]()
+
+### 4. Preparing the MicroPython Sketch
 
 Create a new script by clicking the "New File" button in the toolbar on the left side. Import the required modules:
 
 ```py
 import pyb # Import module for board related functions
-import sensor # Import the module for sensor related functions
-import image # Import module containing machine vision algorithms
+import time # Import module for board related functions
+from pyb import Pin, Timer # Import module for board related functions
 ```
 
 A module in Python is a confined bundle of functionality. By importing it into the script it gets made available.
 
-### 4. Preparing the Sensor
+### 5. Preparing the Pin and PWM
 
-In order to use the camera, it has to be configured in the script.
-
-```py
-sensor.reset() # Resets and initialize the camera sensor.
-sensor.set_pixformat(sensor.GRAYSCALE) # Sets the sensor to grayscale.
-sensor.set_framesize(sensor.QVGA) # Sets the resolution to 320x240 px
-sensor.skip_frames(time = 2000) # Let new settings take affect.
-```
-
-The camera that comes with the Portenta Vision Carrier only supports grayscale images, which is why we set `set_pixformat` parameter to `sensor.GRAYSCALE`.
-
-When we set a resolution with the `set_framesize` function, it needs to be in a format that is supported by the sensor.
-
-`sensor.skip_frames()` should be used to let the camera image stabilize after the camera's settings have been changed. If you intend to change the camera's settings this function should be calLED.
-
-### 5. Using MicroPython
-
-MicroPython allows us to control the Portenta board in OpenMV. With these functions, you can easily trigger visual feedback on the Portenta board. This is a useful tool to have when creating scripts and trying them out.
+In order to control a LED connected to one of our pins, we first need to configure the pins behavior. After, we can set up the PWM.
 
 ```py
-LEDRed = pyb.LED(1) # Initiates the green LED
-LEDGreen = pyb.LED(2) # Initiates the green LED
-LEDBlue = pyb.LED(3) # Initiates the green LED
+pin1 = Pin("PC6", Pin.OUT_PP, Pin.PULL_NONE)
+timer1 = Timer(3, freq=1000) # Frequency in Hz
+channel1 = timer1.channel(1, Timer.PWM, pin=pin1, pulse_width=0)
+
+# maximum and minimum pulse-width, corresponds to maximum and minimum brightness
+maxWidth = 5000
+minWidth = 0
+
+# How much to change the pulse-width by each step
+step = 500
+# Set starting value
+curWidth = minWidth
 ```
 
-Calling on `pyb.LED()` we can change the state of the built-in LED on the Portenta board. Assigning them to a variable will make it easier to use later in the script. Determining color is as easy as entering a different argument into the function.
+In the `pin1` variable we define what pin on the board we intend to use. We also define if it should be an input or output pin with `Pin.OUT_PP`. Lastly, we can set the behavior of the pull up resistor on the pin, for now we set it as `Pin.PULL_NONE`.
 
-### 5. Uploading the Script
+>For more info about the options available, please see [Here](https://docs.micropython.org/en/latest/library/pyb.Pin.html?)
 
-The script will first print a message in the serial terminal to confirm that it is on. The built-in LED will be glowing red, red will indicate the preparation time before a picture is taken. It will then switch to green when the photo is being taken. The blue light will indicate when the process is done and the picture is saved. The script uses delays to make it possible to see the changes in the state of the LED. Messages will also be printed in the terminal throughout the process, giving you an extra debugging tool.
+With the `timer1` variable we will determine what id the timer will have and what frequency it will use. With a timer frequency of 1000 Hz, each cycle takes 1 millisecond. When setting up the PWM channel we can then use these variables. With the `timer1.channel()` function we can customize the PWM channels behavior. `pulse_width` sets the initial pulse width for the PWM.
+
+We also enter parameters for how much the LED will change each time the PWM pulses with the `step` variable, what value it should start on with `minWidth` and when it will reset with the `maxWidth` variable.
+
+### 6. Using MicroPython
+
+Putting our code inside a `while True:` function will make the code run in a loop.
+
+```py
+while True:
+
+  channel1.pulse_width(curWidth)
+
+  # this determines how often we change the pulse-width.
+  pyb.delay(500)
+
+  curWidth = curWidth + step
+
+  if curWidth > maxWidth:
+    print("Max width reached!")
+    curWidth = minWidth
+```
+
+We use the `channel1.pulse_width()` function to set the pulse width of the PWM channel, changing the intensity of the LED. Using `pyb.delay()` we can make the sketch stop running for the determined amount of time, which is 500 milliseconds in this example. At the end, we check if the value has reached our defined end, we print a message to the serial terminal and reset the `curWidth` variable.
+
+### 7. Uploading the Script
+
+If the wiring is correct the LED light should start incrementally getting brighter before resetting and starting over. Printing a message when the limit has been reached. 
 
 ```py
 import pyb # Import module for board related functions
-import sensor # Import the module for sensor related functions
-import image # Import module containing machine vision algorithms
+import time # Import module for board related functions
+from pyb import Pin, Timer # Import module for board related functions
 
-sensor.reset() # Initialize the camera sensor.
-sensor.set_pixformat(sensor.GRAYSCALE) # or sensor.GRAYSCALE
-sensor.set_framesize(sensor.QVGA) # or sensor.QQVGA (or others)
-sensor.skip_frames(time = 1000) # Let new settings take affect.
+pin1 = Pin("PC6", Pin.OUT_PP, Pin.PULL_NONE)
 
-ledRed = pyb.LED(1) # Initiates the green led
-ledGreen = pyb.LED(2) # Initiates the green led
-ledBlue = pyb.LED(3) # Initiates the green led
+timer1 = Timer(3, freq=1000) # Frequency in Hz
 
-print("Camera turned on!") # Prints a message to the serial console
-ledRed.on() # Turns the built in LED on and sets it to the color red
-sensor.skip_frames(time = 3000) # Give some space between light on and photo taken. Time can be increased inside here to better fit your scenario.
-ledRed.off()
-ledGreen.on()
-print("Say cheese!")
-sensor.snapshot().save("test.jpg") # test.jpg will be the name of the 
-pyb.delay(600) # Delay to be able to see the change in color on the LED
-ledGreen.off()
-ledBlue.on()
-pyb.delay(600)
-print("Done! Reset the camera to see the saved image.")
-ledBlue.off()
+channel1 = timer1.channel(1, Timer.PWM, pin=pin1, pulse_width=0)
+
+# Maximum and minimum pulse-width, corresponds to maximum and minimum brightness
+maxWidth = 5000
+minWidth = 0
+
+# How much to change the pulse-width by each step
+step = 500
+# Set starting value
+curWidth = minWidth
+
+while True:
+  channel1.pulse_width(curWidth)
+
+  # How often the pulse-width is changed
+  pyb.delay(500)
+  curWidth = curWidth + step
+
+  if curWidth > maxWidth:
+    print("Max width reached!")
+    curWidth = minWidth
 ```
-
-The saved image is located on the Portenta drive that mounts after connecting the board.
 
 ## Conclusion
 
-In this tutorial you learned how to use the OpenMV IDE to develop MicroPython scripts that then run on the Portenta board. You learned how to interact with the built-in LEDs in MicroPython on the OpenMV firmware. Lastly, you learned how to use the vision carrier board in OpenMV.
+In this tutorial, you learned how to use the OpenMV IDE to develop MicroPython scripts that run on the Portenta board. You learned how to use and configure I/O pins and PWM on the Portenta. Lastly, you learned how to use these to control a LED light.
 
 
 ### Next Steps
@@ -201,7 +240,6 @@ In this tutorial you learned how to use the OpenMV IDE to develop MicroPython sc
 - If the upload of the OpenMV firmware fails during the download, put the board back in boot loader mode and try again. Give it a few tries until the firmware gets successfully uploaded.
 - If the upload of the OpenMV firmware fails without even starting, try uploading the latest firmware using the "Load Specific Firmware File" option. You can find the latest firmware on the [OpenMV Github repository](https://github.com/openmv/openmv/releases). Look for a file calLED *firmware.bin* in the PORTENTA folder.
 - If you experience issues putting the board in bootloader mode, make sure you first update the bootloader to the latest version using the *PortentaH7_updateBootloader* sketch from the examples menu in the Arduino IDE.
-- If the camera cannot get recognized by the OpenMV IDE or if you see a "No OpenMV Cams found!" message, press the reset button of Portenta once and wait until you see the blue LED flashing. Then try again connecting to the board.
 - If you see a "OSError: Reset FaiLED" message, reset the board by pressing the reset button. Wait until you see the blue LED flashing, connect the board to the OpenMV IDE and try running the script again.
 
 **Authors:** Sebastian Romero, Benjamin Dannegård
