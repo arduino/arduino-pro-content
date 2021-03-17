@@ -49,7 +49,7 @@ The motorized valve comes with three wires primarily marked as blue, yellow and 
 
 ![Schematics of the 3 wire motor](/Users/lenardgeorge/Documents/Arduino/03_Pro/arduino-pro-content/content/tutorials/portenta-h7/ec-ard-3wirevalve/assets/ec_ard_valve_wires.svg) 
 
-Connect the red and the blue wire to any one of the 8 pairs of `LATCHING OUT` pins, `1N` and `1P` of your Edge Control board. Latches allow you to store the state of the pins based on the previous output. As the valve doesnt come with internal drivers to store the state of the motor, we will use the `Latching_out` pins (instead of `Latching_out_cmd`) that are the ones that include drivers on the edge control. 
+Connect the red and the blue wire to any one of the 8 pairs of `LATCHING OUT` pins. In this example we will use `1N` and `1P` of your Edge Control board. Latches allow you to store the state of the pins based on the previous output. As the valve doesnt come with internal drivers to store the state of the motor, we will use the `Latching_out` pins (instead of `Latching_out_cmd`) that are the ones that include drivers on the edge control. 
 
 ![Connecting the valves to the Phoenix](assets/ec_ard_connect_valve.svg)
 
@@ -63,7 +63,7 @@ Open a new sketch file on the Arduino IDE and name it `ValveControl.ino`. Add th
 #include <Arduino_EdgeControl.h>
 ```
 
-inside the `void setup()` , after enabeling the serial communication, run the initialization routine  `EdgeControl.begin()` . This routine is in charge to enable the default power areas of the board. Then use `Latching.begin()` to configure the expander pins as outputs.
+inside the `void setup()` , after enabeling the serial communication, run the initialization routine  `EdgeControl.begin()` . This routine is in charge of enabling the default power areas of the board. Then use `Latching.begin()` to configure the expander pins as outputs.
 
 ```cpp
 void setup()
@@ -120,7 +120,7 @@ The Valves require a power supply of 9 - 12 V and you can either use a power sup
 
 Connect the jumper from the **B** pin to the positive terminal of the Battery and the jumper from the **GND** pin to the negative terminal of the battery 
 
-[/note]
+
 
 ### 5. Uploading the Sketch 
 
