@@ -369,10 +369,6 @@ void serialEvent(Serial myPort) {
 }
 ```
 
-## Troubleshooting
-### Sketch Upload Troubleshooting
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
-
 **Authors:** Lenard George, Sebastian Romero  
 **Reviewed by:** Sebastian Romero [2021-03-04]  
-**Last revision:** AA [27.3.2020]
+**Last revision:** Lenard [2021-03-18]
