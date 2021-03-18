@@ -370,7 +370,7 @@ The sketch will contain the next functions
 
 **Note**: This functions are defined in the `Portenta_USBhost.h` wrapper, because it needs to be defined for the USB API structure of the USB library, defining them its needed to create the logic of those events.
 
-### Include needed libraries
+**Include needed libraries**
 
 On top of the sketch include RPC and the USB host wrapper that reduces the extra needed code.
 And we will use `#ifndef` to block the upload to only the M4 (in case you didnt select the correct Core it will print a compile error)
@@ -384,7 +384,7 @@ And we will use `#ifndef` to block the upload to only the M4 (in case you didnt 
     #endif
 ```
 
-### Initialization
+**Initialization**
 
 The setup will initialize the USB protocol and look for the connected USB hub
 
@@ -395,7 +395,7 @@ The setup will initialize the USB protocol and look for the connected USB hub
         RPC.begin();
     }
 ```
-### Mouse handler
+**Mouse handler**
 
 After the `loop()`
 
@@ -413,7 +413,7 @@ The data from the mouse is splitted in 3 bytes
     }
 ```
 
-### Keyboard Handler
+**Keyboard Handler**
 
 Using `parseKeyboardInput` function from the wrapper will get the character of the pressed key, then will send the data to the **M7 processor** using a **RPC call**
 
