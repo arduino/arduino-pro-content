@@ -74,7 +74,7 @@ void loop() {
 ### 3. Create the Processing Sketch 
 Open a new processing sketch file and name it `CameraCapture.pde`. 
 
-![Create a processing sketch]()
+![Create a processing sketch](assets/vs_ard_open_pde_sketch.png)
 
 Let's start by importing the libraries and initialising the variables you will need to process the captured data. To process the data sent by the Vision Shield you will need to import the following libraries:
 
@@ -230,13 +230,11 @@ myPort.write(1);
 ### 5. Upload the sketch
 Select the right serial port on your IDE and upload the Arduino sketch to your H7. After a successful upload, run the `CameraViewer.pde` sketch in Processing. You should be able to see the rendered camera output on the Processing canvas.
 
-![Camera output on Processing]()
+![Camera output on Processing](assets/vs_ard_frames_captured.png)
 
 ## Conclusion
 
-### Next Steps
-- A
-- B
+In this tutorial you learnt how to capture the frames from your Vision Shield's Camera and to visualise the  frames throught Processing. This knowledge can be useful for you to build and experiment simple computer vision applications for both outdoor and indoor environments. 
 
 ### Complete Sketch
 The `CaptureRawBytes.ino` Sketch. 
