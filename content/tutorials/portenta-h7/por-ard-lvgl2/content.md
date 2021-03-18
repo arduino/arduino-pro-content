@@ -362,10 +362,10 @@ Create a new sketch called *lvgl_mouse_m4.ino*.
 
 The sketch will contain the next functions
 * Mouse
-    * `mouseCallback(tusbh_ep_info_t* ep, const uint8_t* mouse)`
+    * `mouseCallback(tusbh_ep_info_t* ep, const uint8_t* mouse)`  
         This function handle the mouse buttons and the relative change of position
 * Keyboard
-    * `keyboardCallback(tusbh_ep_info_t* ep, const uint8_t* keys)`
+    * `keyboardCallback(tusbh_ep_info_t* ep, const uint8_t* keys)`  
         Get the input keys, proccess them and send the correct character.
 
 **Note**: This functions are defined in the `Portenta_USBhost.h` wrapper, because it needs to be defined for the USB API structure of the USB library, defining them its needed to create the logic of those events.
