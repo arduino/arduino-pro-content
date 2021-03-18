@@ -18,17 +18,17 @@ This tutorial shows you how to capture frames from the Vision Shield Camera modu
 Accessing the Vision Shield's camera data is done with the help of both Arduino and the Processing IDE. The Arduino sketch handles the capture of image data by the on-board camera while the java applet created with Processing helps to visualise this data with the help of a serial connection. The following steps will run you through how to capture, package the data through the serial port and visualise the output in Processing. 
 
 ### 1. The Basic Setup
-Connect the Vision Shield to your Portenta H7 as shown and plug in the H7 to your computer. 
+Connect the Vision Shield to your Portenta H7 as shown in the figure. The top and Bottom high density connecters the aligned with and are connected to the concurrent ones on the Portenta board. Plug in the H7 to your computer using the USB C cable. 
 
-![Connecting the Vision Shield to Portenta]()
+![Connecting the Vision Shield to Portenta](assets/vs_ard_gs_attach_boards.svg)
 
-Open the board manager in the Arduino IDE and install the latest version of the Portenta Core.
+Open the board manager in the Arduino IDE and install the latest version of the Portenta Core which is [v1.3.2](https://github.com/arduino/ArduinoCore-mbed/releases/tag/1.3.2)
 
 ![](assets/vs_ard_gs_core.svg)
 
 ### 2. Capturing the Frames
 
-Create a new Arduino sketch called `CameraCaptureRawBytes.ino` or just open the example sketch under Portenta_Camera->CameraCaptureRawBytes in the Arduino IDE.
+Create a new Arduino sketch called `CameraCaptureRawBytes.ino`.
 
 To capture the frames you will need to use the functions contained in `camera.h` which comes with the Portenta core. This library contains all APIs related to frame capturing, motion detection and pattern recognition. Include the header file in your sketch.
 
