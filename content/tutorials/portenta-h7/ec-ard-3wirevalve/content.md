@@ -53,7 +53,7 @@ The motorized valve comes with three wires primarily marked as blue, yellow and 
 
 ![Schematics of the 3 wire motor](/Users/lenardgeorge/Documents/Arduino/03_Pro/arduino-pro-content/content/tutorials/portenta-h7/ec-ard-3wirevalve/assets/ec_ard_valve_wires.svg) 
 
-Connect the red and the bluw wire to any one of the 8 pairs of `LATCHING OUT` pins, `1N` and `1P` of your Edge Control board. Latches allow you to store the state of the pins based on the previous output. As the valve doesnt come with internal drivers to store the state of the motor, the with drivers on the `Latching_out`pins store the signal states without any power consumption.
+Connect the red and the blue wire to any one of the 8 pairs of `LATCHING OUT` pins, `1N` and `1P` of your Edge Control board. Latches allow you to store the state of the pins based on the previous output. As the valve doesnt come with internal drivers to store the state of the motor, the with drivers on the `Latching_out`pins store the signal states without any power consumption.
 
 ![Connecting the valves to the Phoenix](assets/ec_ard_connect_valve.svg)
 
