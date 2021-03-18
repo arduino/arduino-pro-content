@@ -63,8 +63,8 @@ Then, in the `setup()` we need to initialize some needed features (Video driver,
    void setup() {
      // put your setup code here, to run once:
      Serial1.begin(115200);
-     portenta_init_video();
      initInputs();
+     portenta_init_video();
 
      createWidgets();
    }
@@ -392,6 +392,7 @@ The setup will initialize the USB protocol and look for the connected USB hub
     void setup() {
         // put your setup code here, to run once:
         USBhost_init();
+        RPC.begin();
     }
 ```
 ### Mouse handler
