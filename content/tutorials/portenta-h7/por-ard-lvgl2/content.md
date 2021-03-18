@@ -354,7 +354,79 @@ To finish with the functions, the mouse pointer for the LVGL mouse driver, save 
 
 Once we have added these functions, our interface will be created. Then, we need to go back to the main tab of the `lvgl_interaction.ino` sketch to finish the programming of the interface.
 
-## 4. Add the Mouse and Keyboard receivers
+## 4. Create the Mouse and Keyboard RPC senders
+
+Following our structure, the **Portenta M4** will handle the USB inputs (mouse and keyboard) and send the required data to the **Portenta M7** using **RPC**
+
+Create a new sketch called *lvgl_mouse_m4.ino*.
+
+The sketch will contain the next functions
+* Mouse
+    * `mouseCallback(tusbh_ep_info_t* ep, const uint8_t* mouse)`
+        This function handle the mouse buttons and the relative change of position
+* Keyboard
+    * `keyboardCallback(tusbh_ep_info_t* ep, const uint8_t* keys)`
+        Get the input keys, proccess them and send the correct character.
+
+**Note**: This functions are defined in the `Portenta_USBhost.h` wrapper, because it needs to be defined for the USB API structure of the USB library, defining them its needed to create the logic of those events.
+
+### Include needed libraries
+
+On top of the sketch include RPC and the USB host wrapper that reduces the extra needed code.
+And we will use `#ifndef` to block the upload to only the M4 (in case you didnt select the correct Core it will print a compile error)
+
+```cpp
+    #include "Portenta_USBhost.h"
+    #include "RPC_internal.h"
+
+    #ifndef CORE_CM4
+    #error "This sketch should be compiled for Portenta (M4 core)"
+    #endif
+```
+
+### Initialization
+
+The setup will initialize the USB protocol and look for the connected USB hub
+
+```cpp
+    void setup() {
+        // put your setup code here, to run once:
+        USBhost_init();
+    }
+```
+### Mouse handler
+
+After the `loop()`
+
+The data from the mouse is splitted in 3 bytes
+* byte 1: Mouse buttons
+* byte 2: Mouse X relative position
+* byte 3: Mouse Y relative position
+
+```cpp
+    static int mouseCallback(tusbh_ep_info_t* ep, const uint8_t* mouse) {
+        uint8_t btn = mouse[0];
+        int8_t x = ((int8_t*)mouse)[1];
+        int8_t y = ((int8_t*)mouse)[2];
+        RPC1.call("on_mouse", btn, x, y);
+    }
+```
+
+### Keyboard Handler
+
+Using `parseKeyboardInput` function from the wrapper will get the character of the pressed key, then will send the data to the **M7 processor** using a **RPC call**
+
+```cpp
+  static int keyboardCallback(tusbh_ep_info_t* ep, const uint8_t* keys)
+  {
+    char sendCharacter;
+    sendCharacter = parseKeyboardInput(keys);
+    RPC1.call("on_key", sendCharacter);
+    return 0;
+  }
+```
+
+## 5. Add the Mouse and Keyboard receivers
 
 To finish the sketch we need to define the RPC calls from the M4, to do so, in the `lvgl_interaction.ino` tab, after the `loop()` function, we need to add:
 
