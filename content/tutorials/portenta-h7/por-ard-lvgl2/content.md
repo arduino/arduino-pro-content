@@ -473,5 +473,18 @@ Once these functions have been added, the sketch is finished, it is time now to 
 
 After uploading both of the sketches to each one of the processors of the Portenta board, you will need to set the following connections:
 
-[Connection schema]()
+![Connection schema](assets/por_ard_lvgl_cover.svg)
 
+Once the USB-HUB is powered externally, a graphical user interface with a button and a text-area will be displayed on the screen, then you will be able to interact with those items (widgets) by using the mouse and the keyboard connected to the USB-HOST.
+
+## Conclusion
+
+This tutorial shows how to build a simple user interface programming both cores of your Portenta and interact with it by connecting a mouse and/or a keyboard to it. While going through the tutorial you have created a different widgets that allow the user to interact with them, but also learnt how the the callbacks that handle the different events triggered by the peripherals work.
+
+## Next steps
+
+Now that you know how to build widgets that update and show text on the screen and that react to the mouse clicks, you can add more of them to show various information or try out different LVGL widgets.
+
+**Authors:** Pablo Marquínez, Jose Garcia
+**Reviewed by:** Jose Garcia, Manuel Zomer [2021-03-21]
+**Last revision:** 
