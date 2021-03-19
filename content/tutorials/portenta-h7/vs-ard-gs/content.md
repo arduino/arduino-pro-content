@@ -24,7 +24,7 @@ Connect the Vision Shield to your Portenta H7 as shown in the figure. The top an
 
 Open the board manager in the Arduino IDE and install the latest version of the Portenta Core which is [v1.3.2](https://github.com/arduino/ArduinoCore-mbed/releases/tag/1.3.2)
 
-![](assets/vs_ard_gs_core.svg)
+![Download the mbed core](assets/vs_ard_gs_core.svg)
 
 ### 2. Capturing the Frames
 
@@ -48,7 +48,7 @@ In the `setup()` function, let's start the Serial communication at `921600` baud
 ```cpp
 void setup() {
   Serial.begin(921600);
-  // Init the cam QVGA, 30FPS
+  //Init the cam QVGA, 30FPS
   cam.begin(CAMERA_R320x240, 30);
 }
 ```
@@ -228,6 +228,7 @@ myPort.write(1);
 ```
 
 ### 5. Upload the sketch
+
 Select the right serial port on your IDE and upload the Arduino sketch to your H7. After a successful upload, run the `CameraViewer.pde` sketch in Processing. You should be able to see the rendered camera output on the Processing canvas.
 
 ![Camera output on Processing](assets/vs_ard_frames_captured.png)
