@@ -5,16 +5,16 @@ This tutorial gets you started with the Edge control board and goes over the bas
 
 ### You Will Learn
 
--   How to connect a motorized valve to the edge control board,
--   About the controlling the valve through basic commands provided by the `Arduino_EdgeControl.h` library,
--   How to power the board with an external power supply, 
+-   How to connect a motorized valve to the edge control board
+-   About the controlling the valve through basic commands provided by the `Arduino_EdgeControl.h` library
+-   How to power the board with an external power supply 
 
 ### Required Hardware and Software
 
--   Arduino Edge control board,
+-   Arduino Edge control board
 -   [1 x US Solid Motorised Ball Valve (9 - 24 V)](https://ussolid.com/u-s-solid-motorized-ball-valve-1-2-brass-electrical-ball-valve-with-full-port-9-24-v-ac-dc-3-wire-setup.html)
--   External power source (12V battery or power supply) - LiPo / SLA, 
--   Micro USB cable,
+-   External power source: 12V battery (LiPo / SLA) or power supply 
+-   Micro USB cable
 -   Arduino IDE 1.8.10+ or Arduino Pro IDE 0.0.4+
 -   2 x Phoenix connectors 1844646
 -   2 x Jumper cables.  
