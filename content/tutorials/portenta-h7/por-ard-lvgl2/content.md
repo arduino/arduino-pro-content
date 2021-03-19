@@ -486,5 +486,5 @@ This tutorial shows how to build a simple user interface programming both cores 
 Now that you know how to build widgets that update and show text on the screen and that react to the mouse clicks, you can add more of them to show various information or try out different LVGL widgets.
 
 **Authors:** Pablo Marquínez, Jose Garcia
-**Reviewed by:** Jose Garcia, Manuel Zomer [2021-03-21]
+**Reviewed by:** Jose Garcia [2021-03-21]
 **Last revision:** 
