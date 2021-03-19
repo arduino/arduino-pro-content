@@ -17,7 +17,7 @@ This tutorial gets you started with the Edge control board and goes over the bas
 -   Micro USB cable
 -   Arduino IDE 1.8.10+ or Arduino Pro IDE 0.0.4+
 -   2 x Phoenix connectors 1844646
--   2 x Jumper cables.  
+-   2 x Jumper cables  
 
 ## Instructions 
 
