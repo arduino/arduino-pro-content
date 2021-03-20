@@ -25,7 +25,7 @@ A ball valve is a form of quarter-turn [valve](https://en.wikipedia.org/wiki/Val
 
 [note]
 
-**Note :** Ensure that the Phoenix connectors are in place before plugging in the wires to the respective pins 
+***Note :** Ensure that the Phoenix connectors are in place before plugging in the wires to the respective pins 
 
 [\note]
 
@@ -125,35 +125,51 @@ The Valves require a power supply of 9 - 12 V and you can either use a power sup
 
 Connect the jumper from the **B** pin to the positive terminal of the Battery and the jumper from the **GND** pin to the negative terminal of the battery 
 
-[note]
-
-we recommend using Lipo batteries. In this tutorial we have a Lipo more effiecitn, current discharge is higher and higher battery life. 
-
-[/note]
+***Note : we recommend using Lipo batteries. In this tutorial we have a Lipo more effiecitn, current discharge is higher and higher battery life***
 
 ### 5. Uploading the Sketch 
 
-Connect the board to your computer, upload the `ValveControl.ino` sketch and open the **Serial Monitor**. If all the connections are done right, the valve opens and closes and you should be able to see th Open the serial monitor and it will display the status of the valves 
-
-![Valve status displayed on the Serial Monitor]()
+Connect the board to your computer, upload the `ValveControl.ino` sketch and open the **Serial Monitor**. If all the connections are done right, the valve opens and closes and you should be able to see the status as `Open` or `Close` on the serial monitor. 
 
 ## Conclusion 
 
-### Next Steps
-
--   Watermark / soil moisture sensor 
--   Remote activation 
+This tutorial explains how a 3 wire valve works and the basic operations of how the Edge Control board used to control the valves. With this knowledge you can build simple irrigation systems that will periodically control the valves that can be later installed in your field. 
 
 ### Complete Sketch
 
- 
+```cpp
+#include <Arduino_EdgeControl.h>
 
-## Troubleshooting
+void setup()
+{
+    Serial.begin(9600);
+    while(!Serial);
 
-### Sketch Upload Troubleshooting
+    delay(1000);
 
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
+    Serial.println("3-Wire Valve Demo");
+
+    EdgeControl.begin();
+    Latching.begin();
+
+    Serial.println("Starting");
+}
+
+void loop()
+{
+    Serial.println("Closing");
+    Latching.channelDirection(LATCHING_OUT_1, POSITIVE);
+    Latching.strobe(4500);
+    delay(2500);
+
+    Serial.println("Opening");
+    Latching.channelDirection(LATCHING_OUT_1, NEGATIVE);
+    Latching.strobe(4500);
+    delay(2500);
+}
+
+```
 
 **Authors:** Ernesto E. Lopez, Lenard George Swamy
-**Reviewed by:** ZZ [18.03.2020]  
-**Last revision:** AA [27.3.2020]
+**Reviewed by:** Ernesto E. Lopez [18.03.2020]  
+**Last revision:** Lenard  [27.3.2020]
