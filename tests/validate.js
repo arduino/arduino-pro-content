@@ -38,10 +38,10 @@ validator.addValidation((tutorials) => {
     
         try {        
             if(!jsonData.coverImage){
-                console.log("❌ No cover image found for " + path);
+                console.log("❌ No cover image found for " + tutorial.path);
                 ++errorsOccurred;            
             } else if (jsonData.coverImage.src.indexOf(".svg") == -1) {
-                console.log("❌ Cover image of " + path + "is not in SVG format.");
+                console.log("❌ Cover image of " + tutorial.path + " is not in SVG format.");
                 ++errorsOccurred;
             }
             
