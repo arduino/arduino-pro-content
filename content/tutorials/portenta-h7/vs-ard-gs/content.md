@@ -227,7 +227,7 @@ shouldRedraw = true;
 myPort.write(1);
 ```
 
-### 5. Upload the sketch
+### 5. Upload the Sketch
 
 Select the right serial port on your IDE and upload the Arduino sketch to your H7. After a successful upload, run the `CameraViewer.pde` sketch in Processing. You should be able to see the rendered camera output on the Processing canvas.
 
