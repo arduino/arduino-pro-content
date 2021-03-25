@@ -1,13 +1,18 @@
-const fileHelper = require('./file-helper');
-const parser = require("./datasheet-generator/parser"); //TODO turn parser into a module
+const fileHelper = require('./lib/file-helper');
+const parser = require("./datasheet-generator/parser");
 
-let datasheetFiles = fileHelper.findAllFiles("content/datasheets/", ".md");
+(async function main() {
+    let datasheetFiles = fileHelper.findAllFiles("../content/datasheets/", ".md");        
 
-for(let filePath of datasheetFiles){
-    console.log(filePath);
-    //TODO
-    //parser.generatePDF(filePath);
-}
-
-console.log("✅ %s Datasheets generated.", datasheetFiles.length);
-process.exit(0);
+    for(let filePath of datasheetFiles){
+        console.log(`Generating datasheet for ${filePath} ...`);
+        const DATASHEET_PATH = "./datasheets";
+        fileHelper.createDirectoryIfNecessary(DATASHEET_PATH)
+        
+        //TODO extract params from frontmatter
+        //TODO infer filename from frontmatter
+        await parser.generatePDFFromMarkdown(filePath, DATASHEET_PATH , 'Portenta Breakout', 'Rev. 01', 'PRO');
+    }
+    console.log("✅ %s Datasheets generated.", datasheetFiles.length);
+    process.exit(0);    
+})()
