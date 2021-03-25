@@ -444,5 +444,5 @@ Now that you know how to use block device to perform reading and writing flash m
 
 
 **Authors:** Giampaolo Mancini, Sebastian Romero  
-**Reviewed by:** Lenard George, Jose Garcia [28.01.2021]  
-**Last revision:** Sebastian Romero [25.02.2021]
+**Reviewed by:** Lenard George, Jose Garcia [2021-01-28]  
+**Last revision:** Sebastian Romero [2021-03-25]
