@@ -3,7 +3,7 @@
         "regex" : "\\*\\*Authors:\\*\\* .*  \\n",
         "shouldMatch" : true,
         "format" : "markdown",
-        "errorMessage" : "The authors' format is incorrect."
+        "errorMessage" : "The authors' format is incorrect. Trailing spaces missing?"
     },
     {
         "regex" : "#### .*\\n",
@@ -15,7 +15,7 @@
         "regex" : "\\*\\*Reviewed by:\\*\\* .* \\[\\d\\d\\d?\\d\\-\\d?\\d\\-\\d\\d\\]  \\n",
         "shouldMatch" : true,
         "format" : "markdown",
-        "errorMessage" : "The reviewer's format is incorrect. Review date added?"
+        "errorMessage" : "The reviewer's format is incorrect. Review date added YYYY-MM-DD?"
     },
     {
         "regex" : "\\*\\*Last revision:\\*\\* .* \\[\\d\\d\\d?\\d\\-\\d?\\d\\-\\d\\d\\]",
@@ -48,7 +48,7 @@
         "errorMessage" : "Megabytes should be either written as 'megabytes' or abbreviated as 'MB'"
     },
     {
-        "regex" : "\\s[\\*|_][^*_](.*?)[\\*|_]",
+        "regex" : "\\s[\\*_][^*_](?:.*?)[\\*_]",
         "shouldMatch" : false,
         "format" : "markdown",
         "errorMessage" : "The use of italic emphasis is discouraged."
