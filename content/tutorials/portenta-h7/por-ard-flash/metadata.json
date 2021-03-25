@@ -1,12 +1,12 @@
 {
-   "title":"Reading and Writing Data the Flash Storage",
-   "coverImage":{
-      "src":"assets/por_ard_block_device_cover.svg?sanitize=true"
+   "title": "Reading and Writing Flash Memory",
+   "coverImage": {
+      "src": "assets/por_ard_block_device_cover.svg?sanitize=true"
    },
-   "tags":[
+   "tags": [
       "Storage",
       "Flash",
       "Block Device"
    ],
-   "abstract":"This tutorial shows you how to use the internal flash memory of the Portenta H7's MCU to read and write data using the Flash In-Application Programming Interface (Flash IAP) provided by Mbed OS."   
+   "abstract": "This tutorial demonstrates how to use the on-board flash memory of the Portenta H7 to read and write data using the BlockDevice API provided by Mbed OS."
 }
