@@ -17,7 +17,7 @@ Portenta's core is based on the Mbed operating system, allowing for Arduino APIs
 
 Mbed OS has a rich API for managing storage on different mediums, ranging from the small internal flash memory of a microcontroller to external SecureDigital cards with large data storage space.
 
-In this tutorial, we are going to save a value persistently inside the flash memory. That allows to access that value even after rebooting the board. We will retrieve some information from a flash block by using the [FlashIAPBlockDevice](https://os.mbed.com/docs/mbed-os/v6.4/apis/flashiapblockdevice.html) API and create a block device object within the available space of the memory. In case of the internal memory it's the space which is left after uploading a sketch to the board.
+In this tutorial, we are going to save a value persistently inside the flash memory. That allows to access that value even after rebooting the board. We will retrieve some information from a flash block by using the [FlashIAPBlockDevice](https://os.mbed.com/docs/mbed-os/v6.9/apis/flashiapblockdevice.html) API and create a block device object within the available space of the memory. In case of the internal memory it's the space which is left after uploading a sketch to the board.
 
 ***Be aware of the flash r/w limits: flash memories have a limited amount of read/write cycles. Typical flash memories can perform about 10000 writes cycles to the same block before starting to "wear out" and begin to lose the ability to retain data. You can render your board useless with improper use of this example and described APIs.***
 
@@ -440,7 +440,7 @@ void loop() {}
 We have learned how to use the available space in the flash memory of the microcontroller to read and save custom data. It's not recommended to use the flash of the microcontroller as the primary storage for data-intensive applications. It is better suited for read/write operations that are performed only once in a while such as storing and retrieving application configurations or persistent parameters.
 
 ## Next Steps
-Now that you know how to use block device to perform reading and writing flash memory you can look into the [next tutorial](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-kvs) on how to use the [TDBStore API](https://os.mbed.com/docs/mbed-os/v6.4/apis/kvstore.html) to create a [key value store](https://en.wikipedia.org/wiki/Key%E2%80%93value_database) in the flash memory.
+Now that you know how to use block device to perform reading and writing flash memory you can look into the [next tutorial](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-kvs) on how to use the [TDBStore API](https://os.mbed.com/docs/mbed-os/v6.9/apis/kvstore.html) to create a [key value store](https://en.wikipedia.org/wiki/Key%E2%80%93value_database) in the flash memory.
 
 
 **Authors:** Giampaolo Mancini, Sebastian Romero  
