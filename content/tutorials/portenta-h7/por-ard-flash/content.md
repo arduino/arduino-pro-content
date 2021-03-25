@@ -341,7 +341,7 @@ After uploading the sketch open the serial monitor to start the flash reading an
 ## Programming the QSPI Flash
 
 One issue with the internal flash is that it's limited in size and the erase blocks are pretty large. This leaves very little space for your sketch and you may quickly run into issues with more complex applications. Therefore we can use the external QSPI flash which has plenty of space to store data.
-For that the block device needs to be initialized differently but the rest of the sketch remains the same. To initialize the device we use the QSPIFBlockDevice class which is a block device driver for NOR-based QSPI Flash devices.
+For that the block device needs to be initialized differently but the rest of the sketch remains the same. To initialize the device we use the [QSPIFBlockDevice](https://os.mbed.com/docs/mbed-os/v6.9/apis/qspifblockdevice.html) class which is a block device driver for NOR-based QSPI Flash devices.
 
 ```cpp
 #define BLOCK_DEVICE_SIZE 1024 * 8 // 8 KB
