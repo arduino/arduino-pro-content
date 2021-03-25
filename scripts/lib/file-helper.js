@@ -1,6 +1,30 @@
 const path = require('path');
 const fs = require('fs');
-const matcher = require("./matcher")
+const matcher = require('./matcher');
+
+function getSubdirectories(path, excludePatterns = []){
+    if (!fs.existsSync(path)) {        
+        console.log("❌ Directory doesn't exist:", path);
+        return;
+    }
+
+    var files = fs.readdirSync(path);
+    let directories = [];
+    files.forEach(file => {
+        var fullPath = path + file;
+
+        if (matcher.matchAny(fullPath, excludePatterns)) {            
+            return;
+        }
+
+        var stat = fs.lstatSync(fullPath);
+        if (stat.isDirectory()) {
+            directories.push(fullPath);
+        }
+    })
+    return directories;    
+}
+
 
 /**
  * 
@@ -46,27 +70,16 @@ function findAllFiles(startPath, searchPattern, excludePatterns = [], matchingFi
     return matchingFiles;
 };
 
-function getSubdirectories(path, excludePatterns = []){
-    if (!fs.existsSync(path)) {        
-        console.log("❌ Directory doesn't exist:", path);
-        return;
+function createDirectoryIfNecessary(path){
+    if(!fs.existsSync(path)){
+        fs.mkdirSync(path);        
     }
-
-    var files = fs.readdirSync(path);
-    let directories = [];
-    files.forEach(file => {
-        var fullPath = path + file;
-
-        if (matchAny(fullPath, excludePatterns)) {            
-            return;
-        }
-
-        var stat = fs.lstatSync(fullPath);
-        if (stat.isDirectory()) {
-            directories.push(fullPath);
-        }
-    })
-    return directories;    
 }
 
-module.exports = { findAllFiles, getSubdirectories};
+function getLineNumberFromIndex(index, haystack){
+    const tempString = haystack.substring(0, index);
+    const lineNumber = tempString.split('\n').length;
+    return lineNumber;
+}
+
+module.exports = { findAllFiles, getSubdirectories, createDirectoryIfNecessary, getLineNumberFromIndex};
