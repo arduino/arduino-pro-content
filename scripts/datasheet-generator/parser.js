@@ -1,10 +1,14 @@
 const marked = require('marked')
 const fs = require('fs')
+const path = require('path');
 const jsdom = require('jsdom')
 const pdf = require('html-pdf')
 const util = require('util')
 const pdfParser = require('pdf-parse')
 const express = require('express')
+
+const SERVER_PORT = 8000
+const ASSETS_FOLDER = "assets"
 
 //console.log(util.inspect(contentIndex, {showHidden: false, depth: null}))
 
@@ -83,8 +87,8 @@ const addElementToContentIndex = (dom, contentList, element) => {
 	})
 }
 
-const addPageNumberToContentList = () => {
-    contentListMap.forEach(element => {
+const addPageNumberToContentList = (contentList) => {
+    contentList.forEach(element => {
 		let numberItem = dom.window.document.createElement('div')
 		numberItem.setAttribute("class", "page-number");
 		numberItem.innerHTML = element.pageNumber
@@ -204,13 +208,13 @@ const getCurrentDateString = () => {
     let today = new Date()
     let dd = today.getDate()
 
-    let mm = today.getMonth()+1
+    let mm = today.getMonth() + 1
     let yyyy = today.getFullYear()
-    if(dd<10)
-        dd='0'+dd
-    if(mm<10) 
-        mm='0'+mm
-    return dd+'/'+mm+'/'+yyyy
+    if (dd < 10)
+        dd = '0' + dd
+    if (mm < 10)
+        mm = '0' + mm
+    return dd + '/' + mm + '/' + yyyy
 }
 
 const findPageNumbers = async (destination, title, revision) => {
@@ -240,48 +244,50 @@ const countCurrentPage = (snippet, title, revision) => {
 	return snippet.split(`${title} / ${revision} - ${getCurrentDateString()}`).length - 1
 }
 
+const getStylesheetForStyle = (style) => {
+    switch(style){
+        case "PRO":
+            return 'datasheet-generator/styles/pro-style.css';
+        default:
+            return null
+    }
+}
+
+const getDataSheetName = (markdownContent) => {
+    //TODO    
+    return "datasheet"
+}
+
 const generatePDFFromMarkdown = async (source, destination, title, revision, style) => {
     let mdContent = await readContent(source)
-    let cssContent = await readContent('datasheet-generator/styles/pro-style.css')
+    let cssContent = await readContent(getStylesheetForStyle(style))
+    const datasheetName = getDataSheetName(mdContent) + ".pdf"
+    const datasheetHTMLName = getDataSheetName(mdContent) + ".html"
     createHtml(mdContent)
 	let htmlSerialized = serializeHtml(cssContent)
     
-    await writeContent(`${destination}/datasheet.html`, htmlSerialized)
+    await writeContent(`${destination}/${datasheetHTMLName}`, htmlSerialized)
     console.log("Completed MD to HTML \t--> \tstep 1 of 4")
 
 	let server = express()
-	server.use(express.static(`${destination}/`))
-	let serverInstance = server.listen(8000)
+	server.use(express.static(`${path.dirname(source)}/`))
+	let serverInstance = server.listen(SERVER_PORT)    
 
-    let pdfProperties = preparePdfProperties(style, 'http://localhost:8000/assets', `${destination}/datasheet.pdf`, title, revision)
-    await createPdfFromHtml(`${destination}/datasheet.html`, pdfProperties)
+    let pdfProperties = preparePdfProperties(style, `http://localhost:${SERVER_PORT}/${ASSETS_FOLDER}`, `${destination}/${datasheetName}`, title, revision)
+    await createPdfFromHtml(`${destination}/${datasheetHTMLName}`, pdfProperties)
     console.log("Prepare PDF \t\t--> \tstep 2 of 4")
 
-    await findPageNumbers(`${destination}/datasheet.pdf`, title, revision)
+    await findPageNumbers(`${destination}/${datasheetName}`, title, revision)
 	
-	addPageNumberToContentList()
+	addPageNumberToContentList(contentListMap)
 	htmlSerialized = serializeHtml(cssContent)
-	await writeContent(`${destination}/datasheet.html`, htmlSerialized)
+	await writeContent(`${destination}/${datasheetHTMLName}`, htmlSerialized)
     console.log("Calculate page numbers \t--> \tstep 3 of 4")
-	await createPdfFromHtml(`${destination}/datasheet.html`, pdfProperties)
+	await createPdfFromHtml(`${destination}/${datasheetHTMLName}`, pdfProperties)
     console.log("Finalize PDF \t\t--> \tstep 3 of 4")
 	console.log("---------------")
-    console.log("Finished! Datasheet saved in: " + destination + "/datasheet.pdf")
+    console.log("Finished! Datasheet saved in: " + destination + "/" + datasheetName)
 	serverInstance.close()
 }
-
-// get arguments
-// let args = process.argv.slice(2)
-// if (args.length < 3) {
-// 	console.log("You have to pass Folder Name + datasheet title + Revision Number")
-// 	console.log('eg. node parser.js portenta-breakout-board "Portenta Breakout" "Rev. 01"')
-// 	return;
-// }
-
-// start the conversion
-// TODO: accept other styles than "PRO"
-
-//compileMarkdown(args[0], args[1], args[2], 'PRO')
-//compileMd('portenta-breakout-board', 'Portenta Breakout', 'Rev. 01', 'PRO')
 
 module.exports = { generatePDFFromMarkdown };
