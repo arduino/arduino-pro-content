@@ -53,14 +53,13 @@ jobs:
 
     - name: Datasheet generation
       cd scripts
-      npm install
-      cd ..
-      node scripts/generate-datasheets.js
+      npm install      
+      node generate-datasheets.js
 
     - name: S3 sync (Datasheet PDFs)
       run: |
         aws s3 sync \
-          content/tutorials \
+          build/datasheets \
           s3://${{ secrets.S3_BUCKET_NAME }}/content/datasheets/ \
           --no-progress \
           --acl public-read \

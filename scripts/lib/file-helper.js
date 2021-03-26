@@ -72,7 +72,7 @@ function findAllFiles(startPath, searchPattern, excludePatterns = [], matchingFi
 
 function createDirectoryIfNecessary(path){
     if(!fs.existsSync(path)){
-        fs.mkdirSync(path);        
+        fs.mkdirSync(path, { recursive: true });
     }
 }
 

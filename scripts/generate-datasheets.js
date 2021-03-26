@@ -1,8 +1,8 @@
 const fileHelper = require('./lib/file-helper');
 const parser = require("./datasheet-generator/parser");
 
-const DATASHEETS_SOURCE_PATH = "../content/datasheets/";
-const DATASHEETS_TARGET_PATH = "./datasheets";
+const DATASHEETS_SOURCE_PATH = "../content/datasheets";
+const DATASHEETS_TARGET_PATH = "../build/datasheets";
 
 (async function main() {
     let datasheetFiles = fileHelper.findAllFiles(DATASHEETS_SOURCE_PATH, ".md");        
