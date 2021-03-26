@@ -5,7 +5,8 @@ on:
     types: deploy
   push:
     branches:
-      - main    
+      - main
+      - breakout-datasheet    
 
 env:
   AWS_REGION: 'us-west-1'
