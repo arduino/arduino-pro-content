@@ -15,7 +15,7 @@
     "html-pdf": "^2.2.0",
     "html-pdf-node": "^1.0.7",
     "jsdom": "^16.4.0",
-    "marked": "^2.0.0",
+    "marked": "^2.0.1",
     "pdf-parse": "^1.1.1",
     "util": "^0.12.3"
   }

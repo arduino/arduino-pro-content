@@ -54,8 +54,9 @@ jobs:
 
     - name: Datasheet generation
       run: |
-        cd scripts
+        cd scripts/datasheet-generator
         npm install
+        cd ..
         node generate-datasheets.js
 
     - name: S3 sync (Datasheet PDFs)
