@@ -24,6 +24,25 @@ html {
     padding-top:50px;
 }
 
+.subtitle {
+    text-align:right;
+    margin-bottom:10px;
+}
+
+.logo-front svg {    
+    height: 1.7rem;
+    position: absolute;
+    top: 60px;
+    left: -5px;
+}
+
+.logo svg {
+    height: 2rem;
+    position: absolute;
+    top: 60px;
+    left: -5px;
+}
+
 .footer {
     font-size: 1rem;
     text-align: center;
@@ -125,11 +144,6 @@ img {
 .page-number::after {
     clear: both;
 }
-
-/* FIXME is this intended? */
-/* #logo-img {
-    display: none;
-} */
 
 #features {
     color: black;

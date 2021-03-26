@@ -9,10 +9,9 @@ const pdfParser = require('pdf-parse')
 const express = require('express')
 
 const SERVER_PORT = 8000
-const ASSETS_FOLDER = "assets"
-const PRO_CSS_PATH = "datasheet-generator/styles/pro-style.css"
+const STYLES_PATH = "datasheet-generator/styles"
+const PRO_CSS_PATH = `${STYLES_PATH}/pro-style.css`
 const SUBTITLE = "Product Reference Manual"
-const LOGO_FILE = "logo.png"
 
 //console.log(util.inspect(contentIndex, {showHidden: false, depth: null}))
 
@@ -119,21 +118,20 @@ const createHtml = (mdContent) => {
     return dom
 }
 
-const serializeHtml = (dom, cssContent, contentURL) => {
+const injectData = (dom, cssContent) => {
         
     // Inject CSS styles
     let style = dom.window.document.createElement("style")
     style.appendChild(dom.window.document.createTextNode(cssContent))
     dom.window.document.head.appendChild(style)
 
-    // serialize dom-nodes
-    let domSerialized = dom.serialize()
-    
-    //FIXME is this needed?
-    // add header for pdf
-    // domSerialized = domSerialized.replace("<body>",`<body><img src="${contentURL}/${ASSETS_FOLDER}/${LOGO_FILE}" id="logo-img" />`)
+    // Inject Subtitle
+    let subtitle = dom.window.document.createElement("div")
+    subtitle.appendChild(dom.window.document.createTextNode(SUBTITLE))
+    subtitle.classList.add("subtitle")
+    dom.window.document.body.prepend(subtitle)
 
-    return domSerialized
+    return dom.serialize()
 }
 
 const writeContent = async (filename, content) => {
@@ -145,6 +143,9 @@ const readContent = async (path) => {
 }
 
 const preparePdfProperties = (style, contentURL, pdfFilename, boardName, revisionNumber) => {
+    const specificLogoSVGdata = fs.readFileSync(`${STYLES_PATH}/${style}-logo.svg`)
+    const genericLogoSVGdata = fs.readFileSync(`${STYLES_PATH}/generic-logo.svg`)
+
     if (style === 'pro') {
         return options = {
             format: 'A4', 
@@ -155,23 +156,16 @@ const preparePdfProperties = (style, contentURL, pdfFilename, boardName, revisio
                 "left": "20mm"
             },
             "header": {
-                "height": "50mm",
+                "height": "35mm",
                 "contents": {
                     first: `
                         <hr style="margin-top:50px;" />
-                        <div style="position: absolute; top: 60px; left: -5px;">
-                            <img src="${ASSETS_FOLDER}/${LOGO_FILE}" style="height: 35px;">
-                        </div>
+                        <div class="logo-front">${specificLogoSVGdata}</div>
                         <div class="title-front">${boardName}</div>                        
-                        <hr />
-                        <div style="text-align:right;">${SUBTITLE}</div>
+                        <hr />                        
                     `,
                     default: `
-                        <div style="position: absolute; bottom: 55px; left: -5px;">
-                            <img src="${ASSETS_FOLDER}/${LOGO_FILE}" style="height: 20px;">
-                        </div>
-                        <div class="title">${boardName}</div>
-                        <hr />
+                        <div class="logo">${genericLogoSVGdata}</div>
                     `
                 }
             },
@@ -272,7 +266,8 @@ const generatePDFFromMarkdown = async (sourceFile, targetPath) => {
     let cssContent = await readContent(getStylesheetForType(type))
 
     let dom = createHtml(mdContent)
-	let htmlSerialized = serializeHtml(dom, cssContent, contentURL)
+    injectData(dom, cssContent)
+	let htmlSerialized = dom.serialize()
     
     await writeContent(`${targetPath}/${datasheetHTMLName}`, htmlSerialized)
     console.log("Completed MD to HTML \t--> \tstep 1 of 4")
@@ -288,7 +283,7 @@ const generatePDFFromMarkdown = async (sourceFile, targetPath) => {
     await findPageNumbers(`${targetPath}/${datasheetName}`, title, revision)
 	
 	addPageNumberToContentList(dom, contentListMap)
-	htmlSerialized = serializeHtml(dom, cssContent, contentURL)
+	htmlSerialized = dom.serialize()
 	await writeContent(`${targetPath}/${datasheetHTMLName}`, htmlSerialized)
     console.log("Calculate page numbers \t--> \tstep 3 of 4")
 	await createPdfFromHtml(`${targetPath}/${datasheetHTMLName}`, pdfProperties)
