@@ -1,3 +1,10 @@
+---
+identifier: ASX00031
+title: Arduino® Portenta Breakout Board
+revision: Rev. 01
+type: pro
+---
+
 ![Portenta H7](assets/featured.jpg)
 
 # Features

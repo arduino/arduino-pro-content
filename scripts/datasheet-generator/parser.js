@@ -1,4 +1,5 @@
 const marked = require('marked')
+const fm = require('front-matter')
 const fs = require('fs')
 const path = require('path');
 const jsdom = require('jsdom')
@@ -9,6 +10,7 @@ const express = require('express')
 
 const SERVER_PORT = 8000
 const ASSETS_FOLDER = "assets"
+const PRO_CSS_PATH = 'datasheet-generator/styles/pro-style.css';
 
 //console.log(util.inspect(contentIndex, {showHidden: false, depth: null}))
 
@@ -135,7 +137,7 @@ const readContent = async (path) => {
 }
 
 const preparePdfProperties = (style, assetsUrl, pdfFilename, boardName, revisionNumber) => {
-    if (style === 'PRO') {
+    if (style === 'pro') {
         return options = {
             format: 'A4', 
             filename: pdfFilename,
@@ -152,7 +154,7 @@ const preparePdfProperties = (style, assetsUrl, pdfFilename, boardName, revision
                         <div style="position: absolute; top: 60px; left: -5px;">
                             <img src="${assetsUrl}/logo.png" style="height: 35px;">
                         </div>
-                        <div style="font-size: 28px;font-family: 'Roboto Mono', monospace;, monospace; text-align:right;">
+                        <div class="title-front">
                             ${boardName}
                         </div>
                         <hr />
@@ -164,7 +166,7 @@ const preparePdfProperties = (style, assetsUrl, pdfFilename, boardName, revision
                         <div style="position: absolute; bottom: 55px; left: -5px;">
                             <img src="${assetsUrl}/logo.png" style="height: 20px;">
                         </div>
-                        <div style="color: #95a5a6;font-size: 20px;font-family: 'Roboto Mono', monospace;, monospace; text-align:right; padding-top:50px;">
+                        <div class="title">
                             ${boardName}
                         </div>
                         <hr />
@@ -179,15 +181,15 @@ const preparePdfProperties = (style, assetsUrl, pdfFilename, boardName, revision
                     <hr />
                     <div style="position: absolute;">
                         <span>
-                            <b>{{page}}</b>
+                            <strong>{{page}}</strong>
                         </span>
                         /
                         <span>
-                            <b>{{pages}}</b>
+                            <strong>{{pages}}</strong>
                         </span>
                     </div>
                     <center>
-                        <div style="font-family: 'Roboto Mono', monospace; ">
+                        <div class="footer">
                             ${boardName} / ${revisionNumber} - ${getCurrentDateString()}
                         </div>
                     </center>
@@ -217,8 +219,8 @@ const getCurrentDateString = () => {
     return dd + '/' + mm + '/' + yyyy
 }
 
-const findPageNumbers = async (destination, title, revision) => {
-    let dataBuffer = fs.readFileSync(destination)
+const findPageNumbers = async (pdfPath, title, revision) => {
+    let dataBuffer = fs.readFileSync(pdfPath)
     
     await pdfParser(dataBuffer).then(function(data) {
         let pdfContent = data.text.replace(/\t+/g, " ")
@@ -244,49 +246,60 @@ const countCurrentPage = (snippet, title, revision) => {
 	return snippet.split(`${title} / ${revision} - ${getCurrentDateString()}`).length - 1
 }
 
-const getStylesheetForStyle = (style) => {
-    switch(style){
-        case "PRO":
-            return 'datasheet-generator/styles/pro-style.css';
+const getStylesheetForType = (type) => {
+    switch(type){
+        case "pro":
+            return PRO_CSS_PATH;
         default:
-            return null
+            throw new Error("Front matter contains unsupported 'type' value" + type)            
     }
 }
 
-const getDataSheetName = (markdownContent) => {
-    //TODO    
-    return "datasheet"
+const getMetadata = (data) => {  
+    if(!fm.test(data)){
+        throw new Error("File doesn't contain front matter.")
+    }  
+    return fm(data).attributes
 }
 
-const generatePDFFromMarkdown = async (source, destination, title, revision, style) => {
-    let mdContent = await readContent(source)
-    let cssContent = await readContent(getStylesheetForStyle(style))
-    const datasheetName = getDataSheetName(mdContent) + ".pdf"
-    const datasheetHTMLName = getDataSheetName(mdContent) + ".html"
+const getMarkdownContent = (data) => {    
+    return fm(data).body
+}
+
+const generatePDFFromMarkdown = async (sourceFile, targetPath) => {
+    const data = await readContent(sourceFile)    
+    const metaData = getMetadata(data)    
+    const { identifier, title, revision, type } = metaData;
+    const datasheetName = identifier + ".pdf"
+    const datasheetHTMLName = identifier + ".html"    
+    
+    let mdContent = getMarkdownContent(data)
+    let cssContent = await readContent(getStylesheetForType(type))
+
     createHtml(mdContent)
 	let htmlSerialized = serializeHtml(cssContent)
     
-    await writeContent(`${destination}/${datasheetHTMLName}`, htmlSerialized)
+    await writeContent(`${targetPath}/${datasheetHTMLName}`, htmlSerialized)
     console.log("Completed MD to HTML \t--> \tstep 1 of 4")
 
 	let server = express()
-	server.use(express.static(`${path.dirname(source)}/`))
+	server.use(express.static(`${path.dirname(sourceFile)}/`))
 	let serverInstance = server.listen(SERVER_PORT)    
 
-    let pdfProperties = preparePdfProperties(style, `http://localhost:${SERVER_PORT}/${ASSETS_FOLDER}`, `${destination}/${datasheetName}`, title, revision)
-    await createPdfFromHtml(`${destination}/${datasheetHTMLName}`, pdfProperties)
+    const pdfProperties = preparePdfProperties(type, `http://localhost:${SERVER_PORT}/${ASSETS_FOLDER}`, `${targetPath}/${datasheetName}`, title, revision)
+    await createPdfFromHtml(`${targetPath}/${datasheetHTMLName}`, pdfProperties)
     console.log("Prepare PDF \t\t--> \tstep 2 of 4")
 
-    await findPageNumbers(`${destination}/${datasheetName}`, title, revision)
+    await findPageNumbers(`${targetPath}/${datasheetName}`, title, revision)
 	
 	addPageNumberToContentList(contentListMap)
 	htmlSerialized = serializeHtml(cssContent)
-	await writeContent(`${destination}/${datasheetHTMLName}`, htmlSerialized)
+	await writeContent(`${targetPath}/${datasheetHTMLName}`, htmlSerialized)
     console.log("Calculate page numbers \t--> \tstep 3 of 4")
-	await createPdfFromHtml(`${destination}/${datasheetHTMLName}`, pdfProperties)
+	await createPdfFromHtml(`${targetPath}/${datasheetHTMLName}`, pdfProperties)
     console.log("Finalize PDF \t\t--> \tstep 3 of 4")
 	console.log("---------------")
-    console.log("Finished! Datasheet saved in: " + destination + "/" + datasheetName)
+    console.log("Finished! Datasheet saved in: " + targetPath + "/" + datasheetName)
 	serverInstance.close()
 }
 
