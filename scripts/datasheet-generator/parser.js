@@ -10,7 +10,6 @@ const express = require('express')
 
 const SERVER_PORT = 8000
 const STYLES_PATH = "datasheet-generator/styles"
-const PRO_CSS_PATH = `${STYLES_PATH}/pro-style.css`
 const SUBTITLE = "Product Reference Manual"
 
 //console.log(util.inspect(contentIndex, {showHidden: false, depth: null}))
@@ -235,12 +234,7 @@ const countCurrentPage = (snippet, title, revision) => {
 }
 
 const getStylesheetForType = (type) => {
-    switch(type){
-        case "pro":
-            return PRO_CSS_PATH;
-        default:
-            throw new Error("Front matter contains unsupported 'type' value" + type)            
-    }
+    return `${STYLES_PATH}/${type}-style.css`
 }
 
 const getMetadata = (data) => {  
