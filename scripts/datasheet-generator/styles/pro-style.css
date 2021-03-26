@@ -30,6 +30,7 @@ html {
 }
 
 table {
+    font-size: 1rem;
     page-break-inside: avoid;
     width: 100%;
     border-collapse: collapse;
@@ -125,9 +126,10 @@ img {
     clear: both;
 }
 
-#logo-img {
+/* FIXME is this intended? */
+/* #logo-img {
     display: none;
-}
+} */
 
 #features {
     color: black;

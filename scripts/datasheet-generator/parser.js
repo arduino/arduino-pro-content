@@ -67,6 +67,7 @@ const numberHeadings = (dom) => {
 }
 
 const prepareTitlePage = (dom) => {
+    //FIXME is it safe to assume that the first image is the featured image?
     let featuredPicture = dom.window.document.querySelector("img")
     featuredPicture.setAttribute("id", "featured-picture")
 }
@@ -118,7 +119,7 @@ const createHtml = (mdContent) => {
     return dom
 }
 
-const serializeHtml = (dom, cssContent, assetsURL) => {
+const serializeHtml = (dom, cssContent, contentURL) => {
         
     // Inject CSS styles
     let style = dom.window.document.createElement("style")
@@ -130,7 +131,7 @@ const serializeHtml = (dom, cssContent, assetsURL) => {
     
     //FIXME is this needed?
     // add header for pdf
-    //domSerialized = domSerialized.replace("<body>",`<body><img src="${assetsURL}/${LOGO_FILE}" id="logo-img" />`)
+    // domSerialized = domSerialized.replace("<body>",`<body><img src="${contentURL}/${ASSETS_FOLDER}/${LOGO_FILE}" id="logo-img" />`)
 
     return domSerialized
 }
@@ -143,12 +144,12 @@ const readContent = async (path) => {
     return readFile(path, 'utf8')
 }
 
-const preparePdfProperties = (style, assetsUrl, pdfFilename, boardName, revisionNumber) => {
+const preparePdfProperties = (style, contentURL, pdfFilename, boardName, revisionNumber) => {
     if (style === 'pro') {
         return options = {
             format: 'A4', 
             filename: pdfFilename,
-            "base": assetsUrl, 
+            "base": contentURL, 
             "border": {          
                 "right": "20mm",
                 "left": "20mm"
@@ -159,7 +160,7 @@ const preparePdfProperties = (style, assetsUrl, pdfFilename, boardName, revision
                     first: `
                         <hr style="margin-top:50px;" />
                         <div style="position: absolute; top: 60px; left: -5px;">
-                            <img src="${LOGO_FILE}" style="height: 35px; width: 50px;">
+                            <img src="${ASSETS_FOLDER}/${LOGO_FILE}" style="height: 35px;">
                         </div>
                         <div class="title-front">${boardName}</div>                        
                         <hr />
@@ -167,7 +168,7 @@ const preparePdfProperties = (style, assetsUrl, pdfFilename, boardName, revision
                     `,
                     default: `
                         <div style="position: absolute; bottom: 55px; left: -5px;">
-                            <img src="${LOGO_FILE}" style="height: 20px; 50px;">
+                            <img src="${ASSETS_FOLDER}/${LOGO_FILE}" style="height: 20px;">
                         </div>
                         <div class="title">${boardName}</div>
                         <hr />
@@ -265,13 +266,13 @@ const generatePDFFromMarkdown = async (sourceFile, targetPath) => {
     const { identifier, title, revision, type } = metaData;
     const datasheetName = identifier + ".pdf"
     const datasheetHTMLName = identifier + ".html"    
-    const assetsURL = `http://localhost:${SERVER_PORT}/${ASSETS_FOLDER}`;
+    const contentURL = `http://localhost:${SERVER_PORT}`;
     
     let mdContent = getMarkdownContent(data)
     let cssContent = await readContent(getStylesheetForType(type))
 
     let dom = createHtml(mdContent)
-	let htmlSerialized = serializeHtml(dom, cssContent, assetsURL)
+	let htmlSerialized = serializeHtml(dom, cssContent, contentURL)
     
     await writeContent(`${targetPath}/${datasheetHTMLName}`, htmlSerialized)
     console.log("Completed MD to HTML \t--> \tstep 1 of 4")
@@ -280,14 +281,14 @@ const generatePDFFromMarkdown = async (sourceFile, targetPath) => {
 	server.use(express.static(`${path.dirname(sourceFile)}/`))
 	let serverInstance = server.listen(SERVER_PORT)    
 
-    const pdfProperties = preparePdfProperties(type, assetsURL, `${targetPath}/${datasheetName}`, title, revision)
+    const pdfProperties = preparePdfProperties(type, contentURL, `${targetPath}/${datasheetName}`, title, revision)
     await createPdfFromHtml(`${targetPath}/${datasheetHTMLName}`, pdfProperties)
     console.log("Prepare PDF \t\t--> \tstep 2 of 4")
 
     await findPageNumbers(`${targetPath}/${datasheetName}`, title, revision)
 	
 	addPageNumberToContentList(dom, contentListMap)
-	htmlSerialized = serializeHtml(dom, cssContent, assetsURL)
+	htmlSerialized = serializeHtml(dom, cssContent, contentURL)
 	await writeContent(`${targetPath}/${datasheetHTMLName}`, htmlSerialized)
     console.log("Calculate page numbers \t--> \tstep 3 of 4")
 	await createPdfFromHtml(`${targetPath}/${datasheetHTMLName}`, pdfProperties)
