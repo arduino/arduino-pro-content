@@ -26,6 +26,7 @@ html {
 
 .footer {
     font-size: 1rem;
+    text-align: center;
 }
 
 table {
@@ -33,6 +34,12 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 10px;
+}
+
+hr {    
+    border: 0;
+    height: 1px;
+    background: #666;
 }
 
 td, th {
