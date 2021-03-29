@@ -68,6 +68,9 @@ const prepareTitlePage = (dom) => {
     //FIXME is it safe to assume that the first image is the featured image?
     let featuredPicture = dom.window.document.querySelector("img")
     featuredPicture.setAttribute("id", "featured-picture")
+
+    let outerList = dom.window.document.querySelector("ul")
+    outerList.setAttribute("id", "outer-list")
 }
 
 const addElementToContentIndex = (dom, contentList, element) => {
@@ -114,10 +117,25 @@ const createHtml = (mdContent) => {
     // add IDs to special sections
     prepareTitlePage(dom)
 
+    // add descriptions underneath illustrations
+    addIllustrationDescriptions(dom)
+
     return dom
 }
 
-const injectData = (dom, cssContent) => {
+const addIllustrationDescriptions = (dom) => {
+    dom.window.document.querySelectorAll("img").forEach(element => {
+        let descriptionString = element.alt
+        if (descriptionString && descriptionString.length > 0) {
+            let descriptionElement = dom.window.document.createElement("div")
+            descriptionElement.innerHTML = descriptionString
+            descriptionElement.classList.add('img-description')
+            addNodeAfter(element, descriptionElement)
+        } 
+    })
+}
+
+const injectData = (dom, identifier, cssContent) => {
         
     // Inject CSS styles
     let style = dom.window.document.createElement("style")
@@ -126,7 +144,8 @@ const injectData = (dom, cssContent) => {
 
     // Inject Subtitle
     let subtitle = dom.window.document.createElement("div")
-    subtitle.appendChild(dom.window.document.createTextNode(SUBTITLE))
+    //subtitle.appendChild(dom.window.document.createTextNode(SUBTITLE))
+    subtitle.innerHTML = `${SUBTITLE}<br>SKU: ${identifier}`
     subtitle.classList.add("subtitle")
     dom.window.document.body.prepend(subtitle)
 
@@ -143,7 +162,7 @@ const readContent = async (path) => {
 
 const preparePdfProperties = (style, contentURL, pdfFilename, boardName, revisionNumber) => {
     const specificLogoSVGdata = fs.readFileSync(`${STYLES_PATH}/${style}-logo.svg`)
-    const genericLogoSVGdata = fs.readFileSync(`${STYLES_PATH}/generic-logo.svg`)
+    //const genericLogoSVGdata = fs.readFileSync(`${STYLES_PATH}/generic-logo.svg`)
 
     if (style === 'pro') {
         return options = {
@@ -158,13 +177,15 @@ const preparePdfProperties = (style, contentURL, pdfFilename, boardName, revisio
                 "height": "35mm",
                 "contents": {
                     first: `
-                        <hr style="margin-top:50px;" />
+                        <hr style="margin-top:50px; border-style: solid; border-bottom: 0;" />
                         <div class="logo-front">${specificLogoSVGdata}</div>
                         <div class="title-front">${boardName}</div>                        
-                        <hr />                        
+                        <hr style="border-style: solid; border-bottom: 0;" />                        
                     `,
                     default: `
-                        <div class="logo">${genericLogoSVGdata}</div>
+                        <div class="logo">${specificLogoSVGdata}</div>
+                        <div class="title-header">${boardName}</div>  
+                        <hr style="border-style: solid; border-bottom: 0; color: #95a5a6;" />
                     `
                 }
             },
@@ -260,7 +281,7 @@ const generatePDFFromMarkdown = async (sourceFile, targetPath) => {
     let cssContent = await readContent(getStylesheetForType(type))
 
     let dom = createHtml(mdContent)
-    injectData(dom, cssContent)
+    injectData(dom, identifier, cssContent)
 	let htmlSerialized = dom.serialize()
     
     await writeContent(`${targetPath}/${datasheetHTMLName}`, htmlSerialized)

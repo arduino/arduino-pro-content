@@ -9,18 +9,21 @@ This tool allows for creating datasheet-PDFs from a markdown file.
 ## Create a new datasheet
 -   Within the directory ```/content```, create a folder for the new datasheet 
 -   In your newly created folder create the ```content.md``` file that includes the content of the datasheet as well as a subfolder called ```assets```
--   Make sure to copy the ```logo.png``` from the template folder into your assets (used for the document header)
 
 ## Automated creations
--   The first picture in the ```content.md``` file will be used as title picture on the front page eg. ```![Portenta H7](assets/featured.jpg)```
--   The first section should be the `# Features` section that will be part of the front page
--   After the `# Features` section create the `# Contents`section. This section is special, **no content should be added in this section**, it will be created **automatically**
+-   The first picture in the ```content.md``` file will be used as title picture on the front page eg. ```![](assets/featured.jpg)```
+-   The sections `#Description, #Target areas & #Features` will be part of the front page
+-   Create the `# Contents` section. This section is special, **no content should be added in this section**, it will be created **automatically**
+
+## Pictures & picture descriptions
+-   jpg, png, svg are the recommended file formats
+-   Picture without a description element underneath: `![](assets/featured.jpg)`
+-   Picture with a description element underneath: `![This is a cool description](assets/test.svg)`
+
+## Handling table elements
+Not a must in terms of the correct compilation of a MD datasheet, but still recommended for readability purposes, is using a **markdown table prettifier** such as the [darkriszty.markdown-table-prettify](https://marketplace.visualstudio.com/items?itemName=darkriszty.markdown-table-prettify) extension for Visual Studio Code or using *visual* markdown editors such as [Typora](https://typora.io/).
 
 ## Compile the datasheet
-From the main directory of this tool, start the nodejs script and pass:
-1. The folder name eg. `portenta-breakout-board`
-2. The Title of the datasheet eg. `Portenta Breakout`
-3. The revision number of the datasheet (will be printed in the footer of the document) eg. `Rev. 01`
-
-### Example
-`node parser.js portenta-breakout-board "Portenta Breakout" "Rev. 01"`
+This is relevant if wanting to compiling the datasheets offline:
+1.  `cd scripts`
+2.  `node generate-datasheets.js`
