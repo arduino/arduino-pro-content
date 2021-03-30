@@ -1,4 +1,4 @@
-# Controlling a Motorized ball Valve 
+# Controlling a Motorized Ball Valve 
 ## Overview
 
 This tutorial gets you started with the Edge control board and goes over the basics of controlling a motorised ball valve to the board. 
@@ -41,18 +41,19 @@ Selected the right board and port under **Tools** and upload the blink example y
 
 If the Serial monitor dislpays `Blink` at an interval of ... seconds, you have  installed the right core and have successfully completed  the basic setup. Disconnect the board from your computer. 
 
-### 2. Connecting the valve
+### 2. Connecting The Valve
 
 The motorized valve comes with three wires primarily marked as blue, yellow and red. The red and blue cables are for the positive and negative signals and the yellow is for the ground. 
 
 ![Schematics of the 3 wire motor](/Users/lenardgeorge/Documents/Arduino/03_Pro/arduino-pro-content/content/tutorials/portenta-h7/ec-ard-3wirevalve/assets/ec_ard_valve_wires.svg) 
 
 Connect the red and the blue wire to any one of the 8 pairs of `LATCHING OUT` pins. In this example we will use `1N` and `1P` of your Edge Control board. Latches allow you to store the state of the pins based on the previous output. As the valve doesnt come with internal drivers to store the state of the motor, we will use the `Latching_out` pins (instead of `Latching_out_cmd`) that are the ones that include drivers on the edge control. 
+
 ![Connecting the valves to the Phoenix](assets/ec_ard_connect_valve.svg)
 
 Connect the yellow wire to the nearby `GND` pin. Ensure that the wires are fastened securely and tightly to the Phoenix connectors so that they make contact with the pins. 
 
-### 3. Opening and Closing the valves 
+### 3. Opening And Closing The Valves 
 
 Open a new sketch file on the Arduino IDE and name it `ValveControl.ino`. Add the header file `Arduino_EdgeControl.h` to your sketch 
 
@@ -109,7 +110,7 @@ void loop()
 }
 ```
 
-### 4. Connecting to a Power Source 
+### 4. Connecting To A Power Source 
 
 The Valves require a power supply of 9 - 12 V and you can either use a power supply or a 3 cell lipo battery to provide the required voltage. Power sources can be connected to the onboard relay ports of the edge control board. Connect two jumper wires to the **GND** and **B** pins of the **Relay ports** 
 
@@ -117,7 +118,7 @@ The Valves require a power supply of 9 - 12 V and you can either use a power sup
 
 Connect the jumper from the **B** pin to the positive terminal of the Battery and the jumper from the **GND** pin to the negative terminal of the battery 
 
-### 5. Uploading the Sketch 
+### 5. Uploading The Sketch 
 
 Connect the board to your computer, upload the `ValveControl.ino` sketch and open the **Serial Monitor**. If all the connections are done right, the valve opens and closes and you should be able to see the status as `Open` or `Close` on the serial monitor. 
 
