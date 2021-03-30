@@ -10,44 +10,6 @@ html {
     font-size: 11px;
 }
 
-.title-front {
-    font-size: 1.75rem;
-    font-family: 'Roboto Mono', monospace;
-    text-align:right;
-}
-
-.title {
-    color: #95a5a6;
-    font-size: 1.5rem;
-    font-family: 'Roboto Mono', monospace;
-    text-align:right;
-    padding-top:50px;
-}
-
-.subtitle {
-    text-align:right;
-    margin-bottom:10px;
-}
-
-.logo-front svg {    
-    height: 1.7rem;
-    position: absolute;
-    top: 60px;
-    left: -5px;
-}
-
-.logo svg {
-    height: 2rem;
-    position: absolute;
-    top: 60px;
-    left: -5px;
-}
-
-.footer {
-    font-size: 1rem;
-    text-align: center;
-}
-
 table {
     font-size: 1rem;
     page-break-inside: avoid;
@@ -57,9 +19,9 @@ table {
 }
 
 hr {    
-    border: 0;
-    height: 1px;
-    background: #666;
+    border-style: solid;
+    border-bottom: 0;
+    color: #666;
 }
 
 td, th {
@@ -103,6 +65,14 @@ ul {
     list-style-type: square;
 }
 
+li {
+    margin-bottom: 4px;
+}
+
+li:last-of-type {
+    margin-bottom: 10px;
+}
+
 img {
     max-width: 100%;
     max-height: 610px;
@@ -110,6 +80,53 @@ img {
     display: block;
     align-self: center;
     /*page-break-inside: avoid;*/
+}
+
+.title-front {
+    font-size: 1.75rem;
+    font-family: 'Roboto Mono', monospace;
+    text-align:right;
+}
+
+.title {
+    color: #95a5a6;
+    font-size: 1.5rem;
+    font-family: 'Roboto Mono', monospace;
+    text-align:right;
+    padding-top:50px;
+}
+
+.subtitle {
+    text-align:right;
+    margin-top: -12px;
+    margin-bottom: 20px;
+}
+
+.logo-front svg {    
+    height: 1.7rem;
+    position: absolute;
+    top: 60px;
+    left: -5px;
+}
+
+.title-header {
+    color: #95a5a6;
+    font-size: 16px;
+    font-family: 'Roboto Mono', monospace;
+    text-align:right;
+    padding-top:50px;
+}
+
+.logo svg {
+    height: 1rem;
+    position: absolute;
+    top: 60px;
+    left: -20px;
+}
+
+.footer {
+    font-size: 1rem;
+    text-align: center;
 }
 
 .list-h2 {
@@ -137,6 +154,12 @@ img {
     margin-bottom: 5px;
 }
 
+.img-description {
+    font-size: 8px;
+    font-style: italic;
+    text-align: center;
+}
+
 .page-number {
     float: right;
 }
@@ -145,10 +168,28 @@ img {
     clear: both;
 }
 
-#features {
+#features, #description, #target-areas {
     color: black;
     font-size: 14;
     font-weight: bold;
+}
+
+#target-areas {
+    clear: both;
+    margin-top: 15px;
+}
+
+#target-areas + p {
+    border-bottom: 1px solid #95a5a6;
+    padding-bottom: 20px;
+}
+
+#features {
+    margin-top: 15px;
+}
+
+#description, #description + p {
+    width: 49%;
 }
 
 #contents {
@@ -162,6 +203,12 @@ img {
 #featured-picture {
     width: 50%;
     display: block;
-    margin-left: auto;
-    margin-right: 0;    
+    float: right;
+    margin-top: 15px;
 }
+
+#outer-list * {
+    font-size: 9px;
+    page-break-inside: avoid;
+}
+

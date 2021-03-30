@@ -5,37 +5,38 @@ revision: Rev. 01
 type: pro
 ---
 
-![Portenta H7](assets/featured.jpg)
+![](assets/featured.jpg)
+
+# Description
+The Arduino Portenta Breakout board is designed to assist developers with their prototypes by exposing the high-density connectors of the Portenta family on both sides of the breakout carrier, providing total flexibility for measuring and controlling signals - developing your own hardware, testing the design and measuring the input and output signals out of the high-density connectors.
+
+# Target areas
+Industrial applications, prototyping, robotics, data logging
 
 # Features
 
--   Feature 1
-    -   Sub feature
-    -   Sub feature
-    -   Sub feature
-    -   Sub feature
-    -   Sub feature
-    -   Sub feature
-    -   Sub feature
--   Feature 2
-    -   Sub feature
-    -   Sub feature
-    -   Sub feature
-    -   Sub feature
-    -   Sub feature
-    -   Sub feature
-    -   Sub feature
--   Feature 3
-    -   Sub feature
-    -   Sub feature
-    -   Sub feature
-    -   Sub feature
-    -   Sub feature
-    -   Sub feature
+-   Power ON Button
+-   Boot mode DIP switch
+-   **Connectors**
+    -   USBA 
+    -   RJ45 GBit Ethernet 
+    -   Micro SD card
+    -   OpenMV shutter module
+    -   MIPI 20T  JTAG with trace capability
+-   **Power**
+    -   CR2032 RTC Lithium Battery backup
+    -   External power terminal block
+-   **I/O**
+    -   Break out all Portenta High Density connector signals (see pinout table below)
+    -   Male/female HD connectors allow interposing breakout between Portenta and shield to debug signals
+-   **Compatibility**\
+    Standard Portenta High Density connector pinout 
+-   **Safety information**\
+    Class A
 
 # Contents
 
-## Description
+## The Board
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 ### Configuration
@@ -46,25 +47,34 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 #### Microcontroller
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 
 #### Sensors
 ![Cool Sensor](assets/test.png)
 
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+![Cool Sensor SVG](assets/test.svg)
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+![](assets/test-2.svg)
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
 ## Data
 
-| Name | Description                | A | B | C | D |
-|------|----------------------------|---|---|---|---|
-| Name | Lorem ipsum dolor sit amet | a | b | c | d |
-| Name | Lorem ipsum dolor sit amet | a | b | c | d |
-| Name | Lorem ipsum dolor sit amet | a | b | c | d |
-| Name | Lorem ipsum dolor sit amet | a | b | c | d |
-| Name | Lorem ipsum dolor sit amet | a | b | c | d |
-| Name | Lorem ipsum dolor sit amet | a | b | c | d |
-| Name | Lorem ipsum dolor sit amet | a | b | c | d |
+| Name | Description                               | A      | B | C | D |
+|------|-------------------------------------------|--------|---|---|---|
+| Name | Lorem ipsum dolor sit amet                | a      | b | c | d |
+| Name | Lorem ipsum dolor sit amet                | a      | b | c | d |
+| Name | Lorem ipsum dolor sit amet fgdggdgdg      | a      | b | c | d |
+| Name | Lorem ipsum dolor sit amet test 222222222 | a      | b | c | d |
+| Name | Lorem ipsum dolor sit amet                | a      | b | c | d |
+| Name | Lorem ipsum dolor sit amet                | a      | b | c | d |
+| Name | Lorem ipsum dolor sit amet                | a      | b | c | d |
+| Cool | test 123                                  | halloo | 1 | 2 | 3 |
 
 
 | Name | Description                | A | B | C | D |
