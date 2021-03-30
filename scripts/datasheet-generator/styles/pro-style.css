@@ -196,7 +196,11 @@ img {
     page-break-after:always;
 }
 
-#featured-picture {
+/**
+Formats the featured image if it's placed at the very beginning
+of the markdown document and the file is named 'featured'
+*/
+div.subtitle + p > img[src^="assets/featured"] {
     width: 50%;
     display: block;
     float: right;

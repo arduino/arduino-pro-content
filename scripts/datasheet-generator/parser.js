@@ -64,11 +64,7 @@ const numberHeadings = (dom) => {
     })
 }
 
-const prepareTitlePage = (dom) => {
-    //FIXME is it safe to assume that the first image is the featured image?
-    let featuredPicture = dom.window.document.querySelector("img")
-    featuredPicture.setAttribute("id", "featured-picture")
-
+const prepareTitlePage = (dom) => {    
     let outerList = dom.window.document.querySelector("ul")
     outerList.setAttribute("id", "outer-list")
 }
@@ -125,7 +121,8 @@ const createHtml = (mdContent) => {
 
 const addIllustrationDescriptions = (dom) => {
     dom.window.document.querySelectorAll("img").forEach(element => {
-        let descriptionString = element.alt
+        const descriptionString = element.alt
+
         if (descriptionString && descriptionString.length > 0) {
             let descriptionElement = dom.window.document.createElement("div")
             descriptionElement.innerHTML = descriptionString
@@ -143,9 +140,8 @@ const injectData = (dom, identifier, cssContent) => {
     dom.window.document.head.appendChild(style)
 
     // Inject Subtitle
-    let subtitle = dom.window.document.createElement("div")
-    //subtitle.appendChild(dom.window.document.createTextNode(SUBTITLE))
-    subtitle.innerHTML = `${SUBTITLE}<br>SKU: ${identifier}`
+    let subtitle = dom.window.document.createElement("div")    
+    subtitle.innerHTML = `${SUBTITLE}<br />SKU: ${identifier}`
     subtitle.classList.add("subtitle")
     dom.window.document.body.prepend(subtitle)
 
@@ -236,7 +232,7 @@ const findPageNumbers = async (pdfPath, title, revision) => {
 
 		contentListText.forEach(element => {
 			let findings = pdfContent.split(element)
-			let pageNumber = data.numpages - countCurrentPage(findings[findings.length - 1], title, revision)
+			let pageNumber = data.numpages - getCurrentPage(findings[findings.length - 1], title, revision)
 			//console.log(element + " is on page " + pageNumber + " out of " + data.numpages)
 
 			let contentItem = contentListMap.find(obj => {
@@ -249,7 +245,7 @@ const findPageNumbers = async (pdfPath, title, revision) => {
     })    
 }
 
-const countCurrentPage = (snippet, title, revision) => {
+const getCurrentPage = (snippet, title, revision) => {
 	// count footers to assess number of pages
 	return snippet.split(`${title} / ${revision} - ${getCurrentDateString()}`).length - 1
 }
