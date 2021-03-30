@@ -43,8 +43,6 @@ This blink sketch is to test if the board is recognised by the IDE and if you ha
 
 Selected the right board and port under **Tools** and upload the blink example you find inside the example folder. Open the Serial monitor after uploading the sketch
 
-![Output of the blink Sketch]()
-
 If the Serial monitor dislpays `Blink` at an interval of ... seconds, you have  installed the right core and have successfully completed  the basic setup. Disconnect the board from your computer. 
 
 ### 2. Connecting the valve
