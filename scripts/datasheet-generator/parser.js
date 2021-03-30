@@ -158,51 +158,52 @@ const readContent = async (path) => {
 
 const preparePdfProperties = (style, contentURL, pdfFilename, boardName, revisionNumber) => {
     const specificLogoSVGdata = fs.readFileSync(`${STYLES_PATH}/${style}-logo.svg`)    
-    const genericOptions = {}
+    let options = {
+        format: 'A4', 
+        filename: pdfFilename,
+        "base": contentURL, 
+        "border": {          
+            "right": "20mm",
+            "left": "20mm"
+        }        
+    }
 
     if (style === 'pro') {
-        return options = {
-            format: 'A4', 
-            filename: pdfFilename,
-            "base": contentURL, 
-            "border": {          
-                "right": "20mm",
-                "left": "20mm"
-            },
-            "header": {
-                "height": "35mm",
-                "contents": {
-                    first: `
-                        <hr style="margin-top:50px;" />
-                        <div class="logo-frontpage">${specificLogoSVGdata}</div>
-                        <div class="title-frontpage">${boardName}</div>                        
-                        <hr />                        
-                    `,
-                    default: `
-                        <div class="logo-header">${specificLogoSVGdata}</div>
-                        <div class="title-header">${boardName}</div>  
-                        <hr class="subtle" />
-                    `
-                }
-            },
-            "footer": {
-                "height": "28mm",
-                "contents": {
-                first: ' ',
+        options.header = {
+            "height": "35mm",
+            "contents": {
+                first: `
+                    <hr style="margin-top:50px;" />
+                    <div class="logo-frontpage">${specificLogoSVGdata}</div>
+                    <div class="title-frontpage">${boardName}</div>                        
+                    <hr />                        
+                `,
                 default: `
-                    <hr />
-                    <div style="position: absolute;">
-                        <span><strong>{{page}}</strong></span> / <span><strong>{{pages}}</strong></span>
-                    </div>
-                    <div class="footer">
-                        ${boardName} / ${revisionNumber} - ${getCurrentDateString()}
-                    </div>                    
+                    <div class="logo-header">${specificLogoSVGdata}</div>
+                    <div class="title-header">${boardName}</div>  
+                    <hr class="subtle" />
                 `
-                }
-            }  
+            }
         }
+
+        options.footer = {
+            "height": "28mm",
+            "contents": {
+            first: ' ',
+            default: `
+                <hr />
+                <div style="position: absolute;">
+                    <span><strong>{{page}}</strong></span> / <span><strong>{{pages}}</strong></span>
+                </div>
+                <div class="footer">
+                    ${boardName} / ${revisionNumber} - ${getCurrentDateString()}
+                </div>                    
+            `
+            }
+        }  
     }
-    return null
+
+    return options
 }
 
 const createPdfFromHtml = async (src, pdfProperties) => {
