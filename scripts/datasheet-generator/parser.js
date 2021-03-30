@@ -162,7 +162,6 @@ const readContent = async (path) => {
 
 const preparePdfProperties = (style, contentURL, pdfFilename, boardName, revisionNumber) => {
     const specificLogoSVGdata = fs.readFileSync(`${STYLES_PATH}/${style}-logo.svg`)
-    //const genericLogoSVGdata = fs.readFileSync(`${STYLES_PATH}/generic-logo.svg`)
 
     if (style === 'pro') {
         return options = {
