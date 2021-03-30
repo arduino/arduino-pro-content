@@ -66,12 +66,12 @@ const numberHeadings = (dom) => {
 
 const prepareTitlePage = (dom) => {    
     let outerList = dom.window.document.querySelector("ul")
-    outerList.setAttribute("id", "outer-list")
+    outerList.setAttribute("id", "feature-list")
 }
 
 const addElementToContentIndex = (dom, contentList, element) => {
     let contentItem = dom.window.document.createElement('div')
-    contentList.setAttribute("id", "content-list");
+    contentList.setAttribute("id", "table-of-contents");
     //let link = dom.window.document.createElement('a')
     let linkText = dom.window.document.createTextNode(element.textContent)
     

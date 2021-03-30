@@ -30,7 +30,7 @@ hr.subtle{
 }
 
 td, th {
-    border: 1px solid black;
+    border: 1px solid #666;    
     text-align: left;
     padding-left: 5px;
     padding-right: 5px;
@@ -46,7 +46,7 @@ h1, h2, h3, h4 {
 }
 
 h1 {
-    font-size: 2.8rem;
+    font-size: 2rem;
 }
 
 h2 {
@@ -70,7 +70,7 @@ li {
 }
 
 li:last-of-type {
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
 }
 
 img {
@@ -166,7 +166,7 @@ img {
 
 #features, #description, #target-areas {
     color: black;
-    font-size: 14;
+    font-size: 1.4rem;
     font-weight: bold;
 }
 
@@ -180,19 +180,19 @@ img {
     padding-bottom: 20px;
 }
 
-#features {
+h1#features {
     margin-top: 15px;
 }
 
-#description, #description + p {
+h1#description, #description + p {
     width: 49%;
 }
 
-#contents {
+h1#contents {
     page-break-before:always;
 }
 
-#content-list {
+#table-of-contents {
     page-break-after:always;
 }
 
@@ -207,8 +207,12 @@ div.subtitle + p > img[src^="assets/featured"] {
     margin-top: 15px;
 }
 
-#outer-list * {
-    font-size: 9px;
+#feature-list * {
+    font-size: 1rem;
     page-break-inside: avoid;
+}
+
+#feature-list li {
+    margin-bottom: 2px;
 }
 
