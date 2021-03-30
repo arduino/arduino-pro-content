@@ -1,22 +1,22 @@
 {
-   "id":"por-ard-gs",
+   "id":"ec-ard-3wirevalve",
    "index": 1,
-   "title":"Setting Up Portenta H7 For Arduino",
-   "slug":"por-ard-gs",
+   "title":"Connecting a Motorized Ball Valveo",
+   "slug":"ec-ard-3wv",
    "authors":[
       "Lenard George",
-      "Sebastian Hunkeler"
+      "Ernesto E. Lopez"
    ],
    "coverImage":{
-      "src":"assets/por_ard_gs_cover.svg?sanitize=true"
+      "src":"assets/ec_ard_gs_cover.svg?sanitize=true"
    },
    "tags":[
-      "Getting Started",
-      "IDE",
-      "Setup",
-      "Blink"
+      "Edge Control",
+      "Motorised Valve",
+      "Irrigation",
+      "Getting Started"
    ],
-   "abstract":"This tutorial teaches you how to set up the board, how to configure your computer and how to run the classic Arduino blink example  to verify if the configuration was successful.",
+   "abstract":"This tutorial gets you started with the Edge control board and goes over the basics of controlling a motorised ball valve to the board.",
    "previousArticle":null,
-   "nextArticle":"por-ard-dcp"
+   "nextArticle":null,
 }
