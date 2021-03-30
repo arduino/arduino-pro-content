@@ -5,7 +5,7 @@ on:
     types: deploy
   push:
     branches:
-      - main    
+      - main
 
 env:
   AWS_REGION: 'us-west-1'
@@ -51,8 +51,30 @@ jobs:
           --content-type 'text/markdown' \
           --cache-control max-age=0,no-cache,no-store,must-revalidate
 
+    - name: Datasheet generation
+      run: |
+        cd scripts/datasheet-generator
+        npm install
+        cd ..
+        node generate-datasheets.js
+
+    - name: S3 sync (Datasheet PDFs)
+      run: |
+        aws s3 sync \
+          build/datasheets \
+          s3://${{ secrets.S3_BUCKET_NAME }}/content/datasheets/ \
+          --no-progress \
+          --acl public-read \
+          --follow-symlinks \
+          --delete \
+          --metadata-directive REPLACE \
+          --exclude '*' \
+          --include '*.pdf' \
+          --content-type 'application/pdf' \
+          --cache-control max-age=0,no-cache,no-store,must-revalidate
+
     - name: Invalidate CloudFront distribution
       run: |
         aws cloudfront create-invalidation \
           --distribution-id "${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}" \
-          --paths '/content/tutorials/*'
+          --paths '/content/tutorials/*' '/content/datasheets/*'
