@@ -82,17 +82,20 @@ img {
     /*page-break-inside: avoid;*/
 }
 
-.title-front {
-    font-size: 1.75rem;
+.title-header, .title-frontpage{
+    white-space: nowrap;    
+    color: #95a5a6;
     font-family: 'Roboto Mono', monospace;
     text-align:right;
 }
 
-.title {
-    color: #95a5a6;
+
+.title-frontpage {
+    font-size: 1.75rem;    
+}
+
+.title-header {    
     font-size: 1.5rem;
-    font-family: 'Roboto Mono', monospace;
-    text-align:right;
     padding-top:50px;
 }
 
@@ -102,22 +105,15 @@ img {
     margin-bottom: 20px;
 }
 
-.logo-front svg {    
+.logo-frontpage svg {    
     height: 1.7rem;
     position: absolute;
     top: 60px;
     left: -5px;
 }
 
-.title-header {
-    color: #95a5a6;
-    font-size: 16px;
-    font-family: 'Roboto Mono', monospace;
-    text-align:right;
-    padding-top:50px;
-}
 
-.logo svg {
+.logo-header svg {
     height: 1rem;
     position: absolute;
     top: 60px;

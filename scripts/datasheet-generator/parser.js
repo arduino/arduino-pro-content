@@ -161,7 +161,8 @@ const readContent = async (path) => {
 }
 
 const preparePdfProperties = (style, contentURL, pdfFilename, boardName, revisionNumber) => {
-    const specificLogoSVGdata = fs.readFileSync(`${STYLES_PATH}/${style}-logo.svg`)
+    const specificLogoSVGdata = fs.readFileSync(`${STYLES_PATH}/${style}-logo.svg`)    
+    const genericOptions = {}
 
     if (style === 'pro') {
         return options = {
@@ -177,12 +178,12 @@ const preparePdfProperties = (style, contentURL, pdfFilename, boardName, revisio
                 "contents": {
                     first: `
                         <hr style="margin-top:50px; border-style: solid; border-bottom: 0;" />
-                        <div class="logo-front">${specificLogoSVGdata}</div>
-                        <div class="title-front">${boardName}</div>                        
+                        <div class="logo-frontpage">${specificLogoSVGdata}</div>
+                        <div class="title-frontpage">${boardName}</div>                        
                         <hr style="border-style: solid; border-bottom: 0;" />                        
                     `,
                     default: `
-                        <div class="logo">${specificLogoSVGdata}</div>
+                        <div class="logo-header">${specificLogoSVGdata}</div>
                         <div class="title-header">${boardName}</div>  
                         <hr style="border-style: solid; border-bottom: 0; color: #95a5a6;" />
                     `
