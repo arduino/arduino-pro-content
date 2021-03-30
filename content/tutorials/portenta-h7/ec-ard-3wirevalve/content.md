@@ -5,29 +5,25 @@ This tutorial gets you started with the Edge control board and goes over the bas
 
 ### You Will Learn
 
--   How to connect a motorized valve to the edge control board,
--   About the controlling the valve through basic commands provided by the `Arduino_EdgeControl.h` library,
--   How to power the board with an external power supply, 
+-   How to connect a motorized valve to the edge control board
+-   About the controlling the valve through basic commands provided by the `Arduino_EdgeControl.h` library
+-   How to power the board with an external power supply 
 
 ### Required Hardware and Software
 
--   Arduino Edge control board,
+-   Arduino Edge control board
 -   [1 x US Solid Motorised Ball Valve (9 - 24 V)](https://ussolid.com/u-s-solid-motorized-ball-valve-1-2-brass-electrical-ball-valve-with-full-port-9-24-v-ac-dc-3-wire-setup.html)
--   External power source (12V battery or power supply) - LiPo / SLA, 
--   Micro USB cable,
+-   External power source: 12V battery (LiPo / SLA) or power supply 
+-   Micro USB cable
 -   Arduino IDE 1.8.10+ or Arduino Pro IDE 0.0.4+
 -   2 x Phoenix connectors 1844646
--   2 x Jumper cables.  
+-   2 x Jumper cables  
 
 ## Instructions 
 
-A ball valve is a form of quarter-turn [valve](https://en.wikipedia.org/wiki/Valve) which uses a hollow, perforated and pivoting ball to control flow of liquids and gasses through it. With the Edge control control you can can control and automate the basic operation such as the opening and closing of the valves. You will first install the required core and the libraries required to use the Edge Control board and upload a blink sketch to check if everything is connected right. You will then connect the Valve and then write the sketch that opens and closes it at a certain interval. Finally, you will connect the board to an external power source and upload the sketch. 
-
-[note]
+A ball valve is a form of quarter-turn [valve](https://en.wikipedia.org/wiki/Valve) which uses a hollow, perforated and pivoting ball to control flow of liquids and gasses through it. With the Edge control control you can control and automate the basic operation such as the opening and closing of the valves. You will first install the required core and the libraries required to use the Edge Control board and upload a blink sketch to check if everything is connected right. You will then connect the Valve and then write the sketch that opens and closes it at a certain interval. Finally, you will connect the board to an external power source and upload the sketch. 
 
 ***Note :** Ensure that the Phoenix connectors are in place before plugging in the wires to the respective pins 
-
-[\note]
 
 ### 1. The Basic Setup
 
@@ -51,8 +47,7 @@ The motorized valve comes with three wires primarily marked as blue, yellow and 
 
 ![Schematics of the 3 wire motor](/Users/lenardgeorge/Documents/Arduino/03_Pro/arduino-pro-content/content/tutorials/portenta-h7/ec-ard-3wirevalve/assets/ec_ard_valve_wires.svg) 
 
-Connect the red and the blue wire to any one of the 8 pairs of `LATCHING OUT` pins, `1N` and `1P` of your Edge Control board. Latches allow you to store the state of the pins based on the previous output. As the valve doesnt come with internal drivers to store the state of the motor, the with drivers on the `Latching_out`pins store the signal states without any power consumption.
-
+Connect the red and the blue wire to any one of the 8 pairs of `LATCHING OUT` pins. In this example we will use `1N` and `1P` of your Edge Control board. Latches allow you to store the state of the pins based on the previous output. As the valve doesnt come with internal drivers to store the state of the motor, we will use the `Latching_out` pins (instead of `Latching_out_cmd`) that are the ones that include drivers on the edge control. 
 ![Connecting the valves to the Phoenix](assets/ec_ard_connect_valve.svg)
 
 Connect the yellow wire to the nearby `GND` pin. Ensure that the wires are fastened securely and tightly to the Phoenix connectors so that they make contact with the pins. 
@@ -65,8 +60,7 @@ Open a new sketch file on the Arduino IDE and name it `ValveControl.ino`. Add th
 #include <Arduino_EdgeControl.h>
 ```
 
-inside the `void setup()` , start the serial communication and  EdgeControl.begin()->Starts power initialization of the board. Pin configuration. Disabling all power switches.
-Latching.begin() -> configure expander pins as outputs.Inside . Begin ( Start the edge control board  , Power.begin )
+inside the `void setup()` , after enabeling the serial communication, run the initialization routine  `EdgeControl.begin()` . This routine is in charge of enabling the default power areas of the board. Then use `Latching.begin()` to configure the expander pins as outputs.
 
 ```cpp
 void setup()
@@ -117,13 +111,11 @@ void loop()
 
 ### 4. Connecting to a Power Source 
 
-The Valves require a power supply of 9 - 12 V and you can either use a power supply or lipo batteries to provide the required voltage. Power sources can be connected to the onboard relay ports of the edge control board. Connect two jumper wires to the **GND** and **B** pins of the **Relay ports** 
+The Valves require a power supply of 9 - 12 V and you can either use a power supply or a 3 cell lipo battery to provide the required voltage. Power sources can be connected to the onboard relay ports of the edge control board. Connect two jumper wires to the **GND** and **B** pins of the **Relay ports** 
 
 ![The power pins of the Edge Control](assets/ec_ard_connect_power_source.svg)
 
 Connect the jumper from the **B** pin to the positive terminal of the Battery and the jumper from the **GND** pin to the negative terminal of the battery 
-
-***Note : we recommend using Lipo batteries. In this tutorial we have a Lipo more effiecitn, current discharge is higher and higher battery life***
 
 ### 5. Uploading the Sketch 
 
@@ -169,5 +161,5 @@ void loop()
 ```
 
 **Authors:** Ernesto E. Lopez, Lenard George Swamy
-**Reviewed by:** Ernesto E. Lopez [18.03.2020]  
-**Last revision:** Lenard  [27.3.2020]
+**Reviewed by:** Ernesto E. Lopez [18.03.2021]  
+**Last revision:** Lenard George Swamy  [30.3.2021]
