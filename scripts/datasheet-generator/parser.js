@@ -177,15 +177,15 @@ const preparePdfProperties = (style, contentURL, pdfFilename, boardName, revisio
                 "height": "35mm",
                 "contents": {
                     first: `
-                        <hr style="margin-top:50px; border-style: solid; border-bottom: 0;" />
+                        <hr style="margin-top:50px;" />
                         <div class="logo-frontpage">${specificLogoSVGdata}</div>
                         <div class="title-frontpage">${boardName}</div>                        
-                        <hr style="border-style: solid; border-bottom: 0;" />                        
+                        <hr />                        
                     `,
                     default: `
                         <div class="logo-header">${specificLogoSVGdata}</div>
                         <div class="title-header">${boardName}</div>  
-                        <hr style="border-style: solid; border-bottom: 0; color: #95a5a6;" />
+                        <hr class="subtle" />
                     `
                 }
             },

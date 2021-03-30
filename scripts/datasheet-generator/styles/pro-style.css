@@ -25,6 +25,10 @@ hr {
     color: #666;
 }
 
+hr.subtle{
+    color: #95a5a6;
+}
+
 td, th {
     border: 1px solid black;
     text-align: left;
@@ -97,8 +101,8 @@ img {
 
 .subtitle {
     text-align:right;
-    margin-top: -12px;
-    margin-bottom: 20px;
+    margin-top: -1rem;
+    margin-bottom: 2rem;
 }
 
 .logo-frontpage svg {    
@@ -110,9 +114,9 @@ img {
 
 
 .logo-header svg {
-    height: 1rem;
+    height: 1.2rem;
     position: absolute;
-    top: 60px;
+    top: 62px;
     left: -20px;
 }
 
