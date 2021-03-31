@@ -20,7 +20,7 @@ This tutorial teaches you how to train a custom machine learning model using Edg
 
 ## Machine Learning on the Edge
 
-Machine learning on powerful computers has been around for a while. On microcontrollers this is a rather new territory. Microcontrollers might not be able to run ML models to process high resolution images at high frame rates but there are some intersting aspects. On the one hand microcontrollers can run at very low power on batteries for a long time. You could even put the processor to sleep and only wake it up when the camera or one of the attached sensors registers activity. On the other hand ML models on a microcontroller can run without internet connection as they don't need to upload data to the cloud. This means that you can install distributed ML solutions in places where there is no Internet connection (Edge Computing). Additionally processing data locally means that the data stays on the device which ensures data privacy.
+Machine learning on powerful computers has been around for a while. On microcontrollers this is a rather new territory. Microcontrollers might not be able to run ML models to process high resolution images at high frame rates but there are some interesting aspects. On the one hand microcontrollers can run at very low power on batteries for a long time. You could even put the processor to sleep and only wake it up when the camera or one of the attached sensors registers activity. On the other hand ML models on a microcontroller can run without internet connection as they don't need to upload data to the cloud. This means that you can install distributed ML solutions in places where there is no Internet connection (Edge Computing). Additionally processing data locally means that the data stays on the device which ensures data privacy.
 
 ## The Edge Impulse Platform
 
@@ -114,6 +114,8 @@ if confidence > 0.9 and label != "unknown":
 This code will print a message saying e.g. "It's an apple!" in case the confidence is above 90%. In the following screenshot you can see that the apple was detecter with a confidence level of 1.0 which corresponds to 100%.
 
 ![The apple is detected with a 100% accuracy](assets/vs_openmv_ml_edge_impulse_classification.png)
+
+Try pointing the camera of the Portenta Vision Shield at any of your fruits or other objects that you used for the training and check if it can be recognized successfully.
 
 The complete script of the classification example is as follows:
 
