@@ -1,4 +1,4 @@
-# Getting started with OpenMV and MicroPython
+# Getting Started with OpenMV and MicroPython
 
 ## Overview
 In this tutorial, you will learn how the Portenta works with OpenMV and MicroPython. This tutorial will go through some features in OpenMV and MicroPython. You will then write a simple script in MicroPython that will use the I/O pins and PWM on the Portenta.
@@ -35,7 +35,7 @@ Pulse width modulation (PWM) is a way to get an artificial analog output on a di
 
 >On the Portenta the pins PA8, PC6, PC7, PG7, PJ11, PK1, and PH15 support PWM.
 
-### I/O pins
+### I/O Pins
 
 I/O pins are pins that can be set as input or output in the sketch. Using Micropython, there are methods to set the mode of the pin (input or output) and methods to get and set the digital logic level. We can also determine the behavior of the pull up or down resistor with the help of Micropython.
 
