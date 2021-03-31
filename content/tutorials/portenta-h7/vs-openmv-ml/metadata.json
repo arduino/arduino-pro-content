@@ -1,15 +1,15 @@
 {
-   "title": "Training a Machine Learning Model With Edge Impulse",
+   "title": "Training a Custom Machine Learning Model for Portenta H7",
    "coverImage": {
       "src": "assets/vs_openmv_ml_cover.svg?sanitize=true"
    },
    "tags": [
-      "Machine Vision",
+      "Machine Learning",
       "Edge Impulse",
       "TinyML",
       "Tensorflow"
    ],
-   "abstract": "This tutorial teaches you how to train a custom machine learning model using Edge Impulse and to build a simple object classifier.",
+   "abstract": "This tutorial teaches you how to train a custom machine learning model with Edge Impulse and to run it using the Portenta Vision Shield",
    "previousArticle": null,
    "nextArticle": null
 }
