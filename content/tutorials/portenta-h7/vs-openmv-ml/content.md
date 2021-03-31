@@ -12,8 +12,8 @@ This tutorial teaches you how to train a custom machine learning model using Edg
 ### Required Hardware and Software
 
 - [Portenta H7 board](https://store.arduino.cc/portenta-h7)
-- [Portenta Vision Shield - LoRa](https://store.arduino.cc/portenta-vision-shield-lora) or [Portenta Vision Shield - Ethernet] (https://store.arduino.cc/usa/portenta-vision-shield)
-- Arduino [desktop IDE](https://www.arduino.cc/en/main/software) or Arduino ([Web Editor](https://create.arduino.cc/)
+- [Portenta Vision Shield - LoRa](https://store.arduino.cc/portenta-vision-shield-lora) or [Portenta Vision Shield - Ethernet](https://store.arduino.cc/usa/portenta-vision-shield)
+- Arduino [desktop IDE](https://www.arduino.cc/en/main/software) or Arduino [Web Editor](https://create.arduino.cc/)
 - USB-C cable (either USB-A to USB-C or USB-C to USB-C)
 - An [Edge Impulse](https://studio.edgeimpulse.com/) account for training the ML model
 - Fruits (or other objects) to create the classification model 🍏🍌🍐
@@ -28,7 +28,7 @@ Edge Impulse is a platform that simplifies the process of creating machine learn
 
 ## Training the ML Model
 
-To train a ML model to classify an image we need to feed it with image data of that object. During the training process the model will be trained using a concept called [supervised learning](https://en.wikipedia.org/wiki/Supervised_learning). This means that we train the model with known data and tell it while it's "practicing" its predictions if they are correct or not. This is similar to what happens when you tell a toddler which is pointing at a donkey saying "horse" and you tell them that it's actually a donkey. The next few times they see a donkey they may still get it wrong but over time under your supervision they will learn to correctly identify a donkey. Conceptionally, that's also how our ML model learns.
+To train a ML model to classify an image we need to feed it with image data of that object. During the training process the model will be trained using a concept called [supervised learning](https://en.wikipedia.org/wiki/Supervised_learning). This means that we train the model with known data and tell it while it's "practicing" its predictions if they are correct or not. This is similar to what happens when you tell a toddler which is pointing at a donkey saying "horse" and you tell them that it's actually a donkey. The next few times they see a donkey they may still get it wrong but over time under your supervision they will learn to correctly identify a donkey. Conceptually, that's also how our ML model learns.
 
 ![For supervised learning objects are labeled beforehand with their names](assets/vs_openmv_ml_supervised_learning.svg)
 
@@ -159,7 +159,7 @@ You have learned about classification as a machine learning concept which catego
 
 ### Next Steps
 
-One thing that we didn't have a look at is testing the final model. In Edge Impulse Studio there is a section for this called "Model Testing". It allows you to test the accuracy of your model with additional data that it hasn't seen yet. This gives you an opportunity to find out for which images the classification accuracy falls short. You can inspect individual images that are not correctly detected and decide whether additional data needs to be created to re-train the model for better accuracy on those images. You can also decide to move the images that were not recognized correctly to the training set and try again with that setup.
+One thing that we didn't have a look at is testing the final model. In Edge Impulse Studio there is a section for this called "Model Testing". It allows you to test the accuracy of your model with additional data that it hasn't seen yet. This gives you an opportunity to find out for which images the classification accuracy falls short. You can inspect individual images that are not correctly detected and decide whether additional data needs to be created to re-train the model for better accuracy on those images. You can also decide to move the images that were not recognised correctly to the training set and try again with that setup.
 
 ## Troubleshooting
 
