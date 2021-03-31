@@ -1,0 +1,15 @@
+{
+   "title": "Training a Machine Learning Model With Edge Impulse",
+   "coverImage": {
+      "src": "assets/vs_openmv_ml_cover.svg?sanitize=true"
+   },
+   "tags": [
+      "Machine Vision",
+      "Edge Impulse",
+      "TinyML",
+      "Tensorflow"
+   ],
+   "abstract": "This tutorial teaches you how to train a custom machine learning model using Edge Impulse and to build a simple object classifier.",
+   "previousArticle": null,
+   "nextArticle": null
+}
