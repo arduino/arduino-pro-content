@@ -111,7 +111,7 @@ if confidence > 0.9 and label != "unknown":
     print("It's a ", label, "!")
 ```
 
-This code will print a message saying e.g. "It's an apple!" in case the confidence is above 90%. In the following screenshot you can see that the apple was detecter with a confidence level of 1.0 which corresponds to 100%.
+This code will print a message saying e.g. "It's an apple!" in case the confidence is above 90%. In the following screenshot you can see that the apple was detected with a confidence level of 1.0 which corresponds to 100%.
 
 ![The apple is detected with a 100% accuracy](assets/vs_openmv_ml_edge_impulse_classification.png)
 
