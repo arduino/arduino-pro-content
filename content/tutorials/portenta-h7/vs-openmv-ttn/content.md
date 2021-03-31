@@ -179,6 +179,6 @@ The most common issue is that the device cannot connect to a TTN gateway. Again,
 
 If we are within good range of a gateway, we should also try to move our device and antenna to a window, and even hold it out the window and move it around. This has proven successful on numerous accounts, as the signal can travel less obstructed.
 
-**Authors:** Lenard George, Ignacio Herrera, Benjamin Dannegård 
-**Reviewed by:** Lenard George [2021-03-31]
+**Authors:** Lenard George, Ignacio Herrera, Benjamin Dannegård  
+**Reviewed by:** Lenard George [2021-03-31]  
 **Last revision:** Benjamin Dannegård [2021-03-31]
