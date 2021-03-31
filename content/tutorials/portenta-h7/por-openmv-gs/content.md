@@ -1,4 +1,4 @@
-# Getting started with OpenMV
+# Getting started with OpenMV and MicroPython
 
 ## Overview
 In this tutorial, you will learn how the Portenta works with OpenMV and MicroPython. This tutorial will go through some features in OpenMV and MicroPython. You will then write a simple script in MicroPython that will use the I/O pins and PWM on the Portenta.
@@ -21,39 +21,7 @@ The OpenMV IDE was built for Machine Vision applications. It is meant to provide
 
 >Currently, doing anything serious involving computer vision requires a computer running an operating system running many layers of software and requiring much set up before you can get computer vision code working. This is all well and fine if you need to do many other things than just processing images, like connecting to the internet, running many different applications concurrently, etc.
 
->But, what if, I just want to make an LED turn on if a red object appears in front of a white wall. Why do a need to build up a complex system for that? Or, what if I just want to turn on an LED when a face is in view?
-
 This is where OpenMV comes in. [Here](https://openmv.io/) you can read more about the OpenMV IDE.
-
-## OpenMV features
-
-### Histogram
-
-The histogram is useful for getting feedback about the lighting quality in the room, determining color tracking settings, and in general just giving you an idea about the quality of the image your OpenMV Cam is looking at.
-
-You can select between four different color spaces in the histogram. Either RGB, Grayscale, LAB, and YUV.
-
-[Screenshot focused on the histogram in OpenMV]()
-
-By default, the histogram shows information about the whole image. However, if you select an area of the frame buffer by clicking and dragging on it then the histogram will only show the distribution of colors in that area. This feature makes the histogram display useful for determining the correct Grayscale and LAB color channel settings you need to use.
-
-Finally, the image resolution and ROI (x, y, w, h) of the bounding box you select on the image are displayed above the histogram graphs.
-
-### Frame buffer
-
-The OpenMV IDE has an integrated frame buffer viewer. Making it easy for you to see what the OpenMV Cam is looking at while working on your code. 
-
-The frame buffer viewer displays whatever was in your OpenMV Cam's frame buffer previously when `sensor.snapshot()` is calLED.
-
-[Screenshot focused on the frame buffer area in OpenMV]()
-
-The `Record` button in the frame buffer area of OpenMV IDE records whatever is in the frame buffer. It can be used to quickly make videos of what your OpenMV Cam sees. Recording works by recording whatever is in OpenMV IDE's frame buffer at 30 FPS. However, the frame buffer may be updating faster or slower than this depending on the application. 
-
-The `Disable` button in the frame buffer area of OpenMV IDE controls whether or not your OpenMV Cam will send images to OpenMV IDE. Your OpenMV Cam has to JPEG compress images constantly to stream them to OpenMV IDE. This reduces performance. If you want to see how fast your script will run without your OpenMV Cam being connected to your computer just click the `Disable` button. While the frame buffer is disabLED you won't be able to see what your OpenMV Cam is looking at anymore.
-
-You can right-click on the image you see in the frame buffer viewer to save that image. If you select an area in the frame buffer by clicking and dragging you can save just that area instead. You should stop the script before trying to save the frame buffer. Otherwise, you may not get the exact frame you want.
-
-> To de-select an area in the frame buffer, click anywhere without dragging to remove the selection.
 
 ## MicroPython
 
@@ -67,13 +35,9 @@ Pulse width modulation (PWM) is a way to get an artificial analog output on a di
 
 >On the Portenta the pins PA8, PC6, PC7, PG7, PJ11, PK1, and PH15 support PWM.
 
-[Portenta pinout?]()
-
 ### I/O pins
 
 I/O pins are pins that can be set as input or output in the sketch. Using Micropython, there are methods to set the mode of the pin (input or output) and methods to get and set the digital logic level. We can also determine the behavior of the pull up or down resistor with the help of Micropython.
-
-
 
 ## Instructions
 
@@ -242,6 +206,6 @@ In this tutorial, you learned how to use the OpenMV IDE to develop MicroPython s
 - If you experience issues putting the board in bootloader mode, make sure you first update the bootloader to the latest version using the *PortentaH7_updateBootloader* sketch from the examples menu in the Arduino IDE.
 - If you see a "OSError: Reset FaiLED" message, reset the board by pressing the reset button. Wait until you see the blue LED flashing, connect the board to the OpenMV IDE and try running the script again.
 
-**Authors:** Sebastian Romero, Benjamin Dannegård
-**Reviewed by:** ZZ [YYYY-MM-DD]  
-**Last revision:** AA [YYYY-MM-DD]
+**Authors:** Sebastian Romero, Benjamin Dannegård  
+**Reviewed by:** Lenard George [2021-03-31]  
+**Last revision:** Benjamin Dannegård [2021-03-31]
