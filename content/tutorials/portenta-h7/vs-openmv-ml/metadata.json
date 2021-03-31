@@ -9,7 +9,7 @@
       "TinyML",
       "Tensorflow"
    ],
-   "abstract": "This tutorial teaches you how to train a custom machine learning model using Edge Impulse and ot build a simple classifier.",
+   "abstract": "This tutorial teaches you how to train a custom machine learning model using Edge Impulse and to build a simple object classifier.",
    "previousArticle": null,
    "nextArticle": null
 }
