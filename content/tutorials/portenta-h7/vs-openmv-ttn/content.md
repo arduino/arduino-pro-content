@@ -126,7 +126,7 @@ The only line you may need to change before uploading the code is the one that s
 // change this to your regional band (eg. US915, AS923, ...)
 lora = Lora(band=BAND_EU868, poll_ms=60000, debug=False)
 ```
-***Consider that in Australia the boards connect correctly to TTN gateways on AS923 frequencies; AU915 frequencies requires the selection of sub band 2, not yet implemented in the firmware.***
+***Consider that in Australia the boards connect correctly to TTN gateways on AS923 frequencies; AU915 frequencies requires the selection of sub band 2 which is not yet implemented in the firmware.***
 
 Once you have added to the sketch the frequency according to your country, you can upload it to the board.
 
