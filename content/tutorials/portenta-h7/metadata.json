@@ -18,6 +18,7 @@
      "por-ard-flash",
      "por-ard-kvs",     
      "vs-ard-ttn",
-     "por-ard-lvgl"
+     "por-ard-lvgl",
+     "vs-openmv-ml"
     ]
  }
