@@ -1,7 +1,7 @@
-# Training a Machine Learning Model With Edge Impulse
+# Training a Custom Machine Learning Model for Portenta H7
 ## Overview 
 
-This tutorial teaches you how to train a custom machine learning model using Edge Impulse and to build a simple object classifier. The Machine Learning (ML) model will use the TensorFlow Lite format and the classification example will run on OpenMV.
+This tutorial teaches you how to train a custom machine learning model with Edge Impulse and to run it using the Portenta Vision Shield. The Machine Learning (ML) model will use the TensorFlow Lite format and the classification example will run on OpenMV.
 
 ### You Will Learn
 
