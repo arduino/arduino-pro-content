@@ -1,7 +1,7 @@
 # Connecting the Vision Shield to TTN Using LoRa
 ## Overview 
 
-This tutorial explains how to connect your Portenta H7 to The Things Network (TTN) using the the Vision Shield's LoRa Connectivity feature. A data communication channel will be enabled between the H7 and a TTN application that will be configured on your TTN console.
+This tutorial explains how to connect your Portenta H7 to The Things Network (TTN) using the Vision Shield's LoRa Connectivity feature. A data communication channel will be enabled between the H7 and a TTN application that will be configured on your TTN console.
 
 ***In order to connect your Portenta to the TTN make sure you are within the range (max. 10 Km) from an available LoRa Gateway. Indoor gateways will have a much shorter range. It is recommended that you check LoRa Gateway availability on [The Things Network map](https://www.thethingsnetwork.org/map) before you try this tutorial.***
 
@@ -23,7 +23,7 @@ This tutorial explains how to connect your Portenta H7 to The Things Network (TT
 
 ## Connecting to the TTN
 
-The Portenta Vision Shield - LoRa can be connected to the TTN and can transmit data to other devices connected to this network through a secure channel. This channel is nothing but an applicaiton on the TTN network dedicated for your board. In this tutorial, you will be guided through a step-by-step process of setting up your Portenta board and the Vision Shield Lora to communicate with a TTN application. As stated before, to be able to follow this guide, to be under coverage of one of the TTN gateways. You can check for [the coverage](https://www.thethingsnetwork.org/map) now if you have not done so yet.
+The Portenta Vision Shield - LoRa can be connected to the TTN and can transmit data to other devices connected to this network through a secure channel. This channel is nothing but an application on the TTN network dedicated for your board. In this tutorial, you will be guided through a step-by-step process of setting up your Portenta board and the Vision Shield Lora to communicate with a TTN application. As stated before, to be able to follow this guide, to be under coverage of one of the TTN gateways. You can check for [the coverage](https://www.thethingsnetwork.org/map) now if you have not done so yet.
 
 ### 1. Setting up the Environment
 
@@ -59,9 +59,9 @@ Let's take a closer look at these sections:
 - **Collaborators**: here you can see and manage all the app collaborators. To integrate with other collaborative platforms or to manage access rights to the app with other TTN registered profiles.
 - **Access keys**: it's the most sensible information. It is basically the key to gain access to your app, so keep it safe.
 
-### 3. Updating the modems firmware
+### 3. Updating the Modems Firmware
 
-The LoRa module on the Vision Shield can be accessed by using the [MKRWAN library](https://github.com/arduino-libraries/MKRWAN)( if you can't find it in your examples list, you can go to **tools > library manager** and type "MKRWAN library" to install it). This library provides all the APIS to communicate with LoRa and LoRaWAN networks and can be Installed from the library Manager. The code you need to upload and run is from the **MKRWAN** library, and its name is **MKRWANFWUpdate_standalone**.
+The LoRa module on the Vision Shield can be accessed by using the [MKRWAN library](https://github.com/arduino-libraries/MKRWAN)( if you can't find it in your examples list, you can go to **tools > library manager** and type "MKRWAN library" to install it). This library provides all the APIS to communicate with LoRa and LoRaWAN networks and can be installed from the library manager. The code you need to upload and run is from the **MKRWAN** library, and its name is **MKRWANFWUpdate_standalone**.
 
 //REPLACE
 ![Upload code to IDE, highlight MKRWANFWUpdate_standalone example](assets/vs_ard_select_example.png)
@@ -70,13 +70,11 @@ The LoRa module on the Vision Shield can be accessed by using the [MKRWAN librar
 
 It's now time to connect your Portenta H7 and Lora Vision Shield to TTN. You'll need to upload code to the board using [OpenMV](https://openmv.io/pages/download)
 
-Plug the Portenta Vision Shield - LoRa to the Portenta H7 and them to your PC through the USB port. If the Portenta board does not show up on OpenMV, try double-pressing the reset button on the portenta. And now update to the latest firmware in OpenMV.
+Plug the Portenta Vision Shield - LoRa to the Portenta H7 and them to your PC through the USB port. If the Portenta board does not show up on OpenMV, try double-pressing the reset button on the Portenta. And now update to the latest firmware in OpenMV.
 
 Now we can put the code needed in OpenMV. Below you can see the full sketch, simply copy it into a new sketch in OpenMV.
 
 ```py
-from lora import *
-
 lora = Lora(band=BAND_EU868, poll_ms=60000, debug=False)
 
 print("Firmware:", lora.get_fw_version())
@@ -153,7 +151,7 @@ After pressing the Register button, your board will show up on the **Device Over
 
 ### 6. Connecting to TTN
 
-Once your board has been registered you can send information to TTN. Let's go back to the sketch to fill in the appEui and appKey. The sketch we use here will use OTA connnection.
+Once your board has been registered you can send information to TTN. Let's go back to the sketch to fill in the appEui and appKey. The sketch we use here will use OTA connection.
 
 You can read more into OTA vs ABP activation mode at [this link](https://www.thethingsnetwork.org/docs/devices/registration.html)
 
@@ -167,7 +165,7 @@ Message confirmed.
 
 ## Conclusion
 
-If you recieve this message, you have managed to configure the Portenta H7 and the Lora Vision Shield on the TTN.
+If you receive this message, you have managed to configure the Portenta H7 and the Lora Vision Shield on the TTN.
  We have retrieved the device EUI, used it to register the device in the TTN console, and programmed the board using the data provided by TTN. Now, we can send data over the LoRa® network which can be viewed from anywhere in the world (as long as we have an Internet connection and our device is in range from a TTN gateway).
 
 ### Next Steps
