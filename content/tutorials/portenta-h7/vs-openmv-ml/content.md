@@ -34,7 +34,7 @@ To train a ML model to classify an image we need to feed it with image data of t
 
 ### 1. Creating a Data Set
 
-The first step is to create a representative dataset of the objects that the ML model is supposed to identify. The key is to have as much diversity in the models as possible. If we show it for example only one specifc apple that has a certain size, shape and peel, then it won't be very good at recognising other apples that look different. This is referred to as a bias and should be avoided as much as possible. In addition you need to teach the model what an apple is not. For that purpse you feed it random image data of things that are not an apple. You could name that class of image data "unknown". If you don't have such a class and the model has only ever seen an apple, it won't know what to do if there is no apple in the image.
+The first step is to create a representative dataset of the objects that the ML model is supposed to identify. The key is to have as much diversity in the models as possible. If we show it for example only one specific apple that has a certain size, shape and peel, then it won't be very good at recognising other apples that look different. This is referred to as a bias and should be avoided as much as possible. In addition you need to teach the model what an apple is not. For that purpose you feed it random image data of things that are not an apple. You could name that class of image data "unknown". If you don't have such a class and the model has only ever seen an apple, it won't know what to do if there is no apple in the image.
 
 Creating data sets in OpenMV is simple as there is a built-in function to create them. Before you proceed, connect your Portenta H7 board with the Vision Shield mounted. Click on the connect button in the OpenMV IDE. If you haven't set up your board for OpenMV please consult the [getting started tutorial](https://www.arduino.cc/pro/tutorials/portenta-h7/por-openmv-bt).
 Create a new dataset by using the menu command **Tools->Dataset Editor->New Dataset** and name it `Dataset-Fruits`.
@@ -42,7 +42,7 @@ Create a new dataset by using the menu command **Tools->Dataset Editor->New Data
 ![The Dataset Editor can be found in the Tools menu](assets/vs_openmv_ml_new_dataset.png)
 
 The next step is to create image classes. A class represents a unique type of object, in this case the type of fruit.
-First, create a new image class and name it `apple` by clicking on "New Class Folder" in the toolbar. Now run the image capturing script that is already open by clicking the play button. Focus the apple with the camera and click on **Capture Data** to snap a picture of it. Capture it from different angles and with different backgrounds to make the recognition later on more robust. Repeat this for other fruits that you would like to classify (e.g. a pear and a banana). Add a `unknown` class and capture some images of different backgrounds that you would like to use during the classification later on.
+First, create a new image class and name it `apple` by clicking on "New Class Folder" in the toolbar. Now run the image capturing script that is already open by clicking the play button. Focus the apple with the camera and click on **Capture Data** to snap a picture of it. Capture it from different angles and with different backgrounds to make the recognition later on more robust. Repeat this for other fruits that you would like to classify (e.g. a pear and a banana). Add an `unknown` class and capture some images of different backgrounds that you would like to use during the classification later on.
 
 ![The various image classes can be created directly in the dataset editor](assets/vs_openmv_ml_classes.png)
 
@@ -64,15 +64,15 @@ Open your project in the Edge Impulse studio and navigate to "Data Acquisition".
 
 ### 4. Create an Impulse
 
-If you're happy with the data samples you can move on to designing your impulse. An impulse is in a nutshell a recipe with which the model is being trained. It defines actions that are performed on your input data to make them better suited for machine learning and a learning block that defines the algrithm for the classification. In the menu navigate to "Create Impulse" under "Impulse Design" and add an **Image** processing block as well as a **Transfer Learning** learning block.
-It's recomended to adjust the image size to 48x48 for improved performance. You can try with higher resolutions but you will notice that the frame rate during the classification will drop significantly. Click on Save Impulse to apply the adjusted settings.
+If you're happy with the data samples you can move on to designing your impulse. An impulse is in a nutshell a recipe with which the model is being trained. It defines actions that are performed on your input data to make them better suited for machine learning and a learning block that defines the algorithm for the classification. In the menu navigate to "Create Impulse" under "Impulse Design" and add an **Image** processing block as well as a **Transfer Learning** learning block.
+It's recommended to adjust the image size to 48x48 for improved performance. You can try with higher resolutions but you will notice that the frame rate during the classification will drop significantly. Click on Save Impulse to apply the adjusted settings.
 
 ![An Impulse consists of the building blocks needed to train a ML model](assets/vs_openmv_ml_edge_impulse_design.png)
 
 
 ### 5. Generate Features
 
-In this step you will adjust the image settings and generate the features from the input data. Features are unique properites that will be used by the classification algorithm to detect the objects. A feature can be the round shape of an apple or the fact that an image of a banana has many bright pixels as bananas are mostly yellow.
+In this step you will adjust the image settings and generate the features from the input data. Features are unique properties that will be used by the classification algorithm to detect the objects. A feature can be the round shape of an apple or the fact that an image of a banana has many bright pixels as bananas are mostly yellow.
 In the menu navigate to "Image" under "Impulse Design". Set the color depth to "Grayscale" and save the parameters as the Portenta Vision Shield features a grayscale camera. 
 
 ![In the image inspection tool you can set the color depth according to the input data](assets/vs_openmv_ml_edge_impulse_parameters.png)
@@ -90,7 +90,7 @@ Click on "Start Training" to train the machine learning model. A small amount of
 
 ## Using the ML Model
 
-The ML model is trained and already optimized to be used with microcontrollers. This is done automatically in the background through quantization. This is a process where the numbers in the machine learning models are constrained in their value range for improved performance while sacrifying a bit of accuracy.
+The ML model is trained and already optimised to be used with microcontrollers. This is done automatically in the background through quantisation. This is a process where the numbers in the machine learning models are constrained in their value range for improved performance while sacrificing a bit of accuracy.
 
 ### Deploy
 
@@ -115,7 +115,7 @@ This code will print a message saying e.g. "It's an apple!" in case the confiden
 
 ![The apple is detected with a 100% accuracy](assets/vs_openmv_ml_edge_impulse_classification.png)
 
-Try pointing the camera of the Portenta Vision Shield at any of your fruits or other objects that you used for the training and check if it can be recognized successfully.
+Try pointing the camera of the Portenta Vision Shield at any of your fruits or other objects that you used for the training and check if it can be recognised successfully.
 
 The complete script of the classification example is as follows:
 
@@ -157,7 +157,7 @@ while(True):
 
 ## Conclusion
 
-You have learned about classification as a machine learning concept which categorizes a set of data into classes. You have also learned how supervised learning works and what quantisation of a model means. Furthermore you have learned to train a custom TFLite machine learning model and deploy it to your Portenta H7.
+You have learned about classification as a machine learning concept which categorises a set of data into classes. You have also learned how supervised learning works and what quantisation of a model means. Furthermore you have learned to train a custom TFLite machine learning model and deploy it to your Portenta H7.
 
 ### Next Steps
 
