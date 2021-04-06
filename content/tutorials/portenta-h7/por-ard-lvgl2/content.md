@@ -140,22 +140,22 @@ It is time now to know what is needed in order to make the interface work, this 
 * Draw the widgets on screen 
   * createWidgets() : This will instantiate all the widgets 
 * Text Area (text input to fill)
-  * object: `lv_obj_t * ta`
-  * event callback: `event_handler_textArea(lv_obj_t * ta, lv_event_t ta_event)`
+  * object: `lv_obj_t * textArea`
+  * event callback: `event_handler_textArea(lv_obj_t * textArea, lv_event_t textAreaEvent)`
 * Submit button
-  * object: `lv_obj_t * submit_btn`
-  * event callback: `submit_event_cb(lv_obj_t * submit_btn, lv_event_t submit_event)`
+  * object: `lv_obj_t * submitButton`
+  * event callback: `submit_event_cb(lv_obj_t * submitButton, lv_event_t submitEvent)`
+* Launch Keyboard button
+  * object: `lv_obj_t * launchButton`
+  * event callback: `submit_event_cb(lv_obj_t * launchButton, lv_event_t buttonEvent)`
 * Virtual Keyboard (from LVGL)
   * object: `lv_obj_t * keyboard`
-  * event callback: `keyboard_event_cb(lv_obj_t * keyboard, lv_event_t keyboard_event)`
+  * event callback: `keyboard_event_cb(lv_obj_t * keyboard, lv_event_t keyboardEvent)`
   * draw it on screen: `keyboard_create()`
-* Submit button
-  * object: `lv_obj_t * submit_btn`
-  * event callback: `submit_event_cb(lv_obj_t * submit_btn, lv_event_t submit_event)`
 * Mouse pointer object
-  * driver: `lv_indev_drv_t indev_drv_mouse`
-  * mouse pointer: `lv_obj_t * cursor_obj`
-  * read the mouse input: `my_input_read(lv_indev_drv_t * drv, lv_indev_data_t*data)`
+  * driver: `lv_indev_drv_t mouseIndevDriver`
+  * mouse pointer: `lv_obj_t * mouseCursor`
+  * read the mouse input: `mouseRead(lv_indev_drv_t * mouseIndevDriver, lv_indev_data_t * data)`
 * Popup the message box
   * `popupMessage(const char* innerText)` 
     
