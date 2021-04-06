@@ -68,7 +68,7 @@ Then, in the `setup()` you need to initialise some needed features (Video driver
      createWidgets();
    }
 ```
-Later on, let's define `initInputs()` to initialise the RPC for the **USB Mouse and Keyboardand**, and `createWidgets()` to have in place the entire interface.
+Later on, let's define `initInputs()` to initialise the RPC for the **USB Mouse and Keyboard**, and `createWidgets()` to have in place the entire interface.
 
 Then, the `loop()` function will be focusing on the LVLG's task handler to update the screen with the content and displaying the changes and events happening on it.
 
@@ -85,7 +85,7 @@ Then, the `loop()` function will be focusing on the LVLG's task handler to updat
 
 ## 3. Creating the interface
 
-Once we have the main structure of the program filled, let's go now to create the screen interface in a new tab called "widgets.h". This interface will show on the screen a text field - where users can visualise the text inputs from the keyboard- and two buttons, the "submit" button that will throw a popup box with the text visualised on the text field, and the other that will launch a virtual keyboard from LVGL allowing the user to fully interact with the interface by using just a mouse.
+Once we have the main structure of the program filled, let's go now to create the screen interface in a new tab called "widgets.h". This interface will show on the screen a text field - where users can visualize the text inputs from the keyboard- and two buttons, the "submit" button that will throw a popup box with the text visualized on the text field, and the other that will launch a virtual keyboard from LVGL allowing the user to fully interact with the interface by using just a mouse.
 
 ### LVGL widget's events
 To understand the logic behind the LVGL interface, you need to know that it works with **callbacks**, also called **event handlers**, which are functions that are triggered when a specific event happens, e.g. the `myButtonEventHandler` function will be called when there has happened a mouse click over a widget on the screen. 
