@@ -20,24 +20,25 @@ In this tutorial you will learn to use the [LVGL](https://lvgl.io/) library to c
 
 # The implementation of interaction...
 
-Usually what makes the difference when whe are using GUIs between each other, is how the user can interact and manipulate the data and how the user feels the way of communicating trough the GUI.
-By adding the most common used interfaces, the Mouse and the Keyboard we are doing it to be more handful to computer users, but with LVGL you can use rotary encoders, keypads, buttons and much more to do the interaction as custom as your project need.
+Usually what makes the difference when using GUIs between each other, is how the user can interact and manipulate the data and how the user feels the way of communicating trough the GUI.
+
+In order to be more handful computer use peripherals like the mouse or the keyboard, in this case, by using LVGL you can use them, but also you can use other components such as rotary encoders, keypads, buttons and much more that connected to your Portenta will allow you to create iterations as custom as your project need.
 
 # Making the interactive GUI 
 
-This tutorial will guide you to build a basic user interface using the LVGL, the USBhost and the RPC Libraries that you will have to download using the Arduino Library Manager. The setup for this tutorial requires you to:
+This tutorial will guide you to program the Portenta M4 and M7 processors to build a basic user interface using the LVGL, the USBhost and the RPC Libraries that you will have to download using the Arduino Library Manager. While going through this tutorial you will:
 
-1. Upload a sketch file to the Portenta board where it gets the data from the USB inputs trough the USB hub on the **M4 processor**.
-2. Upload a sketch file to the Portenta board to draw the interface, and get the data of the USB inputs from the M4 processor trough RPC on the **M7 processor**.
-3. Connect the board to a USB-HUB and connect an external monitor. 
+1. Upload a sketch file to the Portenta **M4 processor** to get the data from the USB inputs (mouse and keyboard) trough the USB hub.
+2. Upload a sketch file to the Portenta **M7 processor** to draw the interface, this sketch will also receive data from the M4 processor trough RPC with the information acquired via the USB inputs.
+3. Use an USB-HUB to connect an external monitor, a mouse and/or keyboard and to power the Portenta.
 
-Once the USB-HUB is powered externally, a graphical user interface with a button and a text-area will be displayed on the screen, then you will be able to interact with those items (widgets) by connecting a mouse and/or a Keyboard to the Portenta through he USB-HUB.
+Once the USB-HUB is powered externally, a graphical user interface with a button and a text-area will be displayed on the screen, then you will be able to interact with those items (widgets) by using the mouse and the keyboard connected to the USB-HOST.
 
 ![por_ard_lvgl_tutorial_steps](assets/por_ard_lvgl_tutorial_steps.svg)
 
 ## 1. The structure of the processors and sketches
 
-In order to create our interface, we will use both of the cores of the Portenta board (M4 and M7). In this case the M4 is going to be focused to receive the Mouse and Keyboard inputs, and send the information to the M7 trough RPC. It means that we will need to upload different sketches to the each of the cores:
+As introduced above, the interface will use both of the cores of the Portenta board (M4 and M7). It means that you will need to upload different sketches to the each one of the cores:
 
    * M4
       * lvgl_mouse_m4.ino - getting the input data from mouse and/or keyboard and sending it through RPC to the M7 
@@ -47,31 +48,29 @@ In order to create our interface, we will use both of the cores of the Portenta 
 
 > **Note:** Check the [Dual Core Processing tutorial](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-dcp) for more info about how to program and access to the cores of Portenta
 
-
 ## 2. Create the structure and getting started
 
-Lets start by creating the files. First, lets create a new file called "lvgl_interaction.ino" and include the following libraries:
+In order to create the interface, let's start programming the Portenta M7 processor, to do so you will need to create some files. First, create a new file called "lvgl_interaction.ino" and include the following libraries:
+
 ```cpp
    #include "RPC_internal.h"
    #include "USBHost.h"
-
    #include "widgets.h"
 ```
 
-Then, in the `setup()` we need to initialize some needed features (Video driver, LVGL, Inputs)
+Then, in the `setup()` you need to initialise some needed features (Video driver, LVGL, Inputs)
 ```cpp
    void setup() {
      // put your setup code here, to run once:
      Serial1.begin(115200);
-     portenta_init_video();
      initInputs();
-
+     portenta_init_video();
      createWidgets();
    }
 ```
-Later on we will define `initInputs()` to initialize the RPC for the **USB Mouse and Keyboardand**, and `createWidgets()` to have in place the entire interface.
+Later on, let's define `initInputs()` to initialise the RPC for the **USB Mouse and Keyboard**, and `createWidgets()` to have in place the entire interface.
 
-Then the `loop()` will be focusing on the LVLG's task handler to update the screen with the content and displaying the changes and events happening on it.
+Then, the `loop()` function will be focusing on the LVLG's task handler to update the screen with the content and displaying the changes and events happening on it.
 
 ```cpp
    void loop() {
@@ -80,22 +79,22 @@ Then the `loop()` will be focusing on the LVLG's task handler to update the scre
    }
 ```
 
-**Note:** In order to be able to update the screen and the task manager, we must include the `lv_task_handler();` function inside the `loop()`.
+> **Note:** In order to be able to update the screen and the task manager, we must include the `lv_task_handler();` function inside the `loop()` function.
 
 
 
 ## 3. Creating the interface
 
-We will create the screen interface in a new tab called "widgets.h". This interface will show on the screen a text field - where users can visualize the text inputs from the keyboard- and two buttons, the "submit" button that will throw a popup box with the text visualized on the text field, and the other that will launch a virtual keyboard from LVGL allowing the user to fully interact with the interface by using just a mouse.
+Once we have the main structure of the program filled, let's go now to create the screen interface in a new tab called "widgets.h". This interface will show on the screen a text field - where users can visualize the text inputs from the keyboard- and two buttons, the "submit" button that will throw a popup box with the text visualized on the text field, and the other that will launch a virtual keyboard from LVGL allowing the user to fully interact with the interface by using just a mouse.
 
 ### LVGL widget's events
-To understand the logic behind the LVGL interface, we need to know that it works with **callbacks**, also called **event handlers**, which are functions that are triggered when a specific event happens, e.g. the `myButtonEventHandler` function will be called when there has happened a mouse click over a widget on the screen. 
+To understand the logic behind the LVGL interface, you need to know that it works with **callbacks**, also called **event handlers**, which are functions that are triggered when a specific event happens, e.g. the `myButtonEventHandler` function will be called when there has happened a mouse click over a widget on the screen. 
 
 The widgets can be attached to custom callbacks by using the command `lv_obj_set_event_cb( WIDGET, CALLBACK() )`
 
-**Note:** Sometimes depending on the widget, the event that triggers the callback needs to be defined inside the *event callback* (Look inside `keyboardEventHandler`, it has `lv_keyboard_def_event_cb` to attach the *EVENT* to the current callback)
+> **Note:** Sometimes depending on the widget, the event that triggers the callback needs to be defined inside the *event callback* (Look inside `keyboardEventHandler`, it has `lv_keyboard_def_event_cb` to attach the *EVENT* to the current callback)
 
-When we attach a callback using `lv_obj_set_event_cb( WIDGET, EVENT_HANDLER )` , we are letting LVGL know that the widget introduced as parameter has linked a function that is going to handle (according to the EVENT_HANDLER stack) what happens when the trigger is activated. Such EVENTS could be:
+When you attach a callback using `lv_obj_set_event_cb( WIDGET, EVENT_HANDLER )` , you are letting LVGL know that the widget introduced as parameter has linked a function that is going to handle (according to the EVENT_HANDLER stack) what happens when the trigger is activated. Such EVENTS could be:
 
   * LV_EVENT_PRESSED : when its being pressed
   * LV_EVENT_RELEASED : triggerd when the widget stops being pressed
@@ -134,7 +133,10 @@ void myButtonEventHandler(lv_obj_t * myButton, lv_event_t myWidgetEvent);
 ```
 [image, with the interface labeled with the names]()
 
-Let's start programming our interface by creating the "widgets.h" tab in our sketch. Then, it is time to know what we need in order to make the interface work, this part contains the functions, LVGL widgets, configuration, events and callbacks:
+Now that you know the logic behind the LVGL callbacks, let's start programming the interface by creating the "widgets.h" tab in the  `lvgl_interaction.ino` sketch. 
+
+It is time now to know what is needed in order to make the interface work, this part contains the functions, LVGL widgets, configuration, events and callbacks:
+
 * Draw the widgets on screen 
   * createWidgets() : This will instantiate all the widgets 
 * Text Area (text input to fill)
@@ -158,7 +160,7 @@ Let's start programming our interface by creating the "widgets.h" tab in our ske
   * `popupMessage(const char* innerText)` 
     
 
-Now that we know what are the steps we need to follow, let's begin by adding the LVGL library and the variables that we will need.
+Now that you know what are the steps you need to follow, let's begin by adding the LVGL library and the variables that will be need.
 ```cpp
    #include <Portenta_LittleVGL.h>
 
@@ -284,7 +286,7 @@ Submit Button with the event handler `submitButtonEventHandler` will popup a mes
    }
 ```
 
-The **keyboard** functions
+The **keyboard** functions:
 
 Event handler `keyboardEventHandler` gets if the cancel (Cross) button or the accept (tick) button are pressed, and remove the keyboard if cancel or do the same as the submit button if accept.
 
@@ -352,13 +354,10 @@ To finish with the functions, the mouse pointer for the LVGL mouse driver, save 
    }
 ```
 
-Once we have added these functions, our interface will be created. Then, we need to go back to the main tab of the `lvgl_interaction.ino` sketch to finish the programming of the interface.
+To finish the sketch you'll need to define the RPC calls from the M4, to do so, in the `lvgl_interaction.ino` tab, after the `loop()` function, you need to add:
 
-## 4. Add the Mouse and Keyboard receivers
+The **USB keyboard** callback `onKey` that will check if the Text area is focused, if so it will add the character from the key that has been pressed.
 
-To finish the sketch we need to define the RPC calls from the M4, to do so, in the `lvgl_interaction.ino` tab, after the `loop()` function, we need to add:
-
-The **USB keyboard** callback `onKey` that will check if the Text area is focused, if so it will add the character from the key that has been pressed
 ```cpp
    //Keyboard callback, in case the Text area is focused (mouse clicked in it) it can bypass the input to it 
    void onKey(char ch) {
@@ -368,7 +367,8 @@ The **USB keyboard** callback `onKey` that will check if the Text area is focuse
    }
 ```
 
-The **USB mouse** callback `onMouse` that will save the coordinates and the buttons pressed
+The **USB mouse** callback `onMouse` that will save the coordinates and the buttons pressed.
+
 ```cpp
    // Mouse callback, store the mouse vector that is going to be used by LVGL's mouse driver
    void onMouse(uint8_t buttons, int8_t x, int8_t y) {
@@ -384,7 +384,8 @@ The **USB mouse** callback `onMouse` that will save the coordinates and the butt
    }
 ```
 
-and the `initInputs` that will initialize RPC and attach the RPC messages from the M4 to a function inside the M7
+and the `initInputs` that will initialize RPC and attach the RPC messages from the M4 to a function inside the M7.
+
 ```cpp
    // init RPC an attach the RPC messages to the functions
    void initInputs() {
@@ -393,3 +394,97 @@ and the `initInputs` that will initialize RPC and attach the RPC messages from t
      RPC1.bind("on_key", onKey);
    }
 ```
+
+With this you are done with the sketch, now it is time to compile it and upload it to the Portenta M7 processor. Once you are done, let's start with the sketch that gets the inputs from the mouse and the keyboard connected to the USB-HOST, all this will be handled but the Portenta M4 processor.
+
+## 4. Creating the Mouse and Keyboard RPC senders
+
+Following the structure above, the **Portenta M4** will handle the USB inputs (mouse and keyboard) and send the required data to the **Portenta M7** using **RPC**. To program this workflow let's create a new sketch called *lvgl_mouse_m4.ino*.
+
+The sketch will contain the next functions
+* Mouse
+    * `mouseCallback(tusbh_ep_info_t* ep, const uint8_t* mouse)`  
+        This function handle the mouse buttons and the relative change of position
+* Keyboard
+    * `keyboardCallback(tusbh_ep_info_t* ep, const uint8_t* keys)`  
+        Get the input keys, proccess them and send the correct character.
+
+> **Note**: These functions are defined in the `Portenta_USBhost.h` wrapper because it needs to be defined for the USB API structure of the USB library, defining them is needed to create the logic of those events.
+
+### Including the needed libraries
+
+At the beginning of the sketch, let's include RPC library and the USB host wrapper that reduces the extra needed code. Then it is needed to use an `#ifndef` statement to ensure the sketch upload to the M4 (in case you didn't select the correct Core it will print a compile error)
+
+```cpp
+    #include "Portenta_USBhost.h"
+    #include "RPC_internal.h"
+
+    #ifndef CORE_CM4
+    #error "This sketch should be compiled for Portenta (M4 core)"
+    #endif
+```
+
+### Initialization
+
+Inside the `setup()` function let's initialise the USB protocol and look for the connected USB hub
+
+```cpp
+    void setup() {
+        // put your setup code here, to run once:
+        USBhost_init();
+        RPC.begin();
+    }
+```
+### Mouse handler
+
+To finish, it is needed that to create  some new functions outside the `loop()`function, that in this sketch will be empty.
+
+The first function that will be created is the one that get's the data from the mouse, this data will be split in 3 bytes:
+* byte 1: Mouse buttons
+* byte 2: Mouse X relative position
+* byte 3: Mouse Y relative position
+
+```cpp
+    static int mouseCallback(tusbh_ep_info_t* ep, const uint8_t* mouse) {
+        uint8_t btn = mouse[0];
+        int8_t x = ((int8_t*)mouse)[1];
+        int8_t y = ((int8_t*)mouse)[2];
+        RPC1.call("on_mouse", btn, x, y);
+    }
+```
+
+### Keyboard Handler
+
+The second function to be created is the `parseKeyboardInput` function, it will get the character of the pressed key, then will send the data to the **M7 processor** using a **RPC call**
+
+```cpp
+  static int keyboardCallback(tusbh_ep_info_t* ep, const uint8_t* keys)
+  {
+    char sendCharacter;
+    sendCharacter = parseKeyboardInput(keys);
+    RPC1.call("on_key", sendCharacter);
+    return 0;
+  }
+```
+
+Once these functions have been added, the sketch is finished, it is time now to upload it to the Portenta M4 Processor.
+
+## Testing it out
+
+After uploading both of the sketches to each one of the processors of the Portenta board, you will need to set the following connections:
+
+![Connection schema](assets/por_ard_lvgl_cover.svg)
+
+Once the USB-HUB is powered externally, a graphical user interface with a button and a text-area will be displayed on the screen, then you will be able to interact with those items (widgets) by using the mouse and the keyboard connected to the USB-HOST.
+
+## Conclusion
+
+This tutorial shows how to build a simple user interface programming both cores of your Portenta and interact with it by connecting a mouse and/or a keyboard to it. While going through the tutorial you have created a different widgets that allow the user to interact with them, but also learnt how the the callbacks that handle the different events triggered by the peripherals work.
+
+## Next steps
+
+Now that you know how to build widgets that update and show text on the screen and that react to the mouse clicks, you can add more of them to show various information or try out different LVGL widgets.
+
+**Authors:** Pablo Marquínez, Jose Garcia
+**Reviewed by:** Jose Garcia [2021-03-21]
+**Last revision:** 
