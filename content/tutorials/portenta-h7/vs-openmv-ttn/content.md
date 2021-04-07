@@ -61,10 +61,20 @@ Let's take a closer look at these sections:
 
 ### 3. Updating the Modems Firmware
 
-The LoRa module on the Vision Shield can be accessed by using the [MKRWAN library](https://github.com/arduino-libraries/MKRWAN)( if you can't find it in your examples list, you can go to **tools > library manager** and type "MKRWAN library" to install it). This library provides all the APIS to communicate with LoRa and LoRaWAN networks and can be installed from the library manager. The code you need to upload and run is from the **MKRWAN** library, and its name is **MKRWANFWUpdate_standalone**.
+To be able to use the LoRa functionality, we need to first update the modems firmware through the Arduino IDE. Connect the Portenta and Vision shield to your computer and open the Arduino IDE. The LoRa module on the Vision Shield can be accessed by using the [MKRWAN library](https://github.com/arduino-libraries/MKRWAN)(if you can't find it in your examples list, you can go to **tools > library manager** and type "MKRWAN library" to install it). This library provides all the APIS to communicate with LoRa and LoRaWAN networks and can be installed from the library manager. Select the **Portenta H7 (M7 core)** board in the Arduino IDE, like shown below.
+
+![Select the Arduino Portenta H7 (M7 core) in the board selector.](assets/por_ard_gs_upload_sketch.png)
+
+The code you need to upload and run is from the **MKRWAN** library, and its name is **MKRWANFWUpdate_standalone**. With the Portenta M7 selected, upload the **MKRWANFWUpdate_standalone** sketch. 
 
 //REPLACE
 ![Upload code to IDE, highlight MKRWANFWUpdate_standalone example](assets/vs_ard_select_example.png)
+
+After uploading the sketch, open the serial monitor to confirm that the firmware has been updated. If the upload was successful it will print the progress in the serial monitor.
+
+![Arduino IDE serial monitor after firmware update](assets/vs_ard_serial_monitor_result.png)
+
+If it all went correctly, you should see the same text in your serial monitor as on the image above.
 
 ### 4. Configuring the Vision Shield
 
@@ -75,6 +85,8 @@ Plug the Portenta Vision Shield - LoRa to the Portenta H7 and them to your PC th
 Now we can put the code needed in OpenMV. Below you can see the full sketch, simply copy it into a new sketch in OpenMV.
 
 ```py
+from lora import *
+
 lora = Lora(band=BAND_EU868, poll_ms=60000, debug=False)
 
 print("Firmware:", lora.get_fw_version())
