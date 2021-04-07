@@ -112,7 +112,7 @@ if confidence > 0.9 and label != "unknown":
 
 This code will print a message saying e.g. "It's an apple!" in case the confidence is above 90%. In the following screenshot you can see that the apple was detected with a confidence level of 1.0 which corresponds to 100%.
 
-![The apple is detected with a 100% accuracy](assets/vs_openmv_ml_edge_impulse_classification.png)
+![In this example the apple is detected with a 100% certainty](assets/vs_openmv_ml_edge_impulse_classification.png)
 
 Try pointing the camera of the Portenta Vision Shield at any of your fruits or other objects that you used for the training and check if it can be recognised successfully.
 
