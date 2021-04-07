@@ -166,7 +166,7 @@ If you don't have a USB-C type hub you may complete this tutorial with a USB-C t
 
 + Power the Portenta H7 through the VIN pin with 5V. (Check [pinout diagram](https://content.arduino.cc/assets/Pinout-PortentaH7_latest.pdf))
 + Connect the keyboard directly to the Portenta's USB-C connector (use a USB-A to USB-C adapter if your keyboard's connector is USB type A)
-+ Add the following line of code in your sketch to enable power supply through Portenta's USB connector: `mbed::DigitalOut otg(PJ_6, 0);`
++ Add the following line of code in your sketch to enable power supply through Portenta's USB connector: `usb.supplyPowerOnVBUS(true);`
 
 ### 7. Toggling the LEDs
 
