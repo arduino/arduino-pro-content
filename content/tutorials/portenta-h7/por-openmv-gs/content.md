@@ -6,7 +6,7 @@ In this tutorial, you will learn about some of the basic features of the OpenMV 
 ### What You Will Learn
 - How to use the OpenMV IDE
 - How to use the OpenMV IDE to run MicroPython on Portenta
-- How to use PWM and I/O pins on the Portenta
+- Micropython commands to use the PWM and I/O pins on the Portenta
 
 ### Required Hardware and Software
 - Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
