@@ -79,7 +79,6 @@ To be able to change the LED's intensity with PWM we need to first connect the P
 
 Here you can also see what functionality each pin has. In this tutorial wire the pin PC6 via a resistor to the positive leg of the LED, and wire the boards GND to the negative leg of the LED. As shown in the illustration.
 
-![Illustration of a LEDs positive leg on a breadboard wired to the PC6 pin on the Portenta, and the negative end going to the GND pin on the Portenta]()
 ![Connecting the LED to the Portenta](assets/por_mp_gs_circuit_diagram.png)
 
 ### 4. Preparing the Pin and PWM with MicroPython
