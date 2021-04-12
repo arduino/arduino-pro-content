@@ -6,4 +6,4 @@ then
     exit
 fi
 
-node tests/validate.js $@
+node scripts/validation/validate.js $@

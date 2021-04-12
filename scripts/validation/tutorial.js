@@ -1,5 +1,5 @@
-const matcher = require('../scripts/lib/matcher');
-const fileHelper = require('../scripts/lib/file-helper');
+const matcher = require('../lib/matcher');
+const fileHelper = require('../lib/file-helper');
 const fs = require('fs');
 const marked = require('marked');
 const parser = require('node-html-parser');

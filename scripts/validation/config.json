@@ -4,7 +4,7 @@
     "basePath" : "content/tutorials/portenta-h7/",
     "allowedSyntaxSpecifiers" : ["cpp", "py", "text"],
     "allowNestedLists" : false,
-    "metadataSchema" : "tests/metadata-schema.json",
+    "metadataSchema" : "scripts/validation/metadata-schema.json",
     "checkForBrokenLinks" : true,
     "brokenLinkExcludePatterns" : ["assets\/"]
 }

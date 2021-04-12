@@ -1,5 +1,5 @@
 const parser = require('node-html-parser');
-const fileHelper = require('../scripts/lib/file-helper');
+const fileHelper = require('../lib/file-helper');
 const fs = require('fs');
 const validate = require('jsonschema').validate;
 const path = require('path');
