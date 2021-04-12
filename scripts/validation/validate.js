@@ -4,10 +4,10 @@ const fs = require('fs');
 const validate = require('jsonschema').validate;
 const path = require('path');
 const tc = require('title-case');
-const config = require('./config');
-const rules = require('./rules');
-const Validator = require('./validator').Validator;
-const { ValidationError } = require('./validation-error');
+const config = require('./config/config');
+const rules = require('./config/rules');
+const Validator = require('./domain/validator').Validator;
+const { ValidationError } = require('./domain/validation-error');
 const markdownLinkCheck = require('markdown-link-check');
 
 
