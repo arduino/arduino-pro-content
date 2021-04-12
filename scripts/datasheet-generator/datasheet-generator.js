@@ -9,7 +9,7 @@ const pdfParser = require('pdf-parse')
 const express = require('express')
 
 const SERVER_PORT = 8000
-const STYLES_PATH = "datasheet-generator/styles"
+const STYLES_PATH = "../datasheet-generator/styles"
 const SUBTITLE = "Product Reference Manual"
 
 //console.log(util.inspect(contentIndex, {showHidden: false, depth: null}))
@@ -167,6 +167,22 @@ const preparePdfProperties = (style, contentURL, pdfFilename, boardName, revisio
             "left": "20mm"
         }        
     }
+    
+    options.footer = {
+        "height": "28mm",
+        "contents": {
+        first: ' ',
+        default: `
+            <hr />
+            <div style="position: absolute;">
+                <span><strong>{{page}}</strong></span> / <span><strong>{{pages}}</strong></span>
+            </div>
+            <div class="footer">
+                ${boardName} / ${revisionNumber} - ${getCurrentDateString()}
+            </div>                    
+        `
+        }
+    }  
 
     if (style === 'pro') {
         options.header = {
@@ -186,21 +202,6 @@ const preparePdfProperties = (style, contentURL, pdfFilename, boardName, revisio
             }
         }
 
-        options.footer = {
-            "height": "28mm",
-            "contents": {
-            first: ' ',
-            default: `
-                <hr />
-                <div style="position: absolute;">
-                    <span><strong>{{page}}</strong></span> / <span><strong>{{pages}}</strong></span>
-                </div>
-                <div class="footer">
-                    ${boardName} / ${revisionNumber} - ${getCurrentDateString()}
-                </div>                    
-            `
-            }
-        }  
     }
 
     return options

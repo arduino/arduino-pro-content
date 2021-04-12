@@ -1,0 +1,9 @@
+#!/bin/bash
+if ! command -v node &> /dev/null
+then
+    echo "Please install Node.js from here https://nodejs.org/en/download/"
+    exit
+fi
+
+cd scripts/datasheet-generator
+node generate-datasheets.js "../../content/datasheets" "../../build/datasheets"
