@@ -26,7 +26,7 @@ const validator = new Validator(tutorialPaths);
 /**
  * Verify that all meta data files are valid JSON and contain the correct attributes
  */
-validator.addValidation((tutorials) => {
+validator.addValidation(async (tutorials) => {
     let errorsOccurred = 0;
     tutorials.forEach(tutorial => {
         let jsonData = tutorial.metadata
@@ -65,7 +65,7 @@ validator.addValidation((tutorials) => {
 /**
  * Verifies that the titles are in the correct format
  */
-validator.addValidation((tutorials) => {
+validator.addValidation(async (tutorials) => {
     let errorsOccurred = 0;
     tutorials.forEach(tutorial => {
        tutorial.headings.forEach(heading => {        
@@ -86,7 +86,7 @@ validator.addValidation((tutorials) => {
 /**
  * Verify that SVG images don't contain embedded images
  */
-validator.addValidation((tutorials) => {
+validator.addValidation(async (tutorials) => {
     let errorsOccurred = 0;
     tutorials.forEach(tutorial => {
         let svgFiles = tutorial.svgAssets;
@@ -149,7 +149,7 @@ validator.addValidation(async (tutorials) => {
 /**
  * Verify that all files in the assets folder are referenced
  */
-validator.addValidation((tutorials) => {
+validator.addValidation(async (tutorials) => {
     let errorsOccurred = 0;
     tutorials.forEach(tutorial => {    
         let imageNames = tutorial.imagePaths.map(imagePath => path.basename(imagePath));    
@@ -172,7 +172,7 @@ validator.addValidation((tutorials) => {
 /**
  * Verify that the images don't have an absolute path
  */
-validator.addValidation((tutorials) => {
+validator.addValidation(async (tutorials) => {
     let errorsOccurred = 0;
     tutorials.forEach(tutorial => {
         tutorial.imagePaths.forEach(imagePath => {
@@ -189,7 +189,7 @@ validator.addValidation((tutorials) => {
 /**
  * Ensures no nested lists are used
  */
-validator.addValidation((tutorials) => {
+validator.addValidation(async (tutorials) => {
     if(config.allowNestedLists) return;
     let errorsOccurred = 0;
     tutorials.forEach(tutorial => {
@@ -206,7 +206,7 @@ validator.addValidation((tutorials) => {
 /**
  * Verify that the images contain a description
  */
-validator.addValidation((tutorials) => {
+validator.addValidation(async (tutorials) => {
     let errorsOccurred = 0;
     tutorials.forEach(tutorial => {
        tutorial.imageNodes.forEach(image => {            
@@ -224,7 +224,7 @@ validator.addValidation((tutorials) => {
  /**
   * Verify that only allowed syntax specifiers are used
   */
- validator.addValidation((tutorials) => {
+ validator.addValidation(async (tutorials) => {
     let errorsOccurred = 0;
     tutorials.forEach(tutorial => {         
         tutorial.codeNodes.forEach(codeNode => {
@@ -242,7 +242,7 @@ validator.addValidation((tutorials) => {
 /**
  * Verifies that the content rules are met
  */
-validator.addValidation((tutorials) => {
+validator.addValidation(async (tutorials) => {
     let errorsOccurred = 0;
     tutorials.forEach(tutorial => {
         let htmlContent = tutorial.rawHTML;
