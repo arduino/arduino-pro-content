@@ -1,7 +1,7 @@
 # Getting Started with OpenMV and MicroPython
 
 ## Overview
-In this tutorial, you will learn about some of the basic features of the OpenMV editor and run Micropython script that will control the PWM on the I/O pins of the Portenta. 
+In this tutorial, you will learn about some of the basic features of the OpenMV IDE and run a MicroPython script that controls the PWM on the I/O pins of the Arduino Portenta H7. 
 
 ### You Will Learn
 - How to use the OpenMV IDE
