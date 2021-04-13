@@ -20,7 +20,7 @@ var Validator = class Validator {
                 promises.push(validation(this.tutorials));
             }
             Promise.all(promises).then(results => {                                
-                resolve(results.reduce((total, errors) => { return total + errors; }));
+                resolve(results.flat(1));
             });
 
         });        

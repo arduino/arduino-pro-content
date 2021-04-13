@@ -76,8 +76,12 @@ var Tutorial = class Tutorial {
         return files.map(file => file.split("?")[0]);
     }
 
+    get metadataPath(){
+        return this.basePath + "/metadata.json";
+    }
+
     get metadata(){    
-        const metadataPath = this.basePath + "/metadata.json";
+        const metadataPath = this.metadataPath
         try {
             if(!fs.existsSync(metadataPath)){
                 console.log("❌ Metadata file doens't exist " + metadataPath);
