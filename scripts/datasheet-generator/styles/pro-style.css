@@ -219,3 +219,21 @@ ul#feature-list li {
     margin-bottom: 2px;
 }
 
+
+h1, h2, h3, h4 {    
+    page-break-after: avoid;
+    page-break-inside: avoid;
+}
+
+/* Don't break before elements just after a heading */
+h1 + *, h2 + *, h3 + *, h4 + * { 
+    page-break-before: avoid;
+}
+
+/* Hack to avoid page breaks after a heading */
+h1::after, h2::after, h3::after, h4::after {
+    content: "";
+    display: block;
+    height: 100px;
+    margin-bottom: -100px;
+}

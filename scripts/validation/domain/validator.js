@@ -12,11 +12,18 @@ var Validator = class Validator {
     }
 
     async validate(){
-        let errorsOccurred = 0;
-        for(const validation of this.validatonCallbacks){
-            errorsOccurred += await validation(this.tutorials);
-        }
-        return errorsOccurred;
+        return new Promise(resolve => {
+
+            let promises = [];
+            
+            for(const validation of this.validatonCallbacks){
+                promises.push(validation(this.tutorials));
+            }
+            Promise.all(promises).then(results => {                                
+                resolve(results.flat(1));
+            });
+
+        });        
     }
 }
 
