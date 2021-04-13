@@ -3,7 +3,7 @@
 ## Overview
 In this tutorial, you will learn about some of the basic features of the OpenMV editor and run Micropython script that will control the PWM on the I/O pins of the Portenta. 
 
-### What You Will Learn
+### You Will Learn
 - How to use the OpenMV IDE
 - How to use the OpenMV IDE to run MicroPython on Portenta
 - Micropython commands to use the PWM and I/O pins on the Portenta
@@ -39,7 +39,7 @@ PWM can be used to control the brightness in smart lighting systems, the speed o
 
 Before you can start programming OpenMV scripts for the Portenta you need to download and install the OpenMV IDE.
 
-***IMPORTANT: Before you connect the Portenta to the OpenMV IDE make sure you update the bootloader as explained in the "Flashing the OpenMV Firmware" section!***
+**IMPORTANT: Before you connect the Portenta to the OpenMV IDE make sure you update the bootloader as explained in the "Flashing the OpenMV Firmware" section!**
 
 Open the [OpenMV download](https://openmv.io/pages/download) page in your browser, download the version that you need for your operating system and follow the instructions of the installer.
 
