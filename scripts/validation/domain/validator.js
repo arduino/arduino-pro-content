@@ -13,9 +13,11 @@ var Validator = class Validator {
 
     async validate(){
         let errorsOccurred = 0;
+        
         for(const validation of this.validatonCallbacks){
             errorsOccurred += await validation(this.tutorials);
         }
+        
         return errorsOccurred;
     }
 }
