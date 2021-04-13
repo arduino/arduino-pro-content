@@ -26,4 +26,4 @@ jobs:
         cd scripts/validation
         npm install
         cd ../../
-        node scripts/validation/validate.js
+        ./content-lint
