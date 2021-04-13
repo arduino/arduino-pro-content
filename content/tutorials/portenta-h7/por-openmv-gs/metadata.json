@@ -17,7 +17,7 @@
       "MicroPython",
       "PWM"
    ],
-   "abstract":"This tutorial teaches you how to set up the board, how to configure your computer and how to run a MicroPython sketch with OpenMV",
+   "abstract":"This tutorial teaches you how to set up the Arduino Portenta H7, how to configure your computer and how to run a MicroPython script with OpenMV.",
    "previousArticle":null,
    "nextArticle":"por-openmv-bt"
 }
