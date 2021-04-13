@@ -27,7 +27,7 @@ A ball valve is a form of quarter-turn [valve](https://en.wikipedia.org/wiki/Val
 
 ### 1. The Basic Setup
 
-Before you start programming the Edge control board, you will have to download the [core]() from the board manager. Open the **Board manager** and look for the `Edge Control` core. This board comes with the **Nina B306** processor which is the same processor used in other Pro boards such as the **Portenta** and the **Nano 33 BLE**. 
+Before you start programming the Edge control board, you will have to download the [Mbed core](https://github.com/arduino/ArduinoCore-mbed) from the board manager. Open the **Board manager** and look for the `Edge Control` core. This board comes with the **Nina B306** processor which is the same processor used in other Pro boards such as the **Portenta** and the **Nano 33 BLE**. 
 
 ![Download the Core](assets/ec_ard_gs_core.png)
 
