@@ -95,7 +95,7 @@ A module in Python is a confined bundle of functionality. By importing it into t
 
 In order to control a LED connected to one of our pins, we first need to configure the pins behavior. After, we can set up the PWM.
 
-In the `pin1` variable we define what pin on the board we intend to use. We also define if it should be an input or output pin with `Pin.OUT_PP`. Lastly, we can set the behavior of the pull up resistor on the pin, for now we set it as `Pin.PULL_NONE`.
+In the `pin1` variable we define what pin on the board we intend to use. We also define if it should be an input or output pin with `Pin.OUT_PP`. Lastly, we can set the behaviour of the pull-up resistor on the pin, for now we set it as `Pin.PULL_NONE`.
 
 >For more info about the options available, please see [Here](https://docs.micropython.org/en/latest/library/pyb.Pin.html?)
 
