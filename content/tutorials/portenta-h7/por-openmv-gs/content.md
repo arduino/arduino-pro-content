@@ -39,13 +39,13 @@ PWM can be used to control the brightness in smart lighting systems, the speed o
 
 Before you can start programming OpenMV scripts for the Portenta you need to download and install the OpenMV IDE.
 
-**IMPORTANT: Before you connect the Portenta to the OpenMV IDE make sure you update the bootloader as explained in the "Flashing the OpenMV Firmware" section!**
+***IMPORTANT: Before you connect the Portenta to the OpenMV IDE make sure you update the bootloader as explained in the "Flashing the OpenMV Firmware" section!***
 
 Open the [OpenMV download](https://openmv.io/pages/download) page in your browser, download the version that you need for your operating system and follow the instructions of the installer.
 
 ### 2. Flashing the OpenMV Firmware
 
-Connect the Portenta to your computer via the USB-C cable if you haven't done so yet. Make sure you first update the bootloader to the latest version using the *PortentaH7_updateBootloader* sketch in the examples menu in the Arduino IDE.
+Connect the Portenta to your computer via the USB-C cable if you haven't done so yet. Make sure you first update the bootloader to the latest version using the **PortentaH7_updateBootloader** sketch in the examples menu in the Arduino IDE.
 
 >Instructions on how to update the bootloader can be found in the ["Updating the Portenta Bootloader" tutorial](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-bl).
 
