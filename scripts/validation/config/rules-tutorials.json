@@ -24,19 +24,19 @@
         "errorMessage" : "The revisor's format is incorrect. Revision date correct YYYY-MM-DD?"
     },
     {
-        "regex" : "## Conclusion\\n",
+        "regex" : "\\n## Conclusion\\n",
         "shouldMatch" : true,
         "format" : "markdown",
         "errorMessage" : "Missing conclusion section."
     },
     {
-        "regex" : "### You Will Learn\\n",
+        "regex" : "\\n### You Will Learn\\n",
         "shouldMatch" : true,
         "format" : "markdown",
         "errorMessage" : "Missing 'What You Will Learn' section."
     },
     {
-        "regex" : "### Required Hardware and Software\\n",
+        "regex" : "\\n### Required Hardware and Software\\n",
         "shouldMatch" : true,
         "format" : "markdown",
         "errorMessage" : "Missing 'Required Hardware and Software' section."
@@ -52,5 +52,11 @@
         "shouldMatch" : false,
         "format" : "markdown",
         "errorMessage" : "The use of italic emphasis is discouraged."
-    } 
+    },
+    {
+        "regex" : "\\*\\*\\*(?: +\\S+)|(?:\\S+ +)\\*\\*\\*",
+        "shouldMatch" : false,
+        "format" : "markdown",
+        "errorMessage" : "Whitespaces are not allowed at the beginning or end of a note block."
+    }
 ]
