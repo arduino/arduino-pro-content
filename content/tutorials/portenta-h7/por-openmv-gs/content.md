@@ -71,7 +71,7 @@ The Portenta will start flashing its blue LED when it's ready to be connected. A
 
 ![When the Portenta is successfully connected to the OpenMV IDE a green play button appears in the lower left](assets/por_openmv_board_connected.png)
 
-### 3. Wiring the LED for the Scrip
+### 3. Wiring the LED for the Script
 
 To be able to change the LED's intensity with PWM we need to first connect the Portenta to the LED. If you want to use other pins than the ones shown here, take a look at the pinout diagram.
 
