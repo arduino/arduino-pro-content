@@ -147,7 +147,7 @@ while True:
 
 ### 6. Uploading the Script
 
-Heres the complete sketch for generating a PWM on the I/O pin 5. Select the port to which the board is connected to and upload the following sketch.  
+Heres the complete sketch for generating a PWM on the I/O pin 5. Connect your board to OpenMV and upload the following sketch.  
 
 ```py
 import pyb # Import module for board related functions
@@ -180,6 +180,10 @@ while True:
     print("Max width reached!")
     curWidth = minWidth
 ```
+
+To upload the code to your board in OpenMV, press the green play button in the lower left corner.
+
+![Press the green play button to upload the script](assets/por_openmv_board_connected.png)
 
 If the wiring is correct the LED light should start incrementally getting brighter before resetting and starting over. Printing a message when the limit has been reached. If everything went correctly you should get the same output in the serial terminal as seen below.
 
