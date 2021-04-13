@@ -176,7 +176,9 @@ validator.addValidation(async (tutorials) => {
         tutorial.imagePaths.forEach(imagePath => {
             if(imagePath.startsWith("/") || imagePath.startsWith("~")){
                const errorMessage = "Image uses an absolute path: " + imagePath;
-               errorsOccurred.push(new ValidationError(errorMessage, tutorial.path));               
+               const content = tutorial.markdown;
+               const lineNumber = fileHelper.getLineNumberFromIndex(content.indexOf(imagePath), content);
+               errorsOccurred.push(new ValidationError(errorMessage, tutorial.path, lineNumber));               
             }
         });
     });
@@ -278,7 +280,7 @@ validator.addValidation(async (tutorials) => {
         } else {
             for(error of validationErrors){
                 const lineNumber = error.lineNumber ?  ":" + error.lineNumber : "";
-                console.log("❌ " + error.message + " Location: " + error.file + ":" + lineNumber);
+                console.log("❌ " + error.message + " Location: " + error.file + lineNumber);
             }
             console.log("🚫 " + validationErrors.length + " errors found.")
             process.exit(2);

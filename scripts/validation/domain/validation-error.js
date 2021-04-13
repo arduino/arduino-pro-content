@@ -1,8 +1,8 @@
 var ValidationError = class ValidationError {
-    constructor(message, file, linenumber = undefined){
+    constructor(message, file, lineNumber = undefined){
         this.message = message;
         this.file = file;
-        this.linenumber = linenumber;
+        this.lineNumber = lineNumber;
     }
 }
 
