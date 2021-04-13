@@ -12,7 +12,7 @@ In this tutorial you will learn to use [LVGL](https://lvgl.io/) to create a simp
 -   Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
 -   USB-C cable (either USB-A to USB-C or USB-C to USB-C)
 -   Arduino IDE 1.8.10+  or Arduino Pro IDE 0.0.4+ 
--   USB-C hub with HDMI ([The one we used](https://www.dustinhome.se/product/5011166993/travel-port-usb-c-total))
+-   USB-C hub with HDMI
 -   External monitor 
 -   HDMI cable 
 
@@ -30,13 +30,13 @@ This tutorial will guide you through building a basic user interface using the L
 
 ### 1. The Basic Setup
 
-Begin by plugging your Portenta board into the computer using a USB-C cable and open the Arduino IDE or the Arduino Pro IDE. If this is your first time running Arduino sketch files on the board, we suggest you check out how to [set up the Portenta H7 for Arduino](https://github.com/bcmi-labs/arduino-pro-content/blob/master/content/tutorials/portenta-h7/por-ard-usb/por-ard-gs) before you proceed.
+Begin by plugging your Portenta board into the computer using a USB-C cable and open the Arduino IDE or the Arduino Pro IDE. If this is your first time running Arduino sketch files on the board, we suggest you check out how to [set up the Portenta H7 for Arduino](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-gs) before you proceed.
 
 ![The Portenta H7 can be connected to the computer using an appropriate USB-C cable](assets/por_ard_lvgl_basic_setup.svg)
 
 ### 2. Download the LVGL Library
 
-Next, select *Portenta* in the **Tools -> Board** menu before installing [lvgl](https://github.com/lvgl/lvgl) from the Library Manager. Then go to **Sketch** **->** **Include Libraries** **-> Manage Libraries** and search for *LVGL*. Download **lvgl ** by [kisvegabor](https://github.com/kisvegabor).  
+Next, select 'Portenta' in the **Tools -> Board** menu before installing [lvgl](https://github.com/lvgl/lvgl) from the Library Manager. Then go to **Sketch** **->** **Include Libraries** **-> Manage Libraries** and search for LVGL. Download **lvgl ** by [kisvegabor](https://github.com/kisvegabor).  
 
 ![Library Manager showing the installed lvgl library.](assets/por_ard_lvgl_select_library.png)
 
@@ -185,15 +185,15 @@ Now that you know how to build a simple UI for a screen, you can try to add more
 
 ## Troubleshooting
 ### Counter Label Doesn't Update
-* Make sure that the label and task are declared on top of the sketch, outside the `setup()` and `loop()` like a normal variable.
-* Check if the task has the same structure in the first declaration and the function creation.
-* Look inside the `loop()` and see if `lv_task_handler()` is there.
+- Make sure that the label and task are declared on top of the sketch, outside the `setup()` and `loop()` like a normal variable.
+- Check if the task has the same structure in the first declaration and the function creation.
+- Look inside the `loop()` and see if `lv_task_handler()` is there.
 
 ### Sketch Upload Troubleshooting
-* If you have troubles uploading the sketch, try to first set the board in bootloader mode, by clicking the reset button twice, then you should see the built-in LED pulsating.
-* If you uploaded the sketch and you don't have any output in the display, make sure you have `portenta_init_video()` in the `setup()`.
-* Unplug and plug the HDMI cable in again.
-* Reset the Portenta once it's connected to the USB-hub.
+- If you have troubles uploading the sketch, try to first set the board in bootloader mode, by clicking the reset button twice, then you should see the built-in LED pulsating.
+- If you uploaded the sketch and you don't have any output in the display, make sure you have `portenta_init_video()` in the `setup()`.
+- Unplug and plug the HDMI cable in again.
+- Reset the Portenta once it's connected to the USB-hub.
 
 **Authors:** Pablo Marquínez, Lenard George, Sebastian Romero  
 **Reviewed by:** Jose Garcia, Manuel Zomer [2021-01-27]  

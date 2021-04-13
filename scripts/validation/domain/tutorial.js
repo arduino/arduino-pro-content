@@ -1,4 +1,4 @@
-const matcher = require('./matcher');
+const fileHelper = require('../../lib/file-helper');
 const fs = require('fs');
 const marked = require('marked');
 const parser = require('node-html-parser');
@@ -72,12 +72,16 @@ var Tutorial = class Tutorial {
     }
 
     get assets(){
-        let files = matcher.findAllFiles(this.basePath + "/assets/", null, [".DS_Store"]);
+        let files = fileHelper.findAllFiles(this.basePath + "/assets/", null, [".DS_Store"]);
         return files.map(file => file.split("?")[0]);
     }
 
+    get metadataPath(){
+        return this.basePath + "/metadata.json";
+    }
+
     get metadata(){    
-        const metadataPath = this.basePath + "/metadata.json";        
+        const metadataPath = this.metadataPath
         try {
             if(!fs.existsSync(metadataPath)){
                 console.log("❌ Metadata file doens't exist " + metadataPath);
@@ -93,7 +97,7 @@ var Tutorial = class Tutorial {
     }
 
     get svgAssets(){
-        return matcher.findAllFiles(this.basePath + "/assets/", '.svg');
+        return fileHelper.findAllFiles(this.basePath + "/assets/", '.svg');
     }
 }
 

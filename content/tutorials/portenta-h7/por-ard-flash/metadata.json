@@ -1,0 +1,12 @@
+{
+   "title": "Reading and Writing Flash Memory",
+   "coverImage": {
+      "src": "assets/por_ard_block_device_cover.svg?sanitize=true"
+   },
+   "tags": [
+      "Storage",
+      "Flash",
+      "Block Device"
+   ],
+   "abstract": "This tutorial demonstrates how to use the on-board flash memory of the Portenta H7 to read and write data using the BlockDevice API provided by Mbed OS."
+}

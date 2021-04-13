@@ -42,7 +42,7 @@ Even though the Arduino boards come pre-flashed with a bootloader there are some
 The bootloader is stored in a location that doesn't get overwritten by a firmware being uploaded to the Portenta. If you upload for example the OpenMV firmware and then later decide to switch back to a regular Arduino firmware the bootloader won't be affected.
 
 ### 1. Updating the Core
-New versions of the bootloader normally get shipped together with the core. That means you first have to update the core before you can update the bootloader. To do so open the board manager in the menu under *Tools->Board->Boards Manager...*
+New versions of the bootloader normally get shipped together with the core. That means you first have to update the core before you can update the bootloader. To do so open the board manager in the menu under **Tools->Board->Boards Manager...**
 
 ![Open the Boards Manager from the Tools menu](assets/por_ard_bl_boards_manager.png)
 

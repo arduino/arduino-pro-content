@@ -1,29 +1,30 @@
 const path = require('path');
 const fs = require('fs');
+const matcher = require('./matcher');
 
-function matchAny(text, patterns, callback = null){
-    let result = false;
-
-    for(let pattern of patterns){
-        if(text.indexOf(pattern) != -1){
-            if(callback) callback(pattern);            
-            result = true;
-        }
+function getSubdirectories(path, excludePatterns = []){
+    if (!fs.existsSync(path)) {        
+        console.log("❌ Directory doesn't exist:", path);
+        return;
     }
-    return result;
+
+    var files = fs.readdirSync(path);
+    let directories = [];
+    files.forEach(file => {
+        var fullPath = path + file;
+
+        if (matcher.matchAny(fullPath, excludePatterns)) {            
+            return;
+        }
+
+        var stat = fs.lstatSync(fullPath);
+        if (stat.isDirectory()) {
+            directories.push(fullPath);
+        }
+    })
+    return directories;    
 }
 
-function matchAll(text, patterns, callback = null){
-    let result = true;
-
-    for(let pattern of patterns){
-        if(text.indexOf(pattern) == -1){   
-            if(callback) callback(pattern);         
-            result = false;
-        }
-    }
-    return result;
-}
 
 /**
  * 
@@ -33,7 +34,7 @@ function matchAll(text, patterns, callback = null){
  * @param {The matching files as recursion parameter} matchingFiles 
  */
 function findAllFiles(startPath, searchPattern, excludePatterns = [], matchingFiles = []) {    
-    if(matchAny(startPath, excludePatterns)){
+    if(matcher.matchAny(startPath, excludePatterns)){
         // console.log("Excluding directory " + startPath);
         return matchingFiles;
     }
@@ -51,7 +52,7 @@ function findAllFiles(startPath, searchPattern, excludePatterns = [], matchingFi
         var stat = fs.lstatSync(filename);
         if (stat.isDirectory()) {
             findAllFiles(filename, searchPattern, excludePatterns, matchingFiles);
-        } else if (!matchAny(filename, excludePatterns)) {
+        } else if (!matcher.matchAny(filename, excludePatterns)) {
             if(!searchPattern) {
                 matchingFiles.push(filename);
                 continue;
@@ -69,27 +70,16 @@ function findAllFiles(startPath, searchPattern, excludePatterns = [], matchingFi
     return matchingFiles;
 };
 
-function getSubdirectories(path, excludePatterns = []){
-    if (!fs.existsSync(path)) {        
-        console.log("❌ Directory doesn't exist:", path);
-        return;
+function createDirectoryIfNecessary(path){
+    if(!fs.existsSync(path)){
+        fs.mkdirSync(path, { recursive: true });
     }
-
-    var files = fs.readdirSync(path);
-    let directories = [];
-    files.forEach(file => {
-        var fullPath = path + file;
-
-        if (matchAny(fullPath, excludePatterns)) {            
-            return;
-        }
-
-        var stat = fs.lstatSync(fullPath);
-        if (stat.isDirectory()) {
-            directories.push(fullPath);
-        }
-    })
-    return directories;    
 }
 
-module.exports = { findAllFiles, matchAll, matchAny, getSubdirectories};
+function getLineNumberFromIndex(index, haystack){
+    const tempString = haystack.substring(0, index);
+    const lineNumber = tempString.split('\n').length;
+    return lineNumber;
+}
+
+module.exports = { findAllFiles, getSubdirectories, createDirectoryIfNecessary, getLineNumberFromIndex};
