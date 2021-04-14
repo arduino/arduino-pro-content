@@ -185,7 +185,7 @@ To upload the code to your board in OpenMV, press the green play button in the l
 
 If the wiring is correct the LED light should start incrementally getting brighter before resetting and starting over. Printing a message when the limit has been reached. If everything went correctly you should get the same output in the serial terminal as seen below.
 
-![Screenshot of openmv showing what will print in the serial terminal](assets/por_openmv_ide_result.png)
+![A message is printed in the terminal when the maximum width has been reached](assets/por_openmv_ide_result.png)
 
 ## Conclusion
 
