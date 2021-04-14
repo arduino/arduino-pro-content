@@ -11,7 +11,7 @@ const generator = require("./datasheet-generator");
     
     let datasheetsSourcePath = args[0];
     let datasheetsTargetPath = args[1];
-    let datasheetFiles = fileHelper.findAllFiles(datasheetsSourcePath, ".md");        
+    let datasheetFiles = fileHelper.findAllFiles(datasheetsSourcePath, "datasheet.md");
 
     for(let filePath of datasheetFiles){
         console.log(`Generating datasheet for ${filePath} ...`);
