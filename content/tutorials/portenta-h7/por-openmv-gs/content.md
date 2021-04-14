@@ -195,7 +195,7 @@ In this tutorial, you learned how to use the OpenMV IDE to develop MicroPython s
 
 ### Next Steps
 -   Try using the Portenta and PWM to control a servo motor.
--   Experiment with MicroPythons capabilities with the Portenta M7. If you want some examples of what to do, take a look at the examples included in OpenMV. Go to: **File>Examples>Arduino>Portenta H7**.
+-   Experiment with MicroPython's capabilities with the Portenta H7. Some examples of what you could do can be found in the examples menu in OpenMV. Go to: **File>Examples>Arduino>Portenta H7**.
 
 ## Troubleshooting
 ### OpenMV Firmware Flashing Issues
