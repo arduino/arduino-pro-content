@@ -121,28 +121,28 @@ minWidth = 0
 # How much to change the pulse-width by each step
 step = 500
 # Set starting value
-curWidth = minWidth
+currentWidth = minWidth
 ```
 
 ### 5. Creating the Main Loop in the Script
 
 Putting our code inside a `while True:` function will make the code run in a loop.
 
-We use the `channel1.pulse_width()` function to set the pulse width of the PWM channel, changing the intensity of the LED. Using `pyb.delay()` we can make the script stop running for the determined amount of time, which is 500 milliseconds in this example. At the end, we check if the value has reached our defined end, we print a message to the serial terminal and reset the `curWidth` variable.
+We use the `channel1.pulse_width()` function to set the pulse width of the PWM channel, changing the intensity of the LED. Using `pyb.delay()` we can make the script stop running for the determined amount of time, which is 500 milliseconds in this example. At the end, we check if the value has reached our defined end, we print a message to the serial terminal and reset the `currentWidth` variable.
 
 ```py
 while True:
 
-  channel1.pulse_width(curWidth)
+  channel1.pulse_width(currentWidth)
 
   # this determines how often we change the pulse-width.
   pyb.delay(500)
 
-  curWidth = curWidth + step
+  currentWidth = currentWidth + step
 
-  if curWidth > maxWidth:
+  if currentWidth > maxWidth:
     print("Max width reached!")
-    curWidth = minWidth
+    currentWidth = minWidth
 ```
 
 ### 6. Uploading the Script
@@ -167,18 +167,18 @@ minWidth = 0
 # How much to change the pulse-width by each step
 step = 500
 # Set starting value
-curWidth = minWidth
+currentWidth = minWidth
 
 while True:
-  channel1.pulse_width(curWidth)
+  channel1.pulse_width(currentWidth)
 
   # How often the pulse-width is changed
   pyb.delay(500)
-  curWidth = curWidth + step
+  currentWidth = currentWidth + step
 
-  if curWidth > maxWidth:
+  if currentWidth > maxWidth:
     print("Max width reached!")
-    curWidth = minWidth
+    currentWidth = minWidth
 ```
 
 To upload the code to your board in OpenMV, press the green play button in the lower left corner.
@@ -193,10 +193,9 @@ If the wiring is correct the LED light should start incrementally getting bright
 
 In this tutorial, you learned how to use the OpenMV IDE to develop MicroPython scripts that run on the Portenta board. You learned how to use and configure I/O pins and PWM on the Portenta. Lastly, you learned how to use these to control a LED light.
 
-
 ### Next Steps
--   Blob Detection with Portenta and OpenMV
--   Creating a Basic Face Filter With OpenMV
+-   Try using the Portenta and PWM to control a servo motor.
+-   Experiment with MicroPythons capabilities with the Portenta M7. If you want some examples of what to do, take a look at the examples included in OpenMV. Go to: **File>Examples>Arduino>Portenta H7**.
 
 ## Troubleshooting
 ### OpenMV Firmware Flashing Issues
@@ -207,5 +206,5 @@ In this tutorial, you learned how to use the OpenMV IDE to develop MicroPython s
 - In bootloader versions 17 and older there was a bug that could put the Portenta in a boot loop when the transmission aborted while flashing a large firmware file. This was fixed in the bootloader version 18.
 
 **Authors:** Sebastian Romero, Benjamin Dannegård  
-**Reviewed by:** Lenard George [2021-03-31]  
-**Last revision:** Benjamin Dannegård [2021-03-31]
+**Reviewed by:** Lenard George [2021-04-12]  
+**Last revision:** Benjamin Dannegård [2021-04-14]
