@@ -31,7 +31,7 @@ The features we will focus on in this tutorial is controlling pulse width modula
 
 PWM can be used to control the brightness in smart lighting systems, the speed of motors and it is usually used in audio and video amplifiers. In this tutorial you will see a similar method to how it is used to control brightness in lighting systems. Using PWM is an efficient way of providing electrical power when the state is somewhere between on and off. The same is true for controlling a motor with PWM, allowing for better speed stability. Making it possible for the motor to run at slower speeds without stalling.
 
->On the Portenta the pins PA8, PC6, PC7, PG7, PJ11, PK1, and PH15 support PWM.
+On the Portenta H7 the pins PA8, PC6, PC7, PG7, PJ11, PK1, and PH15 support PWM.
 
 ## Instructions
 
@@ -47,7 +47,7 @@ Open the [OpenMV download](https://openmv.io/pages/download) page in your browse
 
 Connect the Portenta to your computer via the USB-C cable if you haven't done so yet. Make sure you first update the bootloader to the latest version using the **PortentaH7_updateBootloader** sketch in the examples menu in the Arduino IDE.
 
->Instructions on how to update the bootloader can be found in the ["Updating the Portenta Bootloader" tutorial](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-bl).
+Instructions on how to update the bootloader can be found in the ["Updating the Portenta Bootloader" tutorial](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-bl).
 
 After updating the bootloader put the Portenta in bootloader mode by double pressing the reset button on the board. The built-in green LED will start fading in and out. Now open the OpenMV IDE.
 
@@ -65,7 +65,7 @@ Portenta's green LED will start flashing while the OpenMV firmware is being uplo
 
 ![Installing firmware on portenta board in OpenMV](assets/por_openmv_firmware_update.png)
 
->Installing the OpenMV firmware will overwrite any existing sketches in the internal flash of Portenta. As a result the M7 port won't be exposed in the Arduino IDE anymore. To re-flash the M7 with an Arduino firmware you need to put the board into bootloader mode. To do so double press the reset button on the Portenta H7 board. The built-in green LED will start fading in and out. In bootloader mode you will see the Portenta M7 port again in the Arduino IDE.
+***Installing the OpenMV firmware will overwrite any existing sketches in the internal flash of Portenta. As a result the M7 port won't be exposed in the Arduino IDE anymore. To re-flash the M7 with an Arduino firmware you need to put the board into bootloader mode. To do so double press the reset button on the Portenta H7 board. The built-in green LED will start fading in and out. In bootloader mode you will see the Portenta M7 port again in the Arduino IDE.***
 
 The Portenta will start flashing its blue LED when it's ready to be connected. After confirming the completion dialog the Portenta should already be connected to the OpenMV IDE, otherwise click the "connect" button once again.
 
