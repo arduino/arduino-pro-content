@@ -135,7 +135,7 @@ while True:
 
   channel.pulse_width(currentPulseWidth)
 
-  # this determines how often we change the pulse-width.
+  # This determines how often we change the pulse-width.
   pyb.delay(500)
 
   currentPulseWidth = currentPulseWidth + step
@@ -170,7 +170,7 @@ currentPulseWidth = minPulseWidth
 while True:
   channel.pulse_width(currentPulseWidth)
 
-  # Every 500ms the pulse-width is changed
+  # This determines how often we change the pulse-width.
   pyb.delay(500)
   currentPulseWidth += step
 
