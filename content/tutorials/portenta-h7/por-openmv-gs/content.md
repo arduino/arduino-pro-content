@@ -95,54 +95,54 @@ A module in Python is a confined bundle of functionality. By importing it into t
 
 In order to control a LED connected to one of our pins, we first need to configure the pins behavior. After, we can set up the PWM.
 
-In the `pin1` variable we define what pin on the board we intend to use. We also define if it should be an input or output pin with `Pin.OUT_PP`. Lastly, we can set the behaviour of the pull-up resistor on the pin, for now we set it as `Pin.PULL_NONE`.
+In the `pin` variable we define what pin on the board we intend to use. We also define if it should be an input or output pin with `Pin.OUT_PP`. Lastly, we can set the behaviour of the pull-up resistor on the pin, for now we set it as `Pin.PULL_NONE`.
 
 For more info about the options available, please see [here](https://docs.micropython.org/en/latest/library/pyb.Pin.html)
 
 ```py
-pin1 = Pin("PC6", Pin.OUT_PP, Pin.PULL_NONE)
+pin = Pin("PC6", Pin.OUT_PP, Pin.PULL_NONE)
 ```
 
-With the `timer1` variable we will determine what id the timer will have and what frequency it will use. With a timer frequency of 1000 Hz, each cycle takes 1 millisecond. When setting up the PWM channel we can then use these variables. With the `timer1.channel()` function we can customize the PWM channels behavior. `pulse_width` sets the initial pulse width for the PWM.
+With the `timer` variable we will determine what id the timer will have and what frequency it will use. With a timer frequency of 1000 Hz, each cycle takes 1 millisecond. When setting up the PWM channel we can then use these variables. With the `timer.channel()` function we can customize the PWM channels behavior. `pulse_width` sets the initial pulse width for the PWM.
 
 ```py
-timer1 = Timer(3, freq=1000) # Frequency in Hz
-channel1 = timer1.channel(1, Timer.PWM, pin=pin1, pulse_width=0)
+timer = Timer(3, freq=1000) # Frequency in Hz
+channel = timer.channel(1, Timer.PWM, pin=pin, pulse_width=0)
 ```
 
-We also enter parameters for how much the LED will change each time the PWM pulses with the `step` variable, what value it should start on with `minWidth` and 
-when it will reset with the `maxWidth` variable.
+We also enter parameters for how much the LED will change each time the PWM pulses with the `step` variable, what value it should start on with `minPulseWidth` and 
+when it will reset with the `maxPulseWidth` variable.
 
 ```py
 # maximum and minimum pulse-width, corresponds to maximum and minimum brightness
-maxWidth = 5000
-minWidth = 0
+maxPulseWidth = 5000
+minPulseWidth = 0
 
 # How much to change the pulse-width by each step
 step = 500
 # Set starting value
-currentWidth = minWidth
+currentPulseWidth = minPulseWidth
 ```
 
 ### 5. Creating the Main Loop in the Script
 
 Putting our code inside a `while True:` function will make the code run in a loop.
 
-We use the `channel1.pulse_width()` function to set the pulse width of the PWM channel, changing the intensity of the LED. Using `pyb.delay()` we can make the script stop running for the determined amount of time, which is 500 milliseconds in this example. At the end, we check if the value has reached our defined end, we print a message to the serial terminal and reset the `currentWidth` variable.
+We use the `channel.pulse_width()` function to set the pulse width of the PWM channel, changing the intensity of the LED. Using `pyb.delay()` we can make the script stop running for the determined amount of time, which is 500 milliseconds in this example. At the end, we check if the value has reached our defined end, we print a message to the serial terminal and reset the `currentPulseWidth` variable.
 
 ```py
 while True:
 
-  channel1.pulse_width(currentWidth)
+  channel.pulse_width(currentPulseWidth)
 
   # this determines how often we change the pulse-width.
   pyb.delay(500)
 
-  currentWidth = currentWidth + step
+  currentPulseWidth = currentPulseWidth + step
 
-  if currentWidth > maxWidth:
+  if currentPulseWidth > maxPulseWidth:
     print("Max width reached!")
-    currentWidth = minWidth
+    currentPulseWidth = minPulseWidth
 ```
 
 ### 6. Uploading the Script
@@ -154,31 +154,29 @@ import pyb # Import module for board related functions
 import time # Import module for board related functions
 from pyb import Pin, Timer # Import module for board related functions
 
-pin1 = Pin("PC6", Pin.OUT_PP, Pin.PULL_NONE)
-
-timer1 = Timer(3, freq=1000) # Frequency in Hz
-
-channel1 = timer1.channel(1, Timer.PWM, pin=pin1, pulse_width=0)
+pin = Pin("PC6", Pin.OUT_PP, Pin.PULL_NONE)
+timer = Timer(3, freq=1000) # Frequency in Hz
+channel = timer.channel(1, Timer.PWM, pin=pin, pulse_width=0)
 
 # Maximum and minimum pulse-width, corresponds to maximum and minimum brightness
-maxWidth = 5000
-minWidth = 0
+maxPulseWidth = 5000
+minPulseWidth = 0
 
 # How much to change the pulse-width by each step
 step = 500
 # Set starting value
-currentWidth = minWidth
+currentPulseWidth = minPulseWidth
 
 while True:
-  channel1.pulse_width(currentWidth)
+  channel.pulse_width(currentPulseWidth)
 
-  # How often the pulse-width is changed
+  # Every 500ms the pulse-width is changed
   pyb.delay(500)
-  currentWidth = currentWidth + step
+  currentPulseWidth += step
 
-  if currentWidth > maxWidth:
-    print("Max width reached!")
-    currentWidth = minWidth
+  if currentPulseWidth > maxPulseWidth:
+    print("Max pulse-width reached!")
+    currentPulseWidth = minPulseWidth
 ```
 
 To upload the code to your board in OpenMV, press the green play button in the lower left corner.
