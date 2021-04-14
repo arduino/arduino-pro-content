@@ -13,4 +13,4 @@ if [ $? -ne 0 ]; then
     npm install    
 fi
 
-node generate-datasheets.js "../../content/hardware" "../../build/datasheets"
+node generate-datasheets.js "../../content/datasheets" "../../build/datasheets"
