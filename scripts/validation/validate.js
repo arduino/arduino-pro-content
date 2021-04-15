@@ -5,12 +5,13 @@ const validate = require('jsonschema').validate;
 const path = require('path');
 const tc = require('title-case');
 const config = require('./config/config-tutorials');
-const tutorialRules = require('./config/rules-tutorials');
-const trademarkRules = require('./config/rules-trademarks');
 const Validator = require('./domain/validator').Validator;
 const { ValidationError } = require('./domain/validation-error');
 const markdownLinkCheck = require('markdown-link-check');
 
+const tutorialRules = require('./config/rules-tutorials');
+const trademarkRules = require('./config/rules-trademarks');
+const spellingRules = require('./config/rules-spelling');
 
 const PARSER_SYNTAX_PREFIX = "language-"; // Prepended by marked
 const basePathFromCommandline = process.argv[2];
@@ -248,7 +249,7 @@ validator.addValidation(async (tutorials) => {
     tutorials.forEach(tutorial => {
         let htmlContent = tutorial.rawHTML;
         let markdownContent = tutorial.markdown;
-        const allRules = [tutorialRules, trademarkRules]
+        const allRules = [spellingRules, trademarkRules, tutorialRules]
         
         for(rules of allRules){
             rules.forEach(rule => {

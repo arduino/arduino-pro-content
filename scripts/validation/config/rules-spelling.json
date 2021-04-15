@@ -1,0 +1,14 @@
+[    
+    {
+        "regex" : "\\d\\s?[Mm]ega\\s[Bb]yte|\\d\\s?Mega\\s?[Bb]yte|\\d\\s?mb[\\s\\.]|[Mm][Bb]ytes",
+        "shouldMatch" : false,
+        "format" : "markdown",
+        "errorMessage" : "Megabytes should be either written as 'megabytes' or abbreviated as 'MB'"
+    },
+    {
+        "regex" : "[wW]i[fF]i",
+        "shouldMatch" : false,
+        "format" : "markdown",
+        "errorMessage" : "Incorrect spelling of Wi-Fi found."
+    }  
+]
