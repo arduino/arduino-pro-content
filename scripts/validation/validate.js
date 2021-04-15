@@ -5,7 +5,8 @@ const validate = require('jsonschema').validate;
 const path = require('path');
 const tc = require('title-case');
 const config = require('./config/config-tutorials');
-const rules = require('./config/rules-tutorials');
+const tutorialRules = require('./config/rules-tutorials');
+const trademarkRules = require('./config/rules-trademarks');
 const Validator = require('./domain/validator').Validator;
 const { ValidationError } = require('./domain/validation-error');
 const markdownLinkCheck = require('markdown-link-check');
@@ -247,22 +248,25 @@ validator.addValidation(async (tutorials) => {
     tutorials.forEach(tutorial => {
         let htmlContent = tutorial.rawHTML;
         let markdownContent = tutorial.markdown;
+        const allRules = [tutorialRules, trademarkRules]
+        
+        for(rules of allRules){
+            rules.forEach(rule => {
+                const content = rule.format == "html" ? htmlContent : markdownContent;
+                const regex = new RegExp(rule.regex);
+                const match = content.match(regex);
+                let lineNumber = null;
     
-        rules.forEach(rule => {
-            const content = rule.format == "html" ? htmlContent : markdownContent;
-            const regex = new RegExp(rule.regex);
-            const match = content.match(regex);
-            let lineNumber = null;
-
-            if(match){
-                const index = match.index;
-                lineNumber = fileHelper.getLineNumberFromIndex(index,content);                
-            }
-            if((match === null && rule.shouldMatch) || (match !== null && !rule.shouldMatch)) {
-                const errorMessage = rule.errorMessage;
-                errorsOccurred.push(new ValidationError(errorMessage, tutorial.path, lineNumber));                
-            }     
-        });
+                if(match){
+                    const index = match.index;
+                    lineNumber = fileHelper.getLineNumberFromIndex(index,content);                
+                }
+                if((match === null && rule.shouldMatch) || (match !== null && !rule.shouldMatch)) {
+                    const errorMessage = rule.errorMessage;
+                    errorsOccurred.push(new ValidationError(errorMessage, tutorial.path, lineNumber));                
+                }     
+            });
+        }
     
     });
     return errorsOccurred;
