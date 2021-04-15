@@ -48,6 +48,12 @@
         "errorMessage" : "Megabytes should be either written as 'megabytes' or abbreviated as 'MB'"
     },
     {
+        "regex" : "[wW]i[fF]i",
+        "shouldMatch" : false,
+        "format" : "markdown",
+        "errorMessage" : "Incorrect spelling of Wi-Fi found."
+    },
+    {
         "regex" : "\\s[\\*_][^*_](?:.*?)[\\*_]",
         "shouldMatch" : false,
         "format" : "markdown",
