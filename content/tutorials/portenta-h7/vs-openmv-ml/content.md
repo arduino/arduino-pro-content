@@ -1,3 +1,10 @@
+---
+title: Training a Custom Machine Learning Model for Portenta H7
+coverImage: assets/vs_openmv_ml_cover.svg
+tags: [Machine Learning, Edge Impulse, TinyML, Tensorflow]
+abstract: This tutorial teaches you how to train a custom machine learning model with Edge Impulse and to run it using the Portenta Vision Shield.
+---
+
 # Training a Custom Machine Learning Model for Portenta H7
 ## Overview 
 

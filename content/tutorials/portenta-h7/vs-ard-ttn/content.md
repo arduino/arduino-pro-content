@@ -1,3 +1,10 @@
+---
+title: Connecting the Vision Shield to TTN using LoRa
+coverImage: assets/vs_ard_things_nw.svg
+tags: [Things Network, LoRa, Vision Shield]
+abstract: This tutorial explains how to connect your Portenta H7 to The Things Network (TTN) using the the Vision Shield's Lora Connectivity feature.
+---
+
 # Connecting the Vision Shield to TTN Using LoRa
 ## Overview 
 

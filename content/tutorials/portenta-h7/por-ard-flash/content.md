@@ -1,3 +1,10 @@
+---
+title: Reading and Writing Flash Memory
+coverImage: assets/por_ard_block_device_cover.svg
+tags: [Storage, Flash, Block Device]
+abstract: This tutorial demonstrates how to use the on-board flash memory of the Portenta H7 to read and write data using the BlockDevice API provided by Mbed OS.
+---
+
 # Using the Flash Storage To Read and Write Data
 ## Overview 
 This tutorial demonstrates how to use the on-board flash memory of the Portenta H7 to read and write data using the BlockDevice API provided by Mbed OS. As the internal memory is limited in size we will also take a look at saving data to the QSPI flash memory.

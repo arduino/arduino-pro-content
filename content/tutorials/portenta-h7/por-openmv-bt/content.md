@@ -1,3 +1,10 @@
+---
+title: Blob Detection with Portenta and OpenMV
+coverImage: assets/por_openmv_bt_cover.svg
+tags: [OpenMV, Blob Detection, Machine Vision, Machine Learning]
+abstract: This tutorial will show you how to use the vision carrier board for Portenta to detect the presence and the position of objects in a camera image.
+---
+
 # Blob Detection with Portenta and OpenMV
 
 ## Overview

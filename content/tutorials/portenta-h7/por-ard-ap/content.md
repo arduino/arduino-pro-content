@@ -1,3 +1,10 @@
+---
+title: Portenta H7 as a WiFi Access Point
+coverImage: assets/por_ard_ap_cover.svg
+tags: [WiFi, Access Point, HTTP, Web Server]
+abstract: In this tutorial you will configure the Portenta H7 as an access point and build a simple web server that will allow you to control the built-in RGB LEDs from your mobile device.
+---
+
 # Portenta H7 as a WiFi Access Point
 
 ## Overview
@@ -21,14 +28,14 @@ When the  board is configured to operate as an access point, it can create its o
 
 With the access point set up you create a client server architecture where the board provides a web server communicating with the client devices over HTTP. The connected devices can then make HTTP GET requests to the server to retrieve web pages served by the web server on the board. This makes the Portenta H7 an ideal board for developing IoT solutions where external client devices can send and receive information while more complex processing tasks take place on the server.
 
-![A client device communicating with the Portenta H7 through HTTP ](assets/por_ard_ap_tutorial_core_topic.svg?sanitize=true)
+![A client device communicating with the Portenta H7 through HTTP ](assets/por_ard_ap_tutorial_core_topic.svg)
 
 ## Instructions
 
 ### Setting Up the Web Server
 In this tutorial you are going to convert the board into an access point and use it to set up a web server which provides a HTML webpage. This page contains buttons to toggle the red, green and blue colour of the built-in LED.  You will then connect your mobile device to this access point and access this web page through the browser on your mobile phone. Once retrieved, you will be able to control the state of the red, green and blue LED on the built-in RGB LED from your mobile device. 
 
-![A mobile device controlling the different LEDs on the board ](assets/por_ard_ap_tutorial_overview.svg?sanitize=true)
+![A mobile device controlling the different LEDs on the board ](assets/por_ard_ap_tutorial_overview.svg)
 
 ### 1. The Basic Setup
 Begin by plugging in your Portenta board to your computer using a USB-C cable and open the  Arduino IDE or the Arduino Pro IDE. If this is your first time running Arduino sketch files on the board, we suggest you check out how to [set up the Portenta H7 for Arduino](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-gs) before you proceed. 
@@ -214,7 +221,7 @@ This sketch describes how the server will handle an incoming HTTP GET request fr
 
 Here the web page is just a simple HTML page with buttons to toggle the LED states.  The way in which the web page works is: Whenever a button on the web page is pressed, the client device (in this case your phone) sends a HTTP GET request to a URL denoted by a letter, in this case H or L (H stands for HIGH, L stands for LOW) followed by the LED color that should be turned on or off r, g or b. For example to turn on the red LED the URL is /Hr . Once the server receives this request it changes the corresponding LED state, closes the connection and continues to listen to next requests. 
 
-![The sequence of actions in the tutorial’s client-server model](assets/por_ard_ap_sketch_explanation.svg?sanitize=true)
+![The sequence of actions in the tutorial’s client-server model](assets/por_ard_ap_sketch_explanation.svg)
 
 ***Remember that the built-in RGB LEDs  on the Portenta H7 need to be pulled to ground to make them light up. This means that a voltage level of __LOW__ on each of their pins will turn the specific color of the LED on, a voltage level of __HIGH__ will turn them off.***
 
@@ -222,11 +229,11 @@ Here the web page is just a simple HTML page with buttons to toggle the LED stat
 
 A good practice is to have sensitive data like the SSID and the password required to identify and connect to a certain network within a separate file. Click on the arrow icon below the Serial Monitor button and open a new tab in the Arduino IDE. This will create a new file.
 
-![Open a new tab in the IDE](assets/por_ard_ap_new_tab.png?sanitize=true)
+![Open a new tab in the IDE](assets/por_ard_ap_new_tab.png)
 
 Name the file **arduino_secrets.h** and click OK.
 
-![Naming the new tab arduino_secrets.h in the IDE](assets/por_ard_ap_new_tab_name.png?sanitize=true)
+![Naming the new tab arduino_secrets.h in the IDE](assets/por_ard_ap_new_tab_name.png)
 
 Once you’ve created the new tab, you will see an empty page in the IDE. Define two constants `SECRET_SSID`  and `SECRET_PASS` that will hold the name of the WiFi network and the corresponding password. Add the following lines to your **arduino_secrets.h** file:
 
@@ -243,31 +250,31 @@ In order to access the `SECRET_SSID` and `SECRET_PASS` constants in the **simple
 # include “arduino_secrets.h”
 ```
 
-![Including the header file arduino_secrets.h in the sketch file](assets/por_ard_ap_add_headerfile.png?sanitize=true)
+![Including the header file arduino_secrets.h in the sketch file](assets/por_ard_ap_add_headerfile.png)
 
 ### 4. Upload the Code
 
 Select the **Arduino Portenta H7 (M7 core)** from the **Board** menu and the port the Portenta is connected to. Upload the **simpleWebServer.ino** sketch. Doing so will automatically compile the sketch beforehand.
 
-![Uploading the SimpleWebServer.ino to the Portenta](assets/por_ard_ap_upload_code_m7.png?sanitize=true)
+![Uploading the SimpleWebServer.ino to the Portenta](assets/por_ard_ap_upload_code_m7.png)
 
 Once you've uploaded the code, open the serial monitor. You will be able to see the IP address of the access point. You will also see the message, `Device disconnected from AP` which means there are no devices connected to the Access point yet.  
 
-![Serial monitor displaying the details of the Access point](assets/por_ard_ap_open_serial_monitor.png?sanitize=true)
+![Serial monitor displaying the details of the Access point](assets/por_ard_ap_open_serial_monitor.png)
 
 ### 5. Connecting to the Portenta Access Point
 
 Once the access point is active and ready to be connected with external devices, you will be able to find the **PortentaAccessPoint** on the list of networks on your mobile device. Once you have entered the password you have defined earlier, your smart phone will connect to access point. 
 
-![PortentaAccessPoint shown on the list of available network devices](assets/por_ard_ap_find_ap.png?sanitize=true)
+![PortentaAccessPoint shown on the list of available network devices](assets/por_ard_ap_find_ap.png)
 
 Now open a browser window on your mobile device and copy & paste the URL containing Portenta’s IP address that is displayed on the serial monitor. 
 
-![The URL containing the IP address of the access point displayed in the serial monitor](assets/por_ard_ap_copy_ip_address.png?sanitize=true)
+![The URL containing the IP address of the access point displayed in the serial monitor](assets/por_ard_ap_copy_ip_address.png)
 
 Once you’ve entered the URL, the client sends a GET request to the web server to fetch the HTML web page specified in the code. Once loaded you will see the web page in your mobile browser. 
 
-![The HTML web page accessed on your mobile browser](assets/por_ard_ap_access_webpage.png?sanitize=true)
+![The HTML web page accessed on your mobile browser](assets/por_ard_ap_access_webpage.png)
 
 ### 6. Access the Board From Your Mobile Device
 
@@ -285,11 +292,11 @@ HTTP/1.1 200 OK
 
 Once the server has responded to this request, it closes the connection and continues listening to next GET requests. 
 
-![The client details displayed on the serial monitor](assets/por_ard_ap_client_details.png?sanitize=true)
+![The client details displayed on the serial monitor](assets/por_ard_ap_client_details.png)
 
 You’re now be able to toggle the states of the red, green and blue LED through the buttons displayed on your mobile browser. Everytime you press a button, the client sends a GET request to a URL in the format /Hx or /Lx ,where x can be ‘r’, ‘g’ or ‘b’, depending on the button pressed on the HTML page. The web server then reads the URL requested by the client, changes the state of the LED corresponding to the URL and closes the connection. 
 
-![The GET request details displayed in the serial monitor](assets/por_ard_ap_toggle_LEDS.png?sanitize=true)
+![The GET request details displayed in the serial monitor](assets/por_ard_ap_toggle_LEDS.png)
 
 ## Conclusion
 

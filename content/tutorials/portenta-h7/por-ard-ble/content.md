@@ -1,3 +1,10 @@
+---
+title: BLE Connectivity on Portenta H7
+coverImage: assets/por_ard_ble_cover.svg
+tags: [BLE, LED, Connectivity, Bluetooth]
+abstract: This tutorial explains how to use BLE connectivity on the Portenta H7 to control the built-in LED using an external Bluetooth application.
+---
+
 # BLE Connectivity on Portenta H7
 
 ## Overview
@@ -24,19 +31,19 @@ The onboard WiFi/Bluetooth module of the H7 offers low energy bluetooth function
 ### Configuring the Development Environment
 To communicate with the Portenta H7 via Bluetooth, we are going to start by uploading a pre-built sketch that starts a Bluetooth network and allows your mobile device, which will be used to control the LEDs, to connect to it. The sketch uses the [ArduinoBLE](https://www.arduino.cc/en/Reference/ArduinoBLE) Library that enables the BLE module and handles important functions such as scanning, connecting and interacting with services provided by other devices. You will also be using a third party application (e.g. [nRF Connect](https://www.nordicsemi.com/Software-and-tools/Development-Tools/nRF-Connect-for-mobile)), running on your mobile device that will connect your device to the board and help you control the built-in LED.
 
-![BLE Configuration Scheme](assets/por_ard_ble_configuration.svg?sanitize=true) 
+![BLE Configuration Scheme](assets/por_ard_ble_configuration.svg) 
 
 ### 1. The Basic Setup
 
 Begin by plugging in your Portenta board to the computer using a USB-C cable and open the Arduino IDE or the Arduino Pro IDE. If this is your first time running Arduino sketch files on the board, we suggest you check out how to [set up the Portenta H7 for Arduino](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-gs) before you proceed.
 
-![The Portenta H7 can be connected to the computer using an appropriate USB-C cable](assets/por_ard_ble_basic_setup.svg?sanitize=true)
+![The Portenta H7 can be connected to the computer using an appropriate USB-C cable](assets/por_ard_ble_basic_setup.svg)
 
 ### 2. Install the ArduinoBLE Library 
 
 You will need to install the ArduinoBLE library in the Arduino IDE you are using. For this example we will use the classic Arduino IDE. To install the library go to : **Tools -> Manage Libararies...** type **ArduinoBLE** and click **Install**. Make sure you install ArduinoBLE version 1.1.3 or higher.
 
-![Download the BLE library in the Library Manager.](assets/por_ard_ble_arduino_library.png?sanitize=true)
+![Download the BLE library in the Library Manager.](assets/por_ard_ble_arduino_library.png)
 
 
 
