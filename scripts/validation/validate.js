@@ -1,21 +1,20 @@
 const parser = require('node-html-parser');
 const fileHelper = require('../lib/file-helper');
 const fs = require('fs');
+const yaml = require('js-yaml');
 const validate = require('jsonschema').validate;
 const path = require('path');
 const tc = require('title-case');
-const config = require('./config/config-tutorials');
 const Validator = require('./domain/validator').Validator;
 const { ValidationError } = require('./domain/validation-error');
 const markdownLinkCheck = require('markdown-link-check');
 
-const tutorialRules = require('./config/rules-tutorials');
-const trademarkRules = require('./config/rules-trademarks');
-const spellingRules = require('./config/rules-spelling');
-
 const PARSER_SYNTAX_PREFIX = "language-"; // Prepended by marked
+const CONFIG_PATH = "scripts/validation/config";
 const basePathFromCommandline = process.argv[2];
+const config = yaml.load(fs.readFileSync(`${CONFIG_PATH}/config-tutorials.yml`, 'utf8'));;
 let tutorialPaths;
+
 
 if(basePathFromCommandline) {
     tutorialPaths = [basePathFromCommandline];
@@ -249,7 +248,15 @@ validator.addValidation(async (tutorials) => {
     tutorials.forEach(tutorial => {
         let htmlContent = tutorial.rawHTML;
         let markdownContent = tutorial.markdown;
-        const allRules = [spellingRules, trademarkRules, tutorialRules]
+        let allRules = [];
+
+        try {
+            allRules.push(yaml.load(fs.readFileSync(`${CONFIG_PATH}/rules-spelling.yml`, 'utf8')));
+            allRules.push(yaml.load(fs.readFileSync(`${CONFIG_PATH}/rules-trademarks.yml`, 'utf8')));
+            allRules.push(yaml.load(fs.readFileSync(`${CONFIG_PATH}/rules-tutorials.yml`, 'utf8')));
+        } catch (e) {
+            console.log(e);
+        }
         
         for(rules of allRules){
             rules.forEach(rule => {
