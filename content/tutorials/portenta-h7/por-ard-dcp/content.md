@@ -177,7 +177,7 @@ Now can upload the sketch to both the cores of the Portenta H7 individually. Wit
 This tutorial introduces the idea of dual core processing and illustrates the concept by using the M7 and M4 cores to control the different colors of the built-in RGB LED. This simple example only describes how to access the M7 and M4 cores. In the upcoming tutorials you will learn to create applications that leverage the potential of dual core processing to perform more complex tasks. 
 
 ### Next Steps
-- Proceed with the next tutorial "Setting Up a WiFi Access Point" to learn how to make use of the built-in WiFi module and configure your Portena H7 as a WiFi access point.
+- Proceed with the next tutorial "Setting Up a Wi-Fi Access Point" to learn how to make use of the built-in Wi-Fi module and configure your Portena H7 as a Wi-Fi access point.
 
 **Authors:** Lenard George, Sebastian Hunkeler  
 **Reviewed by:** José Garcia [2020-03-20]  

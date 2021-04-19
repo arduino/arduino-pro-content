@@ -1,19 +1,20 @@
 const parser = require('node-html-parser');
 const fileHelper = require('../lib/file-helper');
 const fs = require('fs');
+const yaml = require('js-yaml');
 const validate = require('jsonschema').validate;
 const path = require('path');
 const tc = require('title-case');
-const config = require('./config/config-tutorials');
-const rules = require('./config/rules-tutorials');
 const Validator = require('./domain/validator').Validator;
 const { ValidationError } = require('./domain/validation-error');
 const markdownLinkCheck = require('markdown-link-check');
 
-
 const PARSER_SYNTAX_PREFIX = "language-"; // Prepended by marked
+const CONFIG_PATH = "scripts/validation/config";
 const basePathFromCommandline = process.argv[2];
+const config = yaml.load(fs.readFileSync(`${CONFIG_PATH}/config-tutorials.yml`, 'utf8'));;
 let tutorialPaths;
+
 
 if(basePathFromCommandline) {
     tutorialPaths = [basePathFromCommandline];
@@ -127,7 +128,7 @@ validator.addValidation(async (tutorials) => {
                 let errorsOccurred = [];
                 results.forEach(function (result) {    
                     if(result.status == "alive" && config.verboseOutput){
-                        console.log('✅ %s is alive', result.link);
+                        console.log('👍 %s is alive', result.link);
                     } else if(result.status == "dead" && result.statusCode !== 0){
                         const errorMessage = `${result.link} is dead 💀 HTTP ${result.statusCode}`;
                         errorsOccurred.push(new ValidationError(errorMessage, tutorial.path));                        
@@ -247,22 +248,38 @@ validator.addValidation(async (tutorials) => {
     tutorials.forEach(tutorial => {
         let htmlContent = tutorial.rawHTML;
         let markdownContent = tutorial.markdown;
-    
-        rules.forEach(rule => {
-            const content = rule.format == "html" ? htmlContent : markdownContent;
-            const regex = new RegExp(rule.regex);
-            const match = content.match(regex);
-            let lineNumber = null;
+        let allRules = [];
 
-            if(match){
-                const index = match.index;
-                lineNumber = fileHelper.getLineNumberFromIndex(index,content);                
-            }
-            if((match === null && rule.shouldMatch) || (match !== null && !rule.shouldMatch)) {
-                const errorMessage = rule.errorMessage;
-                errorsOccurred.push(new ValidationError(errorMessage, tutorial.path, lineNumber));                
-            }     
-        });
+        try {
+            allRules.push(yaml.load(fs.readFileSync(`${CONFIG_PATH}/rules-spelling.yml`, 'utf8')));
+            allRules.push(yaml.load(fs.readFileSync(`${CONFIG_PATH}/rules-trademarks.yml`, 'utf8')));
+            allRules.push(yaml.load(fs.readFileSync(`${CONFIG_PATH}/rules-tutorials.yml`, 'utf8')));
+        } catch (e) {
+            console.log(e);
+        }
+        
+        for(rules of allRules){
+            rules.forEach(rule => {
+                const content = rule.format == "html" ? htmlContent : markdownContent;
+                const regex = new RegExp(rule.regex, "g");
+                const matches = content.matchAll(regex);
+                const ruleType = rule.type ?? "error";
+
+                for(match of matches){
+                    let lineNumber = null;
+        
+                    if(match){
+                        const index = match.index;
+                        lineNumber = fileHelper.getLineNumberFromIndex(index,content);                
+                    }
+                    if((match === null && rule.shouldMatch) || (match !== null && !rule.shouldMatch)) {
+                        const errorMessage = rule.errorMessage;
+                        errorsOccurred.push(new ValidationError(errorMessage, tutorial.path, ruleType, lineNumber));                
+                    }     
+                }
+
+            });
+        }
     
     });
     return errorsOccurred;
@@ -273,17 +290,30 @@ validator.addValidation(async (tutorials) => {
  */
 (function main() {
     console.log(`🕵️ Validating ${tutorialPaths.length} tutorials...`);
-    validator.validate().then( validationErrors => {        
-        if(validationErrors.length == 0){
-            console.log("✅ No errors found.")
+    validator.validate().then( validationIssues => {        
+        if(validationIssues.length == 0){
+            console.log("✅ No issues found.")
             process.exit(0);
-        } else {
-            for(error of validationErrors){
-                const lineNumber = error.lineNumber ?  ":" + error.lineNumber : "";
-                console.log("❌ " + error.message + " Location: " + error.file + lineNumber);
+        }
+
+        let validationErrors = 0;
+        let validationWarnings = 0;
+
+        for(issue of validationIssues){
+            if(issue.type == "error") {
+                ++validationErrors;
+            } else {
+                ++validationWarnings;
             }
-            console.log("🚫 " + validationErrors.length + " errors found.")
-            process.exit(2);
-        }  
+            const symbol = issue.type == "error" ? "❌" : "😬";                
+            const lineNumber = issue.lineNumber ?  ":" + issue.lineNumber : "";
+            console.log(symbol + " " + issue.message + " Location: " + issue.file + lineNumber);
+        }
+        
+        if(validationWarnings > 0)
+            console.log("😬 " + validationWarnings+ " warnings found.")
+        if(validationErrors > 0)
+            console.log("🚫 " + validationErrors + " errors found.")
+        process.exit(validationErrors > 0 ? 2 : 0);
     });
 })()
