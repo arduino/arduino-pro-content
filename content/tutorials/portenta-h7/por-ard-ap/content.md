@@ -1,10 +1,10 @@
-# Portenta H7 as a WiFi Access Point
+# Portenta H7 as a Wi-Fi Access Point
 
 ## Overview
-Portenta H7 comes with an on-board WiFi and a bluetooth Module that allows to develop IoT applications that require wireless connectivity and Internet access. Turning the board into an access point allows it to create a WiFi network on its own and allows other devices to connect to it. In  this tutorial you will learn to set up your board as an access point web server and remotely control the red, green and blue LEDs on the built-in RGB LED by accessing an HTML page on your mobile device’s browser. 
+Portenta H7 comes with an on-board Wi-Fi and a Bluetooth® Module that allows to develop IoT applications that require wireless connectivity and Internet access. Turning the board into an access point allows it to create a Wi-Fi network on its own and allows other devices to connect to it. In  this tutorial you will learn to set up your board as an access point web server and remotely control the red, green and blue LEDs on the built-in RGB LED by accessing an HTML page on your mobile device’s browser. 
 
 ### You Will Learn
--   About the built-in WiFi + Bluetooth module.
+-   About the built-in Wi-Fi + Bluetooth® module.
 -   How a  client-server model works 
 -   How to create an HTTP communication channel between the board and an external device. 
 
@@ -15,9 +15,9 @@ Portenta H7 comes with an on-board WiFi and a bluetooth Module that allows to de
 -   A smart phone
 
 ## Access Point Configuration
-The Portenta H7 features a  [Murata 1DX](https://wireless.murata.com/type-1dx.html), which is  a high performance chipset which supports  WiFi 802.11b/g/n + Bluetooth 5.1 BR/EDR/LE up to 65Mbps PHY data rate on WiFi and 3Mbps PHY data rate on Bluetooth. This module helps to configure the Portenta into three different modes of operation -  an Access Point,  a Station, or both. In this tutorial we will only focus on the access point configuration.
+The Portenta H7 features a  [Murata 1DX](https://wireless.murata.com/type-1dx.html), which is  a high performance chipset which supports  Wi-Fi 802.11b/g/n + Bluetooth® 5.1 BR/EDR/LE up to 65Mbps PHY data rate on Wi-Fi and 3Mbps PHY data rate on Bluetooth®. This module helps to configure the Portenta into three different modes of operation -  an Access Point,  a Station, or both. In this tutorial we will only focus on the access point configuration.
 
-When the  board is configured to operate as an access point, it can create its own wireless LAN ( WLAN ) network. In this mode, the board transmits and receives signals at 2.4 GHz allowing other electronic devices with WiFi capabilities using the same bandwidth to connect to the board.
+When the  board is configured to operate as an access point, it can create its own wireless LAN ( WLAN ) network. In this mode, the board transmits and receives signals at 2.4 GHz allowing other electronic devices with Wi-Fi capabilities using the same bandwidth to connect to the board.
 
 With the access point set up you create a client server architecture where the board provides a web server communicating with the client devices over HTTP. The connected devices can then make HTTP GET requests to the server to retrieve web pages served by the web server on the board. This makes the Portenta H7 an ideal board for developing IoT solutions where external client devices can send and receive information while more complex processing tasks take place on the server.
 
@@ -36,9 +36,9 @@ Begin by plugging in your Portenta board to your computer using a USB-C cable an
 ![The Portenta H7 can be connected to the computer using an appropriate USB-C cable](assets/por_tut1_im1.png)
 
 ### 2. Create the Web Server Sketch
-Next we need to create a web server sketch that will handle the HTTP GET requests and provide the client devices with the HTML web page. The [Wifi.h](https://www.arduino.cc/en/Reference/WiFi) library provides all necessary methods that allows Arduino boards to use their WiFi features provided by the on-board WiFi module. To set up the web server copy the following code, paste it into a new sketch file and name it **SimpleWebServer.ino**. 
+Next we need to create a web server sketch that will handle the HTTP GET requests and provide the client devices with the HTML web page. The [Wi-Fi](https://www.arduino.cc/en/Reference/WiFi) library provides all necessary methods that allows Arduino boards to use their Wi-Fi features provided by the on-board Wi-Fi module. To set up the web server copy the following code, paste it into a new sketch file and name it **SimpleWebServer.ino**. 
 
-**Note:** You can access the final sketch inside the library: **Examples -> Arduino_Pro_Tutorials -> Portenta H7 as a WiFi Access Point -> SimpleWebServer**
+**Note:** You can access the final sketch inside the library: **Examples -> Arduino_Pro_Tutorials -> Portenta H7 as a Wi-Fi Access Point -> SimpleWebServer**
 
 ```cpp
 #include <WiFi.h>
@@ -72,7 +72,7 @@ void setup() {
 
   if(strlen(pass) < 8){    
     Serial.println("Creating access point failed");
-    Serial.println("The WiFi password must be at least 8 characters long");
+    Serial.println("The Wi-Fi password must be at least 8 characters long");
     // don't continue
     while(true);
   }
@@ -199,7 +199,7 @@ void printWiFiStatus() {
   Serial.print("SSID: ");
   Serial.println(WiFi.SSID());
 
-  // print your WiFi shield's IP address:
+  // print your Wi-Fi shield's IP address:
   IPAddress ip = WiFi.localIP();
   Serial.print("IP Address: ");
   Serial.println(ip);
@@ -228,7 +228,7 @@ Name the file **arduino_secrets.h** and click OK.
 
 ![Naming the new tab arduino_secrets.h in the IDE](assets/por_ard_ap_new_tab_name.png?sanitize=true)
 
-Once you’ve created the new tab, you will see an empty page in the IDE. Define two constants `SECRET_SSID`  and `SECRET_PASS` that will hold the name of the WiFi network and the corresponding password. Add the following lines to your **arduino_secrets.h** file:
+Once you’ve created the new tab, you will see an empty page in the IDE. Define two constants `SECRET_SSID`  and `SECRET_PASS` that will hold the name of the Wi-Fi network and the corresponding password. Add the following lines to your **arduino_secrets.h** file:
 
 ```cpp
 # define SECRET_SSID "PortentaAccessPoint"
@@ -293,7 +293,7 @@ You’re now be able to toggle the states of the red, green and blue LED through
 
 ## Conclusion
 
-This tutorial shows one of the several capabilities of the on-board WiFi+Bluetooth module by configuring the board as an access point and setting up a web server. You have also learnt how a simple client-server model and the underlying HTTP requests and responses work. 
+This tutorial shows one of the several capabilities of the on-board WiFi+Bluetooth® module by configuring the board as an access point and setting up a web server. You have also learnt how a simple client-server model and the underlying HTTP requests and responses work. 
 
 ### Next Steps 
 

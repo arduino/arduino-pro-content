@@ -1,12 +1,14 @@
 ---
-- regex: "[bB]luetooth(?!®)|bluetooth"
+- regex: "(?:[bB]luetooth(?!®)|bluetooth)(?![-\\/]|\\.?\\S)"
   shouldMatch: false
   format: markdown
+  type: warning
   errorMessage: The Bluetooth® trademark is not used correctly.
   
 
-# Avoids false positives by excluding the word in conjunction with a dash (e.g. URLs)
-- regex: "(?<!-)(?:[lL]o[rR]a(?!®)|lora|Lora)(?!-)"
+# Avoids false positives by excluding the word in conjunction with a dash (e.g. URLs) and as part of code)
+- regex: "(?<![-\\/])(?:[lL]o[rR]a(?!(?:WAN)?®)|lora|Lora)(?![-\\/]|\\.?\\S)"
   shouldMatch: false
   format: markdown
-  errorMessage: The LoRa® trademark is not used correctly.
+  type: warning
+  errorMessage: The LoRa® / LoRaWAN® trademark is not used correctly.

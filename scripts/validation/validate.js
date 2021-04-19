@@ -128,7 +128,7 @@ validator.addValidation(async (tutorials) => {
                 let errorsOccurred = [];
                 results.forEach(function (result) {    
                     if(result.status == "alive" && config.verboseOutput){
-                        console.log('✅ %s is alive', result.link);
+                        console.log('👍 %s is alive', result.link);
                     } else if(result.status == "dead" && result.statusCode !== 0){
                         const errorMessage = `${result.link} is dead 💀 HTTP ${result.statusCode}`;
                         errorsOccurred.push(new ValidationError(errorMessage, tutorial.path));                        
