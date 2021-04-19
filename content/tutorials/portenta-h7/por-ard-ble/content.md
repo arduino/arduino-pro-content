@@ -1,7 +1,7 @@
 # BLE Connectivity on Portenta H7
 
 ## Overview
-In this tutorial we will enable low energy bluetooth (BLE) on the Portenta H7 to allow an external bluetooth device to control the built-in LED either by turning it on or off.
+In this tutorial we will enable low energy Bluetooth® (BLE) on the Portenta H7 to allow an external Bluetooth® device to control the built-in LED either by turning it on or off.
 
 ### You Will Learn
 
@@ -16,13 +16,13 @@ In this tutorial we will enable low energy bluetooth (BLE) on the Portenta H7 to
 -   Mobile device, phone or tablet
 -   [nRFconnect](https://www.nordicsemi.com/Software-and-tools/Development-Tools/nRF-Connect-for-mobile) or equivalent tool downloaded on your mobile device: [nRF Connect for iOS](https://itunes.apple.com/us/app/nrf-connect/id1054362403?ls=1&mt=8) or [nRF Connect for android](https://play.google.com/store/apps/details?id=no.nordicsemi.android.mcp)
 
-## Portenta and Low Energy Bluetooth (BLE) 
-The onboard WiFi/Bluetooth module of the H7 offers low energy bluetooth functionality that gives the board the flexibility to be easily connected to devices which also support BLE such as the Arduino Nano 33 IoT or most modern smart phones. Compared to classic Bluetooth, Low Energy Bluetooth is intended to provide considerably reduced power consumption and cost while maintaining a similar communication range.
+## Portenta and Low Energy Bluetooth® (BLE) 
+The onboard WiFi/Bluetooth® module of the H7 offers low energy Bluetooth® functionality that gives the board the flexibility to be easily connected to devices which also support BLE such as the Arduino Nano 33 IoT or most modern smart phones. Compared to classic Bluetooth®, Low Energy Bluetooth® is intended to provide considerably reduced power consumption and cost while maintaining a similar communication range.
 
 ## Instructions
 
 ### Configuring the Development Environment
-To communicate with the Portenta H7 via Bluetooth, we are going to start by uploading a pre-built sketch that starts a Bluetooth network and allows your mobile device, which will be used to control the LEDs, to connect to it. The sketch uses the [ArduinoBLE](https://www.arduino.cc/en/Reference/ArduinoBLE) Library that enables the BLE module and handles important functions such as scanning, connecting and interacting with services provided by other devices. You will also be using a third party application (e.g. [nRF Connect](https://www.nordicsemi.com/Software-and-tools/Development-Tools/nRF-Connect-for-mobile)), running on your mobile device that will connect your device to the board and help you control the built-in LED.
+To communicate with the Portenta H7 via Bluetooth®, we are going to start by uploading a pre-built sketch that starts a Bluetooth® network and allows your mobile device, which will be used to control the LEDs, to connect to it. The sketch uses the [ArduinoBLE](https://www.arduino.cc/en/Reference/ArduinoBLE) Library that enables the BLE module and handles important functions such as scanning, connecting and interacting with services provided by other devices. You will also be using a third party application (e.g. [nRF Connect](https://www.nordicsemi.com/Software-and-tools/Development-Tools/nRF-Connect-for-mobile)), running on your mobile device that will connect your device to the board and help you control the built-in LED.
 
 ![BLE Configuration Scheme](assets/por_ard_ble_configuration.svg?sanitize=true) 
 
@@ -136,7 +136,7 @@ void loop() {
 }
 ```
 
-In our example we use a pre-defined bluetooth number code pre-setup for controlling a device's LEDs. This code can also be referred to as [GATT codes](https://www.bluetooth.com/specifications/gatt/services/), which define how two bluetooth low energy devices transfer data. Once a connection is established with a device, its respecitve GATT code, which is a 16 bit identifier, is stored in a lookup table for future reference. 
+In our example we use a pre-defined Bluetooth® number code pre-setup for controlling a device's LEDs. This code can also be referred to as [GATT codes](https://www.bluetooth.com/specifications/gatt/services/), which define how two Bluetooth® low energy devices transfer data. Once a connection is established with a device, its respecitve GATT code, which is a 16 bit identifier, is stored in a lookup table for future reference. 
 These GATT codes are very long, but in our example it is always the same code:
 
 ```BLEService ledService("19b10000-e8f2-537e-4f6c-d104768a1214"); // BLE LED Service```

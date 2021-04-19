@@ -361,7 +361,7 @@ if(blockDevice.init() != 0 || blockDevice.size() != BLOCK_DEVICE_SIZE) {
 }
 ```
 
-While the QSPI block device memory can be used directly, it's better to use a partition table as the QSPI storage is also filled with other data such as the WiFi firmware. For that we use the [MBRBlockDevice](https://os.mbed.com/docs/mbed-os/v6.8/apis/mbrblockdevice.html) class and allocate a 8 KB partition which can then be used to read and write data.
+While the QSPI block device memory can be used directly, it's better to use a partition table as the QSPI storage is also filled with other data such as the Wi-Fi firmware. For that we use the [MBRBlockDevice](https://os.mbed.com/docs/mbed-os/v6.8/apis/mbrblockdevice.html) class and allocate a 8 KB partition which can then be used to read and write data.
 The full QSPI version of the sketch is as follows:
 
 ```cpp
