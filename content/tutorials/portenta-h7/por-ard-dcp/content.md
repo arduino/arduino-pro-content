@@ -2,7 +2,7 @@
 title: Dual Core Processing
 coverImage: assets/por_ard_dcp_cover.svg
 tags: [Multitasking, RGB, LED]
-abstract: In this tutorial you will run two classic Arduino blink programs simultaneously on different cores of the Portenta board that blinks the RGB LED in two different colours.
+description: In this tutorial you will run two classic Arduino blink programs simultaneously on different cores of the Portenta board that blinks the RGB LED in two different colours.
 ---
 
 # Dual Core Processing

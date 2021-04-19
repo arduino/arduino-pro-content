@@ -3,7 +3,7 @@ title: Creating GUIs with LVGL
 coverImage: assets/por_ard_lvgl_cover.svg
 tags: [USB Host, LVGL, GUI, HDMI]
 - 
-abstract: In this tutorial you will learn to use LVGL (Light and Versatile Graphics Library) to create a simple graphical user interface that consists of a label that updates itself.
+description: In this tutorial you will learn to use LVGL (Light and Versatile Graphics Library) to create a simple graphical user interface that consists of a label that updates itself.
 ---
 
 # Creating GUIs With LVGL  

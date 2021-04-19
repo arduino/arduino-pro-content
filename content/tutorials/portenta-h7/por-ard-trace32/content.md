@@ -2,7 +2,7 @@
 title: Lauterbach TRACE32 GDB Front-End Debugger for Portenta H7
 coverImage: assets/por_ard_trace32_cover.svg
 tags: [Debugging, Lauterbach, TRACE32]
-abstract: This tutorial will show you how to use the Lauterbach TRACE32 GDB front-end debugger to debug your Portenta H7 application via GDB on a serial interface.
+description: This tutorial will show you how to use the Lauterbach TRACE32 GDB front-end debugger to debug your Portenta H7 application via GDB on a serial interface.
 ---
 
 # Lauterbach TRACE32 GDB Front-End Debugger for Portenta H7

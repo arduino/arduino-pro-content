@@ -2,7 +2,7 @@
 title: BLE Connectivity on Portenta H7
 coverImage: assets/por_ard_ble_cover.svg
 tags: [BLE, LED, Connectivity, Bluetooth]
-abstract: This tutorial explains how to use BLE connectivity on the Portenta H7 to control the built-in LED using an external Bluetooth application.
+description: This tutorial explains how to use BLE connectivity on the Portenta H7 to control the built-in LED using an external Bluetooth application.
 ---
 
 # BLE Connectivity on Portenta H7
