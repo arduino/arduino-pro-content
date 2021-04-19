@@ -263,7 +263,8 @@ validator.addValidation(async (tutorials) => {
                 const content = rule.format == "html" ? htmlContent : markdownContent;
                 const regex = new RegExp(rule.regex, "g");
                 const matches = content.matchAll(regex);
-                
+                const ruleType = rule.type ?? "error";
+
                 for(match of matches){
                     let lineNumber = null;
         
@@ -273,7 +274,7 @@ validator.addValidation(async (tutorials) => {
                     }
                     if((match === null && rule.shouldMatch) || (match !== null && !rule.shouldMatch)) {
                         const errorMessage = rule.errorMessage;
-                        errorsOccurred.push(new ValidationError(errorMessage, tutorial.path, lineNumber));                
+                        errorsOccurred.push(new ValidationError(errorMessage, tutorial.path, ruleType, lineNumber));                
                     }     
                 }
 
@@ -289,17 +290,30 @@ validator.addValidation(async (tutorials) => {
  */
 (function main() {
     console.log(`🕵️ Validating ${tutorialPaths.length} tutorials...`);
-    validator.validate().then( validationErrors => {        
-        if(validationErrors.length == 0){
-            console.log("✅ No errors found.")
+    validator.validate().then( validationIssues => {        
+        if(validationIssues.length == 0){
+            console.log("✅ No issues found.")
             process.exit(0);
-        } else {
-            for(error of validationErrors){
-                const lineNumber = error.lineNumber ?  ":" + error.lineNumber : "";
-                console.log("❌ " + error.message + " Location: " + error.file + lineNumber);
+        }
+
+        let validationErrors = 0;
+        let validationWarnings = 0;
+
+        for(issue of validationIssues){
+            if(issue.type == "error") {
+                ++validationErrors;
+            } else {
+                ++validationWarnings;
             }
-            console.log("🚫 " + validationErrors.length + " errors found.")
-            process.exit(2);
-        }  
+            const symbol = issue.type == "error" ? "❌" : "😬";                
+            const lineNumber = issue.lineNumber ?  ":" + issue.lineNumber : "";
+            console.log(symbol + " " + issue.message + " Location: " + issue.file + lineNumber);
+        }
+        
+        if(validationWarnings > 0)
+            console.log("😬 " + validationWarnings+ " warnings found.")
+        if(validationErrors > 0)
+            console.log("🚫 " + validationErrors + " errors found.")
+        process.exit(validationErrors > 0 ? 2 : 0);
     });
 })()
