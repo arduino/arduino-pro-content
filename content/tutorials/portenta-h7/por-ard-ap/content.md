@@ -1,12 +1,11 @@
-# Portenta H7 as a Wi-Fi Access Point
 ---
-title: Portenta H7 as a WiFi Access Point
+title: Portenta H7 as a Wi-Fi Access Point
 coverImage: assets/por_ard_ap_cover.svg
 tags: [WiFi, Access Point, HTTP, Web Server]
 description: In this tutorial you will configure the Portenta H7 as an access point and build a simple web server that will allow you to control the built-in RGB LEDs from your mobile device.
 ---
 
-# Portenta H7 as a WiFi Access Point
+# Portenta H7 as a Wi-Fi Access Point
 
 ## Overview
 Portenta H7 comes with an on-board Wi-Fi and a Bluetooth® Module that allows to develop IoT applications that require wireless connectivity and Internet access. Turning the board into an access point allows it to create a Wi-Fi network on its own and allows other devices to connect to it. In  this tutorial you will learn to set up your board as an access point web server and remotely control the red, green and blue LEDs on the built-in RGB LED by accessing an HTML page on your mobile device’s browser. 

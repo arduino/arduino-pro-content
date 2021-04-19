@@ -2,7 +2,6 @@
 title: Setting Up Portenta H7 For Arduino
 coverImage: assets/por_ard_gs_cover.svg
 tags: [Getting Started, IDE, Setup, Blink]
-- 
 description: This tutorial teaches you how to set up the board, how to configure your computer and how to run the classic Arduino blink example  to verify if the configuration was successful.
 ---
 

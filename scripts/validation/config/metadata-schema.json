@@ -9,31 +9,17 @@
         "type": "string"
       },      
       "coverImage": {
-        "type": "object",
-        "properties": {
-          "src": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "src"
-        ]
+        "type": "string"
       },
       "tags": {
         "type": "array",
         "items": [
           {
             "type": "string"
-          },
-          {
-            "type": "string"
-          },
-          {
-            "type": "string"
           }
         ]
       },
-      "abstract": {
+      "description": {
         "type": "string"
       }        
     },
@@ -41,7 +27,7 @@
       "title",      
       "coverImage",
       "tags",
-      "abstract"      
+      "description"      
     ]
   }
   

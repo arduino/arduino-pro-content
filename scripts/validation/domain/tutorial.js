@@ -1,5 +1,6 @@
 const fileHelper = require('../../lib/file-helper');
 const fs = require('fs');
+const fm = require('front-matter');
 const marked = require('marked');
 const parser = require('node-html-parser');
 const htmlEntities = require('html-entities');
@@ -20,8 +21,9 @@ var Tutorial = class Tutorial {
             console.log("❌ File doens't exist " + this.path);
             return null;
         }
-        let rawData = fs.readFileSync(this.path);
-        return rawData.toString();
+        let rawData = fs.readFileSync(this.path).toString();
+        const content = fm(rawData);
+        return content.body;
     }
 
     get rawHTML(){
@@ -58,12 +60,12 @@ var Tutorial = class Tutorial {
     }
 
     get coverImagePath() {
-        return this.metadata.coverImage.src.split("?")[0];
+        return this.metadata.coverImage;
     }
 
     get imagePaths(){
         let images = this.html.querySelectorAll("img");
-        return images.map(image => image.attributes.src.split("?")[0]);
+        return images.map(image => image.attributes.src);
     }
 
     get linkPaths(){
@@ -81,16 +83,12 @@ var Tutorial = class Tutorial {
     }
 
     get metadata(){    
-        const metadataPath = this.metadataPath
-        try {
-            if(!fs.existsSync(metadataPath)){
-                console.log("❌ Metadata file doens't exist " + metadataPath);
-                return null;
-            }
-            let rawData = fs.readFileSync(metadataPath);    
-            return JSON.parse(rawData);
-        } catch(error){
-            console.log("❌ Parse error in " + metadataPath);
+        try {            
+            let rawData = fs.readFileSync(this.path).toString();
+            const content = fm(rawData);
+            return content.attributes;
+        } catch (error) {
+            console.log("Error occurred while parsing " + this.path);
             console.log(error);
             return null;
         }
