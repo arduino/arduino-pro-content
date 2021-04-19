@@ -261,18 +261,22 @@ validator.addValidation(async (tutorials) => {
         for(rules of allRules){
             rules.forEach(rule => {
                 const content = rule.format == "html" ? htmlContent : markdownContent;
-                const regex = new RegExp(rule.regex);
-                const match = content.match(regex);
-                let lineNumber = null;
-    
-                if(match){
-                    const index = match.index;
-                    lineNumber = fileHelper.getLineNumberFromIndex(index,content);                
+                const regex = new RegExp(rule.regex, "g");
+                const matches = content.matchAll(regex);
+                
+                for(match of matches){
+                    let lineNumber = null;
+        
+                    if(match){
+                        const index = match.index;
+                        lineNumber = fileHelper.getLineNumberFromIndex(index,content);                
+                    }
+                    if((match === null && rule.shouldMatch) || (match !== null && !rule.shouldMatch)) {
+                        const errorMessage = rule.errorMessage;
+                        errorsOccurred.push(new ValidationError(errorMessage, tutorial.path, lineNumber));                
+                    }     
                 }
-                if((match === null && rule.shouldMatch) || (match !== null && !rule.shouldMatch)) {
-                    const errorMessage = rule.errorMessage;
-                    errorsOccurred.push(new ValidationError(errorMessage, tutorial.path, lineNumber));                
-                }     
+
             });
         }
     
