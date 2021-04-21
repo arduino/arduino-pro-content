@@ -101,10 +101,10 @@ Connect the jumper from the **B** pin to the positive terminal of the Battery an
 
 ### 5. Upload The Sketch 
 
-Connect the board to your computer, upload the `ValveControl.ino` sketch and open the **Serial Monitor**. If all the connections are done right, the valve opens and closes and you should be able to see the status as `Open` or `Close` on the serial monitor. 
+Connect the board to your computer, upload the `blink.ino` sketch and open the **Serial Monitor**. If all the connections are done right, the LED blinks and you should be able to see the output  `Hello Edge Control` and `Blink` on the serial monitor. 
 
 ## Conclusion
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.  
+This tutorial explains how to setup your Edge Control Board and the core operations of the Edge Control board.
 
 ### Complete Sketch 
 
