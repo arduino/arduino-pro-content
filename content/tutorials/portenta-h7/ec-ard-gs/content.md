@@ -64,29 +64,29 @@ The `Power` class provides API access to enable the different voltage regulators
 
 ```cpp
 // Enable power lines 
-  Power.enable3V3();
-  Power.enable5V();
+Power.enable3V3();
+Power.enable5V();
 ```
 
 The edge control board uses Expander !--- (what are they ? Short sentence here) ---! . Communication to the Expander happens through the I2C port for which we will use the `Wire.begin() The onboard LED can e
 
 ```cpp
 // Start the I2C connection 
-  Wire.begin();
+Wire.begin();
 
-  // Initalise the expander pins 
-  Expander.begin();
-  Expander.pinMode(EXP_LED1, OUTPUT);
+// Initalise the expander pins 
+Expander.begin();
+Expander.pinMode(EXP_LED1, OUTPUT);
 ```
 
 inside the loop, you can use the digitalWrite() to control the on
 
 ```cpp
-    Serial.println("Blink");
-    Expander.digitalWrite(EXP_LED1, LOW);
-    delay(500);
-    Expander.digitalWrite(EXP_LED1, HIGH);
-    delay(500);
+Serial.println("Blink");
+Expander.digitalWrite(EXP_LED1, LOW);
+delay(500);
+Expander.digitalWrite(EXP_LED1, HIGH);
+delay(500);
 ```
 
 ***Tip: The Complete Sketch can be found in the Conclusions***
