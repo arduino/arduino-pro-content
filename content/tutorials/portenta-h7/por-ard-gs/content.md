@@ -60,7 +60,8 @@ In this step you will check if Windows is able to detect the Portenta H7. To do 
 ### 4. Uploading the Classic Blink Sketch
 Let's program the Portenta with the classic blink example to check if the connection to the board works:
 
--   In the classic Arduino IDE open the blink example by clicking the menu entry File->Examples->01.Basics->Blink.
+-   In the classic Arduino IDE open the blink example by clicking the menu entry File->Examples->01.Basics->Blink (Small will be required).
+-   By downloading the 'Arduino_Pro_Tutorials' library and going to File->Examples->Arduino_Pro_Tutorials->Setting Up Portenta H7 For Arduino->Blink 
 -   In the Arduino Pro IDE Copy and paste the following code into a new sketch in your IDE.
 
 ```cpp
