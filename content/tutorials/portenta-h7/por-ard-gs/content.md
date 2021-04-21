@@ -1,3 +1,10 @@
+---
+title: Setting Up Portenta H7 For Arduino
+coverImage: assets/por_ard_gs_cover.svg
+tags: [Getting Started, IDE, Setup, Blink]
+description: This tutorial teaches you how to set up the board, how to configure your computer and how to run the classic Arduino blink example  to verify if the configuration was successful.
+---
+
 # Setting Up Portenta H7 For Arduino
 
 ## Overview
@@ -24,7 +31,7 @@ The Portenta H7 is equipped with two Arm Cortex ST processors (Cortex-M4 and Cor
 
 The Arduino core for the Portenta H7 sits on top of the Mbed OS and allows to develop applications using Mbed OS APIs which handle for example storage, connectivity, security and other hardware interfacing. [Here](https://os.mbed.com/docs/mbed-os/v5.15/apis/index.html) you can read more about the Mbed OS APIs. However, taking advantage of the Arm® Mbed™ real time operating system's powerful features can be a complicated process. Therefore we simplified that process by allowing you to run Arduino sketches on top of it.
 
-![The Arduino core is built on top of the Mbed stack](assets/por_gs_mbed_stack.svg?sanitize=true)
+![The Arduino core is built on top of the Mbed stack](assets/por_gs_mbed_stack.svg)
 
 ## Instructions
 
@@ -34,7 +41,7 @@ In this section, we will guide you through a step-by-step process of setting up 
 ### 1. The Basic Setup
 Let's begin by Plug-in your Portenta to your computer using the appropriate USB C cable. Next, open your IDE and make sure that you have the right version of the Arduino IDE or the PRO IDE downloaded on to your computer.
 
-![The Portenta H7 can be connected to the computer using an appropriate USB-C cable](assets/por_ard_gs_basic_setup.svg?sanitize=true)
+![The Portenta H7 can be connected to the computer using an appropriate USB-C cable](assets/por_ard_gs_basic_setup.svg)
 
 ### 2. Adding the Portenta to the List of Available Boards
 This step is the same for both the classic IDE and the Pro IDE. Open the board manager and search for "portenta".  Find the Arduino mbed-enabled Boards library and click on "Install" to install the latest version of the mbed core (1.2.3 at the time of writing this tutorial).

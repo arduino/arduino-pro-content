@@ -1,3 +1,10 @@
+---
+title: Creating a Basic Face Filter With OpenMV
+coverImage: assets/por_openmv_fd_cover.svg
+tags: [OpenMV, Face Detection, Haar Cascade, Machine Vision, Machine Learning]
+description: In this tutorial you will build a MicroPython application with OpenMV that uses the Portenta Vision Shield to detect faces and overlay them with a custom bitmap image.
+---
+
 # Creating a Basic Face Filter With OpenMV
 
 ## Overview

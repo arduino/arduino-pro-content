@@ -25,12 +25,12 @@ const validator = new Validator(tutorialPaths);
 
 
 /**
- * Verify that all meta data files are valid JSON and contain the correct attributes
+ * Verify that all meta data is valid JSON and contains the correct attributes
  */
 validator.addValidation(async (tutorials) => {
     let errorsOccurred = [];
     tutorials.forEach(tutorial => {
-        let jsonData = tutorial.metadata
+        let jsonData = tutorial.metadata;
         if(!jsonData) {
             const errorMessage = "No metadata file found";
             errorsOccurred.push(new ValidationError(errorMessage, tutorial.metadataPath));            
@@ -41,7 +41,7 @@ validator.addValidation(async (tutorials) => {
             if(!jsonData.coverImage){
                 const errorMessage = "No cover image found";
                 errorsOccurred.push(new ValidationError(errorMessage, tutorial.metadataPath));                            
-            } else if (jsonData.coverImage.src.indexOf(".svg") == -1) {
+            } else if (jsonData.coverImage.indexOf(".svg") == -1) {
                 const errorMessage = "Cover image is not in SVG format.";
                 errorsOccurred.push(new ValidationError(errorMessage, tutorial.metadataPath));                
             }
@@ -153,8 +153,8 @@ validator.addValidation(async (tutorials) => {
     tutorials.forEach(tutorial => {    
         let imageNames = tutorial.imagePaths.map(imagePath => path.basename(imagePath));    
         let assetNames = tutorial.assets.map(asset => path.basename(asset));    
-        let linkNames = tutorial.linkPaths.map(link => path.basename(link));
-        let coverImageName = path.basename(tutorial.coverImagePath);        
+        let linkNames = tutorial.linkPaths.map(link => path.basename(link));        
+        let coverImageName = tutorial.coverImagePath ? path.basename(tutorial.coverImagePath) : null;
     
         assetNames.forEach(asset => {        
             if(coverImageName == asset) return;

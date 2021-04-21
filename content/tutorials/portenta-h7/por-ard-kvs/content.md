@@ -1,3 +1,10 @@
+---
+title: Creating a Flash-Optimised Key-Value Store
+coverImage: assets/por_ard_block_device_cover.svg
+tags: [Storage, Key-Value store, Flash]
+description: This tutorial explains how to create a flash-optimised key-value store using the flash memory of the Portenta H7.
+---
+
 # Creating a Flash-Optimised Key-Value Store
 
 ## Overview

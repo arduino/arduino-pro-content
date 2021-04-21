@@ -1,3 +1,11 @@
+---
+beta: true
+title: Portenta H7 as a USB Host
+coverImage: assets/por_ard_usbh_cover.svg
+tags: [USB, HID, RGB LED]
+description: This tutorial teaches you how to set up the Portenta H7 to act as a USB host in a way that allows to connect peripherals such as a keyboard or mouse to interact with it.
+---
+
 # Portenta H7 as a USB Host
 
 ## Overview
