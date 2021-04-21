@@ -3,10 +3,10 @@
 The Edge Control board is a versatile tool that allows agriculturalists , creative and innovative solutions for Agriculture and technology. This tutorial will help you setup the development environment for the board and will cover the library and the API 
 
 ### You Will Learn
+-   About the basic board topology 
 -   How to power up the board 
 -   About the [Arduino_EdgeControl.h](https://github.com/bcmi-labs/Arduino_EdgeControl) library 
 -   About the core APIs used control the board
--   
 
 ### Required Hardware and Software
 -   Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
@@ -15,21 +15,33 @@ The Edge Control board is a versatile tool that allows agriculturalists , creati
 
 ## Instructions
 
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
+In this Getting Started tutorial you will setup the Edge Control board and blink a LED in the Classic Arduino way. You will first download the Core from the library manager and write a simple blink sketch using some fundamental APIs provided by the Arduino Edge Control Library. You will need to connect your board to an external power source therefore have your LiPo Batteries or a power source close to you when running the sketch. 
 
-### 1. The Basic Setup
+### 1. Get to know the Board
+
+The Arduino Edge Control board is designed to address the needs of precision farming. It provides a low power control system and modular connectivity allows you to adapt the board to your specific farming needs. The following images gives you an overview of some of the core features of the board that you need to be aware of  before you can get started with the board.  
+
+![Download the Core](assets/ec_ard_gs_board_topology.svg)
+
+**Terminal Blocks** allows you to connect upt **8** x **5V Analog Sensors**, **4** x **4-20mA sensors**, **16** x **Watermark Sensors**, **16** x **Latching Devices** like Motorized Valves and provides **4** x **configurable Solid State Relays**. 
+
+***Note : Connections to the Terminal blocks are made through the Phoenix connectors included in the kit.***
+
+**LCD Module Connector**  is used to attach the LCD screen to the Edge Control Board through the flat cable.  
+
+The Onboard **MKR slots 1 & 2 ** can be used to connect MKR boards to extend some capabilities such as connectivity through **LoRa, Wifi, 2G/3G/CatM1/NBIoT**, and Sigfox. 
+
+The board includes both a **microSD card socket** and an additional **2MB flash memory** for data storage. Both are directly connected to the main processor via a SPI interface.
+
+### 2. The Basic Setup
 
 Before you start programming the Edge control board, you will have to download the [Mbed core](https://github.com/arduino/ArduinoCore-mbed) from the board manager. Open the **Board manager** and look for the `Edge Control` core. This board comes with the **Nina B306** processor which is the same processor used in other Pro boards such as the **Portenta** and the **Nano 33 BLE**. 
 
 ![Download the Core](assets/ec_ard_gs_core.png)
 
-Next you need to download the Example library that contains the Blink example. (identify how to install this library ). 
+### 3. The Blink.ino Sketch
 
-plug the board to your computer and m 
-
-### 2. The Hello_edgeControl Sketch 
-
-Open a new sketch file `hello_edge_control.ino` and add the [Edge Control library](). This library provides acess to many of the different pins and functionalities belonging to the board. 
+Open a new sketch file `hello_edge_control.ino` and add the **Edge Control library**. This library provides acess to many of the different pins and functionalities belonging to the board. 
 
 ```cpp
 #include<Arduino_EdgeControl.h>
@@ -79,32 +91,17 @@ inside the loop, you can use the digitalWrite() to control the on
 
 ***Tip: The Complete Sketch can be found in the Conclusions***
 
-### 3. Powering up the board 
+### 4. Connect To A Power Source 
 
-Connect the battery to the board to one 
+The Valves require a power supply of 9 - 12 V and you can either use a power supply or a 3 cell lipo battery to provide the required voltage. Power sources can be connected to the onboard relay ports of the edge control board. Connect two jumper wires to the **GND** and **B** pins of the **Relay ports** 
 
-### 4. Uploading the classic blink sketch
+![The power pins of the Edge Control](assets/ec_ard_connect_power_source.svg)
 
-Let's program the Portenta with the classic blink example to check if the connection to the board works:
+Connect the jumper from the **B** pin to the positive terminal of the Battery and the jumper from the **GND** pin to the negative terminal of the battery 
 
--   In the classic Arduino IDE open the blink example by clicking the menu entry File->Examples->01.Basics->Blink. 
--   In the Arduino Pro IDE Copy and paste the following code into a new sketch in your IDE. 
+### 5. Upload The Sketch 
 
-```cpp
-// the setup function runs once when you press reset or power the board
-void setup() {
-    // initialize digital pin LED_BUILTIN as an output.
-    pinMode(LED_BUILTIN, OUTPUT);
-}
-
-// the loop function runs over and over again forever
-void loop() {
-    digitalWrite(LED_BUILTIN, HIGH); // turn the LED on (HIGH is the voltage level)
-    delay(1000); // wait for a second
-    digitalWrite(LED_BUILTIN, LOW); // turn the LED off by making the voltage LOW
-    delay(1000); // wait for a second
-}
-```
+Connect the board to your computer, upload the `ValveControl.ino` sketch and open the **Serial Monitor**. If all the connections are done right, the valve opens and closes and you should be able to see the status as `Open` or `Close` on the serial monitor. 
 
 ## Conclusion
 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.  
@@ -112,18 +109,48 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula 
 ### Complete Sketch 
 
 ```cpp
+#include<Arduino_EdgeControl.h>
 
+void setup() {
+  Serial.begin(9600);
+
+  // Start the timer 
+  auto startNow = millis() + 2500;
+  while (!Serial && millis() < startNow);
+  Serial.println("Hello, Edge Control Sketch!");
+
+  // Enable power lines 
+  Power.enable3V3();
+  Power.enable5V();
+
+  // Start the I2C connection 
+  Wire.begin();
+
+  // Initalise the expander pins 
+  Expander.begin();
+
+  // Set the Pinmode of the onboard LED as OUTPUT
+  Expander.pinMode(EXP_LED1, OUTPUT);
+
+}
+
+void loop() {
+    
+    // put your main code here, to run repeatedly:
+    Serial.println("Blink");
+    Expander.digitalWrite(EXP_LED1, LOW);
+    Expander.digitalWrite(EXP_LCD_D7, HIGH);
+    delay(500);
+    Expander.digitalWrite(EXP_LED1, HIGH);
+    Expander.digitalWrite(EXP_LCD_D7, LOW);
+    delay(500);
+
+}
 ```
 
 ### Next Steps
 
--   A
--   B
-
-## Troubleshooting
-
-### Sketch Upload Troubleshooting
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
+We  are developing new tutorials on how to connect Valves, LCDs, Water mark sensors and many other functionalities of the board. In the mean time you can explore the Arduino Edge Control library to develop your own application 
 
 **Authors:** XX, YY
 **Reviewed by:** ZZ [18.03.2020]  
