@@ -27,15 +27,15 @@ The Arduino Edge Control board is designed to address the needs of precision far
 
 ***Note : Connections to the Terminal blocks are made through the Phoenix connectors included in the kit.***
 
-**LCD Module Connector**  is used to attach the LCD screen to the Edge Control Board through the flat cable.  
+**LCD Module Connector**  is used to attach the LCD module to the Edge Control Board through a flat cable.  
 
-The Onboard **MKR slots 1 & 2 ** can be used to connect MKR boards to extend some capabilities such as connectivity through **LoRa, Wifi, 2G/3G/CatM1/NBIoT**, and Sigfox. 
+The Onboard **MKR slots 1 & 2** can be used to connect MKR boards to extend some capabilities such as connectivity through **LoRa, Wifi, 2G/3G/CatM1/NBIoT**, and Sigfox. 
 
 The board includes both a **microSD card socket** and an additional **2MB flash memory** for data storage. Both are directly connected to the main processor via a SPI interface.
 
 ### 2. The Basic Setup
 
-Before you start programming the Edge control board, you will have to download the [Mbed core](https://github.com/arduino/ArduinoCore-mbed) from the board manager. Open the **Board manager** and look for the `Edge Control` core. This board comes with the **Nina B306** processor which is the same processor used in other Pro boards such as the **Portenta** and the **Nano 33 BLE**. 
+Before you start programming the Edge control board, you will have to download the [Mbed core](https://github.com/arduino/ArduinoCore-mbed) from the board manager. Open the **Board manager** and look for the `Edge Control` core. This board comes with the **Nina B306** processor which is the same processor used in other boards such as the **Nano 33 BLE**. 
 
 ![Download the Core](assets/ec_ard_gs_core.png)
 
@@ -56,11 +56,14 @@ Next, you need to ensure that the Serial communication has begun. Ensure that th
   Serial.println("Hello, Edge Control!");
 ```
 
-Once the serial communication has been established lines enable the power to the microcontroller. Certain parts of the board such as the Nina B3606 module, the control logic requires 3Vs where as the MKR Slots and GPIO pins require 5V to be operational. 3V comes from which comes from the USB and the 5V comes from external batteries. 
+The board is designed to be very low power and for this reason some the electronics are powered off by default. Once the serial communication has been established, we need to enable the power in the areas we want to use. The power tree below will give you an idea of the different power rails in the board. 
+
 
 ![Power rails of the Edge Control board](assets/ec_ard_gs_power_rail.png)
 
-The `Power` class provides API access to enable the different voltage regulators present on the board. In this tutorial we need to enable the 3V and 5V power lines using the `enable3V3()` and `enable5V()` power source. 
+The edge control board uses an I/O Expander in order to increase the number of digital control signals. If we want to blink the on-board LED we would need to enable the power of the I/O expander in which the LED is connected to and also enable the power to the 5V DCDC converter. 
+
+The `Power` class provides API access to enable the different voltage switches present on the board. In this tutorial we need to enable the 3V and 5V power lines using the `enable3V3()` and `enable5V()` power source. 
 
 ```cpp
 // Enable power lines 
@@ -68,7 +71,7 @@ The `Power` class provides API access to enable the different voltage regulators
   Power.enable5V();
 ```
 
-The edge control board uses Expander !--- (what are they ? Short sentence here) ---! . Communication to the Expander happens through the I2C port for which we will use the `Wire.begin() The onboard LED can e
+Communication to the I/O Expander happens through the I2C port for which we will use the `Wire.begin(). We would also need to initialize the expander and configure the LED pin as OUTPUT. 
 
 ```cpp
 // Start the I2C connection 
@@ -79,7 +82,7 @@ The edge control board uses Expander !--- (what are they ? Short sentence here) 
   Expander.pinMode(EXP_LED1, OUTPUT);
 ```
 
-inside the loop, you can use the digitalWrite() to control the on
+inside the loop, you can use the `Expander.digitalWrite(pin, mode)` to control the LED via the I/O Expander as a normal GPIO.
 
 ```cpp
     Serial.println("Blink");
