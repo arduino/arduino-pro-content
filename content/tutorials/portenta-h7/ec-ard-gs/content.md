@@ -17,7 +17,7 @@ The Edge Control board is a versatile tool that allows agriculturalists to devel
 -   About the basic API provided by the Arduino_EdgeControl library
 
 ### Required Hardware and Software
--   Arduino Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
+-   Arduino Edge Control (<https://store.arduino.cc/edge-control>)
 -   USB C cable (either USB A to USB C or USB C to USB C)
 -   Arduino IDE 1.8.10+
 -   External power source : a 12V LiPo/SLA battery or power supply 
