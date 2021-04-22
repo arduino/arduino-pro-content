@@ -20,10 +20,13 @@ The Edge Control board is a versatile tool that allows agriculturalists , creati
 -   Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
 -   USB C cable (either USB A to USB C or USB C to USB C)
 -   Arduino IDE 1.8.10+  or Arduino Pro IDE 0.0.4+ 
+-   External power source : a 12V LiPo/SLA battery or Power supply 
+-   1x Phoenix Connector 
+-   2x Jumper cables 
 
 ## Instructions
 
-In this Getting Started tutorial you will setup the Edge Control board and blink a LED in the Classic Arduino way. You will first download the Core from the library manager and write a simple blink sketch using some fundamental APIs provided by the Arduino Edge Control Library. You will need to connect your board to an external power source therefore have your LiPo Batteries or a power source close to you when running the sketch. 
+In this Getting Started tutorial you will setup the Edge Control board and blink a LED in the Classic Arduino way. You will first learn about the different  download the Core from the library manager and write a simple blink sketch using some fundamental APIs provided by the Arduino Edge Control Library. You will need to connect your board to an external power source therefore have your LiPo Batteries or a power source close to you when running the sketch. 
 
 ### 1. Get to know the Board
 
