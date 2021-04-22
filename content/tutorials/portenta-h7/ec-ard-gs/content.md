@@ -142,10 +142,7 @@ void setup() {
 
   // Initalise the expander pins 
   Expander.begin();
-
-  // Set the Pinmode of the onboard LED as OUTPUT
   Expander.pinMode(EXP_LED1, OUTPUT);
-
 }
 
 void loop() {
@@ -153,10 +150,8 @@ void loop() {
     // put your main code here, to run repeatedly:
     Serial.println("Blink");
     Expander.digitalWrite(EXP_LED1, LOW);
-    Expander.digitalWrite(EXP_LCD_D7, HIGH);
     delay(500);
     Expander.digitalWrite(EXP_LED1, HIGH);
-    Expander.digitalWrite(EXP_LCD_D7, LOW);
     delay(500);
 
 }
