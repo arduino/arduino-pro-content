@@ -1,11 +1,11 @@
 ---
-title: Getting Started with Arduino Edge Control
+title: Getting Started With the Arduino Edge Control
 coverImage: assets/ec_ard_gs_cover.svg
 tags: [Getting Started, Setup, Blink]
 description: This tutorial will give you an overview of the core features of the board, setup the development environment and introduce the APIs required to program the board. 
 ---
 
-# Getting Started with Arduino Edge Control
+# Getting Started With the Arduino Edge Control
 
 ## Overview
 The Edge Control board is a versatile tool that allows agriculturalists to develop creative and innovative solutions for agriculture by harnessing modern technology. In this tutorial you will set up the development environment for the board and learn to write a simple sketch that blinks the on-board LED. 
