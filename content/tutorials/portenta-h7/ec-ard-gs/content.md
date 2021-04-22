@@ -32,7 +32,7 @@ In this getting started tutorial you will set up the Edge Control board and blin
 
 The Arduino Edge Control board is designed to address the needs of **precision farming**. It provides a low power control system and modular connectivity allows you to adapt the board to your specific farming needs. The following image gives you an overview of some of the core features of the board that you need to be aware of before you can get started with the board.  
 
-![Download the Core](assets/ec_ard_gs_board_topology.svg)
+![The board topology](assets/ec_ard_gs_board_topology.svg)
 
 **Terminal Blocks** allows you to connect up to 
 
