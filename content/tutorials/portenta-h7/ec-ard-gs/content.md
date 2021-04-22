@@ -1,21 +1,32 @@
+---
+title: Getting Started with the Edge Control
+coverImage: assets/ec_ard_gs_cover.svg
+tags: [Getting Started, Setup, Blink]
+description: This tutorial will give you an overview of the core features of the board, setup the development environment and introduce the core apis required to program the board. 
+---
+
 # Getting Started with the Edge Control
+
 ## Overview
-The Edge Control board is a versatile tool that allows agriculturalists , creative and innovative solutions for Agriculture and technology. This tutorial will help you setup the development environment for the board and will cover the library and the API 
+The Edge Control board is a versatile tool that allows agriculturalists , creative and innovative solutions for Agriculture and technology. In this tutorial  you will setup the development environment for the board and will learn to write a simple sketch that blinks the onboard LED. 
 
 ### You Will Learn
--   About the basic board topology 
--   How to power up the board 
--   About the [Arduino_EdgeControl.h](https://github.com/bcmi-labs/Arduino_EdgeControl) library 
--   About the core APIs used control the board
+-   About the basic board topology, 
+-   How to setup the development environment, 
+-   How to power up the board, 
+-   About the basic apis provided by the Arduino_EdgeControl.h library. 
 
 ### Required Hardware and Software
 -   Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
 -   USB C cable (either USB A to USB C or USB C to USB C)
 -   Arduino IDE 1.8.10+  or Arduino Pro IDE 0.0.4+ 
+-   External power source : a 12V LiPo/SLA battery or Power supply 
+-   1x Phoenix Connector 
+-   2x Jumper cables 
 
 ## Instructions
 
-In this Getting Started tutorial you will setup the Edge Control board and blink a LED in the Classic Arduino way. You will first download the Core from the library manager and write a simple blink sketch using some fundamental APIs provided by the Arduino Edge Control Library. You will need to connect your board to an external power source therefore have your LiPo Batteries or a power source close to you when running the sketch. 
+In this Getting Started tutorial you will setup the Edge Control board and blink a LED in the Classic Arduino way. You will first learn about the different  download the Core from the library manager and write a simple blink sketch using some fundamental APIs provided by the Arduino Edge Control Library. You will need to connect your board to an external power source therefore have your LiPo Batteries or a power source close to you when running the sketch. 
 
 ### 1. Get to know the Board
 
@@ -27,15 +38,15 @@ The Arduino Edge Control board is designed to address the needs of precision far
 
 ***Note : Connections to the Terminal blocks are made through the Phoenix connectors included in the kit.***
 
-**LCD Module Connector**  is used to attach the LCD screen to the Edge Control Board through the flat cable.  
+**LCD Module Connector**  is used to attach the LCD module to the Edge Control Board through a flat cable.  
 
-The Onboard **MKR slots 1 & 2 ** can be used to connect MKR boards to extend some capabilities such as connectivity through **LoRa, Wifi, 2G/3G/CatM1/NBIoT**, and Sigfox. 
+The Onboard **MKR slots 1 & 2** can be used to connect MKR boards to extend some capabilities such as connectivity through **LoRa, Wifi, 2G/3G/CatM1/NBIoT**, and Sigfox. 
 
 The board includes both a **microSD card socket** and an additional **2MB flash memory** for data storage. Both are directly connected to the main processor via a SPI interface.
 
 ### 2. The Basic Setup
 
-Before you start programming the Edge control board, you will have to download the [Mbed core](https://github.com/arduino/ArduinoCore-mbed) from the board manager. Open the **Board manager** and look for the `Edge Control` core. This board comes with the **Nina B306** processor which is the same processor used in other Pro boards such as the **Portenta** and the **Nano 33 BLE**. 
+Before you start programming the Edge control board, you will have to download the [Mbed core](https://github.com/arduino/ArduinoCore-mbed) from the board manager. Open the **Board manager** and look for the `Edge Control` core. This board comes with the **Nina B306** processor which is the same processor used in other boards such as the **Nano 33 BLE**. 
 
 ![Download the Core](assets/ec_ard_gs_core.png)
 
@@ -56,11 +67,14 @@ Next, you need to ensure that the Serial communication has begun. Ensure that th
   Serial.println("Hello, Edge Control!");
 ```
 
-Once the serial communication has been established lines enable the power to the microcontroller. Certain parts of the board such as the Nina B3606 module, the control logic requires 3Vs where as the MKR Slots and GPIO pins require 5V to be operational. 3V comes from which comes from the USB and the 5V comes from external batteries. 
+The board is designed to be very low power and for this reason some the electronics are powered off by default. Once the serial communication has been established, we need to enable the power in the areas we want to use. The power tree below will give you an idea of the different power rails in the board. 
+
 
 ![Power rails of the Edge Control board](assets/ec_ard_gs_power_rail.png)
 
-The `Power` class provides API access to enable the different voltage regulators present on the board. In this tutorial we need to enable the 3V and 5V power lines using the `enable3V3()` and `enable5V()` power source. 
+The edge control board uses an I/O Expander in order to increase the number of digital control signals. If we want to blink the on-board LED we would need to enable the power of the I/O expander in which the LED is connected to and also enable the power to the 5V DCDC converter. 5V power line is powered by the battery source for which you can either use a power supply or a 3 cell lipo battery to provide the required voltage.
+
+The `Power` class provides API access to enable the different voltage switches present on the board. In this tutorial we need to enable the 3V and 5V power lines using the `enable3V3()` and `enable5V()` power source. 
 
 ```cpp
 // Enable power lines 
@@ -68,7 +82,7 @@ Power.enable3V3();
 Power.enable5V();
 ```
 
-The edge control board uses Expander !--- (what are they ? Short sentence here) ---! . Communication to the Expander happens through the I2C port for which we will use the `Wire.begin() The onboard LED can e
+Communication to the I/O Expander happens through the I2C port for which we will use the `Wire.begin(). We would also need to initialize the expander and configure the LED pin as OUTPUT. 
 
 ```cpp
 // Start the I2C connection 
@@ -79,7 +93,7 @@ Expander.begin();
 Expander.pinMode(EXP_LED1, OUTPUT);
 ```
 
-inside the loop, you can use the digitalWrite() to control the on
+inside the loop, you can use the `Expander.digitalWrite(pin, mode)` to control the LED via the I/O Expander as a normal GPIO.
 
 ```cpp
 Serial.println("Blink");
@@ -91,9 +105,9 @@ delay(500);
 
 ***Tip: The Complete Sketch can be found in the Conclusions***
 
-### 4. Connect To A Power Source 
+### 4. Connect a Power Source 
 
-The Valves require a power supply of 9 - 12 V and you can either use a power supply or a 3 cell lipo battery to provide the required voltage. Power sources can be connected to the onboard relay ports of the edge control board. Connect two jumper wires to the **GND** and **B** pins of the **Relay ports** 
+Power sources can be connected to the onboard relay ports of the edge control board. Attach your **Phoenix connectors** to the **Relay terminal** of the board. Connect two jumper wires to the **GND** and **B** pins of the **Relay ports** 
 
 ![The power pins of the Edge Control](assets/ec_ard_connect_power_source.svg)
 
@@ -128,10 +142,7 @@ void setup() {
 
   // Initalise the expander pins 
   Expander.begin();
-
-  // Set the Pinmode of the onboard LED as OUTPUT
   Expander.pinMode(EXP_LED1, OUTPUT);
-
 }
 
 void loop() {
@@ -139,10 +150,8 @@ void loop() {
     // put your main code here, to run repeatedly:
     Serial.println("Blink");
     Expander.digitalWrite(EXP_LED1, LOW);
-    Expander.digitalWrite(EXP_LCD_D7, HIGH);
     delay(500);
     Expander.digitalWrite(EXP_LED1, HIGH);
-    Expander.digitalWrite(EXP_LCD_D7, LOW);
     delay(500);
 
 }
