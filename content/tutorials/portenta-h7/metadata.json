@@ -19,6 +19,7 @@
      "por-ard-kvs",     
      "vs-ard-ttn",
      "por-ard-lvgl",
-     "vs-openmv-ml"
+     "vs-openmv-ml",
+     "ec-ard-gs"
     ]
  }
