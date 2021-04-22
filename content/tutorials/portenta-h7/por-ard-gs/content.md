@@ -58,10 +58,10 @@ In this step you will check if Windows is able to detect the Portenta H7. To do 
 ![If the Portenta H7 is detected correctly, it will be listed in the device manager under USB devices.](assets/por_ard_gs_usb_driver_win.png)
 
 ### 4. Uploading the Classic Blink Sketch
-Let's program the Portenta with the classic blink example to check if the connection to the board works:
+Let's program the Portenta with the classic blink example to check if the connection to the board works. There are two ways to do that:
 
--   In the classic Arduino IDE open the blink example by clicking the menu entry File->Examples->01.Basics->Blink (Small will be required).
--   By downloading the 'Arduino_Pro_Tutorials' library and going to File->Examples->Arduino_Pro_Tutorials->Setting Up Portenta H7 For Arduino->Blink 
+-   In the classic Arduino IDE open the blink example by clicking the menu entry File->Examples->01.Basics->Blink. You need to swap LOW and HIGH pin values as the built-in LED on Portenta is turned on by pulling it LOW.
+-   By downloading the 'Arduino_Pro_Tutorials' library and opening the pre-made sketch under File->Examples->Arduino_Pro_Tutorials->Setting Up Portenta H7 For Arduino->Blink 
 -   In the Arduino Pro IDE Copy and paste the following code into a new sketch in your IDE.
 
 ```cpp
