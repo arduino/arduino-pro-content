@@ -79,7 +79,7 @@ For this example you need to ensure that the Serial communication has begun. The
 The board is designed to be very low power and for this reason some the electronics are powered off by default. Once the serial communication has been established, we need to enable the power on the power rails that we want to use. The power tree below will give you an idea of the different power rails in the board. 
 
 
-![Power rails of the Edge Control board](assets/ec_ard_gs_power_rail.png)
+![Power rails of the Edge Control board](assets/ec_ard_gs_power_rail.svg)
 
 The Edge Control board uses an I/O expander in order to increase the number of digital control signals. If we want to blink the on-board LED we would need to enable the power of the I/O expander to which the LED is connected to and also enable the power to the 5V DCDC converter. 5V power line is powered by the **battery source** for which you can either use a power supply or a 3 cell LiPo battery to provide the required voltage.
 
