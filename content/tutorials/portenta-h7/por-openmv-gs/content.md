@@ -7,7 +7,7 @@ description: This tutorial teaches you how to set up the board, how to use the O
 
 # Getting Started with OpenMV and MicroPython
 ## Overview
-In this tutorial, you will learn about some of the basic features of the OpenMV IDE and how to create a simple MicroPython script. This tutorial will also walk you through connecting and uploading to your Portenta board with the OpenMV IDE. 
+In this tutorial, you will learn about some of the basic features of the OpenMV IDE and how to create a simple MicroPython script. This tutorial will also walk you through connecting and uploading to your Portenta board with the OpenMV IDE.
 
 ### You Will Learn
 - The basic features of the OpenMV IDE
@@ -44,13 +44,13 @@ Open the [OpenMV download](https://openmv.io/pages/download) page in your browse
 
 Connect the Portenta to your computer via the USB-C cable if you haven't done so yet. Make sure you first update the bootloader to the latest version using the **PortentaH7_updateBootloader** sketch in the examples menu in the Arduino IDE.
 
->Instructions on how to update the bootloader can be found in the ["Updating the Portenta Bootloader" tutorial](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-bl).
+Instructions on how to update the bootloader can be found in the ["Updating the Portenta Bootloader" tutorial](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-bl).
 
 After updating the bootloader put the Portenta in bootloader mode by double-pressing the reset button on the board. The built-in green LED will start fading in and out. Now open the OpenMV IDE.
 
 ![The OpenMV IDE after starting it](assets/por_openmv_open_ide.png)
 
-Click on the "connect" symbol at the bottom of the left toolbar. 
+Click on the "connect" symbol at the bottom of the left toolbar.
 
 ![Click the connect button to attach the Portenta to the OpenMV IDE](assets/por_openmv_click_connect.png)
 
@@ -62,7 +62,7 @@ Portenta's green LED will start flashing while the OpenMV firmware is being uplo
 
 ![Installing firmware on portenta board in OpenMV](assets/por_openmv_firmware_updater.png)
 
->Installing the OpenMV firmware will overwrite any existing sketches in the internal flash of Portenta. As a result the M7 port won't be exposed in the Arduino IDE anymore. To re-flash the M7 with an Arduino firmware you need to put the board into bootloader mode. To do so double press the reset button on the Portenta H7 board. The built-in green LED will start fading in and out. In bootloader mode you will see the Portenta M7 port again in the Arduino IDE.
+***Installing the OpenMV firmware will overwrite any existing sketches in the internal flash of Portenta. As a result the M7 port won't be exposed in the Arduino IDE anymore. To re-flash the M7 with an Arduino firmware you need to put the board into bootloader mode. To do so double press the reset button on the Portenta H7 board. The built-in green LED will start fading in and out. In bootloader mode you will see the Portenta M7 port again in the Arduino IDE.***
 
 The Portenta will start flashing its blue LED when it's ready to be connected. After confirming the completion dialog the Portenta should already be connected to the OpenMV IDE, otherwise click the "connect" button once again.
 
@@ -113,7 +113,7 @@ while True:
 
 ### 5. Uploading the Script
 
-Here you can see the complete blink script. Connect your board to OpenMV and upload the following sketch.  
+Here you can see the complete blink script. Connect your board to OpenMV and upload the following sketch.
 
 ```py
 import pyb # Import module for board related functions
@@ -162,6 +162,6 @@ In this tutorial, you learned how to use the OpenMV IDE with your Portenta board
 - If you see a "OSError: Reset FaiLED" message, reset the board by pressing the reset button. Wait until you see the blue LED flashing, connect the board to the OpenMV IDE and try running the script again.
 - In bootloader versions 17 and older there was a bug that could put the Portenta in a boot loop when the transmission aborted while flashing a large firmware file. This was fixed in the bootloader version 18.
 
-**Authors:** Sebastian Romero, Benjamin Dannegård  
-**Reviewed by:** Lenard George [2021-04-12]  
+**Authors:** Sebastian Romero, Benjamin Dannegård
+**Reviewed by:** Lenard George [2021-04-12]
 **Last revision:** Benjamin Dannegård [2021-04-20]
