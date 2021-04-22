@@ -72,7 +72,7 @@ The board is designed to be very low power and for this reason some the electron
 
 ![Power rails of the Edge Control board](assets/ec_ard_gs_power_rail.png)
 
-The edge control board uses an I/O Expander in order to increase the number of digital control signals. If we want to blink the on-board LED we would need to enable the power of the I/O expander in which the LED is connected to and also enable the power to the 5V DCDC converter. 
+The edge control board uses an I/O Expander in order to increase the number of digital control signals. If we want to blink the on-board LED we would need to enable the power of the I/O expander in which the LED is connected to and also enable the power to the 5V DCDC converter. 5V power line is powered by the battery source for which you can either use a power supply or a 3 cell lipo battery to provide the required voltage.
 
 The `Power` class provides API access to enable the different voltage switches present on the board. In this tutorial we need to enable the 3V and 5V power lines using the `enable3V3()` and `enable5V()` power source. 
 
@@ -105,9 +105,9 @@ inside the loop, you can use the `Expander.digitalWrite(pin, mode)` to control t
 
 ***Tip: The Complete Sketch can be found in the Conclusions***
 
-### 4. Connect To A Power Source 
+### 4. Connect a Power Source 
 
-The Valves require a power supply of 9 - 12 V and you can either use a power supply or a 3 cell lipo battery to provide the required voltage. Power sources can be connected to the onboard relay ports of the edge control board. Connect two jumper wires to the **GND** and **B** pins of the **Relay ports** 
+Power sources can be connected to the onboard relay ports of the edge control board. Attach your **Phoenix connectors** to the **Relay terminal** of the board. Connect two jumper wires to the **GND** and **B** pins of the **Relay ports** 
 
 ![The power pins of the Edge Control](assets/ec_ard_connect_power_source.svg)
 
