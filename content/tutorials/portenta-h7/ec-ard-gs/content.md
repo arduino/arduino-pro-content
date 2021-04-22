@@ -1,3 +1,10 @@
+---
+title: Getting Started with the Edge Control
+coverImage: assets/ec_ard_gs_cover.svg
+tags: [Getting Started, Setup, Blink]
+description: This tutorial will give you an overview of the core features of the board, setup the development environment and introduce the core apis required to program the board. 
+---
+
 # Getting Started with the Edge Control
 ## Overview
 The Edge Control board is a versatile tool that allows agriculturalists , creative and innovative solutions for Agriculture and technology. This tutorial will help you setup the development environment for the board and will cover the library and the API 
