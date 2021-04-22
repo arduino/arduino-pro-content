@@ -6,14 +6,15 @@ description: This tutorial will give you an overview of the core features of the
 ---
 
 # Getting Started with the Edge Control
+
 ## Overview
-The Edge Control board is a versatile tool that allows agriculturalists , creative and innovative solutions for Agriculture and technology. This tutorial will help you setup the development environment for the board and will cover the library and the API 
+The Edge Control board is a versatile tool that allows agriculturalists , creative and innovative solutions for Agriculture and technology. In this tutorial  you will setup the development environment for the board and will learn to write a simple sketch that blinks the onboard LED. 
 
 ### You Will Learn
--   About the basic board topology 
--   How to power up the board 
--   About the [Arduino_EdgeControl.h](https://github.com/bcmi-labs/Arduino_EdgeControl) library 
--   About the core APIs used control the board
+-   About the basic board topology, 
+-   How to setup the development environment, 
+-   How to power up the board, 
+-   About the basic apis provided by the Arduino_EdgeControl.h library. 
 
 ### Required Hardware and Software
 -   Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
