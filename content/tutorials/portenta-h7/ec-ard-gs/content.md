@@ -28,7 +28,7 @@ The Edge Control board is a versatile tool that allows agriculturalists , creati
 
 In this Getting Started tutorial you will setup the Edge Control board and blink a LED in the Classic Arduino way. You will first learn about the different  download the Core from the library manager and write a simple blink sketch using some fundamental APIs provided by the Arduino Edge Control Library. You will need to connect your board to an external power source therefore have your LiPo Batteries or a power source close to you when running the sketch. 
 
-### 1. Get to know the Board
+### 1. Get to Know the Board
 
 The Arduino Edge Control board is designed to address the needs of precision farming. It provides a low power control system and modular connectivity allows you to adapt the board to your specific farming needs. The following images gives you an overview of some of the core features of the board that you need to be aware of  before you can get started with the board.  
 
