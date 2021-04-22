@@ -161,6 +161,6 @@ void loop() {
 
 We  are developing new tutorials on how to connect Valves, LCDs, Water mark sensors and many other functionalities of the board. In the mean time you can explore the Arduino Edge Control library to develop your own application 
 
-**Authors:** XX, YY
-**Reviewed by:** ZZ [18.03.2020]  
-**Last revision:** AA [27.3.2020]
+**Authors:** Lenard George
+**Reviewed by:** Ernesto Lopez [21.04.2021]  
+**Last revision:** Lenard George[22.04.2020]
