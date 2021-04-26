@@ -9,6 +9,7 @@ allowedSyntaxSpecifiers:
 - cpp
 - py
 - text
+- java
 
 allowNestedLists: false
 metadataSchema: scripts/validation/config/metadata-schema.json
