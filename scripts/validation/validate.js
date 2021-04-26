@@ -33,29 +33,29 @@ validator.addValidation(async (tutorials) => {
         let jsonData = tutorial.metadata;
         if(!jsonData) {
             const errorMessage = "No metadata found";
-            errorsOccurred.push(new ValidationError(errorMessage, tutorial.path));            
+            errorsOccurred.push(new ValidationError(errorMessage, tutorial.contentFilePath));            
             return;
         }
     
         try {        
             if(!jsonData.coverImage){
                 const errorMessage = "No cover image found";
-                errorsOccurred.push(new ValidationError(errorMessage, tutorial.path));                            
+                errorsOccurred.push(new ValidationError(errorMessage, tutorial.contentFilePath));                            
             } else if (jsonData.coverImage.indexOf(".svg") == -1) {
                 const errorMessage = "Cover image is not in SVG format.";
-                errorsOccurred.push(new ValidationError(errorMessage, tutorial.path));                
+                errorsOccurred.push(new ValidationError(errorMessage, tutorial.contentFilePath));                
             }
             
             let jsonSchema = JSON.parse(fs.readFileSync(config.metadataSchema));        
             let validationResult = validate(jsonData, jsonSchema);
             if(validationResult.errors.length != 0){
                 const errorMessage = `An error occurred while validating the metadata ${validationResult}`;
-                errorsOccurred.push(new ValidationError(errorMessage, tutorial.path));                
+                errorsOccurred.push(new ValidationError(errorMessage, tutorial.contentFilePath));                
             }        
     
         } catch (error) {
             const errorMessage = "An error occurred while parsing the metadata";
-            errorsOccurred.push(new ValidationError(errorMessage, tutorial.path));                       
+            errorsOccurred.push(new ValidationError(errorMessage, tutorial.contentFilePath));                       
         }
     });
     return errorsOccurred;
@@ -70,11 +70,11 @@ validator.addValidation(async (tutorials) => {
        tutorial.headings.forEach(heading => {        
            if(tc.titleCase(heading) != heading){               
                const errorMessage = heading + "' is not title case";
-               errorsOccurred.push(new ValidationError(errorMessage, tutorial.path));               
+               errorsOccurred.push(new ValidationError(errorMessage, tutorial.contentFilePath));               
            }
            if(heading.length > config.headingMaxLength){
                const errorMessage = heading + "' (" + heading.length + ") exceeds the max length (" + config.headingMaxLength + ")";
-               errorsOccurred.push(new ValidationError(errorMessage, tutorial.path));               
+               errorsOccurred.push(new ValidationError(errorMessage, tutorial.contentFilePath));               
            }
        });
     });
@@ -97,7 +97,7 @@ validator.addValidation(async (tutorials) => {
                // Detect if there are embedded images that are actually rendered
                if(image.attributes.width || image.attributes.height){
                     const errorMessage = path + " contains embedded binary images.";
-                    errorsOccurred.push(new ValidationError(errorMessage, tutorial.path, "warning"));                    
+                    errorsOccurred.push(new ValidationError(errorMessage, tutorial.contentFilePath, "warning"));                    
                }
            }
         });
@@ -131,7 +131,7 @@ validator.addValidation(async (tutorials) => {
                         console.log('👍 %s is alive', result.link);
                     } else if(result.status == "dead" && result.statusCode !== 0){
                         const errorMessage = `${result.link} is dead 💀 HTTP ${result.statusCode}`;
-                        errorsOccurred.push(new ValidationError(errorMessage, tutorial.path));                        
+                        errorsOccurred.push(new ValidationError(errorMessage, tutorial.contentFilePath));                        
                     }
                 });
                 resolve(errorsOccurred);
@@ -159,7 +159,7 @@ validator.addValidation(async (tutorials) => {
         assetNames.forEach(asset => {        
             if(coverImageName == asset) return;
             if(!imageNames.includes(asset) && !linkNames.includes(asset)){        
-               const errorMessage = asset + " is not used";
+               const errorMessage = asset + " is not used.";
                errorsOccurred.push(new ValidationError(errorMessage, tutorial.path));                       
             }
         });
@@ -179,13 +179,12 @@ validator.addValidation(async (tutorials) => {
                const errorMessage = "Image uses an absolute path: " + imagePath;
                const content = tutorial.markdown;
                const lineNumber = fileHelper.getLineNumberFromIndex(content.indexOf(imagePath), content);
-               errorsOccurred.push(new ValidationError(errorMessage, tutorial.path, lineNumber));               
-            }
-            if(!fs.existsSync(imagePath)){
+               errorsOccurred.push(new ValidationError(errorMessage, tutorial.contentFilePath, "error", lineNumber));               
+            } else if(!imagePath.startsWith("http") && !fs.existsSync(`${tutorial.path}/${imagePath}`)){
                 const errorMessage = "Image doesn't exist: " + imagePath;
                 const content = tutorial.markdown;
                 const lineNumber = fileHelper.getLineNumberFromIndex(content.indexOf(imagePath), content);
-                errorsOccurred.push(new ValidationError(errorMessage, tutorial.path, lineNumber));
+                errorsOccurred.push(new ValidationError(errorMessage, tutorial.contentFilePath, "error", lineNumber));
             }
         });
     });
@@ -203,7 +202,7 @@ validator.addValidation(async (tutorials) => {
         let nodes = tutorial.html.querySelectorAll("li ul");        
         if(nodes && nodes.length > 0){
             const errorMessage = "Content uses nested lists";
-            errorsOccurred.push(new ValidationError(errorMessage, tutorial.path));            
+            errorsOccurred.push(new ValidationError(errorMessage, tutorial.contentFilePath));            
         }
     });
     return errorsOccurred;
@@ -220,7 +219,7 @@ validator.addValidation(async (tutorials) => {
            const imageDescription = image.attributes.alt;
            if(imageDescription.split(" ").length <= 1){
                const errorMessage = "Image doesn't have a description: " + image.attributes.src;
-               errorsOccurred.push(new ValidationError(errorMessage, tutorial.path));               
+               errorsOccurred.push(new ValidationError(errorMessage, tutorial.contentFilePath));               
            }
        });
     });
@@ -239,7 +238,7 @@ validator.addValidation(async (tutorials) => {
            if(syntax) syntax = syntax.replace(PARSER_SYNTAX_PREFIX, '');
            if(!config.allowedSyntaxSpecifiers.includes(syntax)){               
                const errorMessage = "Code block uses unsupported syntax: " + syntax;
-               errorsOccurred.push(new ValidationError(errorMessage, tutorial.path));               
+               errorsOccurred.push(new ValidationError(errorMessage, tutorial.contentFilePath));               
            }
         });
     });
@@ -280,7 +279,7 @@ validator.addValidation(async (tutorials) => {
                     }
                     if((match === null && rule.shouldMatch) || (match !== null && !rule.shouldMatch)) {
                         const errorMessage = rule.errorMessage;
-                        errorsOccurred.push(new ValidationError(errorMessage, tutorial.path, ruleType, lineNumber));                
+                        errorsOccurred.push(new ValidationError(errorMessage, tutorial.contentFilePath, ruleType, lineNumber));                
                     }     
                 }
 

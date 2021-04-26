@@ -13,15 +13,19 @@ var Tutorial = class Tutorial {
     }
 
     get path(){
+        return this.basePath;
+    }
+
+    get contentFilePath(){
         return this.basePath + "/content.md";
     }
 
     get markdown(){
-        if(!fs.existsSync(this.path)){
-            console.log("❌ File doens't exist " + this.path);
+        if(!fs.existsSync(this.contentFilePath)){
+            console.log("❌ File doens't exist " + this.contentFilePath);
             return null;
         }
-        let rawData = fs.readFileSync(this.path).toString();
+        let rawData = fs.readFileSync(this.contentFilePath).toString();
         const content = fm(rawData);
         return content.body;
     }
@@ -80,11 +84,11 @@ var Tutorial = class Tutorial {
 
     get metadata(){    
         try {            
-            let rawData = fs.readFileSync(this.path).toString();
+            let rawData = fs.readFileSync(this.contentFilePath).toString();
             const content = fm(rawData);
             return content.attributes;
         } catch (error) {
-            console.log("Error occurred while parsing " + this.path);
+            console.log("Error occurred while parsing " + this.contentFilePath);
             console.log(error);
             return null;
         }
