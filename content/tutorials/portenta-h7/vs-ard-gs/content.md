@@ -1,3 +1,10 @@
+---
+title: Getting Started With The Vision Shield Camera
+coverImage: assets/vs_ard_gs_cover.png
+tags: [Getting Started, Camera, Processing, Serial]
+description: This tutorial shows you how to capture frames from the Vision Shield Camera module and visualise the video output through a Processing sketch.
+---
+
 # Getting Started With The Vision Shield Camera 
 ## Overview
 This tutorial shows you how to capture frames from the Vision Shield Camera module and visualise the video output through a Processing sketch.
@@ -24,7 +31,7 @@ Connect the Vision Shield to your Portenta H7 as shown in the figure. The top an
 
 Open the board manager in the Arduino IDE and install the latest version of the Portenta Core which is [v1.3.2](https://github.com/arduino/ArduinoCore-mbed/releases/tag/1.3.2)
 
-![Download the mbed core](assets/vs_ard_gs_core.svg)
+![Download the mbed core](assets/vs_ard_gs_core.png)
 
 ### 2. Capturing the Frames
 
