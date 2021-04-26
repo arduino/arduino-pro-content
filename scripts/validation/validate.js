@@ -169,7 +169,7 @@ validator.addValidation(async (tutorials) => {
 
 
 /**
- * Verify that the images don't have an absolute path
+ * Verify that the images exist and don't have an absolute path
  */
 validator.addValidation(async (tutorials) => {
     let errorsOccurred = [];
@@ -180,6 +180,12 @@ validator.addValidation(async (tutorials) => {
                const content = tutorial.markdown;
                const lineNumber = fileHelper.getLineNumberFromIndex(content.indexOf(imagePath), content);
                errorsOccurred.push(new ValidationError(errorMessage, tutorial.path, lineNumber));               
+            }
+            if(!fs.existsSync(imagePath)){
+                const errorMessage = "Image doesn't exist: " + imagePath;
+                const content = tutorial.markdown;
+                const lineNumber = fileHelper.getLineNumberFromIndex(content.indexOf(imagePath), content);
+                errorsOccurred.push(new ValidationError(errorMessage, tutorial.path, lineNumber));
             }
         });
     });
