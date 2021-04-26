@@ -96,8 +96,8 @@ validator.addValidation(async (tutorials) => {
                let image = htmlDoc.querySelector("image")
                // Detect if there are embedded images that are actually rendered
                if(image.attributes.width || image.attributes.height){
-                    const errorMessage = path + " containes embedded binary images";
-                    errorsOccurred.push(new ValidationError(errorMessage, tutorial.path));                    
+                    const errorMessage = path + " contains embedded binary images.";
+                    errorsOccurred.push(new ValidationError(errorMessage, tutorial.path, "warning"));                    
                }
            }
         });
