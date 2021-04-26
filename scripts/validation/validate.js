@@ -32,30 +32,30 @@ validator.addValidation(async (tutorials) => {
     tutorials.forEach(tutorial => {
         let jsonData = tutorial.metadata;
         if(!jsonData) {
-            const errorMessage = "No metadata file found";
-            errorsOccurred.push(new ValidationError(errorMessage, tutorial.metadataPath));            
+            const errorMessage = "No metadata found";
+            errorsOccurred.push(new ValidationError(errorMessage, tutorial.path));            
             return;
         }
     
         try {        
             if(!jsonData.coverImage){
                 const errorMessage = "No cover image found";
-                errorsOccurred.push(new ValidationError(errorMessage, tutorial.metadataPath));                            
+                errorsOccurred.push(new ValidationError(errorMessage, tutorial.path));                            
             } else if (jsonData.coverImage.indexOf(".svg") == -1) {
                 const errorMessage = "Cover image is not in SVG format.";
-                errorsOccurred.push(new ValidationError(errorMessage, tutorial.metadataPath));                
+                errorsOccurred.push(new ValidationError(errorMessage, tutorial.path));                
             }
             
             let jsonSchema = JSON.parse(fs.readFileSync(config.metadataSchema));        
             let validationResult = validate(jsonData, jsonSchema);
             if(validationResult.errors.length != 0){
                 const errorMessage = `An error occurred while validating the metadata ${validationResult}`;
-                errorsOccurred.push(new ValidationError(errorMessage, tutorial.metadataPath));                
+                errorsOccurred.push(new ValidationError(errorMessage, tutorial.path));                
             }        
     
         } catch (error) {
             const errorMessage = "An error occurred while parsing the metadata";
-            errorsOccurred.push(new ValidationError(errorMessage, tutorial.metadataPath));                       
+            errorsOccurred.push(new ValidationError(errorMessage, tutorial.path));                       
         }
     });
     return errorsOccurred;

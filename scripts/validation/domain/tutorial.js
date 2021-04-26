@@ -78,10 +78,6 @@ var Tutorial = class Tutorial {
         return files.map(file => file.split("?")[0]);
     }
 
-    get metadataPath(){
-        return this.basePath + "/metadata.json";
-    }
-
     get metadata(){    
         try {            
             let rawData = fs.readFileSync(this.path).toString();
