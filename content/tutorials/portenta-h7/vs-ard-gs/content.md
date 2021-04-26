@@ -1,6 +1,6 @@
 ---
 title: Getting Started With The Vision Shield Camera
-coverImage: assets/vs_ard_gs_cover.png
+coverImage: assets/vs_ard_gs_cover.svg
 tags: [Getting Started, Camera, Processing, Serial]
 description: This tutorial shows you how to capture frames from the Vision Shield Camera module and visualise the video output through a Processing sketch.
 ---
