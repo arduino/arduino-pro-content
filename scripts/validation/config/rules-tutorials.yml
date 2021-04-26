@@ -34,7 +34,12 @@
   format: markdown
   errorMessage: Missing 'Required Hardware and Software' section.
 
-- regex: "\\s[\\*_][^*_](?:.*?)[\\*_]"
+- regex: "(?<=\\s)\\*[^* ].*\\*[^*]"
+  shouldMatch: false
+  format: markdown
+  errorMessage: The use of italic emphasis is discouraged.
+
+- regex: "(?<=\\s)_[^_].*_[^_]"
   shouldMatch: false
   format: markdown
   errorMessage: The use of italic emphasis is discouraged.
