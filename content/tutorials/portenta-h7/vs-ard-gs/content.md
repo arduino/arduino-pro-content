@@ -17,7 +17,7 @@ This tutorial shows you how to capture frames from the Vision Shield Camera modu
 ### Required Hardware and Software
 - 1x [Portenta H7 board](https://store.arduino.cc/portenta-h7)
 - 1x Portenta Vision Shield ( [LoRa](https://store.arduino.cc/portenta-vision-shield-lora) or [Ethernet](https://store.arduino.cc/portenta-vision-shield) )
-- 1x USB C cable (either USB A to USB C or USB C to USB C)
+- 1x USB-C cable (either USB-A to USB-C or USB-C to USB-C)
 - Arduino IDE 1.8.10+
 - Processing 3.5.4+
 
