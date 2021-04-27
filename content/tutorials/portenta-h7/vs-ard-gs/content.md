@@ -15,9 +15,9 @@ This tutorial shows you how to capture frames from the Vision Shield Camera modu
 - Visualising the frames in Processing. 
 
 ### Required Hardware and Software
-- [Portenta H7 board](https://store.arduino.cc/portenta-h7)
-- Portenta Vision Shield ( [LoRa](https://store.arduino.cc/portenta-vision-shield-lora) or [Ethernet](https://store.arduino.cc/portenta-vision-shield) )
-- USB C cable (either USB A to USB C or USB C to USB C)
+- 1x [Portenta H7 board](https://store.arduino.cc/portenta-h7)
+- 1x Portenta Vision Shield ( [LoRa](https://store.arduino.cc/portenta-vision-shield-lora) or [Ethernet](https://store.arduino.cc/portenta-vision-shield) )
+- 1x USB-C cable (either USB-A to USB-C or USB-C to USB-C)
 - Arduino IDE 1.8.10+
 - Processing 3.5.4+
 
@@ -25,7 +25,7 @@ This tutorial shows you how to capture frames from the Vision Shield Camera modu
 Accessing the Vision Shield's camera data is done with the help of both Arduino and the Processing IDE. The Arduino sketch handles the capture of image data by the on-board camera while the java applet created with Processing helps to visualise this data with the help of a serial connection. The following steps will run you through how to capture, package the data through the serial port and visualise the output in Processing. 
 
 ### 1. The Basic Setup
-Connect the Vision Shield to your Portenta H7 as shown in the figure. The top and Bottom high density connecters the aligned with and are connected to the concurrent ones on the Portenta board. Plug in the H7 to your computer using the USB C cable. 
+Connect the Vision Shield to your Portenta H7 as shown in the figure. The top and bottom high density connecters are connected to the corresponding ones on the underside of the H7 board. Plug in the H7 to your computer using the USB C cable. 
 
 ![Connecting the Vision Shield to Portenta](assets/vs_ard_gs_attach_boards.svg)
 
