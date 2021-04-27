@@ -7,7 +7,7 @@ description: This tutorial teaches you how to set up the board, how to use the O
 
 # Getting Started with OpenMV and MicroPython
 ## Overview
-In this tutorial, you will learn about some of the basic features of the OpenMV IDE and how to create a simple MicroPython script. This tutorial will also walk you through connecting and uploading to your Portenta board with the OpenMV IDE.
+The OpenMV IDE is meant to provide an Arduino like experience for simple computer vision tasks using a camera sensor. In this tutorial, you will learn about some of the basic features of the OpenMV IDE and how to create a simple MicroPython script. 
 
 ### You Will Learn
 - The basic features of the OpenMV IDE
@@ -21,17 +21,12 @@ In this tutorial, you will learn about some of the basic features of the OpenMV 
 - Portenta Bootloader Version 20+
 - OpenMV IDE 2.6.4+
 
-## Portenta and the OpenMV IDE
-The OpenMV IDE was built for Machine Vision applications. It is meant to provide an Arduino like experience for simple computer vision tasks using a camera sensor. OpenMV comes with its own firmware that is built on MicroPython. Among other hardware it supports the Portenta board.
-
-This is where OpenMV comes in. [Here](https://openmv.io/) you can read more about the OpenMV IDE.
-
-## MicroPython
-With OpenMV and the Portenta board, it is possible to run MicroPython scripts. MicroPython includes a lot of classes and libraries that makes it easier for us to use the Portenta to its full potential.
-
-[Here](http://docs.MicroPython.org/en/latest/) you can read more about MicroPython.
-
 ## Instructions
+
+Using the OpenMV IDE you can run MicroPython scripts on the Portenta board, it is possible to run [MicroPython](http://docs.MicroPython.org/en/latest/) scripts. MicroPython includes a lot of classes and libraries that makes it easier for us to use the Portenta to its full potential. In this tutorial You will first download the OpenMV IDE and setup the development environment. to OpenMV comes with its own firmware that is built on MicroPython. You will then learn to write a simple script that will blink the onboard RGB LED using some basic micropython commands. 
+
+In this tutorial you will connecting and uploading to your Portenta board with the OpenMV IDE. This is where OpenMV comes in. [Here](https://openmv.io/) you can read more about the OpenMV IDE.
+
 ### 1. Downloading the OpenMV IDE
 
 Before you can start programming OpenMV scripts for the Portenta you need to download and install the OpenMV IDE.
