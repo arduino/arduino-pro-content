@@ -1,4 +1,4 @@
-# Connecting the Vision Shield to TTN Using LoRa
+# Connecting the Vision Shield to TTN Using LoRa and OpenMV
 ## Overview 
 
 This tutorial explains how to connect your Portenta H7 to The Things Network (TTN) using the Vision Shield's LoRa Connectivity feature. A data communication channel will be enabled between the H7 and a TTN application that will be configured on your TTN console.
@@ -19,9 +19,9 @@ This tutorial explains how to connect your Portenta H7 to The Things Network (TT
 - [OpenMV IDE](https://openmv.io/pages/download)
 - Arduino IDE 1.8.10+ or Arduino Pro IDE 0.0.4+ or Arduino CLI 0.13.0+
 - USB C cable (either USB A to USB C or USB C to USB C)
-- An [account](https://account.thethingsnetwork.org/users/login) with The Things Network
+- An [account on The Things Network](https://account.thethingsnetwork.org/users/login) with The Things Network
 
-## Connecting to the TTN
+## Instructions
 
 The Portenta Vision Shield - LoRa can be connected to the TTN and can transmit data to other devices connected to this network through a secure channel. This channel is nothing but an application on the TTN network dedicated for your board. In this tutorial, you will be guided through a step-by-step process of setting up your Portenta board and the Vision Shield Lora to communicate with a TTN application. As stated before, to be able to follow this guide, to be under coverage of one of the TTN gateways. You can check for [the coverage](https://www.thethingsnetwork.org/map) now if you have not done so yet.
 
@@ -83,6 +83,10 @@ It's now time to connect your Portenta H7 and Lora Vision Shield to TTN. You'll 
 Plug the Portenta Vision Shield - LoRa to the Portenta H7 and them to your PC through the USB port. If the Portenta board does not show up on OpenMV, try double-pressing the reset button on the Portenta. And now update to the latest firmware in OpenMV.
 
 Now we can put the code needed in OpenMV. Below you can see the full sketch, simply copy it into a new sketch in OpenMV.
+
+The `lora.join_OTAA()` or `lora.join_ABP()` functions connects your vision shield to the things network (TTN), using either OTTA or ABP protocols. We just need to enter our `appEui` and `appKey`. The timeout decides how long the board will try and connect before stopping.
+
+We send data to our TTN application with `lora.send_data()`, in here we can decide what data we want to send.
 
 ```py
 from lora import *
