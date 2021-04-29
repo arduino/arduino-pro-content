@@ -18,12 +18,12 @@ This tutorial explains how to connect your Portenta H7 to The Things Network (TT
 - [1x Dipole Pentaband antenna](https://store.arduino.cc/antenna) or a UFL Antenna of the H7 
 - [OpenMV IDE](https://openmv.io/pages/download)
 - Arduino IDE 1.8.10+ or Arduino Pro IDE 0.0.4+ or Arduino CLI 0.13.0+
-- USB C cable (either USB A to USB C or USB C to USB C)
+- USB-C cable (either USB-A to USB-C or USB-C to USB-C)
 - An [account on The Things Network](https://account.thethingsnetwork.org/users/login) with The Things Network
 
 ## Instructions
 
-The Portenta Vision Shield - LoRa can be connected to the TTN and can transmit data to other devices connected to this network through a secure channel. This channel is nothing but an application on the TTN network dedicated for your board. In this tutorial, you will be guided through a step-by-step process of setting up your Portenta board and the Vision Shield Lora to communicate with a TTN application. As stated before, to be able to follow this guide, to be under coverage of one of the TTN gateways. You can check for [the coverage](https://www.thethingsnetwork.org/map) now if you have not done so yet.
+The Portenta Vision Shield - LoRa can be connected to the TTN and can transmit data to other devices connected to this network through a secure channel. This channel is nothing but an application on the TTN network dedicated for your board. In this tutorial, you will be guided through a step-by-step process of setting up your Portenta board and the Vision Shield LoRa to communicate with a TTN application. As stated before, to be able to follow this guide, to be under coverage of one of the TTN gateways. You can check for [the coverage](https://www.thethingsnetwork.org/map) now if you have not done so yet.
 
 ### 1. Setting up the Environment
 
@@ -55,7 +55,7 @@ After completing these two fields, press on the "Add application" button located
 Let's take a closer look at these sections:
 
 - **Application Overview** and Application EUIS: in order to use this app, you'll need the Application ID and its EUIs. An EUI is a globally unique identifier for networks, gateways applications and devices. The EUIs are used to identify all parts of the LoRaWAN inside the backend server.
-- **Devices**: here you can see and manage all the associated devices (e.g. your Portenta H7 with Vision Shield Lora, Arduino MKR WAN 1300 or MKR WAN 1310), or proceed with the registration of new one.
+- **Devices**: here you can see and manage all the associated devices (e.g. your Portenta H7 with Vision Shield LoRa, Arduino MKR WAN 1300 or MKR WAN 1310), or proceed with the registration of new one.
 - **Collaborators**: here you can see and manage all the app collaborators. To integrate with other collaborative platforms or to manage access rights to the app with other TTN registered profiles.
 - **Access keys**: it's the most sensible information. It is basically the key to gain access to your app, so keep it safe.
 
@@ -78,15 +78,15 @@ If it all went correctly, you should see the same text in your serial monitor as
 
 ### 4. Configuring the Vision Shield
 
-It's now time to connect your Portenta H7 and Lora Vision Shield to TTN. You'll need to upload code to the board using [OpenMV](https://openmv.io/pages/download)
+It's now time to connect your Portenta H7 and LoRa Vision Shield to TTN. You'll need to upload code to the board using [OpenMV](https://openmv.io/pages/download)
 
 Plug the Portenta Vision Shield - LoRa to the Portenta H7 and them to your PC through the USB port. If the Portenta board does not show up on OpenMV, try double-pressing the reset button on the Portenta. And now update to the latest firmware in OpenMV.
 
+The `lora.join_OTAA()` or `lora.join_ABP()` functions connect your vision shield to the things network (TTN), using either Over-The-Air-Activation (OTAA) or Activating-By-Personalization (ABP) protocols. We just need to enter our `appEui` and `appKey`. The timeout decides how long the board will try and connect before stopping. We can then send data to our TTN application with `lora.send_data()`, in here we can decide what data we want to send to our TTN application.
+
+Now we need to read the downlink message. Using the `lora.available()` function we check if there is data received on the board. If there is data on the board that has been received, we can use the `lora.receive_data()` function to take that data and put it into a local variable. Making it easier to print in the OpenMV IDE serial terminal. Using `lora.poll()` we can make sure that the LoRa module is ready before we run the loop again.
+
 Now we can put the code needed in OpenMV. Below you can see the full sketch, simply copy it into a new sketch in OpenMV.
-
-The `lora.join_OTAA()` or `lora.join_ABP()` functions connects your vision shield to the things network (TTN), using either OTTA or ABP protocols. We just need to enter our `appEui` and `appKey`. The timeout decides how long the board will try and connect before stopping.
-
-We send data to our TTN application with `lora.send_data()`, in here we can decide what data we want to send.
 
 ```py
 from lora import *
@@ -181,7 +181,7 @@ Message confirmed.
 
 ## Conclusion
 
-If you receive this message, you have managed to configure the Portenta H7 and the Lora Vision Shield on the TTN.
+If you receive this message, you have managed to configure the Portenta H7 and the LoRa Vision Shield on the TTN.
  We have retrieved the device EUI, used it to register the device in the TTN console, and programmed the board using the data provided by TTN. Now, we can send data over the LoRa® network which can be viewed from anywhere in the world (as long as we have an Internet connection and our device is in range from a TTN gateway).
 
 ### Next Steps
@@ -196,5 +196,5 @@ The most common issue is that the device cannot connect to a TTN gateway. Again,
 If we are within good range of a gateway, we should also try to move our device and antenna to a window, and even hold it out the window and move it around. This has proven successful on numerous accounts, as the signal can travel less obstructed.
 
 **Authors:** Lenard George, Ignacio Herrera, Benjamin Dannegård  
-**Reviewed by:** Lenard George [2021-03-31]  
-**Last revision:** Benjamin Dannegård [2021-03-31]
+**Reviewed by:** Lenard George [2021-04-27]  
+**Last revision:** Benjamin Dannegård [2021-04-28]
