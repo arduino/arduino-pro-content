@@ -82,11 +82,87 @@ It's now time to connect your Portenta H7 and LoRa Vision Shield to TTN. You'll 
 
 Plug the Portenta Vision Shield - LoRa to the Portenta H7 and them to your PC through the USB port. If the Portenta board does not show up on OpenMV, try double-pressing the reset button on the Portenta. And now update to the latest firmware in OpenMV.
 
-The `lora.join_OTAA()` or `lora.join_ABP()` functions connect your vision shield to the things network (TTN), using either Over-The-Air-Activation (OTAA) or Activating-By-Personalization (ABP) protocols. We just need to enter our `appEui` and `appKey`. The timeout decides how long the board will try and connect before stopping. We can then send data to our TTN application with `lora.send_data()`, in here we can decide what data we want to send to our TTN application.
+The only line you may need to change before uploading the code is the one that sets the frequency. Set the frequency code according to your country if needed. You can find more information about frequency by country at [this TTN link](https://www.thethingsnetwork.org/docs/lorawan/frequency-plans.html).
+
+***Consider that in Australia the boards connect correctly to TTN gateways on AS923 frequencies; AU915 frequencies requires the selection of sub band 2 which is not yet implemented in the firmware.***
+
+```py
+// change this to your regional band (eg. US915, AS923, ...)
+lora = Lora(band=BAND_EU868, poll_ms=60000, debug=False)
+```
+
+The `lora.join_OTAA()` or `lora.join_ABP()` functions connect your vision shield to the things network (TTN), using either Over-The-Air-Activation (OTAA) or Activating-By-Personalization (ABP) protocols. We just need to enter our `appEui` and `appKey`. The timeout decides how long the board will try and connect before stopping.
+
+```py
+try:
+    lora.join_OTAA(appEui, appKey, timeout=20000)
+    # Or ABP:
+    #lora.join_ABP(devAddr, nwkSKey, appSKey, timeout=5000)
+```
+
+We can then send data to our TTN application with `lora.send_data()`, in here we can decide what data we want to send to our TTN application.
+
+```py
+try:
+    if lora.send_data("HeLoRA world!", True):
+        print("Message confirmed.")
+    else:
+        print("Message wasn't confirmed")
+```
 
 Now we need to read the downlink message. Using the `lora.available()` function we check if there is data received on the board. If there is data on the board that has been received, we can use the `lora.receive_data()` function to take that data and put it into a local variable. Making it easier to print in the OpenMV IDE serial terminal. Using `lora.poll()` we can make sure that the LoRa module is ready before we run the loop again.
 
-Now we can put the code needed in OpenMV. Below you can see the full sketch, simply copy it into a new sketch in OpenMV.
+```py
+# Read downlink messages
+while (True):
+    if (lora.available()):
+        data = lora.receive_data()
+        if data:
+            print("Port: " + data["port"])
+            print("Data: " + data["data"])
+    lora.poll()
+    sleep_ms(1000)
+```
+
+**Hint: The Complete Sketch can be found in the Conclusions**
+
+Then, once the upload is completed open the Serial Terminal where you can now see firmware info, device EUI, data rate and join status.
+
+In order to select the way in which the board is going to connect with TTN (OTAA or ABP) we need to configure it on the TTN portal. We will see which option we should select in the following steps.
+
+### 5. Registering the Portenta on TTN
+
+Before your Portenta H7 can start communicating with the TTN you need to [register](https://www.thethingsnetwork.org/docs/devices/registration.html) the board with an application. Go back to the TTN portal and scroll to **Devices** section on your Application dashboard, then click **Register Device**.
+
+![Registering a Device](assets/vs_ard_ttn_click_register.png)
+
+On the registration page, fill in **Device ID** and **EUI**. 
+**Note**: The Device ID must be lowercase and without spaces. The **EUI** should be copied from the Serial Monitor.
+
+![Entering the device EUI](assets/vs_ard_ttn_register_device.png)
+
+After pressing the Register button, your board will show up on the **Device Overview** page. You can now see all the information needed to complete the Arduino setup.
+
+![The Things Network Device Overview](assets/vs_ard_ttn_device_overview.png)
+
+### 6. Connecting to TTN
+
+Once your board has been registered you can send information to TTN. Let's go back to the sketch to fill in the appEui and appKey. The sketch we use here will use OTA connection.
+
+You can read more into OTA vs ABP activation mode at [this link](https://www.thethingsnetwork.org/docs/devices/registration.html)
+
+Once your board has been registered you can send information to TTN. Let's proceed in OpenMV. In the sketch the application EUI and the app key needs to be filled in. Find the EUI and the App key from TTN **Device Overview** page.
+
+If this process is done successfully, you will see this message:
+
+```text
+Message confirmed.
+```
+
+## Conclusion
+If you receive this message, you have managed to configure the Portenta H7 and the LoRa Vision Shield on the TTN. We have retrieved the device EUI, used it to register the device in the TTN console, and programmed the board using the data provided by TTN. Now, we can send data over the LoRa® network which can be viewed from anywhere in the world (as long as we have an Internet connection and our device is in range from a TTN gateway).
+
+### Complete sketch
 
 ```py
 from lora import *
@@ -133,56 +209,7 @@ while (True):
             print("Data: " + data["data"])
     lora.poll()
     sleep_ms(1000)
-
 ```
-
-The only line you may need to change before uploading the code is the one that sets the frequency. Set the frequency code according to your country if needed. You can find more information about frequency by country at [this TTN link](https://www.thethingsnetwork.org/docs/lorawan/frequency-plans.html).
-
-```py
-// change this to your regional band (eg. US915, AS923, ...)
-lora = Lora(band=BAND_EU868, poll_ms=60000, debug=False)
-```
-***Consider that in Australia the boards connect correctly to TTN gateways on AS923 frequencies; AU915 frequencies requires the selection of sub band 2 which is not yet implemented in the firmware.***
-
-Once you have added to the sketch the frequency according to your country, you can upload it to the board.
-
-Then, once the upload is completed open the Serial Terminal where you can now see firmware info, device EUI, data rate and join status.
-
-In order to select the way in which the board is going to connect with TTN (OTAA or ABP) we need to configure it on the TTN portal. We will see which option we should select in the following steps.
-
-### 5. Registring the Portenta on TTN
-
-Before your Portenta H7 can start communicating with the TTN you need to [register](https://www.thethingsnetwork.org/docs/devices/registration.html) the board with an application. Go back to the TTN portal and scroll to **Devices** section on your Application dashboard, then click **Register Device**.
-
-![Registering a Device](assets/vs_ard_ttn_click_register.png)
-
-On the registration page, fill in **Device ID** and **EUI**. 
-**Note**: The Device ID must be lowercase and without spaces. The **EUI** should be copied from the Serial Monitor.
-
-![Entering the device EUI](assets/vs_ard_ttn_register_device.png)
-
-After pressing the Register button, your board will show up on the **Device Overview** page. You can now see all the information needed to complete the Arduino setup.
-
-![The Things Network Device Overview](assets/vs_ard_ttn_device_overview.png)
-
-### 6. Connecting to TTN
-
-Once your board has been registered you can send information to TTN. Let's go back to the sketch to fill in the appEui and appKey. The sketch we use here will use OTA connection.
-
-You can read more into OTA vs ABP activation mode at [this link](https://www.thethingsnetwork.org/docs/devices/registration.html)
-
-Once your board has been registered you can send information to TTN. Let's proceed in OpenMV. In the sketch the application EUI and the app key needs to be filled in. Find the EUI and the App key from TTN **Device Overview** page.
-
-If this process is done successfully, you will see this message:
-
-```text
-Message confirmed.
-```
-
-## Conclusion
-
-If you receive this message, you have managed to configure the Portenta H7 and the LoRa Vision Shield on the TTN.
- We have retrieved the device EUI, used it to register the device in the TTN console, and programmed the board using the data provided by TTN. Now, we can send data over the LoRa® network which can be viewed from anywhere in the world (as long as we have an Internet connection and our device is in range from a TTN gateway).
 
 ### Next Steps
 
