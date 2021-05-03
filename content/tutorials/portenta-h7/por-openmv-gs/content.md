@@ -155,6 +155,6 @@ In this tutorial you learned how to use the OpenMV IDE with your Portenta board.
 - If you see a "OSError: Reset Failed" message, reset the board by pressing the reset button. Wait until you see the blue LED flashing, connect the board to the OpenMV IDE and try running the script again.
 - In bootloader versions 17 and older there was a bug that could put the Portenta into a boot loop when the transmission aborted while flashing a large firmware file. This was fixed in the bootloader version 18.
 
-**Authors:** Sebastian Romero, Benjamin Dannegård
-**Reviewed by:** Lenard George [2021-04-12]
+**Authors:** Sebastian Romero, Benjamin Dannegård  
+**Reviewed by:** Lenard George [2021-04-12]  
 **Last revision:** Sebastian Romero [2021-05-03]
