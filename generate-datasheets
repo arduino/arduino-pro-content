@@ -6,4 +6,11 @@ then
 fi
 
 cd scripts/datasheet-generator
+npm list --depth=0 > /dev/null 2>&1
+
+if [ $? -ne 0 ]; then
+    echo "Installing node modules..."
+    npm install    
+fi
+
 node generate-datasheets.js "../../content/datasheets" "../../build/datasheets"

@@ -9,7 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "front-matter": "^4.0.2",
     "html-entities": "^2.1.0",
+    "js-yaml": "^4.1.0",
     "jsonschema": "^1.2.6",
     "marked": "^2.0.0",
     "node-html-parser": "^2.1.0",

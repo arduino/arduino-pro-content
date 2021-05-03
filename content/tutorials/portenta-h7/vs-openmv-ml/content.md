@@ -1,3 +1,10 @@
+---
+title: Training a Custom Machine Learning Model for Portenta H7
+coverImage: assets/vs_openmv_ml_cover.svg
+tags: [Machine Learning, Edge Impulse, TinyML, Tensorflow]
+description: This tutorial teaches you how to train a custom machine learning model with Edge Impulse and to run it using the Portenta Vision Shield.
+---
+
 # Training a Custom Machine Learning Model for Portenta H7
 ## Overview 
 
@@ -12,7 +19,7 @@ This tutorial teaches you how to train a custom machine learning model with Edge
 ### Required Hardware and Software
 
 - [Portenta H7 board](https://store.arduino.cc/portenta-h7)
-- [Portenta Vision Shield - LoRa](https://store.arduino.cc/portenta-vision-shield-lora) or [Portenta Vision Shield - Ethernet](https://store.arduino.cc/usa/portenta-vision-shield)
+- [Portenta Vision Shield - LoRa®](https://store.arduino.cc/portenta-vision-shield-lora) or [Portenta Vision Shield - Ethernet](https://store.arduino.cc/usa/portenta-vision-shield)
 - USB-C cable (either USB-A to USB-C or USB-C to USB-C)
 - An [Edge Impulse](https://studio.edgeimpulse.com/) account for training the ML model
 - Fruits (or other objects) to create the classification model 🍏🍌🍐
