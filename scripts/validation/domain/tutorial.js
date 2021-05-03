@@ -64,7 +64,7 @@ var Tutorial = class Tutorial {
     }
 
     get coverImagePath() {
-        return this.metadata.coverImage;
+        return this.metadata ? this.metadata.coverImage : null;
     }
 
     get imagePaths(){
@@ -79,7 +79,7 @@ var Tutorial = class Tutorial {
 
     get assets(){
         let files = fileHelper.findAllFiles(this.basePath + "/assets/", null, [".DS_Store"]);
-        return files.map(file => file.split("?")[0]);
+        return files ? files.map(file => file.split("?")[0]) : [];
     }
 
     get metadata(){    
