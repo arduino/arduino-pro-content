@@ -14,6 +14,7 @@ const CONFIG_PATH = "scripts/validation/config";
 const basePathFromCommandline = process.argv[2];
 const config = yaml.load(fs.readFileSync(`${CONFIG_PATH}/config-tutorials.yml`, 'utf8'));;
 let tutorialPaths;
+const debug = false; // Set this to true to debug the rule matching
 
 
 if(basePathFromCommandline) {
@@ -23,6 +24,9 @@ if(basePathFromCommandline) {
 }
 const validator = new Validator(tutorialPaths);
 
+debugPrint = (message) => {
+    if(debug) console.log(message)
+}
 
 /**
  * Verify that all meta data is valid JSON and contains the correct attributes
@@ -89,6 +93,7 @@ validator.addValidation(async (tutorials) => {
     let errorsOccurred = [];
     tutorials.forEach(tutorial => {
         let svgFiles = tutorial.svgAssets;
+        if(svgFiles === undefined || svgFiles.length == 0) return;
         svgFiles.forEach(path => {     
            const rawData = fs.readFileSync(path);
            if(rawData.includes("<image ")){
@@ -128,7 +133,7 @@ validator.addValidation(async (tutorials) => {
                 let errorsOccurred = [];
                 results.forEach(function (result) {    
                     if(result.status == "alive" && config.verboseOutput){
-                        console.log('👍 %s is alive', result.link);
+                        debugPrint(`👍 ${result.link} is alive`);
                     } else if(result.status == "dead" && result.statusCode !== 0){
                         const errorMessage = `${result.link} is dead 💀 HTTP ${result.statusCode}`;
                         errorsOccurred.push(new ValidationError(errorMessage, tutorial.contentFilePath));                        
@@ -264,26 +269,33 @@ validator.addValidation(async (tutorials) => {
         }
         
         for(rules of allRules){
-            rules.forEach(rule => {
+            for(rule of rules) {
+                debugPrint(`🕵️ Validating rule ${rule.regex} for ${tutorial.contentFilePath}`)
                 const content = rule.format == "html" ? htmlContent : markdownContent;
                 const regex = new RegExp(rule.regex, "g");
                 const matches = content.matchAll(regex);
                 const ruleType = rule.type ?? "error";
 
-                for(match of matches){
-                    let lineNumber = null;
-        
-                    if(match){
-                        const index = match.index;
-                        lineNumber = fileHelper.getLineNumberFromIndex(index,content);                
-                    }
-                    if((match === null && rule.shouldMatch) || (match !== null && !rule.shouldMatch)) {
-                        const errorMessage = rule.errorMessage;
-                        errorsOccurred.push(new ValidationError(errorMessage, tutorial.contentFilePath, ruleType, lineNumber));                
-                    }     
+                if(Array.from(matches).length == 0 && rule.shouldMatch){
+                    const errorMessage = rule.errorMessage;
+                    errorsOccurred.push(new ValidationError(errorMessage, tutorial.contentFilePath, ruleType));
+                } else {
+                    debugPrint(`👍 Passed rule ${rule.regex} for ${tutorial.contentFilePath}`)
                 }
 
-            });
+                for(currentMatch of matches){
+                    const index = currentMatch.index;
+                    let lineNumber = fileHelper.getLineNumberFromIndex(index,content);                
+        
+                    if(!rule.shouldMatch) {
+                        const errorMessage = rule.errorMessage;
+                        errorsOccurred.push(new ValidationError(errorMessage, tutorial.contentFilePath, ruleType, lineNumber));
+                    } else {
+                        debugPrint(`👍 Passed rule ${rule.regex} for ${tutorial.contentFilePath}`)
+                    }
+                }
+
+            };
         }
     
     });
