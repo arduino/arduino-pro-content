@@ -15,8 +15,13 @@
      "por-ard-bl",
      "por-openmv-fd",
      "por-ard-trace32",
+     "por-ard-flash",
      "por-ard-kvs",     
      "vs-ard-ttn",
-     "por-ard-lvgl"
+     "por-ard-lvgl",
+     "por-openmv-gs",
+     "vs-openmv-ml",
+     "ec-ard-gs",
+     "vs-ard-gs"
     ]
  }

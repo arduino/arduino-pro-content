@@ -5,7 +5,7 @@ on:
     types: deploy
   push:
     branches:
-      - main    
+      - main
 
 env:
   AWS_REGION: 'us-west-1'
@@ -55,4 +55,4 @@ jobs:
       run: |
         aws cloudfront create-invalidation \
           --distribution-id "${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}" \
-          --paths '/content/tutorials/*'
+          --paths '/content/tutorials/*' '/content/datasheets/*'

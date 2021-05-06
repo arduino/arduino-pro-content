@@ -1,10 +1,17 @@
+---
+title: Creating a Flash-Optimised Key-Value Store
+coverImage: assets/por_ard_block_device_cover.svg
+tags: [Storage, Key-Value store, Flash]
+description: This tutorial explains how to create a flash-optimised key-value store using the flash memory of the Portenta H7.
+---
+
 # Creating a Flash-Optimised Key-Value Store
 
 ## Overview
 This tutorial explains how to create a flash-optimised key-value store using the flash memory of the Portenta H7. It builds on top of the **Flash In-Application Programming** tutorial.
 
 ### You Will Learn
-In this tutorial you will learn how to use the Mbed OS [TDBStore API](https://os.mbed.com/docs/mbed-os/v6.4/apis/kvstore.html) to create a [Key value store](https://en.wikipedia.org/wiki/Key%E2%80%93value_database) in the free space of the microcontroller's internal flash.
+In this tutorial you will learn how to use the Mbed OS [TDBStore API](https://os.mbed.com/docs/mbed-os/v6.9/apis/kvstore.html) to create a [Key value store](https://en.wikipedia.org/wiki/Key%E2%80%93value_database) in the free space of the microcontroller's internal flash.
 
 ### Required Hardware and Software
 -   Portenta H7 board (<https://store.arduino.cc/portenta-h7>)
@@ -18,7 +25,7 @@ The core software of Portenta H7 is based on the Mbed OS operating system, allow
 
 Mbed OS has a rich API for managing storage on different mediums, ranging from the small internal flash memory of a microcontroller to external SecureDigital cards with large data storage space.
 
-In this tutorial, we are going to save a value persistently inside the flash memory. That allows to access that value even after a reset of the microcontroller. We will retrieve some information from a flash block by using the [FlashIAPBlockDevice](https://os.mbed.com/docs/mbed-os/v6.4/apis/flashiapblockdevice.html) and the [TDBStore](https://os.mbed.com/docs/mbed-os/v6.4/apis/kvstore.html) APIs. We will use the `FlashIAPBlockDevice` class to create a block device on the free space of the flash and we will create a Key-Value Store in it using the `TDBStore` API.
+In this tutorial, we are going to save a value persistently inside the flash memory. That allows to access that value even after a reset of the microcontroller. We will retrieve some information from a flash block by using the [FlashIAPBlockDevice](https://os.mbed.com/docs/mbed-os/v6.9/apis/flashiapblockdevice.html) and the [TDBStore](https://os.mbed.com/docs/mbed-os/v6.9/apis/kvstore.html) APIs. We will use the `FlashIAPBlockDevice` class to create a block device on the free space of the flash and we will create a Key-Value Store in it using the `TDBStore` API.
 
 ***Important: The TBStore API optimises for access speed, reduce [wearing of the flash](https://en.wikipedia.org/wiki/Flash_memory#Memory_wear) and minimise storage overhead. TBStore is also resilient to power failures. If you want to use the flash memory of the microcontroller, always prefer the TDBStore approach over a direct access to the FlashIAP block device.***
 
@@ -282,8 +289,8 @@ We have learned how to use the available space in the flash memory of the microc
 It's not recommended to use the flash of the microcontroller as the primary storage for data-intensive applications. It is best suited for read/write operations that are performed only once in a while such as storing and retrieving application configurations or persistent parameters.
 
 ### Next Steps
-- Learn how to retrieve a collection of keys using TDBStore iterators via [`iterator_open`](https://os.mbed.com/docs/mbed-os/v6.4/mbed-os-api-doxy/classmbed_1_1_k_v_store.html#a77661adec54b9909816e7492a2c61a91) and [`iterator_next`](https://os.mbed.com/docs/mbed-os/v6.4/mbed-os-api-doxy/classmbed_1_1_k_v_store.html#a5116b40a3480462b88dc3f1bb8583ad4)
-- Learn how to create an incremental TDBStore set sequence via [`set_start`](https://os.mbed.com/docs/mbed-os/v6.4/mbed-os-api-doxy/classmbed_1_1_k_v_store.html#a6e882a0d4e0cbadf6269142ac3c4e693), [`set_add_data`](https://os.mbed.com/docs/mbed-os/v6.4/mbed-os-api-doxy/classmbed_1_1_k_v_store.html#adbe636bf8c05834fe68b281fc638c348) and [`set_finalize`](https://os.mbed.com/docs/mbed-os/v6.4/mbed-os-api-doxy/classmbed_1_1_k_v_store.html#a346da66252added46d3b93902066b548)
+- Learn how to retrieve a collection of keys using TDBStore iterators via [`iterator_open`](https://os.mbed.com/docs/mbed-os/v6.9/mbed-os-api-doxy/classmbed_1_1_k_v_store.html#a77661adec54b9909816e7492a2c61a91) and [`iterator_next`](https://os.mbed.com/docs/mbed-os/v6.9/mbed-os-api-doxy/classmbed_1_1_k_v_store.html#a5116b40a3480462b88dc3f1bb8583ad4)
+- Learn how to create an incremental TDBStore set sequence via [`set_start`](https://os.mbed.com/docs/mbed-os/v6.9/mbed-os-api-doxy/classmbed_1_1_k_v_store.html#a6e882a0d4e0cbadf6269142ac3c4e693), [`set_add_data`](https://os.mbed.com/docs/mbed-os/v6.9/mbed-os-api-doxy/classmbed_1_1_k_v_store.html#adbe636bf8c05834fe68b281fc638c348) and [`set_finalize`](https://os.mbed.com/docs/mbed-os/v6.9/mbed-os-api-doxy/classmbed_1_1_k_v_store.html#a346da66252added46d3b93902066b548)
 - Learn how to use the 16MB QSPI Flash on the Portenta H7
 
 
