@@ -1,7 +1,9 @@
 # Controlling a Motorized Ball Valve 
 ## Overview
 
-This tutorial gets you started with the Edge control board and goes over the basics of controlling a motorised ball valve to the board. 
+A ball valve is a form of quarter-turn [valve](https://en.wikipedia.org/wiki/Valve) which uses a hollow, perforated and pivoting ball to control flow of liquids and gasses through it. This tutorial will guide you to connect the board a 3 Wire-Valve and write a sketch that controls basic operation such as the opening and closing of the valves. 
+
+***Tip : If this is for your first Edge Control project,  we recommend you to take a look at the [Getting Started Tutorial](https://www.arduino.cc/pro/tutorials/portenta-h7/ec-ard-gs) to setup the development environment before you proceed.*** 
 
 ### You Will Learn
 
@@ -11,8 +13,8 @@ This tutorial gets you started with the Edge control board and goes over the bas
 
 ### Required Hardware and Software
 
--   Arduino Edge control board
--   [1 x US Solid Motorised Ball Valve (9 - 24 V)](https://ussolid.com/u-s-solid-motorized-ball-valve-1-2-brass-electrical-ball-valve-with-full-port-9-24-v-ac-dc-3-wire-setup.html)
+-   1 x [Arduino Edge control board](https://store.arduino.cc/edge-control)
+-   1 x [US Solid Motorised Ball Valve (9 - 24 V)](https://ussolid.com/u-s-solid-motorized-ball-valve-1-2-brass-electrical-ball-valve-with-full-port-9-24-v-ac-dc-3-wire-setup.html)
 -   External power source: 12V battery (LiPo / SLA) or power supply 
 -   Micro USB cable
 -   Arduino IDE 1.8.10+ or Arduino Pro IDE 0.0.4+
@@ -21,39 +23,21 @@ This tutorial gets you started with the Edge control board and goes over the bas
 
 ## Instructions 
 
-A ball valve is a form of quarter-turn [valve](https://en.wikipedia.org/wiki/Valve) which uses a hollow, perforated and pivoting ball to control flow of liquids and gasses through it. With the Edge control control you can control and automate the basic operation such as the opening and closing of the valves. You will first install the required core and the libraries required to use the Edge Control board and upload a blink sketch to check if everything is connected right. You will then connect the Valve and then write the sketch that opens and closes it at a certain interval. Finally, you will connect the board to an external power source and upload the sketch. 
+You will first install the required core and the libraries required to use the Edge Control board and upload a blink sketch to check if everything is connected right. You will then connect the Valve and then write the sketch that opens and closes it at a certain interval
 
-***Note :** Ensure that the Phoenix connectors are in place before plugging in the wires to the respective pins 
-
-### 1. The Basic Setup
-
-Before you start programming the Edge control board, you will have to download the [Mbed core](https://github.com/arduino/ArduinoCore-mbed) from the board manager. Open the **Board manager** and look for the `Edge Control` core. This board comes with the **Nina B306** processor which is the same processor used in other Pro boards such as the **Portenta** and the **Nano 33 BLE**. 
-
-![Download the Core](assets/ec_ard_gs_core.png)
-
-Next you need to download the Example library that contains the Blink example. (identify how to install this library )
-
-This blink sketch is to test if the board is recognised by the IDE and if you have installed the right core. In the classic Arduino IDE open the blink example by clicking the menu entry **File -> Examples -> Arduino_EdgeControl -> Basic -> Blink.**
-
-![The Edge Control blink sketch](assets/ec_ard_blink_example.png)
-
-Selected the right board and port under **Tools** and upload the blink example you find inside the example folder. Open the Serial monitor after uploading the sketch
-
-If the Serial monitor dislpays `Blink` at an interval of ... seconds, you have  installed the right core and have successfully completed  the basic setup. Disconnect the board from your computer. 
-
-### 2. Connecting The Valve
+### 1. Connecting The Valves
 
 The motorized valve comes with three wires primarily marked as blue, yellow and red. The red and blue cables are for the positive and negative signals and the yellow is for the ground. 
 
 ![Schematics of the 3 wire motor](/Users/lenardgeorge/Documents/Arduino/03_Pro/arduino-pro-content/content/tutorials/portenta-h7/ec-ard-3wirevalve/assets/ec_ard_valve_wires.svg) 
 
-Connect the red and the blue wire to any one of the 8 pairs of `LATCHING OUT` pins. In this example we will use `1N` and `1P` of your Edge Control board. Latches allow you to store the state of the pins based on the previous output. As the valve doesnt come with internal drivers to store the state of the motor, we will use the `Latching_out` pins (instead of `Latching_out_cmd`) that are the ones that include drivers on the edge control. 
+ Ensure that the Phoenix connectors are in place before plugging in the wires to the respective pins. Connect the red and the blue wire to any one of the 8 pairs of `LATCHING OUT` pins. In this example we will use `1N` and `1P` of your Edge Control board. Latches allow you to store the state of the pins based on the previous output. As the valve doesnt come with internal drivers to store the state of the motor, we will use the `Latching_out` pins (instead of `Latching_out_cmd`) that are the ones that include drivers on the edge control. 
 
 ![Connecting the valves to the Phoenix](assets/ec_ard_connect_valve.svg)
 
 Connect the yellow wire to the nearby `GND` pin. Ensure that the wires are fastened securely and tightly to the Phoenix connectors so that they make contact with the pins. 
 
-### 3. Opening And Closing The Valves 
+### 2. Opening And Closing The Valves 
 
 Open a new sketch file on the Arduino IDE and name it `ValveControl.ino`. Add the header file `Arduino_EdgeControl.h` to your sketch 
 
@@ -61,7 +45,7 @@ Open a new sketch file on the Arduino IDE and name it `ValveControl.ino`. Add th
 #include <Arduino_EdgeControl.h>
 ```
 
-inside the `void setup()` , after enabeling the serial communication, run the initialization routine  `EdgeControl.begin()` . This routine is in charge of enabling the default power areas of the board. Then use `Latching.begin()` to configure the expander pins as outputs.
+inside the `void setup()` , after enabeling the serial communication, run the initialization routine `EdgeControl.begin()` . This routine is in charge of enabling the default power areas of the board. Then use `Latching.begin()` to configure the expander pins as outputs.
 
 ```cpp
 void setup()
@@ -163,4 +147,4 @@ void loop()
 
 **Authors:** Ernesto E. Lopez, Lenard George Swamy
 **Reviewed by:** Ernesto E. Lopez [18.03.2021]  
-**Last revision:** Lenard George Swamy  [30.3.2021]
+**Last revision:** Lenard George Swamy  [06.04.2021]
