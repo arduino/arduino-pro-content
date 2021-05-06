@@ -94,7 +94,7 @@ void loop()
 }
 ```
 
-### 4. Connecting To A Power Source 
+### 3. Connecting To A Power Source 
 
 The Valves require a power supply of 9 - 12 V and you can either use a power supply or a 3 cell lipo battery to provide the required voltage. Power sources can be connected to the onboard relay ports of the edge control board. Connect two jumper wires to the **GND** and **B** pins of the **Relay ports** 
 
