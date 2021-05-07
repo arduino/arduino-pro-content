@@ -1,6 +1,6 @@
 ---
 title: Connecting and Controlling a Motorized Ball Valve
-coverImage: assets/ec_ard_gs_cover.svg?sanitize=true
+coverImage: assets/ec_ard_3wirevalve_cover.svg
 tags: [Edge Control, Motorised Valve, Irrigation, Getting Started]
 description: This tutorial will give you an overview of the core features of the board, setup the development environment and introduce the APIs required to program the board. 
 ---
@@ -35,7 +35,7 @@ A ball valve is a form of quarter-turn [valve](https://en.wikipedia.org/wiki/Val
 
 The motorized valve comes with three wires primarily marked as blue, yellow and red. The red and blue cables are for the positive and negative signals and the yellow is for the ground. 
 
-![Schematics of the 3 wire motor](/Users/lenardgeorge/Documents/Arduino/03_Pro/arduino-pro-content/content/tutorials/portenta-h7/ec-ard-3wirevalve/assets/ec_ard_valve_wires.svg) 
+![Schematics of the 3 wire motor](assets/ec_ard_valve_wires.svg) 
 
 You need to ensure that the Phoenix connectors are in place before plugging in the wires to the respective pins. If you havent link  
 
@@ -49,7 +49,7 @@ Connect the yellow wire to the nearby `GND` pin. Ensure that the wires are faste
 
 Open a new sketch file on the Arduino IDE and name it `ValveControl.ino`. Add the header file `Arduino_EdgeControl.h` to your sketch 
 
-```c++
+```cpp
 #include <Arduino_EdgeControl.h>
 ```
 
@@ -75,13 +75,13 @@ void setup()
 
 Inside the `loop()`you will add the instructions to open and close the Valve. `Latching.channelDirection()` is used to control the signal to a particular pin using the parameter `LATCHING_OUT_1` and its direction using the parameters, `POSITIVE` or `NEGATIVE`. Hence, if you want the valve to open you will use the instruction, 
 
-```c++
+```cpp
 Latching.channelDirection(LATCHING_OUT_1, POSITIVE)
 ```
 
 and  to close the valve, you need to send a signal in the opposite direction using the command, 
 
-```c++
+```cpp
 Latching.channelDirection(LATCHING_OUT_1, NEGATIVE)
 ```
 
