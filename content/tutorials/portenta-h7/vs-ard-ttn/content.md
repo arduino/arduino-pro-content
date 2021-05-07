@@ -1,9 +1,16 @@
-# Connecting the Vision Shield to TTN Using LoRa
+---
+title: Connecting the Vision Shield to TTN using LoRa®
+coverImage: assets/vs_ard_things_nw.svg
+tags: [Things Network, LoRa, Vision Shield]
+description: This tutorial explains how to connect your Portenta H7 to The Things Network (TTN) using the the Vision Shield's Lora Connectivity feature.
+---
+
+# Connecting the Vision Shield to TTN Using LoRa®
 ## Overview 
 
-This tutorial explains how to connect your Portenta H7 to The Things Network (TTN) using the the Vision Shield's LoRa Connectivity feature. A data communication channel will be enabled between the H7 and a TTN application that will be configured on your TTN console.
+This tutorial explains how to connect your Portenta H7 to The Things Network (TTN) using the the Vision Shield's LoRa® Connectivity feature. A data communication channel will be enabled between the H7 and a TTN application that will be configured on your TTN console.
 
-***In order to connect your Portenta to the TTN make sure you are within the range (max. 10 Km) from an available LoRa Gateway. Indoor gateways will have a much shorter range. It is recommended that you check LoRa Gateway availability on [The Things Network map](https://www.thethingsnetwork.org/map) before you try this tutorial.***
+***In order to connect your Portenta to the TTN make sure you are within the range (max. 10 Km) from an available LoRa® Gateway. Indoor gateways will have a much shorter range. It is recommended that you check LoRa® Gateway availability on [The Things Network map](https://www.thethingsnetwork.org/map) before you try this tutorial.***
 
 ### You Will Learn
 
@@ -14,7 +21,7 @@ This tutorial explains how to connect your Portenta H7 to The Things Network (TT
 ### Required Hardware and Software
 
 - [Portenta H7 board](https://store.arduino.cc/portenta-h7)
-- [Portenta Vision Shield - LoRa](https://store.arduino.cc/portenta-vision-shield-lora)
+- [Portenta Vision Shield - LoRa®](https://store.arduino.cc/portenta-vision-shield-lora)
 - [1x Dipole Pentaband antenna](https://store.arduino.cc/antenna) or a UFL Antenna of the H7 
 - Arduino [offline](https://www.arduino.cc/en/main/software) IDE or Arduino ([Web Editor](https://create.arduino.cc/)
 - USB C cable (either USB A to USB C or USB C to USB C)
@@ -22,7 +29,7 @@ This tutorial explains how to connect your Portenta H7 to The Things Network (TT
 
 ## Connecting to the TTN
 
-The Portenta Vision Shield - LoRa can be connected to the TTN and can transmit data to other devices connected to this network through a secure channel. This channel is nothing but an applicaiton on the TTN network dedicated for your board. In this tutorial, you will be guided through a step-by-step process of setting up your Portenta board and the Vision Shield Lora to communicate with a TTN application. As stated before, to be able to follow this guide, to be under coverage of one of the TTN gateways. You can check for [the coverage](https://www.thethingsnetwork.org/map) now if you have not done so yet.
+The Portenta Vision Shield - LoRa® can be connected to the TTN and can transmit data to other devices connected to this network through a secure channel. This channel is nothing but an applicaiton on the TTN network dedicated for your board. In this tutorial, you will be guided through a step-by-step process of setting up your Portenta board and the Vision Shield LoRa® to communicate with a TTN application. As stated before, to be able to follow this guide, to be under coverage of one of the TTN gateways. You can check for [the coverage](https://www.thethingsnetwork.org/map) now if you have not done so yet.
 
 ### 1. Setting up the Environment
 
@@ -53,23 +60,23 @@ After completing these two fields, press on the "Add application" button located
 
 Let's take a closer look at these sections:
 
-- **Application Overview** and Application EUIS: in order to use this app, you'll need the Application ID and its EUIs. An EUI is a globally unique identifier for networks, gateways applications and devices. The EUIs are used to identify all parts of the LoRaWAN inside the backend server.
-- **Devices**: here you can see and manage all the associated devices (e.g. your Portenta H7 with Vision Shield Lora, Arduino MKR WAN 1300 or MKR WAN 1310), or proceed with the registration of new one.
+- **Application Overview** and Application EUIS: in order to use this app, you'll need the Application ID and its EUIs. An EUI is a globally unique identifier for networks, gateways applications and devices. The EUIs are used to identify all parts of the LoRaWAN® inside the backend server.
+- **Devices**: here you can see and manage all the associated devices (e.g. your Portenta H7 with Vision Shield LoRa®, Arduino MKR WAN 1300 or MKR WAN 1310), or proceed with the registration of new one.
 - **Collaborators**: here you can see and manage all the app collaborators. To integrate with other collaborative platforms or to manage access rights to the app with other TTN registered profiles.
 - **Access keys**: it's the most sensible information. It is basically the key to gain access to your app, so keep it safe.
 
 ### 3. Configuring the Vision Shield
 
-It's now time to connect your Portenta H7 and Lora Vision Shield to TTN. You'll need to upload code to the board, so as you probably already know, there are two options:
+It's now time to connect your Portenta H7 and LoRa® Vision Shield to TTN. You'll need to upload code to the board, so as you probably already know, there are two options:
 
 - Use the [Arduino Web Editor](https://create.arduino.cc/editor) 
 - Use the [Arduino IDE](https://www.arduino.cc/en/software), (this is the option this guide will follow)
 
-Plug the Portenta Vision Shield - LoRa to the Portenta H7 and them to your PC through the USB port. Be sure to have selected the right board "Arduino Portenta H7 (M7 core)" and the right port.
+Plug the Portenta Vision Shield - LoRa® to the Portenta H7 and them to your PC through the USB port. Be sure to have selected the right board "Arduino Portenta H7 (M7 core)" and the right port.
 
 ![Select port M7 Core](assets/vs_ard_select_port.png)
 
-The LoRa module on the Vision Shield can be accessed by using the [MKRWAN library](https://github.com/arduino-libraries/MKRWAN)( if you can't find it in your examples list, you can go to **tools > library manager** and type "MKRWAN library" to install it). This library provides all the APIS to communicate with LoRa and LoRaWAN networks and can be Installed from the library Manager. The first code you need to upload and run is from the **MKRWAN** library, and its name is **FirstConfiguration**.
+The LoRa® module on the Vision Shield can be accessed by using the [MKRWAN library](https://github.com/arduino-libraries/MKRWAN)( if you can't find it in your examples list, you can go to **tools > library manager** and type "MKRWAN library" to install it). This library provides all the APIS to communicate with LoRa® and LoRaWAN® networks and can be Installed from the library Manager. The first code you need to upload and run is from the **MKRWAN** library, and its name is **FirstConfiguration**.
 
 ![Upload code to IDE](assets/vs_ard_select_example.png)
 
@@ -132,14 +139,14 @@ Message sent correctly!
 
 ## Conclusion
 
-If you recieve this message, you have managed to configure the Portenta H7 and the Lora Vision Shield on the TTN.
+If you recieve this message, you have managed to configure the Portenta H7 and the LoRa® Vision Shield on the TTN.
  We have retrieved the device EUI, used it to register the device in the TTN console, and programmed the board using the data provided by TTN. Now, we can send data over the LoRa® network which can be viewed from anywhere in the world (as long as we have an Internet connection and our device is in range from a TTN gateway).
 
 ### Next Steps
 
 - Try sending uplink and downlink messages between Portenta and your TTN application with **LoraSendAndReceive** sketch from the MKRWAN library.
 - Experiment your Vision Shield's capabilities with OpenMV and the examples from the dedicated library for Arduino. You can continue with [this tutorial](https://www.arduino.cc/pro/tutorials/portenta-h7/por-openmv-bt) from the Arduino Pro site.
--  Combine LoRaWAN protocol with an OpenMV example to develop your own IoT application. Take advantage of the Vision Shield's camera to detect, filter, classify images, read QR codes or more.     
+-  Combine LoRaWAN® protocol with an OpenMV example to develop your own IoT application. Take advantage of the Vision Shield's camera to detect, filter, classify images, read QR codes or more.     
 
 ## Troubleshooting
 

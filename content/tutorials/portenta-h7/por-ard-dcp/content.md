@@ -1,3 +1,10 @@
+---
+title: Dual Core Processing
+coverImage: assets/por_ard_dcp_cover.svg
+tags: [Multitasking, RGB, LED]
+description: In this tutorial you will run two classic Arduino blink programs simultaneously on different cores of the Portenta board that blinks the RGB LED in two different colours.
+---
+
 # Dual Core Processing
 
 ## Overview
@@ -17,19 +24,19 @@ The Portenta H7 is equipped with a processor that has two processing units calle
 ## Cortex® M7 & M4 
 Processor cores are individual processing units within the board's main processing unit (don't confuse a processor core with an [Arduino core](https://www.arduino.cc/en/guide/cores)). These cores are responsible for the executing instructions at a particular clock speed.  The on-board  Arm Cortex processor comes with two cores (Cortex® M7 and M4), with slightly different architectures and clock speeds. The M7  runs at 480 MHz and the architecture is designed  to separate Instruction and Data buses to optimize CPU latency. The M4 runs at 240 MHz and the architecture supports the ART™ accelerator (a block that speeds up instruction fetching accesses of the Cortex-M4 core to the D1-domain internal memories). The higher clock rate of the M7 makes it suitable to handle complex processing tasks such as data storage, debugging or handling input/output peripherals at a higher efficiency compared to the M4. The dual core processor of the Portenta H7 sets it apart from other single core Arduino boards by allowing true multitasking, faster data processing capabilities, enhanced processing power and application partitioning.  
 
-![The Architectures of Cortex® M7 and M4 cores.](assets/por_ard_dcp_m4_m7_architectures.svg?sanitize=true)
+![The Architectures of Cortex® M7 and M4 cores.](assets/por_ard_dcp_m4_m7_architectures.svg)
 
 ## Instructions
 
 ### Accessing the M7 and M4 Core
 To best illustrate the idea of dual core processing, you will be running two separate sketch files. One on each of the cores which blinks the RGB LED in a different colour. The **BlinkRedLed_M7.ino** sketch will set the built-in RGB LED on the board to red and blink it with a delay of 500 ms. The **BlinkGreenLed_M4.ino** sketch will access the green LED in the RGB led and blink it with a delay of 200 ms.  Both the cores will be executing the corresponding sketch file simultaneously and as a result both the green and red LED blink, however, at different intervals.
 
-![Running two different sketch files on the different cores.](assets/por_ard_dcp_tutorial_overview.svg?sanitize=true)
+![Running two different sketch files on the different cores.](assets/por_ard_dcp_tutorial_overview.svg)
 
 ### 1. The Basic Setup
 Begin by plugging-in your Portenta board to your computer using an appropriate USB-C cable and have the  Arduino IDE or the Arduino Pro IDE  open. If this is your first time running Arduino sketch files on the board, we suggest you check out how to [Setting Up Portenta H7 For Arduino](https://www.arduino.cc/pro/tutorials/portenta-h7/por-ard-gs) before you proceed.
 
-![A Basic setup of the board attached to your computer](../por-ard-gs/assets/por_ard_gs_basic_setup.svg?sanitize=true)
+![A Basic setup of the board attached to your computer](../por-ard-gs/assets/por_ard_gs_basic_setup.svg)
 
 **Note:** You can access the examples from the tutorials library once it's installed: **Examples -> Arduino_Pro_Tutorials -> Dual Core Processing**
 
@@ -85,7 +92,7 @@ If you would upload the sketch to the M4 at this point nothing would change. The
 ### 5. Force Booting the M4 Core
 The bootloader of the H7 boards is configured in such a way that only M7 gets booted automatically. The reason is that for simple use cases the M4 may not be needed and hence be unprogrammed and doesn't need to get powered. One such instance is when the M7 doesn't have the appropriate firmware that automatically handles the initialization of the M4. As a result you need to force boot the M4 so that it can run a sketch. You can do so through the M7 using a special command, `bootM4()`  that boots the M4 when the board is powered.
 
-![The M7 and the M4 cores share the flash memory where the sketches are stored.](assets/por_ard_dcp_m4_m7_flash_memory.svg?sanitize=true)
+![The M7 and the M4 cores share the flash memory where the sketches are stored.](assets/por_ard_dcp_m4_m7_flash_memory.svg)
 
 Before you can upload the code for the M4 core to the flash memory you need to add the `bootM4()` command in the **BlinkRedLed_M7.ino** sketch file that is uploaded and run by the M7 core. Copy and paste the following command `bootM4()` inside the `setup()` function of the **BlinkRedLed_M7.ino**  sketch and upload the sketch to M7 once again.
 
@@ -170,7 +177,7 @@ Now can upload the sketch to both the cores of the Portenta H7 individually. Wit
 This tutorial introduces the idea of dual core processing and illustrates the concept by using the M7 and M4 cores to control the different colors of the built-in RGB LED. This simple example only describes how to access the M7 and M4 cores. In the upcoming tutorials you will learn to create applications that leverage the potential of dual core processing to perform more complex tasks. 
 
 ### Next Steps
-- Proceed with the next tutorial "Setting Up a WiFi Access Point" to learn how to make use of the built-in WiFi module and configure your Portena H7 as a WiFi access point.
+- Proceed with the next tutorial "Setting Up a Wi-Fi Access Point" to learn how to make use of the built-in Wi-Fi module and configure your Portena H7 as a Wi-Fi access point.
 
 **Authors:** Lenard George, Sebastian Hunkeler  
 **Reviewed by:** José Garcia [2020-03-20]  

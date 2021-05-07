@@ -1,3 +1,10 @@
+---
+title: Reading and Writing Flash Memory
+coverImage: assets/por_ard_block_device_cover.svg
+tags: [Storage, Flash, Block Device]
+description: This tutorial demonstrates how to use the on-board flash memory of the Portenta H7 to read and write data using the BlockDevice API provided by Mbed OS.
+---
+
 # Using the Flash Storage To Read and Write Data
 ## Overview 
 This tutorial demonstrates how to use the on-board flash memory of the Portenta H7 to read and write data using the BlockDevice API provided by Mbed OS. As the internal memory is limited in size we will also take a look at saving data to the QSPI flash memory.
@@ -361,7 +368,7 @@ if(blockDevice.init() != 0 || blockDevice.size() != BLOCK_DEVICE_SIZE) {
 }
 ```
 
-While the QSPI block device memory can be used directly, it's better to use a partition table as the QSPI storage is also filled with other data such as the WiFi firmware. For that we use the [MBRBlockDevice](https://os.mbed.com/docs/mbed-os/v6.8/apis/mbrblockdevice.html) class and allocate a 8 KB partition which can then be used to read and write data.
+While the QSPI block device memory can be used directly, it's better to use a partition table as the QSPI storage is also filled with other data such as the Wi-Fi firmware. For that we use the [MBRBlockDevice](https://os.mbed.com/docs/mbed-os/v6.8/apis/mbrblockdevice.html) class and allocate a 8 KB partition which can then be used to read and write data.
 The full QSPI version of the sketch is as follows:
 
 ```cpp
