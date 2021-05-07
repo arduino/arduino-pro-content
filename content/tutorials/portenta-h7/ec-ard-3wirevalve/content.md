@@ -110,7 +110,7 @@ The Valves require a power supply of 9 - 12 V and you can either use a power sup
 
 Connect the jumper from the **B** pin to the positive terminal of the Battery and the jumper from the **GND** pin to the negative terminal of the battery 
 
-### 5. Uploading The Sketch 
+### 4. Uploading The Sketch 
 
 Connect the board to your computer, upload the `ValveControl.ino` sketch and open the **Serial Monitor**. If all the connections are done right, the valve opens and closes and you should be able to see the status as `Open` or `Close` on the serial monitor. 
 
@@ -153,6 +153,11 @@ void loop()
 
 ```
 
+### Next Steps 
+
+
+
 **Authors:** Ernesto E. Lopez, Lenard George Swamy
-**Reviewed by:** Ernesto E. Lopez [18.03.2021]  
-**Last revision:** Lenard George Swamy  [06.04.2021]
+**Reviewed by:** Ernesto E. Lopez [2021-03-18]
+**Last revision:** Lenard George Swamy  [2021-04-06]
+
