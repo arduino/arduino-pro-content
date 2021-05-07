@@ -1,11 +1,11 @@
 ---
-title: Connecting the Vision Shield to TTN Using LoRa and OpenMV
+title: Connecting the Vision Shield to The Things Network using OpenMV
 coverImage: assets/
 tags: [Getting Started, OpenMV, IDE, Setup, TTN, LoRa]
 description: This tutorial explains how to connect your Portenta H7 to The Things Network (TTN) using the Vision Shield's LoRa Connectivity feature.
 ---
 
-# Connecting the Vision Shield to TTN Using LoRa and OpenMV
+# Connecting the Vision Shield to The Things Network using OpenMV
 ## Overview 
 
 This tutorial explains how to connect your Portenta H7 to The Things Network (TTN) using the Vision Shield's LoRa Connectivity feature. A data communication channel will be enabled between the H7 and a TTN application that will be configured on your TTN console.
