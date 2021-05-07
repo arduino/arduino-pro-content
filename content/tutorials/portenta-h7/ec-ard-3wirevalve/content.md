@@ -153,11 +153,7 @@ void loop()
 
 ```
 
-### Next Steps 
-
-
-
-**Authors:** Ernesto E. Lopez, Lenard George Swamy
-**Reviewed by:** Ernesto E. Lopez [2021-03-18]
-**Last revision:** Lenard George Swamy  [2021-04-06]
+**Authors:** Ernesto E. Lopez, Lenard George Swamy 
+**Reviewed by:** Ernesto E. Lopez [2021-03-18] 
+**Last revision:** Lenard George Swamy [2021-04-06]
 
