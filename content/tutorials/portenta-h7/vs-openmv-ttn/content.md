@@ -1,6 +1,6 @@
 ---
 title: Connecting the Vision Shield to The Things Network using OpenMV
-coverImage: assets/
+coverImage: assets/vs_mp_ttn_cover.svg
 tags: [Getting Started, OpenMV, IDE, Setup, TTN, LoRa]
 description: This tutorial explains how to connect your Portenta H7 to The Things Network (TTN) using the Vision Shield's LoRa Connectivity feature.
 ---
@@ -75,11 +75,11 @@ To be able to use the LoRa functionality, we need to first update the modems fir
 The code you need to upload and run is from the **MKRWAN** library, and its name is **MKRWANFWUpdate_standalone**. With the Portenta M7 selected, upload the **MKRWANFWUpdate_standalone** sketch. 
 
 //REPLACE
-![Upload code to IDE, highlight MKRWANFWUpdate_standalone example](assets/vs_ard_select_example.png)
+![Upload code to IDE, highlight MKRWANFWUpdate_standalone example](assets/vs_mp_select_example.png)
 
 After uploading the sketch, open the serial monitor to confirm that the firmware has been updated. If the upload was successful it will print the progress in the serial monitor.
 
-![Arduino IDE serial monitor after firmware update](assets/vs_ard_serial_monitor_result.png)
+![Arduino IDE serial monitor after firmware update](assets/vs_mp_ttn_serialmonitor.png)
 
 If it all went correctly, you should see the same text in your serial monitor as on the image above.
 
@@ -230,5 +230,5 @@ The most common issue is that the device cannot connect to a TTN gateway. Again,
 If we are within good range of a gateway, we should also try to move our device and antenna to a window, and even hold it out the window and move it around. This has proven successful on numerous accounts, as the signal can travel less obstructed.
 
 **Authors:** Lenard George, Ignacio Herrera, Benjamin Dannegård  
-**Reviewed by:** Lenard George [2021-04-27]  
-**Last revision:** Benjamin Dannegård [2021-04-28]
+**Reviewed by:** Lenard George [2021-05-07]  
+**Last revision:** Benjamin Dannegård [2021-05-07]
