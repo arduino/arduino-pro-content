@@ -112,9 +112,9 @@ Connect the jumper from the **B** pin to the positive terminal of the Battery an
 
 ### 4. Uploading The Sketch 
 
-Connect the board to your computer, upload the `ValveControl.ino` sketch and open the **Serial Monitor**. If all the connections are done right, the valve opens and closes and you should be able to see the status as `Open` or `Close` on the serial monitor. 
+Connect the board to your computer, upload the `ValveControl.ino` sketch and open the **Serial Monitor**. If all the connections are done right, the valve opens and closes and you should be able to see the status as `Open` or `Close` on the serial monitor 
 
-## Conclusion 
+## Conclusion
 
 This tutorial explains how a 3 wire valve works and the basic operations of how the Edge Control board used to control the valves. With this knowledge you can build simple irrigation systems that will periodically control the valves that can be later installed in your field. 
 
@@ -153,7 +153,6 @@ void loop()
 
 ```
 
-**Authors:** Ernesto E. Lopez, Lenard George Swamy 
-**Reviewed by:** Ernesto E. Lopez [2021-03-18] 
+**Authors:** Ernesto E. Lopez, Lenard George Swamy
+**Reviewed by:** Ernesto E. Lopez [2021-03-18]
 **Last revision:** Lenard George Swamy [2021-04-06]
-
