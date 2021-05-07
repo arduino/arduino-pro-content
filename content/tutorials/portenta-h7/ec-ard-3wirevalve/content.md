@@ -1,4 +1,12 @@
-# Controlling a Motorized Ball Valve 
+---
+title: Connecting and Controlling a Motorized Ball Valve
+coverImage: assets/ec_ard_gs_cover.svg?sanitize=true
+tags: [Edge Control, Motorised Valve, Irrigation, Getting Started]
+description: This tutorial will give you an overview of the core features of the board, setup the development environment and introduce the APIs required to program the board. 
+---
+
+# Connecting and Controlling a Motorized Ball Valve 
+
 ## Overview
 
 A ball valve is a form of quarter-turn [valve](https://en.wikipedia.org/wiki/Valve) which uses a hollow, perforated and pivoting ball to control flow of liquids and gasses through it. This tutorial will guide you to connect the board a 3 Wire-Valve and write a sketch that controls basic operation such as the opening and closing of the valves. 
@@ -16,14 +24,12 @@ A ball valve is a form of quarter-turn [valve](https://en.wikipedia.org/wiki/Val
 -   1 x [Arduino Edge control board](https://store.arduino.cc/edge-control)
 -   1 x [US Solid Motorised Ball Valve (9 - 24 V)](https://ussolid.com/u-s-solid-motorized-ball-valve-1-2-brass-electrical-ball-valve-with-full-port-9-24-v-ac-dc-3-wire-setup.html)
 -   External power source: 12V battery (LiPo / SLA) or power supply 
--   Micro USB cable
+-   1 x Micro USB cable
 -   Arduino IDE 1.8.10+ or Arduino Pro IDE 0.0.4+
 -   2 x Phoenix connectors 1844646
 -   2 x Jumper cables  
 
 ## Instructions 
-
-You will first install the required core and the libraries required to use the Edge Control board and upload a blink sketch to check if everything is connected right. You will then connect the Valve and then write the sketch that opens and closes it at a certain interval
 
 ### 1. Connecting The Valves
 
@@ -31,7 +37,9 @@ The motorized valve comes with three wires primarily marked as blue, yellow and 
 
 ![Schematics of the 3 wire motor](/Users/lenardgeorge/Documents/Arduino/03_Pro/arduino-pro-content/content/tutorials/portenta-h7/ec-ard-3wirevalve/assets/ec_ard_valve_wires.svg) 
 
- Ensure that the Phoenix connectors are in place before plugging in the wires to the respective pins. Connect the red and the blue wire to any one of the 8 pairs of `LATCHING OUT` pins. In this example we will use `1N` and `1P` of your Edge Control board. Latches allow you to store the state of the pins based on the previous output. As the valve doesnt come with internal drivers to store the state of the motor, we will use the `Latching_out` pins (instead of `Latching_out_cmd`) that are the ones that include drivers on the edge control. 
+You need to ensure that the Phoenix connectors are in place before plugging in the wires to the respective pins. If you havent link  
+
+Connect the red and the blue wire to any one of the 8 pairs of `LATCHING OUT` pins. In this example we will use `1N` and `1P` of your Edge Control board. Latches allow you to store the state of the pins based on the previous output. As the valve doesnt come with internal drivers to store the state of the motor, we will use the `Latching_out` pins (instead of `Latching_out_cmd`) that are the ones that include drivers on the edge control. 
 
 ![Connecting the valves to the Phoenix](assets/ec_ard_connect_valve.svg)
 
