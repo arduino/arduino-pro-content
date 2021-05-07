@@ -25,7 +25,7 @@ This tutorial explains how to connect your Portenta H7 to The Things Network (TT
 - [1x Dipole Pentaband antenna](https://store.arduino.cc/antenna) or a UFL Antenna of the H7 
 - [OpenMV IDE](https://openmv.io/pages/download)
 - Arduino IDE 1.8.10+ or Arduino Pro IDE 0.0.4+ or Arduino CLI 0.13.0+
-- USB-C cable (either USB-A to USB-C or USB-C to USB-C)
+- 1 x USB-C cable (either USB-A to USB-C or USB-C to USB-C)
 - An [account on The Things Network](https://account.thethingsnetwork.org/users/login) with The Things Network
 
 ## Instructions
