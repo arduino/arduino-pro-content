@@ -74,8 +74,7 @@ To be able to use the LoRa functionality, we need to first update the modems fir
 
 The code you need to upload and run is from the **MKRWAN** library, and its name is **MKRWANFWUpdate_standalone**. With the Portenta M7 selected, upload the **MKRWANFWUpdate_standalone** sketch. 
 
-//REPLACE
-![Upload code to IDE, highlight MKRWANFWUpdate_standalone example](assets/vs_mp_select_example.png)
+![Upload code to IDE](assets/vs_mp_select_example.png)
 
 After uploading the sketch, open the serial monitor to confirm that the firmware has been updated. If the upload was successful it will print the progress in the serial monitor.
 
