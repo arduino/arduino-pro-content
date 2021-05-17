@@ -28,7 +28,7 @@ This tutorial explains how to connect your Portenta H7 to The Things Network (TT
 - An [account](https://account.thethingsnetwork.org/users/login) with The Things Network
 
 ### Updating the LoRa® Module Firmware
-To be able to use the LoRa functionality, we need to first update the firmware on the LoRa modem, this is simply done through Arduino IDE and an example included in the MKRWAN library.
+To be able to use the LoRa® functionality, we need to first update the firmware on the LoRa® modem. This can be done through Arduino IDE by running a sketch included in the examples from the MKRWAN library.
 
 1. Connect the Portenta and Vision shield to your computer and open the Arduino IDE. 
 2. Install/update the **MKRWAN** library from Arduino IDE menu  _Tools > Manage Libraries_ type in "MKRWAN" to find the library and click 'Install' or 'Update' if necessary. This library provides all the APIS to communicate with LoRa and LoRaWAN networks.
