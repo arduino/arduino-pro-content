@@ -34,11 +34,11 @@ To be able to use the LoRa functionality, we need to first update the firmware o
 2. Install/update the **MKRWAN** library from Arduino IDE menu  _Tools > Manage Libraries_ type in "MKRWAN" to find the library and click 'Install' or 'Update' if necessary. This library provides all the APIS to communicate with LoRa and LoRaWAN networks.
 3. Upload the **MKRWANFWUpdate_standalone** sketch from Arduino IDE top menu _File > Examples > MKRWAN_.
 
-![Finding the add application button](assets/vs_ard_ttn_standalone.png)
+![Finding the sketch](assets/vs_ard_ttn_standalone.png)
 
 4. Open the serial monitor and wait for confirmation.
 
-![Finding the add application button](assets/vs_ard_ttn_serial.png)
+![Serial Monitor](assets/vs_ard_ttn_serial.png)
 
 ## Connecting to the TTN
 
