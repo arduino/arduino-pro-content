@@ -39,7 +39,7 @@ To be able to use the LoRa® functionality, we need to first update the firmware
 
 ![Finding the add application button](assets/vs_ard_ttn_standalone.png)
 
-4. Open the serial monitor and wait for confirmation.
+5. Open the serial monitor and wait for the update to be confirmed.
 
 ![Finding the add application button](assets/vs_ard_ttn_serial.png)
 
