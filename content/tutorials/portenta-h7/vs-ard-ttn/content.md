@@ -27,6 +27,19 @@ This tutorial explains how to connect your Portenta H7 to The Things Network (TT
 - USB C cable (either USB A to USB C or USB C to USB C)
 - An [account](https://account.thethingsnetwork.org/users/login) with The Things Network
 
+### Updating LoRa module firmware
+To be able to use the LoRa functionality, we need to first update the firmware on the LoRa modem, this is simply done through Arduino IDE and an example included in the MKRWAN library.
+
+1. Connect the Portenta and Vision shield to your computer and open the Arduino IDE. 
+2. Install/update the **MKRWAN** library from Arduino IDE menu  _Tools > Manage Libraries_ type in "MKRWAN" to find the library and click 'Install' or 'Update' if necessary. This library provides all the APIS to communicate with LoRa and LoRaWAN networks.
+3. Upload the **MKRWANFWUpdate_standalone** sketch from Arduino IDE top menu _File > Examples > MKRWAN_.
+
+![Finding the add application button](assets/vs_ard_ttn_standalone.png)
+
+4. Open the serial monitor and wait for confirmation.
+
+![Finding the add application button](assets/vs_ard_ttn_serial.png)
+
 ## Connecting to the TTN
 
 The Portenta Vision Shield - LoRa® can be connected to the TTN and can transmit data to other devices connected to this network through a secure channel. This channel is nothing but an applicaiton on the TTN network dedicated for your board. In this tutorial, you will be guided through a step-by-step process of setting up your Portenta board and the Vision Shield LoRa® to communicate with a TTN application. As stated before, to be able to follow this guide, to be under coverage of one of the TTN gateways. You can check for [the coverage](https://www.thethingsnetwork.org/map) now if you have not done so yet.
