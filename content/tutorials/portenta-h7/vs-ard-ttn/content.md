@@ -27,7 +27,7 @@ This tutorial explains how to connect your Portenta H7 to The Things Network (TT
 - USB C cable (either USB A to USB C or USB C to USB C)
 - An [account](https://account.thethingsnetwork.org/users/login) with The Things Network
 
-### Updating LoRa Module Firmware
+### Updating the LoRa® Module Firmware
 To be able to use the LoRa functionality, we need to first update the firmware on the LoRa modem, this is simply done through Arduino IDE and an example included in the MKRWAN library.
 
 1. Connect the Portenta and Vision shield to your computer and open the Arduino IDE. 
