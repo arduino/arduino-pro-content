@@ -44,18 +44,16 @@ Once you have created an account with TTN, you need to create a TTN [application
 
 ![Select Applications on the Console](assets/vs_ard_ttn_app.png)
 
-Here you'll have a list of all your applications. Now create your first app by pressing the **add application** button.
-
-![Finding the add application button](assets/vs_ard_ttn_new_app.png)
+Here you'll have a list of all your applications. Now create your first app by pressing the **Create an application** button.
 
 You have now to fill only the first two fields:
 
-- The first one is the **ID** of your app: this must be lowercase and without spaces.
-- The second one is a **Description** of your app, and there's no restrictions on formatting
+- The first one is the **Owner** of your app, it will automatically fill in you as the owner.
+- The second one is the **ID** of your app: this must be lowercase and without spaces.
 
 ![Adding a application](assets/vs_ard_ttn_app_param.png)
 
-After completing these two fields, press on the "Add application" button located at the bottom right corner of the page. The dashboard will then show you an overview of the newly created app.
+After completing these two fields, press on the "Create application" button located at the bottom left corner of the page. The dashboard will then show you an overview of the newly created app.
 
 ![Adding the App Parameters](assets/vs_ard_ttn_add_app.png)
 
