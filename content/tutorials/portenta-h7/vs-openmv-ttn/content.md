@@ -26,7 +26,7 @@ This tutorial explains how to connect your Portenta H7 to The Things Network (TT
 - [OpenMV IDE](https://openmv.io/pages/download)
 - Arduino IDE 1.8.10+ or Arduino Pro IDE 0.0.4+ or Arduino CLI 0.13.0+
 - 1 x USB-C cable (either USB-A to USB-C or USB-C to USB-C)
-- An [account on The Things Network](https://console.cloud.thethings.network/) with The Things Network
+- An [account on The Things Network](https://console.cloud.thethings.network/)
 
 ## Instructions
 
