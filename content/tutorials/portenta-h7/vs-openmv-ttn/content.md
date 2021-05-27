@@ -146,7 +146,12 @@ On the registration page, first we have to fill in information about our board. 
 
 In the second step of registering the device, fill in **End device ID** and **EUI**. You can click the generate button next to the AppKey field to generate an app key for this device. Similarly, you can press the button next to the AppEUI field to make it all zeros, or enter your own AppEUI.
 
-**Note**: The Device ID must be lowercase and without spaces. The **EUI** should be copied from the Serial Monitor.
+**Note**: The Device ID must be lowercase and without spaces. The **DevEUI** can be copied from the terminal in OpenMV. You can run the following script to obtain it.
+
+```py
+from lora import *
+print("Device EUI:", Lora().get_device_eui())
+```
 
 ![Second step of registering device](assets/vs_ard_ttn_register_device_2.png)
 
