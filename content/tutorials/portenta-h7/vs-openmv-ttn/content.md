@@ -34,7 +34,7 @@ The Portenta Vision Shield - LoRa can be connected to the TTN and can transmit d
 
 ### 1. Setting up the Environment
 
-Start by going [here](https://console.cloud.thethings.network/). First chose your region. Next, sign in with your The Things Network account, or create a new one on the login page.
+Start by going [here](https://console.cloud.thethings.network/). First choose your region. Next, sign in with your The Things Network account, or create a new one on the login page.
 
 ![The Things Network homepage](assets/vs_ard_ttn_home.png)
 
@@ -59,8 +59,8 @@ After completing these two fields, press the "Create application" button located
 
 Let's take a closer look at these sections:
 
-- **Application Overview** and Application EUIS: in order to use this app, you'll need the Application ID and its join EUI. An EUI is a globally unique identifier for networks, gateways applications and devices. The EUIs are used to identify all parts of the LoRaWAN inside the backend server.
-- **End devices**: here you can see and manage all the associated devices (e.g. your Portenta H7 with Vision Shield LoRa, Arduino MKR WAN 1300 or MKR WAN 1310), or proceed with the registration of a new one. Registering a new device lets you generate an AppEUI and AppKey.
+- **Application Overview**: in order to use this app, you'll need the Application ID and a device specific AppKey. An EUI is a globally unique identifier for networks, gateways applications and devices. The EUIs are used to identify all parts of the LoRaWAN inside the backend server.
+- **End devices**: here you can see and manage all the associated devices (e.g. your Portenta H7 with Vision Shield LoRa, Arduino MKR WAN 1300 or MKR WAN 1310), or proceed with the registration of a new one. Registering a new device lets you generate an AppEUI and an AppKey.
 - **Collaborators**: here you can see and manage all the app collaborators. To integrate with other collaborative platforms or to manage access rights to the app with other TTN registered profiles.
 - **API keys**: here you can create an API key, it's the most sensible information. It is basically the key to gain access to your app, so keep it safe.
 
@@ -140,7 +140,7 @@ Before your Portenta H7 can start communicating with the TTN you need to [regist
 
 ![Registering a Device](assets/vs_ard_ttn_click_register.png)
 
-On the registration page, first we have to fill in information about our board. Select brand, Arduino SA, and then model, Portenta Vision Shield LoRa. Hardware and Firmware versions will automatically select the newest ones. Then set your preferred region.
+On the registration page, first we have to fill in information about our board. Select brand Arduino SA, and Portenta Vision Shield LoRa as the model. Hardware and firmware versions will automatically be set the newest ones. Then set your preferred region.
 
 ![First step of registering device](assets/vs_ard_ttn_register_device_1.png)
 
