@@ -25,7 +25,7 @@ This tutorial explains how to connect your Portenta H7 to The Things Network (TT
 - [1x Dipole Pentaband antenna](https://store.arduino.cc/antenna) or a UFL Antenna of the H7 
 - Arduino [offline](https://www.arduino.cc/en/main/software) IDE or Arduino ([Web Editor](https://create.arduino.cc/)
 - USB C cable (either USB A to USB C or USB C to USB C)
-- An [account](https://account.thethingsnetwork.org/users/login) with The Things Network
+- An [account](https://console.cloud.thethings.network/) with The Things Network
 
 ### Updating the LoRa® Module Firmware
 To be able to use the LoRa® functionality, we need to first update the firmware on the LoRa® modem. This can be done through Arduino IDE by running a sketch included in the examples from the MKRWAN library.
@@ -49,37 +49,35 @@ The Portenta Vision Shield - LoRa® can be connected to the TTN and can transmit
 
 ### 1. Setting up the Environment
 
-Start by pointing your browser to www.thethingsnetwork.org and use the Sign Up button to setup an account. Next, then fill all the required fields to complete a new registration (if you already have a TTN account, skip this step and continue by signing in).
+Start by going [here](https://console.cloud.thethings.network/). First choose your region. Next, sign in with your The Things Network account. If you don't have an account, create a new one on the login page. Then fill all the required fields to complete a new registration.
 
 ![The Things Network homepage](assets/vs_ard_ttn_home.png)
 
 ### 2.  Creating an App on TTN
 
-Once you have created an account with TTN, you need to create a TTN [application](https://www.thethingsnetwork.org/docs/applications/). An application provides a way to aggregate data from different devices, and then use these data with other 3rd party integrations. Go to your [console](https://console.thethingsnetwork.org), and click on **Applications**
+Once you have created an account with TTN, you need to create a TTN [application](https://www.thethingsnetwork.org/docs/applications/). An application provides a way to aggregate data from different devices, and then use these data with other 3rd party integrations. After signing in, click on **Create an application**, or **Go to applications** if you already have one created.
 
 ![Select Applications on the Console](assets/vs_ard_ttn_app.png)
 
-Here you'll have a list of all your applications. Now create your first app by pressing the **add application** button.
-
-![Finding the add application button](assets/vs_ard_ttn_new_app.png)
+Here you'll have a list of all your applications. Now create your first app by pressing the **Create an application** button.
 
 You have now to fill only the first two fields:
 
-- The first one is the **ID** of your app: this must be lowercase and without spaces.
-- The second one is a **Description** of your app, and there's no restrictions on formatting
+- The first one is the **Owner** of your app, it will automatically have you as the owner.
+- The second one is the **ID** of your app: this must be lowercase and without spaces.
 
 ![Adding a application](assets/vs_ard_ttn_app_param.png)
 
-After completing these two fields, press on the "Add application" button located at the bottom right corner of the page. The dashboard will then show you an overview of the newly created app.
+After completing these two fields, press the "Create application" button located at the bottom left corner of the page. The dashboard will then show you an overview of the newly created app.
 
 ![Adding the App Parameters](assets/vs_ard_ttn_add_app.png)
 
 Let's take a closer look at these sections:
 
-- **Application Overview** and Application EUIS: in order to use this app, you'll need the Application ID and its EUIs. An EUI is a globally unique identifier for networks, gateways applications and devices. The EUIs are used to identify all parts of the LoRaWAN® inside the backend server.
-- **Devices**: here you can see and manage all the associated devices (e.g. your Portenta H7 with Vision Shield LoRa®, Arduino MKR WAN 1300 or MKR WAN 1310), or proceed with the registration of new one.
+- **Application Overview**: in order to use this app, you'll need the Application ID and a device specific AppKey. An EUI is a globally unique identifier for networks, gateways applications and devices. The EUIs are used to identify all parts of the LoRaWAN inside the backend server.
+- **End devices**: here you can see and manage all the associated devices (e.g. your Portenta H7 with Vision Shield LoRa, Arduino MKR WAN 1300 or MKR WAN 1310), or proceed with the registration of a new one. Registering a new device lets you generate an AppEUI and an AppKey.
 - **Collaborators**: here you can see and manage all the app collaborators. To integrate with other collaborative platforms or to manage access rights to the app with other TTN registered profiles.
-- **Access keys**: it's the most sensible information. It is basically the key to gain access to your app, so keep it safe.
+- **API keys**: here you can create an API key, it's the most sensible information. It is basically the key to gain access to your app, so keep it safe.
 
 ### 3. Configuring the Vision Shield
 
@@ -116,14 +114,19 @@ In order to select the way in which the board is going to connect with TTN  (OTA
 
 ### 4. Registring the Portenta on TTN
 
-Before your Portenta H7 can start communicating with the TTN you need to [register](https://www.thethingsnetwork.org/docs/devices/registration.html) the board with an application. Go back to the TTN portal and scroll to **Devices** section on your Application dashboard, then click **Register Device**.
+Before your Portenta H7 can start communicating with the TTN you need to [register](https://www.thethingsnetwork.org/docs/devices/registration.html) the board with an application. Go back to the TTN portal and scroll to **End devices** section on your Application dashboard, then click **Add end device**.
 
 ![Registering a Device](assets/vs_ard_ttn_click_register.png)
 
-On the registration page, fill in **Device ID** and **EUI**. 
-**Note**:  The Device ID must be lowercase and without spaces. The **EUI** should be copied from the Serial Monitor.
+On the registration page, first we have to fill in information about our board. Select brand Arduino SA, and Portenta Vision Shield LoRa as the model. Hardware and firmware versions will automatically be set to the newest ones. Then set your preferred region.
 
-![Entering the device EUI](assets/vs_ard_ttn_register_device.png)
+![Entering the device EUI](assets/vs_ard_ttn_register_device_1.png)
+
+In the second step of registering the device, fill in **End device ID** and **DevEUI**. You can click the generate button next to the AppKey field to generate an app key for this device. Similarly, you can press the button next to the AppEUI field to make it all zeros, or enter your own AppEUI.
+
+**Note**: The Device ID must be lowercase and without spaces. The **DevEUI** should be copied from the Serial Monitor.
+
+![Second step of registering device](assets/vs_ard_ttn_register_device_2.png)
 
 After pressing the Register button, your board will show up on the **Device Overview** page. You can now see all the information needed to complete the Arduino setup.
 
@@ -133,7 +136,7 @@ After pressing the Register button, your board will show up on the **Device Over
 
 Once your board has been registered you can send information to TTN. Let's come back to the Serial Monitor and proceed. It will ask for:
 
-- Activation mode (that, in this case, is OTAA as you can see in the screenshot above),
+- Activation mode (that, in this case, is OTAA),
 - The Application EUI
 - The App Key.
 
@@ -172,4 +175,4 @@ If we are within good range of a gateway, we should also try to move our device 
 
 **Authors:** Lenard George, Ignacio Herrera  
 **Reviewed by:** Jose Garcia, Linnea Åkerberg [2021-02-02]  
-**Last revision:** Sebastian Romero [2021-02-05]
+**Last revision:** Benjamin Dannegård [2021-05-21]
