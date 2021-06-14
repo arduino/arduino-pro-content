@@ -20,13 +20,13 @@ The Edge Control board is a versatile tool that allows agriculturalists to devel
 -   Arduino Edge Control (<https://store.arduino.cc/edge-control>)
 -   Micro USB cable
 -   Arduino IDE 1.8.10+
--   External power source : a 12V LiPo/SLA battery or power supply 
+-   External power source : a 12V SLA battery or 12V power supply 
 -   1x Phoenix connector 
 -   2x Jumper wires 
 
 ## Instructions
 
-In this getting started tutorial you will set up the Edge Control board and blink an LED. You will first learn to install the core from the Boards Manager. You will write a simple blink sketch using some fundamental APIs provided by the Arduino Edge Control Library. You will need to connect your board to an external power source and therefore have a LiPo battery or a power source with you when running the sketch. 
+In this getting started tutorial you will set up the Edge Control board and blink an LED. You will first learn to install the core from the Boards Manager. You will write a simple blink sketch using some fundamental APIs provided by the Arduino Edge Control Library. You will need to connect your board to an external power source and therefore have a SLA battery or a power source with you when running the sketch. 
 
 ### 1. Get to Know the Board
 
@@ -81,7 +81,7 @@ The board is designed to be very low power and for this reason some the electron
 
 ![Power rails of the Edge Control board](assets/ec_ard_gs_power_rail.svg)
 
-The Edge Control board uses an I/O expander in order to increase the number of digital control signals. If we want to blink the on-board LED we would need to enable the power of the I/O expander to which the LED is connected to and also enable the power to the 5V DCDC converter. 5V power line is powered by the **battery source** for which you can either use a power supply or a 3 cell LiPo battery to provide the required voltage.
+The Edge Control board uses an I/O expander in order to increase the number of digital control signals. If we want to blink the on-board LED we would need to enable the power of the I/O expander to which the LED is connected to and also enable the power to the 5V DCDC converter. 5V power line is powered by the **battery source** for which you can either use a power supply or a SLA battery to provide the required voltage.
 
 The `Power` class provides API access to enable the different voltages on the board. In this tutorial we need to enable the 3.3V and 5V power lines using the `enable3V3()` and `enable5V()` functions. 
 
